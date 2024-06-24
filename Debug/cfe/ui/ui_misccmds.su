@@ -1,0 +1,4 @@
+../cfe/ui/ui_misccmds.c:61:5:ui_init_misccmds	16	static
+../cfe/ui/ui_misccmds.c:109:12:ui_cmd_sleep	56	static
+../cfe/ui/ui_misccmds.c:125:12:ui_cmd_loop	40	static
+../cfe/ui/ui_misccmds.c:167:12:ui_cmd_console	32	static

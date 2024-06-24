@@ -1,0 +1,4 @@
+../cfe/ui/ui_envcmds.c:60:12:ui_cmd_printenv	2
+../cfe/ui/ui_envcmds.c:83:12:ui_cmd_setenv	7
+../cfe/ui/ui_envcmds.c:121:12:ui_cmd_unsetenv	5
+../cfe/ui/ui_envcmds.c:148:5:ui_init_envcmds	1

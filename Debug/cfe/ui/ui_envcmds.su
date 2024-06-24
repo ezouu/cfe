@@ -1,0 +1,4 @@
+../cfe/ui/ui_envcmds.c:60:12:ui_cmd_printenv	384	static
+../cfe/ui/ui_envcmds.c:83:12:ui_cmd_setenv	40	static
+../cfe/ui/ui_envcmds.c:121:12:ui_cmd_unsetenv	40	static
+../cfe/ui/ui_envcmds.c:148:5:ui_init_envcmds	16	static
