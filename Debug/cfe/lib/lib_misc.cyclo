@@ -1,0 +1,4 @@
+../cfe/lib/lib_misc.c:68:5:lib_parseipaddr	16
+../cfe/lib/lib_misc.c:123:5:lib_lookup	3
+../cfe/lib/lib_misc.c:147:22:lib_findinlist	3
+../cfe/lib/lib_misc.c:179:5:lib_setoptions	13
