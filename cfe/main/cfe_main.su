@@ -1,0 +1,10 @@
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:152:13:cfe_setup_default_env	96	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:239:6:cfe_leds	16	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:243:6:cfe_ledstr	24	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:269:13:cfe_say_hello	8	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:316:6:cfe_restart	8	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:333:6:cfe_start	16	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:360:13:cfe_startup_info	4	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:418:6:cfe_main	16	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:532:6:cfe_command_restart	16	static
+/Users/easy/Downloads/cfe-master/cfe/main/cfe_main.c:602:6:cfe_command_loop	4	static
