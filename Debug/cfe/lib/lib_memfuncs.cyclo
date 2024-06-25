@@ -1,0 +1,2 @@
+../cfe/lib/lib_memfuncs.c:72:5:mem_peek	7
+../cfe/lib/lib_memfuncs.c:122:5:mem_poke	7

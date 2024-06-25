@@ -1,0 +1,2 @@
+../cfe/main/cfe_loader.c:90:21:cfe_findloader	24	static
+../cfe/main/cfe_loader.c:118:5:cfe_load_program	24	static

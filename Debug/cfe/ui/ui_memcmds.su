@@ -1,0 +1,4 @@
+../cfe/ui/ui_memcmds.c:79:5:ui_init_memcmds	16	static
+../cfe/ui/ui_memcmds.c:114:12:ui_cmd_heapstats	56	static
+../cfe/ui/ui_memcmds.c:138:12:ui_cmd_physmap	80	static
+../cfe/ui/ui_memcmds.c:176:12:ui_cmd_reserve	96	static

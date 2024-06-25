@@ -1,0 +1,11 @@
+../cfe/main/cfe_main.c:152:13:cfe_setup_default_env	2
+../cfe/main/cfe_main.c:190:13:cfe_init_ui	1
+../cfe/main/cfe_main.c:221:6:cfe_leds	1
+../cfe/main/cfe_main.c:225:6:cfe_ledstr	1
+../cfe/main/cfe_main.c:251:13:cfe_say_hello	1
+../cfe/main/cfe_main.c:298:6:cfe_restart	1
+../cfe/main/cfe_main.c:315:6:cfe_start	1
+../cfe/main/cfe_main.c:342:13:cfe_startup_info	1
+../cfe/main/cfe_main.c:400:6:cfe_main	1
+../cfe/main/cfe_main.c:499:6:cfe_command_restart	1
+../cfe/main/cfe_main.c:569:6:cfe_command_loop	3

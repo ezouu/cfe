@@ -1,0 +1,9 @@
+../cfe/ui/ui_examcmds.c:90:12:getaddrargs	48	static
+../cfe/ui/ui_examcmds.c:164:12:stuffmem	88	static
+../cfe/ui/ui_examcmds.c:216:5:dumpmem	72	static
+../cfe/ui/ui_examcmds.c:321:12:ui_cmd_memedit	360	static
+../cfe/ui/ui_examcmds.c:424:12:ui_cmd_memfill	72	static
+../cfe/ui/ui_examcmds.c:503:12:ui_cmd_memtest	88	static
+../cfe/ui/ui_examcmds.c:551:12:ui_cmd_memdump	32	static
+../cfe/ui/ui_examcmds.c:578:12:ui_cmd_disasm	568	static
+../cfe/ui/ui_examcmds.c:609:5:ui_init_examcmds	16	static

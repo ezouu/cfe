@@ -1,0 +1,8 @@
+../cfe/ui/ui_loadcmds.c:79:17:getaddr	3
+../cfe/ui/ui_loadcmds.c:102:5:ui_init_loadcmds	1
+../cfe/ui/ui_loadcmds.c:209:12:ui_cmd_autoboot	3
+../cfe/ui/ui_loadcmds.c:224:12:ui_cmd_go	3
+../cfe/ui/ui_loadcmds.c:244:12:ui_cmd_bootcommon	4
+../cfe/ui/ui_loadcmds.c:290:12:ui_cmd_load	1
+../cfe/ui/ui_loadcmds.c:300:12:ui_cmd_boot	1
+../cfe/ui/ui_loadcmds.c:307:12:ui_cmd_batch	1

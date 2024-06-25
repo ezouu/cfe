@@ -1,0 +1,8 @@
+../cfe/lib/lib_malloc.c:113:6:kmeminit	1
+../cfe/lib/lib_malloc.c:138:7:kmempoolbase	1
+../cfe/lib/lib_malloc.c:155:5:kmempoolsize	1
+../cfe/lib/lib_malloc.c:173:13:kmemcompact	7
+../cfe/lib/lib_malloc.c:224:6:kfree	4
+../cfe/lib/lib_malloc.c:266:6:lib_outofmemory	1
+../cfe/lib/lib_malloc.c:285:7:kmalloc	12
+../cfe/lib/lib_malloc.c:415:5:kmemstats	12

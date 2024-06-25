@@ -1,0 +1,4 @@
+../cfe/main/cfe_background.c:85:6:cfe_bg_init	8	static
+../cfe/main/cfe_background.c:105:6:cfe_bg_add	24	static
+../cfe/main/cfe_background.c:130:6:cfe_bg_remove	24	static
+../cfe/main/cfe_background.c:164:6:background	16	static
