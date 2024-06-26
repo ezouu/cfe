@@ -1,7 +1,9 @@
-../cfe/ui/ui_misccmds.c:65:5:ui_init_misccmds	16	static
-../cfe/ui/ui_misccmds.c:135:12:ui_cmd_sleep	56	static
-../cfe/ui/ui_misccmds.c:151:12:ui_cmd_loop	40	static
-../cfe/ui/ui_misccmds.c:193:12:ui_cmd_console	32	static
-../cfe/ui/ui_misccmds.c:218:12:ui_cmd_display	48	static
-../cfe/ui/ui_misccmds.c:269:12:ui_cmd_edit	48	static
-../cfe/ui/ui_misccmds.c:297:12:ui_cmd_printten	32	static
+../cfe/ui/ui_misccmds.c:67:5:ui_init_misccmds	16	static
+../cfe/ui/ui_misccmds.c:142:12:ui_cmd_sleep	56	static
+../cfe/ui/ui_misccmds.c:158:12:ui_cmd_loop	40	static
+../cfe/ui/ui_misccmds.c:200:12:ui_cmd_console	32	static
+../cfe/ui/ui_misccmds.c:225:12:ui_cmd_display	48	static
+../cfe/ui/ui_misccmds.c:276:12:ui_cmd_edit	48	static
+../cfe/ui/ui_misccmds.c:304:12:ui_cmd_printten	32	static
+../cfe/ui/ui_misccmds.c:319:6:LED_Init	16	static
+../cfe/ui/ui_misccmds.c:339:12:ui_cmd_LED	40	static
