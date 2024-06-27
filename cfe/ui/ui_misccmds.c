@@ -313,27 +313,26 @@ static int ui_cmd_printten(ui_cmdline_t *cmd,int argc,char *argv[])
 #define GPIOB_BASE 0x48000400
 #define GPIOC_BASE 0x48000800
 
+#define PWR_BASE 0x40007000
 
 
 
 void LED_Init(void) {
 
+    *(volatile uint32_t *)(0x40007004) = 0x200;
+
     volatile uint32_t *RCC_AHB2ENR = (uint32_t *)(0x40021000 + 0x4C);
-    *RCC_AHB2ENR = 0xf;//|= (1 << 2);
-
-    volatile uint32_t *GPIOC_MODER = (uint32_t *)(GPIOC_BASE);
+    *RCC_AHB2ENR = 0xf;
 
 
-    //uint32_t initial_value = *GPIOC_MODER;
-    //printf("address: 0x%08X, Initial value: 0x%08X\n", (uint32_t)GPIOA_MODER, initial_value);
+    volatile uint32_t *RCC_APB1ENR1 = (uint32_t *)(0x40021000 + 0x58);
+    *RCC_APB1ENR1 |= (1 << 28);
 
 
-    //*GPIOC_MODER &= ~(0x2 << 1);
-    *GPIOC_MODER |= (1 << 2);
+    *(volatile uint32_t *)(GPIOC_BASE) = 0x4; // turn on
 
 
-    //uint32_t modified_value = *GPIOC_MODER;
-    //printf("address: 0x%08X, Modified value: 0x%08X\n", (uint32_t)GPIOA_MODER, modified_value);
+    *(volatile uint32_t *)(GPIOC_BASE + 0x14) = 0x0; // turn off
 }
 
 static int ui_cmd_LED(ui_cmdline_t *cmd, int argc, char *argv[])
@@ -347,24 +346,15 @@ static int ui_cmd_LED(ui_cmdline_t *cmd, int argc, char *argv[])
     LED_Init();
     volatile uint32_t *GPIOC_ODR = (uint32_t *)(GPIOC_BASE + 0x14);
 
-    /*volatile uint32_t *GPIOA_MODER = (uint32_t *)(GPIOA_BASE + GPIOA_MODER_OFFSET);
-    uint32_t initial_value = *GPIOA_MODER;
-    printf("Initial GPIOA_MODER: 0x%08X\n", initial_value);
+    if (state == 0) {
 
-    volatile uint32_t *GPIOA_ODR = (uint32_t *)(GPIOA_BASE + GPIOA_ODR_OFFSET);
-
-
-    *GPIOA_MODER &= ~(0x3 << PA5_MODER_BIT_POS);
-    *GPIOA_MODER |= (0x1 << PA5_MODER_BIT_POS);
-    uint32_t modified_value = *GPIOA_MODER;
-
-    printf("Modified GPIOA_MODER: 0x%08X\n", modified_value);
-    */
-
-    if (state == 1) {
         *GPIOC_ODR |= (1 << 1);
-    } else {
-        *GPIOC_ODR &= ~(1 << 0);
+        printf("LED is OFF\n");
+    }
+    if (state == 1) {
+
+        *GPIOC_ODR &= ~(1 << 1);
+        printf("LED is ON\n");
     }
 
     return 0;
