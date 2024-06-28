@@ -60,7 +60,8 @@ static int ui_cmd_edit(ui_cmdline_t *cmd,int argc,char *argv[]);
 static int ui_cmd_printten(ui_cmdline_t *cmd,int argc,char *argv[]);
 static int ui_cmd_LED(ui_cmdline_t *cmd,int argc,char *argv[]);
 
-
+static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]);
+static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[]);
 
 int ui_init_misccmds(void);
 
@@ -132,6 +133,19 @@ int ui_init_misccmds(void)
 
     cmd_addcmd("led",
 	       ui_cmd_LED,
+	       NULL,
+	       "1 to turn on light",
+	       "0 to turn off light",
+	       "");
+
+    cmd_addcmd("ledb",
+	       ui_cmd_LEDB,
+	       NULL,
+	       "1 to turn on light",
+	       "0 to turn off light",
+	       "");
+    cmd_addcmd("joystick",
+	       ui_cmd_joystick,
 	       NULL,
 	       "1 to turn on light",
 	       "0 to turn off light",
@@ -359,3 +373,72 @@ static int ui_cmd_LED(ui_cmdline_t *cmd, int argc, char *argv[])
 
     return 0;
 }
+
+void LEDB_Init(void) {
+
+    *(volatile uint32_t *)(0x40007004) = 0x200;
+
+    volatile uint32_t *RCC_AHB2ENR = (uint32_t *)(0x40021000 + 0x4C);
+    *RCC_AHB2ENR = 0xf;
+
+    volatile uint32_t *RCC_APB1ENR1 = (uint32_t *)(0x40021000 + 0x58);
+    *RCC_APB1ENR1 |= (1 << 28);
+
+
+    *(volatile uint32_t *)(GPIOB_BASE + 0)  |= 0x10; //
+
+    *(volatile uint32_t *)(GPIOB_BASE + 0x14) = 0x0;
+}
+
+
+static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
+    char *state_str;
+    int state;
+
+    state_str = cmd_getarg(cmd, 0);
+    state = atoi(state_str);
+
+    LEDB_Init();
+    volatile uint32_t *GPIOB_ODR = (uint32_t *)(GPIOB_BASE + 0x14);
+
+    if (state == 0) {
+        *GPIOB_ODR |= (1 << 2);
+        printf("LED1 is OFF\n");
+    }
+    if (state == 1) {
+        *GPIOB_ODR &= ~(1 << 2);
+        printf("LED1 is ON\n");
+    }
+
+    return 0;
+}
+
+#define JOYSTICK_SEL GPIO0
+#define JOYSTICK_DOWN
+#define JOYSTICK_LEFT
+#define JOYSTICK_RIGHT
+#define IOEXPANDER2
+static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
+{
+    /*
+     uint8_t joystick_state;
+
+    // Initialize the IOExpander2 if necessary
+    if (io_expander_init(IOEXPANDER2) != 0) {
+        return -1;  // Initialization failed
+    }
+
+    // Read the joystick state from IOExpander2
+    joystick_state = io_expander_read(IOEXPANDER2, JOYSTICK_SEL) << 0 |
+                     io_expander_read(IOEXPANDER2, JOYSTICK_DOWN) << 1 |
+                     io_expander_read(IOEXPANDER2, JOYSTICK_LEFT) << 2 |
+                     io_expander_read(IOEXPANDER2, JOYSTICK_RIGHT) << 3 |
+                     io_expander_read(IOEXPANDER2, JOYSTICK_UP) << 4;
+
+    // Output the joystick state
+    printf("Joystick state: 0x%02X\n", joystick_state);
+    */
+
+    return 0;
+}
+

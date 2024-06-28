@@ -5,43 +5,43 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000010  20000000  20000000  00001000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00005094  20000010  20000010  00001010  2**2
+  1 .text         000051b0  20000010  20000010  00001010  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .init         00000004  200050a4  200050a4  000060a4  2**2
+  2 .init         00000004  200051c0  200051c0  000061c0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  3 .fini         00000004  200050a8  200050a8  000060a8  2**2
+  3 .fini         00000004  200051c4  200051c4  000061c4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  4 .rodata       00000a18  200050ac  200050ac  000060ac  2**2
+  4 .rodata       00000a44  200051c8  200051c8  000061c8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .ARM.exidx    00000008  20005ac4  20005ac4  00006ac4  2**2
+  5 .ARM.exidx    00000008  20005c0c  20005c0c  00006c0c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  6 .data         00000040  20005acc  20005acc  00006acc  2**2
+  6 .data         00000040  20005c14  20005c14  00006c14  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .bss          00000270  20005b10  20005b10  00006b0c  2**3
+  7 .bss          00000270  20005c58  20005c58  00006c54  2**3
                   ALLOC
-  8 ._user_heap_stack 00000600  20005d80  20005d80  00006b0c  2**0
+  8 ._user_heap_stack 00000600  20005ec8  20005ec8  00006c54  2**0
                   ALLOC
-  9 .ARM.attributes 00000030  00000000  00000000  00006b0c  2**0
+  9 .ARM.attributes 00000030  00000000  00000000  00006c54  2**0
                   CONTENTS, READONLY
- 10 .comment      00000043  00000000  00000000  00006b3c  2**0
+ 10 .comment      00000043  00000000  00000000  00006c84  2**0
                   CONTENTS, READONLY
- 11 .debug_line   0000607b  00000000  00000000  00006b7f  2**0
+ 11 .debug_line   00006108  00000000  00000000  00006cc7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_line_str 00000055  00000000  00000000  0000cbfa  2**0
+ 12 .debug_line_str 00000055  00000000  00000000  0000cdcf  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_info   00006f27  00000000  00000000  0000cc4f  2**0
+ 13 .debug_info   00007016  00000000  00000000  0000ce24  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00002261  00000000  00000000  00013b76  2**0
+ 14 .debug_abbrev 0000227e  00000000  00000000  00013e3a  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 000007f0  00000000  00000000  00015dd8  2**3
+ 15 .debug_aranges 00000808  00000000  00000000  000160b8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_str    000086c4  00000000  00000000  000165c8  2**0
+ 16 .debug_str    00008742  00000000  00000000  000168c0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_rnglists 000005cc  00000000  00000000  0001ec8c  2**0
+ 17 .debug_rnglists 000005de  00000000  00000000  0001f002  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_macro  00001a2e  00000000  00000000  0001f258  2**0
+ 18 .debug_macro  00001a51  00000000  00000000  0001f5e0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_frame  00001e44  00000000  00000000  00020c88  2**2
+ 19 .debug_frame  00001eb8  00000000  00000000  00021034  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -554,9 +554,9 @@ stop:
  ldr   sp, =_estack    /* Set stack pointer */
 200003ec:	20018000 	.word	0x20018000
   ldr r2, =_sbss
-200003f0:	20005b10 	.word	0x20005b10
+200003f0:	20005c58 	.word	0x20005c58
   ldr r4, =_ebss
-200003f4:	20005d80 	.word	0x20005d80
+200003f4:	20005ec8 	.word	0x20005ec8
 
 200003f8 <__atox>:
     *  Return Value:
@@ -1448,8 +1448,8 @@ int xvsprintf(char *outbuf,const char *templat,va_list marker)
 20000a04:	657b      	str	r3, [r7, #84]	@ 0x54
 			break;
 20000a06:	e01f      	b.n	20000a48 <xvsprintf+0x4e0>
-20000a08:	200058fc 	.word	0x200058fc
-20000a0c:	200050ac 	.word	0x200050ac
+20000a08:	20005a44 	.word	0x20005a44
+20000a0c:	200051c8 	.word	0x200051c8
 			ulx = va_arg(marker,unsigned long long);
 20000a10:	687b      	ldr	r3, [r7, #4]
 20000a12:	3307      	adds	r3, #7
@@ -1742,8 +1742,8 @@ int xvsprintf(char *outbuf,const char *templat,va_list marker)
 20000bee:	46bd      	mov	sp, r7
 20000bf0:	bdb0      	pop	{r4, r5, r7, pc}
 20000bf2:	bf00      	nop
-20000bf4:	200058fc 	.word	0x200058fc
-20000bf8:	20005910 	.word	0x20005910
+20000bf4:	20005a44 	.word	0x20005a44
+20000bf8:	20005a58 	.word	0x20005a58
 
 20000bfc <xsprintf>:
     *
@@ -2185,8 +2185,8 @@ void board_init() {
 }
 20000e70:	bf00      	nop
 20000e72:	bd98      	pop	{r3, r4, r7, pc}
-20000e74:	20005acc 	.word	0x20005acc
-20000e78:	200050c8 	.word	0x200050c8
+20000e74:	20005c14 	.word	0x20005c14
+20000e78:	200051e4 	.word	0x200051e4
 
 20000e7c <kmeminit>:
     *  	   nothing
@@ -3563,7 +3563,7 @@ char *lib_strdup(char *str)
 20001592:	46bd      	mov	sp, r7
 20001594:	bd80      	pop	{r7, pc}
 20001596:	bf00      	nop
-20001598:	20005b14 	.word	0x20005b14
+20001598:	20005c5c 	.word	0x20005c5c
 
 2000159c <cfe_finddev>:
     *  Return value:
@@ -3618,7 +3618,7 @@ cfe_device_t *cfe_finddev(char *name)
 200015da:	46bd      	mov	sp, r7
 200015dc:	bd80      	pop	{r7, pc}
 200015de:	bf00      	nop
-200015e0:	20005ae0 	.word	0x20005ae0
+200015e0:	20005c28 	.word	0x20005c28
 
 200015e4 <cfe_dev_enum>:
     *  	   0 if ok
@@ -3693,7 +3693,7 @@ int cfe_dev_enum(int idx,char *name,int *namelen)
 20001642:	3718      	adds	r7, #24
 20001644:	46bd      	mov	sp, r7
 20001646:	bd80      	pop	{r7, pc}
-20001648:	20005ae0 	.word	0x20005ae0
+20001648:	20005c28 	.word	0x20005c28
 
 2000164c <cfe_attach_idx>:
     *  	   1 if we were successful.
@@ -3811,10 +3811,10 @@ int cfe_attach_idx(cfe_driver_t *drv,int idx,void *softc,
 20001702:	3758      	adds	r7, #88	@ 0x58
 20001704:	46bd      	mov	sp, r7
 20001706:	bd80      	pop	{r7, pc}
-20001708:	200050d0 	.word	0x200050d0
-2000170c:	200050d8 	.word	0x200050d8
-20001710:	20005b14 	.word	0x20005b14
-20001714:	20005ae0 	.word	0x20005ae0
+20001708:	200051ec 	.word	0x200051ec
+2000170c:	200051f4 	.word	0x200051f4
+20001710:	20005c5c 	.word	0x20005c5c
+20001714:	20005c28 	.word	0x20005c28
 
 20001718 <cfe_attach>:
     ********************************************************************* */
@@ -3904,7 +3904,7 @@ void cfe_attach_init(void)
 2000177c:	f85d 7b04 	ldr.w	r7, [sp], #4
 20001780:	4770      	bx	lr
 20001782:	bf00      	nop
-20001784:	20005ae0 	.word	0x20005ae0
+20001784:	20005c28 	.word	0x20005c28
 
 20001788 <cfe_bg_init>:
     *  Return value:
@@ -3924,7 +3924,7 @@ void cfe_bg_init(void)
 20001796:	bf00      	nop
 20001798:	bd80      	pop	{r7, pc}
 2000179a:	bf00      	nop
-2000179c:	20005b20 	.word	0x20005b20
+2000179c:	20005c68 	.word	0x20005c68
 
 200017a0 <cfe_bg_add>:
     *  Return value:
@@ -3976,8 +3976,8 @@ void cfe_bg_add(void (*func)(void *x),void *arg)
 200017e0:	46bd      	mov	sp, r7
 200017e2:	f85d 7b04 	ldr.w	r7, [sp], #4
 200017e6:	4770      	bx	lr
-200017e8:	20005b20 	.word	0x20005b20
-200017ec:	20005b60 	.word	0x20005b60
+200017e8:	20005c68 	.word	0x20005c68
+200017ec:	20005ca8 	.word	0x20005ca8
 
 200017f0 <background>:
     *  Return value:
@@ -4030,8 +4030,8 @@ void background(void)
 2000182e:	46bd      	mov	sp, r7
 20001830:	bd80      	pop	{r7, pc}
 20001832:	bf00      	nop
-20001834:	20005b20 	.word	0x20005b20
-20001838:	20005b60 	.word	0x20005b60
+20001834:	20005c68 	.word	0x20005c68
+20001838:	20005ca8 	.word	0x20005ca8
 
 2000183c <console_open>:
     *  	   0 if ok, else return code.  
@@ -4104,9 +4104,9 @@ int console_open(char *name)
 20001892:	3710      	adds	r7, #16
 20001894:	46bd      	mov	sp, r7
 20001896:	bd80      	pop	{r7, pc}
-20001898:	20005c28 	.word	0x20005c28
-2000189c:	20005af0 	.word	0x20005af0
-200018a0:	20005c20 	.word	0x20005c20
+20001898:	20005d70 	.word	0x20005d70
+2000189c:	20005c38 	.word	0x20005c38
+200018a0:	20005d68 	.word	0x20005d68
 
 200018a4 <console_close>:
     *  Return value:
@@ -4140,7 +4140,7 @@ int console_close(void)
 200018c6:	4618      	mov	r0, r3
 200018c8:	bd80      	pop	{r7, pc}
 200018ca:	bf00      	nop
-200018cc:	20005af0 	.word	0x20005af0
+200018cc:	20005c38 	.word	0x20005c38
 
 200018d0 <console_read>:
     *  Return value:
@@ -4176,7 +4176,7 @@ int console_read(unsigned char *buffer,int length)
 200018fe:	46bd      	mov	sp, r7
 20001900:	bd80      	pop	{r7, pc}
 20001902:	bf00      	nop
-20001904:	20005af0 	.word	0x20005af0
+20001904:	20005c38 	.word	0x20005c38
 
 20001908 <console_write>:
     *  Return value:
@@ -4272,8 +4272,8 @@ int console_write(unsigned char *buffer,int length)
 2000197a:	3710      	adds	r7, #16
 2000197c:	46bd      	mov	sp, r7
 2000197e:	bd80      	pop	{r7, pc}
-20001980:	20005c20 	.word	0x20005c20
-20001984:	20005af0 	.word	0x20005af0
+20001980:	20005d68 	.word	0x20005d68
+20001984:	20005c38 	.word	0x20005c38
 
 20001988 <console_status>:
     *  	   0 if no characters are available
@@ -4302,7 +4302,7 @@ int console_status(void)
 200019a6:	4618      	mov	r0, r3
 200019a8:	bd80      	pop	{r7, pc}
 200019aa:	bf00      	nop
-200019ac:	20005af0 	.word	0x20005af0
+200019ac:	20005c38 	.word	0x20005c38
 
 200019b0 <console_xprint>:
     *  Return value:
@@ -4378,7 +4378,7 @@ static int console_xprint(const char *str)
 20001a12:	3718      	adds	r7, #24
 20001a14:	46bd      	mov	sp, r7
 20001a16:	bd80      	pop	{r7, pc}
-20001a18:	200050e8 	.word	0x200050e8
+20001a18:	20005204 	.word	0x20005204
 
 20001a1c <cfe_set_console>:
     *  	   0 if ok
@@ -4439,11 +4439,11 @@ int cfe_set_console(char *name)
 20001a66:	3710      	adds	r7, #16
 20001a68:	46bd      	mov	sp, r7
 20001a6a:	bd80      	pop	{r7, pc}
-20001a6c:	20005b10 	.word	0x20005b10
+20001a6c:	20005c58 	.word	0x20005c58
 20001a70:	200019b1 	.word	0x200019b1
-20001a74:	200050f8 	.word	0x200050f8
-20001a78:	20005c20 	.word	0x20005c20
-20001a7c:	20005100 	.word	0x20005100
+20001a74:	20005214 	.word	0x20005214
+20001a78:	20005d68 	.word	0x20005d68
+20001a7c:	2000521c 	.word	0x2000521c
 
 20001a80 <console_flushbuffer>:
     *  Return value:
@@ -4535,9 +4535,9 @@ static void console_flushbuffer(void)
 20001ae6:	3710      	adds	r7, #16
 20001ae8:	46bd      	mov	sp, r7
 20001aea:	bd80      	pop	{r7, pc}
-20001aec:	20005af0 	.word	0x20005af0
-20001af0:	20005b14 	.word	0x20005b14
-20001af4:	20005ae8 	.word	0x20005ae8
+20001aec:	20005c38 	.word	0x20005c38
+20001af0:	20005c5c 	.word	0x20005c5c
+20001af4:	20005c30 	.word	0x20005c30
 
 20001af8 <console_save>:
     *  Return value:
@@ -4674,8 +4674,8 @@ static void console_save(unsigned char *buffer,int length)
 20001ba6:	3710      	adds	r7, #16
 20001ba8:	46bd      	mov	sp, r7
 20001baa:	bd80      	pop	{r7, pc}
-20001bac:	20005ae8 	.word	0x20005ae8
-20001bb0:	20005b14 	.word	0x20005b14
+20001bac:	20005c30 	.word	0x20005c30
+20001bb0:	20005c5c 	.word	0x20005c5c
 
 20001bb4 <console_readnum>:
     *  Return value:
@@ -5030,7 +5030,7 @@ int console_readkey(void)
 20001e22:	46bd      	mov	sp, r7
 20001e24:	bd80      	pop	{r7, pc}
 20001e26:	bf00      	nop
-20001e28:	20005c24 	.word	0x20005c24
+20001e28:	20005d6c 	.word	0x20005d6c
 
 20001e2c <console_backspace>:
     *  Return value:
@@ -5066,7 +5066,7 @@ static void console_backspace(int n)
 20001e56:	46bd      	mov	sp, r7
 20001e58:	bd80      	pop	{r7, pc}
 20001e5a:	bf00      	nop
-20001e5c:	20005110 	.word	0x20005110
+20001e5c:	2000522c 	.word	0x2000522c
 
 20001e60 <console_whiteout>:
 
@@ -5113,8 +5113,8 @@ static void console_whiteout(int n)
 20001ea6:	46bd      	mov	sp, r7
 20001ea8:	bd80      	pop	{r7, pc}
 20001eaa:	bf00      	nop
-20001eac:	20005114 	.word	0x20005114
-20001eb0:	20005110 	.word	0x20005110
+20001eac:	20005230 	.word	0x20005230
+20001eb0:	2000522c 	.word	0x2000522c
 
 20001eb4 <console_eraseeol>:
 
@@ -5130,7 +5130,7 @@ static void console_eraseeol(void)
 }
 20001ec0:	bf00      	nop
 20001ec2:	bd80      	pop	{r7, pc}
-20001ec4:	20005118 	.word	0x20005118
+20001ec4:	20005234 	.word	0x20005234
 
 20001ec8 <console_crlf>:
 
@@ -5145,7 +5145,7 @@ static void console_crlf(void)
 }
 20001ed4:	bf00      	nop
 20001ed6:	bd80      	pop	{r7, pc}
-20001ed8:	200050e8 	.word	0x200050e8
+20001ed8:	20005204 	.word	0x20005204
 
 20001edc <console_readline_default>:
     *  	   number of characters read (terminating newline is not
@@ -5362,12 +5362,12 @@ int console_readline_default(char *prompt,char *str,int maxlen)
 20002064:	20002675 	.word	0x20002675
 20002068:	20002675 	.word	0x20002675
 2000206c:	20002675 	.word	0x20002675
-20002070:	20005c2c 	.word	0x20005c2c
-20002074:	20005ba0 	.word	0x20005ba0
-20002078:	20005ba4 	.word	0x20005ba4
-2000207c:	20005b14 	.word	0x20005b14
-20002080:	2000511c 	.word	0x2000511c
-20002084:	20005c30 	.word	0x20005c30
+20002070:	20005d74 	.word	0x20005d74
+20002074:	20005ce8 	.word	0x20005ce8
+20002078:	20005cec 	.word	0x20005cec
+2000207c:	20005c5c 	.word	0x20005c5c
+20002080:	20005238 	.word	0x20005238
+20002084:	20005d78 	.word	0x20005d78
 20002088:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
 2000208a:	3b01      	subs	r3, #1
 2000208c:	2b7e      	cmp	r3, #126	@ 0x7e
@@ -5884,11 +5884,11 @@ int console_readline_default(char *prompt,char *str,int maxlen)
 20002512:	f7ff fc8b 	bl	20001e2c <console_backspace>
 		break;
 20002516:	e16c      	b.n	200027f2 <console_readline_default+0x916>
-20002518:	200050ec 	.word	0x200050ec
-2000251c:	20005c30 	.word	0x20005c30
-20002520:	20005110 	.word	0x20005110
-20002524:	20005c1c 	.word	0x20005c1c
-20002528:	20005b14 	.word	0x20005b14
+20002518:	20005208 	.word	0x20005208
+2000251c:	20005d78 	.word	0x20005d78
+20002520:	2000522c 	.word	0x2000522c
+20002524:	20005d64 	.word	0x20005d64
+20002528:	20005c5c 	.word	0x20005c5c
 
 	    case CTRL('R'):			/* Redisplay line */
 		str[len] = 0;
@@ -6320,10 +6320,10 @@ int console_readline_default(char *prompt,char *str,int maxlen)
 200027f4:	2b00      	cmp	r3, #0
 200027f6:	f47f abc3 	bne.w	20001f80 <console_readline_default+0xa4>
 200027fa:	e008      	b.n	2000280e <console_readline_default+0x932>
-200027fc:	20005ba4 	.word	0x20005ba4
-20002800:	20005ba0 	.word	0x20005ba0
+200027fc:	20005cec 	.word	0x20005cec
+20002800:	20005ce8 	.word	0x20005ce8
 20002804:	88888889 	.word	0x88888889
-20002808:	20005120 	.word	0x20005120
+20002808:	2000523c 	.word	0x2000523c
 	if (ch < 0) break;
 2000280c:	bf00      	nop
 	    }
@@ -6400,10 +6400,10 @@ int console_readline_default(char *prompt,char *str,int maxlen)
 20002882:	46bd      	mov	sp, r7
 20002884:	bd90      	pop	{r4, r7, pc}
 20002886:	bf00      	nop
-20002888:	20005c2c 	.word	0x20005c2c
-2000288c:	20005ba0 	.word	0x20005ba0
-20002890:	20005ba4 	.word	0x20005ba4
-20002894:	20005b14 	.word	0x20005b14
+20002888:	20005d74 	.word	0x20005d74
+2000288c:	20005ce8 	.word	0x20005ce8
+20002890:	20005cec 	.word	0x20005cec
+20002894:	20005c5c 	.word	0x20005c5c
 
 20002898 <console_readline>:
 
@@ -7049,8 +7049,8 @@ int cfe_iocb_dispatch(cfe_iocb_t *iocb)
 20002c0a:	46bd      	mov	sp, r7
 20002c0c:	bd80      	pop	{r7, pc}
 20002c0e:	bf00      	nop
-20002c10:	20005944 	.word	0x20005944
-20002c14:	20005c34 	.word	0x20005c34
+20002c10:	20005a8c 	.word	0x20005a8c
+20002c14:	20005d7c 	.word	0x20005d7c
 
 20002c18 <cfe_newhandle>:
 
@@ -7099,7 +7099,7 @@ static int cfe_newhandle(void)
 20002c54:	f85d 7b04 	ldr.w	r7, [sp], #4
 20002c58:	4770      	bx	lr
 20002c5a:	bf00      	nop
-20002c5c:	20005c34 	.word	0x20005c34
+20002c5c:	20005d7c 	.word	0x20005d7c
 
 20002c60 <cfe_cmd_fw_getinfo>:
 /*  *********************************************************************
@@ -7187,8 +7187,8 @@ static int cfe_cmd_fw_getinfo(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20002cfc:	e8bd 03b0 	ldmia.w	sp!, {r4, r5, r7, r8, r9}
 20002d00:	4770      	bx	lr
 20002d02:	bf00      	nop
-20002d04:	20005d50 	.word	0x20005d50
-20002d08:	20005d54 	.word	0x20005d54
+20002d04:	20005e98 	.word	0x20005e98
+20002d08:	20005e9c 	.word	0x20005e9c
 
 20002d0c <cfe_cmd_fw_restart>:
 
@@ -7276,7 +7276,7 @@ static int cfe_cmd_fw_gettime(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20002d76:	3708      	adds	r7, #8
 20002d78:	46bd      	mov	sp, r7
 20002d7a:	bd80      	pop	{r7, pc}
-20002d7c:	20005d58 	.word	0x20005d58
+20002d7c:	20005ea0 	.word	0x20005ea0
 
 20002d80 <cfe_cmd_fw_memenum>:
 
@@ -7464,7 +7464,7 @@ static int cfe_cmd_dev_gethandle(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20002e7c:	f85d 7b04 	ldr.w	r7, [sp], #4
 20002e80:	4770      	bx	lr
 20002e82:	bf00      	nop
-20002e84:	20005af0 	.word	0x20005af0
+20002e84:	20005c38 	.word	0x20005c38
 
 20002e88 <cfe_cmd_dev_open>:
 
@@ -7626,8 +7626,8 @@ static int cfe_cmd_dev_open(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20002f4e:	46bd      	mov	sp, r7
 20002f50:	bd80      	pop	{r7, pc}
 20002f52:	bf00      	nop
-20002f54:	20005b14 	.word	0x20005b14
-20002f58:	20005c34 	.word	0x20005c34
+20002f54:	20005c5c 	.word	0x20005c5c
+20002f58:	20005d7c 	.word	0x20005d7c
 
 20002f5c <cfe_cmd_dev_inpstat>:
 
@@ -7813,8 +7813,8 @@ static int cfe_cmd_dev_close(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20003036:	46bd      	mov	sp, r7
 20003038:	bd80      	pop	{r7, pc}
 2000303a:	bf00      	nop
-2000303c:	20005c34 	.word	0x20005c34
-20003040:	20005b14 	.word	0x20005b14
+2000303c:	20005d7c 	.word	0x20005d7c
+20003040:	20005c5c 	.word	0x20005c5c
 
 20003044 <cfe_cmd_dev_getinfo>:
 
@@ -8165,14 +8165,14 @@ static void cfe_setup_default_env(void)
 20003222:	46bd      	mov	sp, r7
 20003224:	bd80      	pop	{r7, pc}
 20003226:	bf00      	nop
-20003228:	20005138 	.word	0x20005138
-2000322c:	2000513c 	.word	0x2000513c
-20003230:	20005148 	.word	0x20005148
-20003234:	20005af4 	.word	0x20005af4
-20003238:	20005154 	.word	0x20005154
-2000323c:	20005af8 	.word	0x20005af8
-20003240:	20005164 	.word	0x20005164
-20003244:	20005168 	.word	0x20005168
+20003228:	20005254 	.word	0x20005254
+2000322c:	20005258 	.word	0x20005258
+20003230:	20005264 	.word	0x20005264
+20003234:	20005c3c 	.word	0x20005c3c
+20003238:	20005270 	.word	0x20005270
+2000323c:	20005c40 	.word	0x20005c40
+20003240:	20005280 	.word	0x20005280
+20003244:	20005284 	.word	0x20005284
 
 20003248 <cfe_init_ui>:
 #else
@@ -8279,7 +8279,7 @@ static void cfe_say_hello(void)
 }
 200032b8:	bf00      	nop
 200032ba:	bd80      	pop	{r7, pc}
-200032bc:	20005178 	.word	0x20005178
+200032bc:	20005294 	.word	0x20005294
 
 200032c0 <cfe_startup_info>:
 #define RELOCTEXT(x) ((x)-mem_textreloc)
@@ -8417,17 +8417,17 @@ void cfe_main(int a,int b)
 2000335a:	3708      	adds	r7, #8
 2000335c:	46bd      	mov	sp, r7
 2000335e:	bd80      	pop	{r7, pc}
-20003360:	20005d60 	.word	0x20005d60
-20003364:	200051c4 	.word	0x200051c4
-20003368:	200051d8 	.word	0x200051d8
-2000336c:	20005d80 	.word	0x20005d80
-20003370:	20005b14 	.word	0x20005b14
-20003374:	200051e0 	.word	0x200051e0
-20003378:	200051e8 	.word	0x200051e8
-2000337c:	200051f0 	.word	0x200051f0
-20003380:	200051f8 	.word	0x200051f8
-20003384:	20005200 	.word	0x20005200
-20003388:	20005218 	.word	0x20005218
+20003360:	20005ea8 	.word	0x20005ea8
+20003364:	200052e0 	.word	0x200052e0
+20003368:	200052f4 	.word	0x200052f4
+2000336c:	20005ec8 	.word	0x20005ec8
+20003370:	20005c5c 	.word	0x20005c5c
+20003374:	200052fc 	.word	0x200052fc
+20003378:	20005304 	.word	0x20005304
+2000337c:	2000530c 	.word	0x2000530c
+20003380:	20005314 	.word	0x20005314
+20003384:	2000531c 	.word	0x2000531c
+20003388:	20005334 	.word	0x20005334
 
 2000338c <cfe_command_loop>:
     *  Return value:
@@ -8485,10 +8485,10 @@ void cfe_command_loop()
 	prompt = env_getenv("PROMPT");
 200033e0:	e7da      	b.n	20003398 <cfe_command_loop+0xc>
 200033e2:	bf00      	nop
-200033e4:	20005240 	.word	0x20005240
-200033e8:	20005248 	.word	0x20005248
-200033ec:	20005250 	.word	0x20005250
-200033f0:	20005258 	.word	0x20005258
+200033e4:	2000535c 	.word	0x2000535c
+200033e8:	20005364 	.word	0x20005364
+200033ec:	2000536c 	.word	0x2000536c
+200033f0:	20005374 	.word	0x20005374
 
 200033f4 <cfe_arena_init>:
     *  Return value:
@@ -8601,7 +8601,7 @@ int cfe_arena_enum(int idx,int *type,uint64_t *start,uint64_t *size,int allrecs)
 2000347c:	46bd      	mov	sp, r7
 2000347e:	f85d 7b04 	ldr.w	r7, [sp], #4
 20003482:	4770      	bx	lr
-20003484:	20005d38 	.word	0x20005d38
+20003484:	20005e80 	.word	0x20005e80
 
 20003488 <_getticks>:
     *  Return value:
@@ -8726,10 +8726,10 @@ static void cfe_timer_task(void *arg)
 20003544:	46bd      	mov	sp, r7
 20003546:	e8bd 8fb0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, sl, fp, pc}
 2000354a:	bf00      	nop
-2000354c:	20005d6c 	.word	0x20005d6c
-20003550:	20005d70 	.word	0x20005d70
-20003554:	20005d74 	.word	0x20005d74
-20003558:	20005d58 	.word	0x20005d58
+2000354c:	20005eb4 	.word	0x20005eb4
+20003550:	20005eb8 	.word	0x20005eb8
+20003554:	20005ebc 	.word	0x20005ebc
+20003558:	20005ea0 	.word	0x20005ea0
 
 2000355c <cfe_timer_init>:
     *  Return value:
@@ -8813,14 +8813,14 @@ void cfe_timer_init(unsigned int cpu_speed)
 200035dc:	46bd      	mov	sp, r7
 200035de:	bd80      	pop	{r7, pc}
 200035e0:	cccccccd 	.word	0xcccccccd
-200035e4:	20005d6c 	.word	0x20005d6c
+200035e4:	20005eb4 	.word	0x20005eb4
 200035e8:	89705aa5 	.word	0x89705aa5
-200035ec:	20005d64 	.word	0x20005d64
+200035ec:	20005eac 	.word	0x20005eac
 200035f0:	431bde83 	.word	0x431bde83
-200035f4:	20005d68 	.word	0x20005d68
-200035f8:	20005d70 	.word	0x20005d70
-200035fc:	20005d58 	.word	0x20005d58
-20003600:	20005d78 	.word	0x20005d78
+200035f4:	20005eb0 	.word	0x20005eb0
+200035f8:	20005eb8 	.word	0x20005eb8
+200035fc:	20005ea0 	.word	0x20005ea0
+20003600:	20005ec0 	.word	0x20005ec0
 20003604:	2000349d 	.word	0x2000349d
 
 20003608 <env_findenv>:
@@ -8884,7 +8884,7 @@ static cfe_envvar_t *env_findenv(const char *name)
 20003652:	46bd      	mov	sp, r7
 20003654:	bd80      	pop	{r7, pc}
 20003656:	bf00      	nop
-20003658:	20005afc 	.word	0x20005afc
+20003658:	20005c44 	.word	0x20005c44
 
 2000365c <env_enum>:
     *  	   0 if ok
@@ -8971,7 +8971,7 @@ int env_enum(int idx,char *name,int *namelen,char *val,int *vallen)
 200036d2:	3718      	adds	r7, #24
 200036d4:	46bd      	mov	sp, r7
 200036d6:	bd80      	pop	{r7, pc}
-200036d8:	20005afc 	.word	0x20005afc
+200036d8:	20005c44 	.word	0x20005c44
 
 200036dc <env_envtype>:
     *  	   
@@ -9059,7 +9059,7 @@ int env_delenv(const char *name)
 20003742:	3710      	adds	r7, #16
 20003744:	46bd      	mov	sp, r7
 20003746:	bd80      	pop	{r7, pc}
-20003748:	20005b14 	.word	0x20005b14
+20003748:	20005c5c 	.word	0x20005c5c
 
 2000374c <env_getenv>:
     *  Return value:
@@ -9215,8 +9215,8 @@ int env_setenv(const char *name,char *value,int flags)
 2000382e:	46bd      	mov	sp, r7
 20003830:	bd80      	pop	{r7, pc}
 20003832:	bf00      	nop
-20003834:	20005b14 	.word	0x20005b14
-20003838:	20005afc 	.word	0x20005afc
+20003834:	20005c5c 	.word	0x20005c5c
+20003838:	20005c44 	.word	0x20005c44
 
 2000383c <env_save>:
     *  Return value:
@@ -9332,7 +9332,7 @@ static int ui_do_one_command(queue_t *head)
 2000391a:	46bd      	mov	sp, r7
 2000391c:	bd90      	pop	{r4, r7, pc}
 2000391e:	bf00      	nop
-20003920:	2000527c 	.word	0x2000527c
+20003920:	20005398 	.word	0x20005398
 
 20003924 <ui_init_cmddisp>:
     *  Return value:
@@ -9525,7 +9525,7 @@ static int ui_docommands_internal(queue_t *head)
 20003a12:	3720      	adds	r7, #32
 20003a14:	46bd      	mov	sp, r7
 20003a16:	bd80      	pop	{r7, pc}
-20003a18:	20005b14 	.word	0x20005b14
+20003a18:	20005c5c 	.word	0x20005c5c
 
 20003a1c <ui_docommands>:
     *  	   return value of failing command, or 0 if all commands
@@ -9606,7 +9606,7 @@ static inline int is_white_space(ui_token_t *t)
 20003a82:	3708      	adds	r7, #8
 20003a84:	46bd      	mov	sp, r7
 20003a86:	bd80      	pop	{r7, pc}
-20003a88:	20005b08 	.word	0x20005b08
+20003a88:	20005c50 	.word	0x20005c50
 
 20003a8c <cmd_sw_value>:
 
@@ -9887,7 +9887,7 @@ void cmd_free(ui_cmdline_t *cmd)
 20003c42:	46bd      	mov	sp, r7
 20003c44:	bd80      	pop	{r7, pc}
 20003c46:	bf00      	nop
-20003c48:	20005b14 	.word	0x20005b14
+20003c48:	20005c5c 	.word	0x20005c5c
 
 20003c4c <cmd_sw_validate>:
 
@@ -10123,7 +10123,7 @@ int cmd_sw_validate(ui_cmdline_t *cmd,char *validstr)
 20003d92:	3728      	adds	r7, #40	@ 0x28
 20003d94:	46bd      	mov	sp, r7
 20003d96:	bd80      	pop	{r7, pc}
-20003d98:	20005b14 	.word	0x20005b14
+20003d98:	20005c5c 	.word	0x20005c5c
 
 20003d9c <cmd_findword>:
 
@@ -10368,7 +10368,7 @@ void cmd_build_cmdline(queue_t *head, ui_cmdline_t *cmd)
 20003f26:	3714      	adds	r7, #20
 20003f28:	46bd      	mov	sp, r7
 20003f2a:	bd90      	pop	{r4, r7, pc}
-20003f2c:	20005b14 	.word	0x20005b14
+20003f2c:	20005c5c 	.word	0x20005c5c
 
 20003f30 <cmd_addcmd>:
 	       int (*func)(ui_cmdline_t *,int argc,char *argv[]),
@@ -10523,8 +10523,8 @@ void cmd_build_cmdline(queue_t *head, ui_cmdline_t *cmd)
 2000401a:	3728      	adds	r7, #40	@ 0x28
 2000401c:	46bd      	mov	sp, r7
 2000401e:	bd80      	pop	{r7, pc}
-20004020:	20005d7c 	.word	0x20005d7c
-20004024:	20005b14 	.word	0x20005b14
+20004020:	20005ec4 	.word	0x20005ec4
+20004024:	20005c5c 	.word	0x20005c5c
 
 20004028 <_dumpindented>:
 
@@ -10614,7 +10614,7 @@ static void _dumpindented(char *str,int amt)
 200040a2:	3718      	adds	r7, #24
 200040a4:	46bd      	mov	sp, r7
 200040a6:	bd80      	pop	{r7, pc}
-200040a8:	20005b14 	.word	0x20005b14
+200040a8:	20005c5c 	.word	0x20005c5c
 
 200040ac <_dumpswitches>:
 
@@ -10735,10 +10735,10 @@ static void _dumpswitches(char *str)
 20004162:	46bd      	mov	sp, r7
 20004164:	bd80      	pop	{r7, pc}
 20004166:	bf00      	nop
-20004168:	200052a0 	.word	0x200052a0
-2000416c:	200052a8 	.word	0x200052a8
-20004170:	200052b4 	.word	0x200052b4
-20004174:	20005b14 	.word	0x20005b14
+20004168:	200053bc 	.word	0x200053bc
+2000416c:	200053c4 	.word	0x200053c4
+20004170:	200053d0 	.word	0x200053d0
+20004174:	20005c5c 	.word	0x20005c5c
 
 20004178 <_dumpcmds>:
 
@@ -10889,8 +10889,8 @@ static void _dumpcmds(cmdtab_t *cmd,int level,char **words,int verbose)
 20004272:	46bd      	mov	sp, r7
 20004274:	bd80      	pop	{r7, pc}
 20004276:	bf00      	nop
-20004278:	200052cc 	.word	0x200052cc
-2000427c:	200052d0 	.word	0x200052d0
+20004278:	200053e8 	.word	0x200053e8
+2000427c:	200053ec 	.word	0x200053ec
 
 20004280 <dumpcmds>:
 
@@ -10914,7 +10914,7 @@ static void dumpcmds(int verbose)
 2000429a:	3758      	adds	r7, #88	@ 0x58
 2000429c:	46bd      	mov	sp, r7
 2000429e:	bd80      	pop	{r7, pc}
-200042a0:	20005d7c 	.word	0x20005d7c
+200042a0:	20005ec4 	.word	0x20005ec4
 
 200042a4 <_showpossible>:
 
@@ -11009,14 +11009,14 @@ static void _showpossible(ui_cmdline_t *cline,cmdtab_t *cmd)
 20004332:	3710      	adds	r7, #16
 20004334:	46bd      	mov	sp, r7
 20004336:	bd80      	pop	{r7, pc}
-20004338:	200052d4 	.word	0x200052d4
-2000433c:	200052ec 	.word	0x200052ec
-20004340:	200052f8 	.word	0x200052f8
-20004344:	200052fc 	.word	0x200052fc
-20004348:	20005300 	.word	0x20005300
-2000434c:	20005308 	.word	0x20005308
-20004350:	200052d0 	.word	0x200052d0
-20004354:	20005318 	.word	0x20005318
+20004338:	200053f0 	.word	0x200053f0
+2000433c:	20005408 	.word	0x20005408
+20004340:	20005414 	.word	0x20005414
+20004344:	20005418 	.word	0x20005418
+20004348:	2000541c 	.word	0x2000541c
+2000434c:	20005424 	.word	0x20005424
+20004350:	200053ec 	.word	0x200053ec
+20004354:	20005434 	.word	0x20005434
 
 20004358 <cmd_help>:
 
@@ -11201,14 +11201,14 @@ static int cmd_help(ui_cmdline_t *cmd,int argc,char *argv[])
 20004472:	46bd      	mov	sp, r7
 20004474:	bd80      	pop	{r7, pc}
 20004476:	bf00      	nop
-20004478:	2000531c 	.word	0x2000531c
-2000447c:	20005334 	.word	0x20005334
-20004480:	20005d7c 	.word	0x20005d7c
-20004484:	20005374 	.word	0x20005374
-20004488:	20005394 	.word	0x20005394
-2000448c:	200053b8 	.word	0x200053b8
-20004490:	200053c4 	.word	0x200053c4
-20004494:	200053d0 	.word	0x200053d0
+20004478:	20005438 	.word	0x20005438
+2000447c:	20005450 	.word	0x20005450
+20004480:	20005ec4 	.word	0x20005ec4
+20004484:	20005490 	.word	0x20005490
+20004488:	200054b0 	.word	0x200054b0
+2000448c:	200054d4 	.word	0x200054d4
+20004490:	200054e0 	.word	0x200054e0
+20004494:	200054ec 	.word	0x200054ec
 
 20004498 <cmd_init>:
 
@@ -11242,12 +11242,12 @@ void cmd_init(void)
 200044ba:	46bd      	mov	sp, r7
 200044bc:	bd80      	pop	{r7, pc}
 200044be:	bf00      	nop
-200044c0:	20005d7c 	.word	0x20005d7c
-200044c4:	200052f8 	.word	0x200052f8
-200044c8:	20005404 	.word	0x20005404
-200044cc:	200053dc 	.word	0x200053dc
+200044c0:	20005ec4 	.word	0x20005ec4
+200044c4:	20005414 	.word	0x20005414
+200044c8:	20005520 	.word	0x20005520
+200044cc:	200054f8 	.word	0x200054f8
 200044d0:	20004359 	.word	0x20004359
-200044d4:	200053fc 	.word	0x200053fc
+200044d4:	20005518 	.word	0x20005518
 
 200044d8 <cmd_lookup>:
 
@@ -11450,9 +11450,9 @@ int cmd_lookup(queue_t *head,ui_cmdline_t *cmd)
 20004606:	3718      	adds	r7, #24
 20004608:	46bd      	mov	sp, r7
 2000460a:	bd80      	pop	{r7, pc}
-2000460c:	20005d7c 	.word	0x20005d7c
-20004610:	200054b0 	.word	0x200054b0
-20004614:	200054c8 	.word	0x200054c8
+2000460c:	20005ec4 	.word	0x20005ec4
+20004610:	200055cc 	.word	0x200055cc
+20004614:	200055e4 	.word	0x200055e4
 
 20004618 <cmd_showusage>:
 
@@ -11546,7 +11546,7 @@ static void cmd_eat_leading_white(queue_t *head)
 2000469e:	46bd      	mov	sp, r7
 200046a0:	bd80      	pop	{r7, pc}
 200046a2:	bf00      	nop
-200046a4:	20005b14 	.word	0x20005b14
+200046a4:	20005c5c 	.word	0x20005c5c
 
 200046a8 <cmd_readcommand>:
 
@@ -11738,7 +11738,7 @@ ui_command_t *cmd_readcommand(queue_t *head)
 200047b2:	46bd      	mov	sp, r7
 200047b4:	bd80      	pop	{r7, pc}
 200047b6:	bf00      	nop
-200047b8:	20005b14 	.word	0x20005b14
+200047b8:	20005c5c 	.word	0x20005c5c
 
 200047bc <make_token>:
 
@@ -11782,7 +11782,7 @@ static ui_token_t *make_token(char *str,int len)
 200047f6:	3710      	adds	r7, #16
 200047f8:	46bd      	mov	sp, r7
 200047fa:	bd80      	pop	{r7, pc}
-200047fc:	20005b14 	.word	0x20005b14
+200047fc:	20005c5c 	.word	0x20005c5c
 
 20004800 <cmd_build_list>:
 
@@ -11992,7 +11992,7 @@ void cmd_build_list(queue_t *qb,char *buf)
 20004932:	3718      	adds	r7, #24
 20004934:	46bd      	mov	sp, r7
 20004936:	bd80      	pop	{r7, pc}
-20004938:	20005b04 	.word	0x20005b04
+20004938:	20005c4c 	.word	0x20005c4c
 
 2000493c <is_command_separator>:
 
@@ -12267,7 +12267,7 @@ static char *cmd_eat_quoted_arg(queue_t *head,ui_token_t *t)
 20004abe:	3728      	adds	r7, #40	@ 0x28
 20004ac0:	46bd      	mov	sp, r7
 20004ac2:	bd80      	pop	{r7, pc}
-20004ac4:	20005b14 	.word	0x20005b14
+20004ac4:	20005c5c 	.word	0x20005c5c
 
 20004ac8 <cmd_append_tokens>:
 
@@ -12482,8 +12482,8 @@ void cmd_walk_and_expand (queue_t *qb)
 20004c0a:	3728      	adds	r7, #40	@ 0x28
 20004c0c:	46bd      	mov	sp, r7
 20004c0e:	bd80      	pop	{r7, pc}
-20004c10:	20005b04 	.word	0x20005b04
-20004c14:	20005b14 	.word	0x20005b14
+20004c10:	20005c4c 	.word	0x20005c4c
+20004c14:	20005c5c 	.word	0x20005c5c
 
 20004c18 <cmd_free_tokens>:
 
@@ -12516,10 +12516,10 @@ void cmd_free_tokens(queue_t *list)
 20004c3e:	46bd      	mov	sp, r7
 20004c40:	bd80      	pop	{r7, pc}
 20004c42:	bf00      	nop
-20004c44:	20005b14 	.word	0x20005b14
+20004c44:	20005c5c 	.word	0x20005c5c
 
 20004c48 <ui_init_misccmds>:
-
+static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[]);
 
 int ui_init_misccmds(void);
 
@@ -12530,14 +12530,14 @@ int ui_init_misccmds(void)
 20004c4c:	af02      	add	r7, sp, #8
 
     cmd_addcmd("loop",
-20004c4e:	4b25      	ldr	r3, [pc, #148]	@ (20004ce4 <ui_init_misccmds+0x9c>)
+20004c4e:	4b2f      	ldr	r3, [pc, #188]	@ (20004d0c <ui_init_misccmds+0xc4>)
 20004c50:	9301      	str	r3, [sp, #4]
-20004c52:	4b25      	ldr	r3, [pc, #148]	@ (20004ce8 <ui_init_misccmds+0xa0>)
+20004c52:	4b2f      	ldr	r3, [pc, #188]	@ (20004d10 <ui_init_misccmds+0xc8>)
 20004c54:	9300      	str	r3, [sp, #0]
-20004c56:	4b25      	ldr	r3, [pc, #148]	@ (20004cec <ui_init_misccmds+0xa4>)
+20004c56:	4b2f      	ldr	r3, [pc, #188]	@ (20004d14 <ui_init_misccmds+0xcc>)
 20004c58:	2200      	movs	r2, #0
-20004c5a:	4925      	ldr	r1, [pc, #148]	@ (20004cf0 <ui_init_misccmds+0xa8>)
-20004c5c:	4825      	ldr	r0, [pc, #148]	@ (20004cf4 <ui_init_misccmds+0xac>)
+20004c5a:	492f      	ldr	r1, [pc, #188]	@ (20004d18 <ui_init_misccmds+0xd0>)
+20004c5c:	482f      	ldr	r0, [pc, #188]	@ (20004d1c <ui_init_misccmds+0xd4>)
 20004c5e:	f7ff f967 	bl	20003f30 <cmd_addcmd>
 	       "The 'loop' command causes the specified command or list of commands\n"
 	       "to be repeated 'count' times or forever, or until a character is typed",
@@ -12545,14 +12545,14 @@ int ui_init_misccmds(void)
 	       "-forever;Loops forever");
 
     cmd_addcmd("sleep",
-20004c62:	4b25      	ldr	r3, [pc, #148]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004c62:	4b2f      	ldr	r3, [pc, #188]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004c64:	9301      	str	r3, [sp, #4]
-20004c66:	4b25      	ldr	r3, [pc, #148]	@ (20004cfc <ui_init_misccmds+0xb4>)
+20004c66:	4b2f      	ldr	r3, [pc, #188]	@ (20004d24 <ui_init_misccmds+0xdc>)
 20004c68:	9300      	str	r3, [sp, #0]
-20004c6a:	4b25      	ldr	r3, [pc, #148]	@ (20004d00 <ui_init_misccmds+0xb8>)
+20004c6a:	4b2f      	ldr	r3, [pc, #188]	@ (20004d28 <ui_init_misccmds+0xe0>)
 20004c6c:	2200      	movs	r2, #0
-20004c6e:	4925      	ldr	r1, [pc, #148]	@ (20004d04 <ui_init_misccmds+0xbc>)
-20004c70:	4825      	ldr	r0, [pc, #148]	@ (20004d08 <ui_init_misccmds+0xc0>)
+20004c6e:	492f      	ldr	r1, [pc, #188]	@ (20004d2c <ui_init_misccmds+0xe4>)
+20004c70:	482f      	ldr	r0, [pc, #188]	@ (20004d30 <ui_init_misccmds+0xe8>)
 20004c72:	f7ff f95d 	bl	20003f30 <cmd_addcmd>
 	       "operating system.  If specified, 'n' will be placed in $4 as a\n"
 	       "return code.",
@@ -12560,14 +12560,14 @@ int ui_init_misccmds(void)
 #endif
 
     cmd_addcmd("set console",
-20004c76:	4b20      	ldr	r3, [pc, #128]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004c76:	4b2a      	ldr	r3, [pc, #168]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004c78:	9301      	str	r3, [sp, #4]
-20004c7a:	4b24      	ldr	r3, [pc, #144]	@ (20004d0c <ui_init_misccmds+0xc4>)
+20004c7a:	4b2e      	ldr	r3, [pc, #184]	@ (20004d34 <ui_init_misccmds+0xec>)
 20004c7c:	9300      	str	r3, [sp, #0]
-20004c7e:	4b24      	ldr	r3, [pc, #144]	@ (20004d10 <ui_init_misccmds+0xc8>)
+20004c7e:	4b2e      	ldr	r3, [pc, #184]	@ (20004d38 <ui_init_misccmds+0xf0>)
 20004c80:	2200      	movs	r2, #0
-20004c82:	4924      	ldr	r1, [pc, #144]	@ (20004d14 <ui_init_misccmds+0xcc>)
-20004c84:	4824      	ldr	r0, [pc, #144]	@ (20004d18 <ui_init_misccmds+0xd0>)
+20004c82:	492e      	ldr	r1, [pc, #184]	@ (20004d3c <ui_init_misccmds+0xf4>)
+20004c84:	482e      	ldr	r0, [pc, #184]	@ (20004d40 <ui_init_misccmds+0xf8>)
 20004c86:	f7ff f953 	bl	20003f30 <cmd_addcmd>
 	       "must be a serial-style device.  Be careful not to change the console\n"
 	       "to a device that is not connected!",
@@ -12575,14 +12575,14 @@ int ui_init_misccmds(void)
 
 
     cmd_addcmd("display",
-20004c8a:	4b1b      	ldr	r3, [pc, #108]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004c8a:	4b25      	ldr	r3, [pc, #148]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004c8c:	9301      	str	r3, [sp, #4]
-20004c8e:	4b1a      	ldr	r3, [pc, #104]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004c8e:	4b24      	ldr	r3, [pc, #144]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004c90:	9300      	str	r3, [sp, #0]
-20004c92:	4b22      	ldr	r3, [pc, #136]	@ (20004d1c <ui_init_misccmds+0xd4>)
+20004c92:	4b2c      	ldr	r3, [pc, #176]	@ (20004d44 <ui_init_misccmds+0xfc>)
 20004c94:	2200      	movs	r2, #0
-20004c96:	4922      	ldr	r1, [pc, #136]	@ (20004d20 <ui_init_misccmds+0xd8>)
-20004c98:	4822      	ldr	r0, [pc, #136]	@ (20004d24 <ui_init_misccmds+0xdc>)
+20004c96:	492c      	ldr	r1, [pc, #176]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004c98:	482c      	ldr	r0, [pc, #176]	@ (20004d4c <ui_init_misccmds+0x104>)
 20004c9a:	f7ff f949 	bl	20003f30 <cmd_addcmd>
 	       NULL,
 	       "enter a address display <addr>",
@@ -12590,14 +12590,14 @@ int ui_init_misccmds(void)
 	       "");
 
     cmd_addcmd("edit",
-20004c9e:	4b16      	ldr	r3, [pc, #88]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004c9e:	4b20      	ldr	r3, [pc, #128]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004ca0:	9301      	str	r3, [sp, #4]
-20004ca2:	4b15      	ldr	r3, [pc, #84]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004ca2:	4b1f      	ldr	r3, [pc, #124]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004ca4:	9300      	str	r3, [sp, #0]
-20004ca6:	4b20      	ldr	r3, [pc, #128]	@ (20004d28 <ui_init_misccmds+0xe0>)
+20004ca6:	4b2a      	ldr	r3, [pc, #168]	@ (20004d50 <ui_init_misccmds+0x108>)
 20004ca8:	2200      	movs	r2, #0
-20004caa:	4920      	ldr	r1, [pc, #128]	@ (20004d2c <ui_init_misccmds+0xe4>)
-20004cac:	4820      	ldr	r0, [pc, #128]	@ (20004d30 <ui_init_misccmds+0xe8>)
+20004caa:	492a      	ldr	r1, [pc, #168]	@ (20004d54 <ui_init_misccmds+0x10c>)
+20004cac:	482a      	ldr	r0, [pc, #168]	@ (20004d58 <ui_init_misccmds+0x110>)
 20004cae:	f7ff f93f 	bl	20003f30 <cmd_addcmd>
 	       ui_cmd_edit,
 	       NULL,
@@ -12605,14 +12605,14 @@ int ui_init_misccmds(void)
 	       "",
 	       "");
     cmd_addcmd("printten",
-20004cb2:	4b11      	ldr	r3, [pc, #68]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004cb2:	4b1b      	ldr	r3, [pc, #108]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004cb4:	9301      	str	r3, [sp, #4]
-20004cb6:	4b10      	ldr	r3, [pc, #64]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004cb6:	4b1a      	ldr	r3, [pc, #104]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004cb8:	9300      	str	r3, [sp, #0]
-20004cba:	4b1e      	ldr	r3, [pc, #120]	@ (20004d34 <ui_init_misccmds+0xec>)
+20004cba:	4b28      	ldr	r3, [pc, #160]	@ (20004d5c <ui_init_misccmds+0x114>)
 20004cbc:	2200      	movs	r2, #0
-20004cbe:	491e      	ldr	r1, [pc, #120]	@ (20004d38 <ui_init_misccmds+0xf0>)
-20004cc0:	481c      	ldr	r0, [pc, #112]	@ (20004d34 <ui_init_misccmds+0xec>)
+20004cbe:	4928      	ldr	r1, [pc, #160]	@ (20004d60 <ui_init_misccmds+0x118>)
+20004cc0:	4826      	ldr	r0, [pc, #152]	@ (20004d5c <ui_init_misccmds+0x114>)
 20004cc2:	f7ff f935 	bl	20003f30 <cmd_addcmd>
 	       NULL,
 	       "printten",
@@ -12620,620 +12620,806 @@ int ui_init_misccmds(void)
 	       "");
 
     cmd_addcmd("led",
-20004cc6:	4b0c      	ldr	r3, [pc, #48]	@ (20004cf8 <ui_init_misccmds+0xb0>)
+20004cc6:	4b16      	ldr	r3, [pc, #88]	@ (20004d20 <ui_init_misccmds+0xd8>)
 20004cc8:	9301      	str	r3, [sp, #4]
-20004cca:	4b1c      	ldr	r3, [pc, #112]	@ (20004d3c <ui_init_misccmds+0xf4>)
+20004cca:	4b26      	ldr	r3, [pc, #152]	@ (20004d64 <ui_init_misccmds+0x11c>)
 20004ccc:	9300      	str	r3, [sp, #0]
-20004cce:	4b1c      	ldr	r3, [pc, #112]	@ (20004d40 <ui_init_misccmds+0xf8>)
+20004cce:	4b26      	ldr	r3, [pc, #152]	@ (20004d68 <ui_init_misccmds+0x120>)
 20004cd0:	2200      	movs	r2, #0
-20004cd2:	491c      	ldr	r1, [pc, #112]	@ (20004d44 <ui_init_misccmds+0xfc>)
-20004cd4:	481c      	ldr	r0, [pc, #112]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004cd2:	4926      	ldr	r1, [pc, #152]	@ (20004d6c <ui_init_misccmds+0x124>)
+20004cd4:	4826      	ldr	r0, [pc, #152]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004cd6:	f7ff f92b 	bl	20003f30 <cmd_addcmd>
-	       ui_cmd_LED,
+	       NULL,
+	       "1 to turn on light",
+	       "0 to turn off light",
+	       "");
+
+    cmd_addcmd("ledb",
+20004cda:	4b11      	ldr	r3, [pc, #68]	@ (20004d20 <ui_init_misccmds+0xd8>)
+20004cdc:	9301      	str	r3, [sp, #4]
+20004cde:	4b21      	ldr	r3, [pc, #132]	@ (20004d64 <ui_init_misccmds+0x11c>)
+20004ce0:	9300      	str	r3, [sp, #0]
+20004ce2:	4b21      	ldr	r3, [pc, #132]	@ (20004d68 <ui_init_misccmds+0x120>)
+20004ce4:	2200      	movs	r2, #0
+20004ce6:	4923      	ldr	r1, [pc, #140]	@ (20004d74 <ui_init_misccmds+0x12c>)
+20004ce8:	4823      	ldr	r0, [pc, #140]	@ (20004d78 <ui_init_misccmds+0x130>)
+20004cea:	f7ff f921 	bl	20003f30 <cmd_addcmd>
+	       ui_cmd_LEDB,
+	       NULL,
+	       "1 to turn on light",
+	       "0 to turn off light",
+	       "");
+    cmd_addcmd("joystick",
+20004cee:	4b0c      	ldr	r3, [pc, #48]	@ (20004d20 <ui_init_misccmds+0xd8>)
+20004cf0:	9301      	str	r3, [sp, #4]
+20004cf2:	4b1c      	ldr	r3, [pc, #112]	@ (20004d64 <ui_init_misccmds+0x11c>)
+20004cf4:	9300      	str	r3, [sp, #0]
+20004cf6:	4b1c      	ldr	r3, [pc, #112]	@ (20004d68 <ui_init_misccmds+0x120>)
+20004cf8:	2200      	movs	r2, #0
+20004cfa:	4920      	ldr	r1, [pc, #128]	@ (20004d7c <ui_init_misccmds+0x134>)
+20004cfc:	4820      	ldr	r0, [pc, #128]	@ (20004d80 <ui_init_misccmds+0x138>)
+20004cfe:	f7ff f917 	bl	20003f30 <cmd_addcmd>
+	       ui_cmd_joystick,
 	       NULL,
 	       "1 to turn on light",
 	       "0 to turn off light",
 	       "");
     return 0;
-20004cda:	2300      	movs	r3, #0
+20004d02:	2300      	movs	r3, #0
 }
-20004cdc:	4618      	mov	r0, r3
-20004cde:	46bd      	mov	sp, r7
-20004ce0:	bd80      	pop	{r7, pc}
-20004ce2:	bf00      	nop
-20004ce4:	200054fc 	.word	0x200054fc
-20004ce8:	2000553c 	.word	0x2000553c
-20004cec:	200054e4 	.word	0x200054e4
-20004cf0:	20004dc9 	.word	0x20004dc9
-20004cf4:	200054f4 	.word	0x200054f4
-20004cf8:	2000560c 	.word	0x2000560c
-20004cfc:	20005610 	.word	0x20005610
-20004d00:	200055e4 	.word	0x200055e4
-20004d04:	20004d4d 	.word	0x20004d4d
-20004d08:	20005604 	.word	0x20005604
-20004d0c:	200056d0 	.word	0x200056d0
-20004d10:	200056a0 	.word	0x200056a0
-20004d14:	20004e69 	.word	0x20004e69
-20004d18:	200056c4 	.word	0x200056c4
-20004d1c:	20005798 	.word	0x20005798
-20004d20:	20004ed9 	.word	0x20004ed9
-20004d24:	200057b8 	.word	0x200057b8
-20004d28:	200057c0 	.word	0x200057c0
-20004d2c:	20004f45 	.word	0x20004f45
-20004d30:	200057f0 	.word	0x200057f0
-20004d34:	200057f8 	.word	0x200057f8
-20004d38:	20004fb1 	.word	0x20004fb1
-20004d3c:	2000581c 	.word	0x2000581c
-20004d40:	20005804 	.word	0x20005804
-20004d44:	20005039 	.word	0x20005039
-20004d48:	20005818 	.word	0x20005818
+20004d04:	4618      	mov	r0, r3
+20004d06:	46bd      	mov	sp, r7
+20004d08:	bd80      	pop	{r7, pc}
+20004d0a:	bf00      	nop
+20004d0c:	20005618 	.word	0x20005618
+20004d10:	20005658 	.word	0x20005658
+20004d14:	20005600 	.word	0x20005600
+20004d18:	20004e01 	.word	0x20004e01
+20004d1c:	20005610 	.word	0x20005610
+20004d20:	20005728 	.word	0x20005728
+20004d24:	2000572c 	.word	0x2000572c
+20004d28:	20005700 	.word	0x20005700
+20004d2c:	20004d85 	.word	0x20004d85
+20004d30:	20005720 	.word	0x20005720
+20004d34:	200057ec 	.word	0x200057ec
+20004d38:	200057bc 	.word	0x200057bc
+20004d3c:	20004ea1 	.word	0x20004ea1
+20004d40:	200057e0 	.word	0x200057e0
+20004d44:	200058b4 	.word	0x200058b4
+20004d48:	20004f11 	.word	0x20004f11
+20004d4c:	200058d4 	.word	0x200058d4
+20004d50:	200058dc 	.word	0x200058dc
+20004d54:	20004f7d 	.word	0x20004f7d
+20004d58:	2000590c 	.word	0x2000590c
+20004d5c:	20005914 	.word	0x20005914
+20004d60:	20004fe9 	.word	0x20004fe9
+20004d64:	20005938 	.word	0x20005938
+20004d68:	20005920 	.word	0x20005920
+20004d6c:	20005071 	.word	0x20005071
+20004d70:	20005934 	.word	0x20005934
+20004d74:	20005139 	.word	0x20005139
+20004d78:	2000594c 	.word	0x2000594c
+20004d7c:	200051a5 	.word	0x200051a5
+20004d80:	20005954 	.word	0x20005954
 
-20004d4c <ui_cmd_sleep>:
+20004d84 <ui_cmd_sleep>:
 
 static int ui_cmd_sleep(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004d4c:	e92d 43b0 	stmdb	sp!, {r4, r5, r7, r8, r9, lr}
-20004d50:	b088      	sub	sp, #32
-20004d52:	af00      	add	r7, sp, #0
-20004d54:	60f8      	str	r0, [r7, #12]
-20004d56:	60b9      	str	r1, [r7, #8]
-20004d58:	607a      	str	r2, [r7, #4]
+20004d84:	e92d 43b0 	stmdb	sp!, {r4, r5, r7, r8, r9, lr}
+20004d88:	b088      	sub	sp, #32
+20004d8a:	af00      	add	r7, sp, #0
+20004d8c:	60f8      	str	r0, [r7, #12]
+20004d8e:	60b9      	str	r1, [r7, #8]
+20004d90:	607a      	str	r2, [r7, #4]
     int seconds = 1;
-20004d5a:	2301      	movs	r3, #1
-20004d5c:	61fb      	str	r3, [r7, #28]
+20004d92:	2301      	movs	r3, #1
+20004d94:	61fb      	str	r3, [r7, #28]
     char *x;
     cfe_timer_t timer;
 
     if ((x = cmd_getarg(cmd,0))) seconds = atoi(x);
-20004d5e:	2100      	movs	r1, #0
-20004d60:	68f8      	ldr	r0, [r7, #12]
-20004d62:	f7fe ff12 	bl	20003b8a <cmd_getarg>
-20004d66:	61b8      	str	r0, [r7, #24]
-20004d68:	69bb      	ldr	r3, [r7, #24]
-20004d6a:	2b00      	cmp	r3, #0
-20004d6c:	d003      	beq.n	20004d76 <ui_cmd_sleep+0x2a>
-20004d6e:	69b8      	ldr	r0, [r7, #24]
-20004d70:	f7fc fb70 	bl	20001454 <lib_atoi>
-20004d74:	61f8      	str	r0, [r7, #28]
+20004d96:	2100      	movs	r1, #0
+20004d98:	68f8      	ldr	r0, [r7, #12]
+20004d9a:	f7fe fef6 	bl	20003b8a <cmd_getarg>
+20004d9e:	61b8      	str	r0, [r7, #24]
+20004da0:	69bb      	ldr	r3, [r7, #24]
+20004da2:	2b00      	cmp	r3, #0
+20004da4:	d003      	beq.n	20004dae <ui_cmd_sleep+0x2a>
+20004da6:	69b8      	ldr	r0, [r7, #24]
+20004da8:	f7fc fb54 	bl	20001454 <lib_atoi>
+20004dac:	61f8      	str	r0, [r7, #28]
 
     TIMER_SET(timer,seconds*CFE_HZ);
-20004d76:	69fa      	ldr	r2, [r7, #28]
-20004d78:	4613      	mov	r3, r2
-20004d7a:	009b      	lsls	r3, r3, #2
-20004d7c:	4413      	add	r3, r2
-20004d7e:	005b      	lsls	r3, r3, #1
-20004d80:	17da      	asrs	r2, r3, #31
-20004d82:	461c      	mov	r4, r3
-20004d84:	4615      	mov	r5, r2
-20004d86:	4b0f      	ldr	r3, [pc, #60]	@ (20004dc4 <ui_cmd_sleep+0x78>)
-20004d88:	e9d3 2300 	ldrd	r2, r3, [r3]
-20004d8c:	eb14 0802 	adds.w	r8, r4, r2
-20004d90:	eb45 0903 	adc.w	r9, r5, r3
-20004d94:	e9c7 8904 	strd	r8, r9, [r7, #16]
+20004dae:	69fa      	ldr	r2, [r7, #28]
+20004db0:	4613      	mov	r3, r2
+20004db2:	009b      	lsls	r3, r3, #2
+20004db4:	4413      	add	r3, r2
+20004db6:	005b      	lsls	r3, r3, #1
+20004db8:	17da      	asrs	r2, r3, #31
+20004dba:	461c      	mov	r4, r3
+20004dbc:	4615      	mov	r5, r2
+20004dbe:	4b0f      	ldr	r3, [pc, #60]	@ (20004dfc <ui_cmd_sleep+0x78>)
+20004dc0:	e9d3 2300 	ldrd	r2, r3, [r3]
+20004dc4:	eb14 0802 	adds.w	r8, r4, r2
+20004dc8:	eb45 0903 	adc.w	r9, r5, r3
+20004dcc:	e9c7 8904 	strd	r8, r9, [r7, #16]
     while (!TIMER_EXPIRED(timer)) {
-20004d98:	e001      	b.n	20004d9e <ui_cmd_sleep+0x52>
+20004dd0:	e001      	b.n	20004dd6 <ui_cmd_sleep+0x52>
 	POLL();
-20004d9a:	f7fc fd29 	bl	200017f0 <background>
+20004dd2:	f7fc fd0d 	bl	200017f0 <background>
     while (!TIMER_EXPIRED(timer)) {
-20004d9e:	e9d7 2304 	ldrd	r2, r3, [r7, #16]
-20004da2:	4313      	orrs	r3, r2
-20004da4:	d0f9      	beq.n	20004d9a <ui_cmd_sleep+0x4e>
-20004da6:	4b07      	ldr	r3, [pc, #28]	@ (20004dc4 <ui_cmd_sleep+0x78>)
-20004da8:	e9d3 2300 	ldrd	r2, r3, [r3]
-20004dac:	e9d7 0104 	ldrd	r0, r1, [r7, #16]
-20004db0:	4290      	cmp	r0, r2
-20004db2:	eb71 0303 	sbcs.w	r3, r1, r3
-20004db6:	daf0      	bge.n	20004d9a <ui_cmd_sleep+0x4e>
+20004dd6:	e9d7 2304 	ldrd	r2, r3, [r7, #16]
+20004dda:	4313      	orrs	r3, r2
+20004ddc:	d0f9      	beq.n	20004dd2 <ui_cmd_sleep+0x4e>
+20004dde:	4b07      	ldr	r3, [pc, #28]	@ (20004dfc <ui_cmd_sleep+0x78>)
+20004de0:	e9d3 2300 	ldrd	r2, r3, [r3]
+20004de4:	e9d7 0104 	ldrd	r0, r1, [r7, #16]
+20004de8:	4290      	cmp	r0, r2
+20004dea:	eb71 0303 	sbcs.w	r3, r1, r3
+20004dee:	daf0      	bge.n	20004dd2 <ui_cmd_sleep+0x4e>
 	}
 
     return 0;
-20004db8:	2300      	movs	r3, #0
+20004df0:	2300      	movs	r3, #0
 }
-20004dba:	4618      	mov	r0, r3
-20004dbc:	3720      	adds	r7, #32
-20004dbe:	46bd      	mov	sp, r7
-20004dc0:	e8bd 83b0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, pc}
-20004dc4:	20005d58 	.word	0x20005d58
+20004df2:	4618      	mov	r0, r3
+20004df4:	3720      	adds	r7, #32
+20004df6:	46bd      	mov	sp, r7
+20004df8:	e8bd 83b0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, pc}
+20004dfc:	20005ea0 	.word	0x20005ea0
 
-20004dc8 <ui_cmd_loop>:
+20004e00 <ui_cmd_loop>:
 
 static int ui_cmd_loop(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004dc8:	b580      	push	{r7, lr}
-20004dca:	b088      	sub	sp, #32
-20004dcc:	af00      	add	r7, sp, #0
-20004dce:	60f8      	str	r0, [r7, #12]
-20004dd0:	60b9      	str	r1, [r7, #8]
-20004dd2:	607a      	str	r2, [r7, #4]
+20004e00:	b580      	push	{r7, lr}
+20004e02:	b088      	sub	sp, #32
+20004e04:	af00      	add	r7, sp, #0
+20004e06:	60f8      	str	r0, [r7, #12]
+20004e08:	60b9      	str	r1, [r7, #8]
+20004e0a:	607a      	str	r2, [r7, #4]
     int count = 10;
-20004dd4:	230a      	movs	r3, #10
-20004dd6:	61fb      	str	r3, [r7, #28]
+20004e0c:	230a      	movs	r3, #10
+20004e0e:	61fb      	str	r3, [r7, #28]
     char *x;
     int res;
     int forever;
 
     if (cmd_sw_value(cmd,"-count",&x)) count = atoi(x);
-20004dd8:	f107 0310 	add.w	r3, r7, #16
-20004ddc:	461a      	mov	r2, r3
-20004dde:	4920      	ldr	r1, [pc, #128]	@ (20004e60 <ui_cmd_loop+0x98>)
-20004de0:	68f8      	ldr	r0, [r7, #12]
-20004de2:	f7fe fe53 	bl	20003a8c <cmd_sw_value>
-20004de6:	4603      	mov	r3, r0
-20004de8:	2b00      	cmp	r3, #0
-20004dea:	d004      	beq.n	20004df6 <ui_cmd_loop+0x2e>
-20004dec:	693b      	ldr	r3, [r7, #16]
-20004dee:	4618      	mov	r0, r3
-20004df0:	f7fc fb30 	bl	20001454 <lib_atoi>
-20004df4:	61f8      	str	r0, [r7, #28]
+20004e10:	f107 0310 	add.w	r3, r7, #16
+20004e14:	461a      	mov	r2, r3
+20004e16:	4920      	ldr	r1, [pc, #128]	@ (20004e98 <ui_cmd_loop+0x98>)
+20004e18:	68f8      	ldr	r0, [r7, #12]
+20004e1a:	f7fe fe37 	bl	20003a8c <cmd_sw_value>
+20004e1e:	4603      	mov	r3, r0
+20004e20:	2b00      	cmp	r3, #0
+20004e22:	d004      	beq.n	20004e2e <ui_cmd_loop+0x2e>
+20004e24:	693b      	ldr	r3, [r7, #16]
+20004e26:	4618      	mov	r0, r3
+20004e28:	f7fc fb14 	bl	20001454 <lib_atoi>
+20004e2c:	61f8      	str	r0, [r7, #28]
     
     forever = cmd_sw_isset(cmd,"-forever");
-20004df6:	491b      	ldr	r1, [pc, #108]	@ (20004e64 <ui_cmd_loop+0x9c>)
-20004df8:	68f8      	ldr	r0, [r7, #12]
-20004dfa:	f7fe fe9d 	bl	20003b38 <cmd_sw_isset>
-20004dfe:	6178      	str	r0, [r7, #20]
+20004e2e:	491b      	ldr	r1, [pc, #108]	@ (20004e9c <ui_cmd_loop+0x9c>)
+20004e30:	68f8      	ldr	r0, [r7, #12]
+20004e32:	f7fe fe81 	bl	20003b38 <cmd_sw_isset>
+20004e36:	6178      	str	r0, [r7, #20]
 
     x = cmd_getarg(cmd,0);
-20004e00:	2100      	movs	r1, #0
-20004e02:	68f8      	ldr	r0, [r7, #12]
-20004e04:	f7fe fec1 	bl	20003b8a <cmd_getarg>
-20004e08:	4603      	mov	r3, r0
-20004e0a:	613b      	str	r3, [r7, #16]
+20004e38:	2100      	movs	r1, #0
+20004e3a:	68f8      	ldr	r0, [r7, #12]
+20004e3c:	f7fe fea5 	bl	20003b8a <cmd_getarg>
+20004e40:	4603      	mov	r3, r0
+20004e42:	613b      	str	r3, [r7, #16]
     if (!x) return ui_showusage(cmd);
-20004e0c:	693b      	ldr	r3, [r7, #16]
-20004e0e:	2b00      	cmp	r3, #0
-20004e10:	d104      	bne.n	20004e1c <ui_cmd_loop+0x54>
-20004e12:	68f8      	ldr	r0, [r7, #12]
-20004e14:	f7fe fd8d 	bl	20003932 <ui_showusage>
-20004e18:	4603      	mov	r3, r0
-20004e1a:	e01d      	b.n	20004e58 <ui_cmd_loop+0x90>
+20004e44:	693b      	ldr	r3, [r7, #16]
+20004e46:	2b00      	cmp	r3, #0
+20004e48:	d104      	bne.n	20004e54 <ui_cmd_loop+0x54>
+20004e4a:	68f8      	ldr	r0, [r7, #12]
+20004e4c:	f7fe fd71 	bl	20003932 <ui_showusage>
+20004e50:	4603      	mov	r3, r0
+20004e52:	e01d      	b.n	20004e90 <ui_cmd_loop+0x90>
 
     res = 0;
-20004e1c:	2300      	movs	r3, #0
-20004e1e:	61bb      	str	r3, [r7, #24]
+20004e54:	2300      	movs	r3, #0
+20004e56:	61bb      	str	r3, [r7, #24]
     while (count || forever) {
-20004e20:	e00f      	b.n	20004e42 <ui_cmd_loop+0x7a>
+20004e58:	e00f      	b.n	20004e7a <ui_cmd_loop+0x7a>
 	if (console_status()) break;
-20004e22:	f7fc fdb1 	bl	20001988 <console_status>
-20004e26:	4603      	mov	r3, r0
-20004e28:	2b00      	cmp	r3, #0
-20004e2a:	d111      	bne.n	20004e50 <ui_cmd_loop+0x88>
+20004e5a:	f7fc fd95 	bl	20001988 <console_status>
+20004e5e:	4603      	mov	r3, r0
+20004e60:	2b00      	cmp	r3, #0
+20004e62:	d111      	bne.n	20004e88 <ui_cmd_loop+0x88>
 	res = ui_docommands(x);
-20004e2c:	693b      	ldr	r3, [r7, #16]
-20004e2e:	4618      	mov	r0, r3
-20004e30:	f7fe fdf4 	bl	20003a1c <ui_docommands>
-20004e34:	61b8      	str	r0, [r7, #24]
+20004e64:	693b      	ldr	r3, [r7, #16]
+20004e66:	4618      	mov	r0, r3
+20004e68:	f7fe fdd8 	bl	20003a1c <ui_docommands>
+20004e6c:	61b8      	str	r0, [r7, #24]
 	if (res != 0) break;
-20004e36:	69bb      	ldr	r3, [r7, #24]
-20004e38:	2b00      	cmp	r3, #0
-20004e3a:	d10b      	bne.n	20004e54 <ui_cmd_loop+0x8c>
+20004e6e:	69bb      	ldr	r3, [r7, #24]
+20004e70:	2b00      	cmp	r3, #0
+20004e72:	d10b      	bne.n	20004e8c <ui_cmd_loop+0x8c>
 	count--;
-20004e3c:	69fb      	ldr	r3, [r7, #28]
-20004e3e:	3b01      	subs	r3, #1
-20004e40:	61fb      	str	r3, [r7, #28]
+20004e74:	69fb      	ldr	r3, [r7, #28]
+20004e76:	3b01      	subs	r3, #1
+20004e78:	61fb      	str	r3, [r7, #28]
     while (count || forever) {
-20004e42:	69fb      	ldr	r3, [r7, #28]
-20004e44:	2b00      	cmp	r3, #0
-20004e46:	d1ec      	bne.n	20004e22 <ui_cmd_loop+0x5a>
-20004e48:	697b      	ldr	r3, [r7, #20]
-20004e4a:	2b00      	cmp	r3, #0
-20004e4c:	d1e9      	bne.n	20004e22 <ui_cmd_loop+0x5a>
-20004e4e:	e002      	b.n	20004e56 <ui_cmd_loop+0x8e>
+20004e7a:	69fb      	ldr	r3, [r7, #28]
+20004e7c:	2b00      	cmp	r3, #0
+20004e7e:	d1ec      	bne.n	20004e5a <ui_cmd_loop+0x5a>
+20004e80:	697b      	ldr	r3, [r7, #20]
+20004e82:	2b00      	cmp	r3, #0
+20004e84:	d1e9      	bne.n	20004e5a <ui_cmd_loop+0x5a>
+20004e86:	e002      	b.n	20004e8e <ui_cmd_loop+0x8e>
 	if (console_status()) break;
-20004e50:	bf00      	nop
-20004e52:	e000      	b.n	20004e56 <ui_cmd_loop+0x8e>
+20004e88:	bf00      	nop
+20004e8a:	e000      	b.n	20004e8e <ui_cmd_loop+0x8e>
 	if (res != 0) break;
-20004e54:	bf00      	nop
+20004e8c:	bf00      	nop
 	}
 
     return res;
-20004e56:	69bb      	ldr	r3, [r7, #24]
+20004e8e:	69bb      	ldr	r3, [r7, #24]
 }
-20004e58:	4618      	mov	r0, r3
-20004e5a:	3720      	adds	r7, #32
-20004e5c:	46bd      	mov	sp, r7
-20004e5e:	bd80      	pop	{r7, pc}
-20004e60:	20005830 	.word	0x20005830
-20004e64:	20005838 	.word	0x20005838
+20004e90:	4618      	mov	r0, r3
+20004e92:	3720      	adds	r7, #32
+20004e94:	46bd      	mov	sp, r7
+20004e96:	bd80      	pop	{r7, pc}
+20004e98:	20005960 	.word	0x20005960
+20004e9c:	20005968 	.word	0x20005968
 
-20004e68 <ui_cmd_console>:
+20004ea0 <ui_cmd_console>:
 }
 #endif
 
 
 static int ui_cmd_console(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004e68:	b580      	push	{r7, lr}
-20004e6a:	b086      	sub	sp, #24
-20004e6c:	af00      	add	r7, sp, #0
-20004e6e:	60f8      	str	r0, [r7, #12]
-20004e70:	60b9      	str	r1, [r7, #8]
-20004e72:	607a      	str	r2, [r7, #4]
+20004ea0:	b580      	push	{r7, lr}
+20004ea2:	b086      	sub	sp, #24
+20004ea4:	af00      	add	r7, sp, #0
+20004ea6:	60f8      	str	r0, [r7, #12]
+20004ea8:	60b9      	str	r1, [r7, #8]
+20004eaa:	607a      	str	r2, [r7, #4]
     int res;
     char *dev;
 
     dev = cmd_getarg(cmd,0);
-20004e74:	2100      	movs	r1, #0
-20004e76:	68f8      	ldr	r0, [r7, #12]
-20004e78:	f7fe fe87 	bl	20003b8a <cmd_getarg>
-20004e7c:	6178      	str	r0, [r7, #20]
+20004eac:	2100      	movs	r1, #0
+20004eae:	68f8      	ldr	r0, [r7, #12]
+20004eb0:	f7fe fe6b 	bl	20003b8a <cmd_getarg>
+20004eb4:	6178      	str	r0, [r7, #20]
     if (!dev) return -1; 	/* XXX usage */
-20004e7e:	697b      	ldr	r3, [r7, #20]
-20004e80:	2b00      	cmp	r3, #0
-20004e82:	d102      	bne.n	20004e8a <ui_cmd_console+0x22>
-20004e84:	f04f 33ff 	mov.w	r3, #4294967295	@ 0xffffffff
-20004e88:	e01d      	b.n	20004ec6 <ui_cmd_console+0x5e>
+20004eb6:	697b      	ldr	r3, [r7, #20]
+20004eb8:	2b00      	cmp	r3, #0
+20004eba:	d102      	bne.n	20004ec2 <ui_cmd_console+0x22>
+20004ebc:	f04f 33ff 	mov.w	r3, #4294967295	@ 0xffffffff
+20004ec0:	e01d      	b.n	20004efe <ui_cmd_console+0x5e>
 
     res = cfe_getdevinfo(dev);
-20004e8a:	6978      	ldr	r0, [r7, #20]
-20004e8c:	f7fd fe0e 	bl	20002aac <cfe_getdevinfo>
-20004e90:	6138      	str	r0, [r7, #16]
+20004ec2:	6978      	ldr	r0, [r7, #20]
+20004ec4:	f7fd fdf2 	bl	20002aac <cfe_getdevinfo>
+20004ec8:	6138      	str	r0, [r7, #16]
     if (res < 0) {
-20004e92:	693b      	ldr	r3, [r7, #16]
-20004e94:	2b00      	cmp	r3, #0
-20004e96:	da06      	bge.n	20004ea6 <ui_cmd_console+0x3e>
+20004eca:	693b      	ldr	r3, [r7, #16]
+20004ecc:	2b00      	cmp	r3, #0
+20004ece:	da06      	bge.n	20004ede <ui_cmd_console+0x3e>
 	printf("Device '%s' is not valid\n",dev);
-20004e98:	6979      	ldr	r1, [r7, #20]
-20004e9a:	480d      	ldr	r0, [pc, #52]	@ (20004ed0 <ui_cmd_console+0x68>)
-20004e9c:	f7fb fec4 	bl	20000c28 <printf>
+20004ed0:	6979      	ldr	r1, [r7, #20]
+20004ed2:	480d      	ldr	r0, [pc, #52]	@ (20004f08 <ui_cmd_console+0x68>)
+20004ed4:	f7fb fea8 	bl	20000c28 <printf>
 	return CFE_ERR_DEVNOTFOUND;
-20004ea0:	f06f 0305 	mvn.w	r3, #5
-20004ea4:	e00f      	b.n	20004ec6 <ui_cmd_console+0x5e>
+20004ed8:	f06f 0305 	mvn.w	r3, #5
+20004edc:	e00f      	b.n	20004efe <ui_cmd_console+0x5e>
 	}
 
     if ((res & CFE_DEV_MASK) != CFE_DEV_SERIAL) {
-20004ea6:	693b      	ldr	r3, [r7, #16]
-20004ea8:	f003 030f 	and.w	r3, r3, #15
-20004eac:	2b04      	cmp	r3, #4
-20004eae:	d006      	beq.n	20004ebe <ui_cmd_console+0x56>
+20004ede:	693b      	ldr	r3, [r7, #16]
+20004ee0:	f003 030f 	and.w	r3, r3, #15
+20004ee4:	2b04      	cmp	r3, #4
+20004ee6:	d006      	beq.n	20004ef6 <ui_cmd_console+0x56>
 	printf("Device '%s' is not the appropriate type to be a console\n",
-20004eb0:	6979      	ldr	r1, [r7, #20]
-20004eb2:	4808      	ldr	r0, [pc, #32]	@ (20004ed4 <ui_cmd_console+0x6c>)
-20004eb4:	f7fb feb8 	bl	20000c28 <printf>
+20004ee8:	6979      	ldr	r1, [r7, #20]
+20004eea:	4808      	ldr	r0, [pc, #32]	@ (20004f0c <ui_cmd_console+0x6c>)
+20004eec:	f7fb fe9c 	bl	20000c28 <printf>
 		dev);
 	return CFE_ERR_WRONGDEVTYPE;
-20004eb8:	f06f 031f 	mvn.w	r3, #31
-20004ebc:	e003      	b.n	20004ec6 <ui_cmd_console+0x5e>
+20004ef0:	f06f 031f 	mvn.w	r3, #31
+20004ef4:	e003      	b.n	20004efe <ui_cmd_console+0x5e>
 	}
 
     cfe_set_console(dev);
-20004ebe:	6978      	ldr	r0, [r7, #20]
-20004ec0:	f7fc fdac 	bl	20001a1c <cfe_set_console>
+20004ef6:	6978      	ldr	r0, [r7, #20]
+20004ef8:	f7fc fd90 	bl	20001a1c <cfe_set_console>
 
     return 0;
-20004ec4:	2300      	movs	r3, #0
+20004efc:	2300      	movs	r3, #0
 }
-20004ec6:	4618      	mov	r0, r3
-20004ec8:	3718      	adds	r7, #24
-20004eca:	46bd      	mov	sp, r7
-20004ecc:	bd80      	pop	{r7, pc}
-20004ece:	bf00      	nop
-20004ed0:	20005844 	.word	0x20005844
-20004ed4:	20005860 	.word	0x20005860
+20004efe:	4618      	mov	r0, r3
+20004f00:	3718      	adds	r7, #24
+20004f02:	46bd      	mov	sp, r7
+20004f04:	bd80      	pop	{r7, pc}
+20004f06:	bf00      	nop
+20004f08:	20005974 	.word	0x20005974
+20004f0c:	20005990 	.word	0x20005990
 
-20004ed8 <ui_cmd_display>:
+20004f10 <ui_cmd_display>:
 
 static int ui_cmd_display(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004ed8:	b580      	push	{r7, lr}
-20004eda:	b08a      	sub	sp, #40	@ 0x28
-20004edc:	af00      	add	r7, sp, #0
-20004ede:	60f8      	str	r0, [r7, #12]
-20004ee0:	60b9      	str	r1, [r7, #8]
-20004ee2:	607a      	str	r2, [r7, #4]
+20004f10:	b580      	push	{r7, lr}
+20004f12:	b08a      	sub	sp, #40	@ 0x28
+20004f14:	af00      	add	r7, sp, #0
+20004f16:	60f8      	str	r0, [r7, #12]
+20004f18:	60b9      	str	r1, [r7, #8]
+20004f1a:	607a      	str	r2, [r7, #4]
 
     printf("Printing out Memory Contents:\n");
-20004ee4:	4814      	ldr	r0, [pc, #80]	@ (20004f38 <ui_cmd_display+0x60>)
-20004ee6:	f7fb fefb 	bl	20000ce0 <puts>
+20004f1c:	4814      	ldr	r0, [pc, #80]	@ (20004f70 <ui_cmd_display+0x60>)
+20004f1e:	f7fb fedf 	bl	20000ce0 <puts>
     uint32_t address;
     volatile uint32_t *ptr;
     uint32_t value;
 
 
     addr_str = cmd_getarg(cmd, 0);
-20004eea:	2100      	movs	r1, #0
-20004eec:	68f8      	ldr	r0, [r7, #12]
-20004eee:	f7fe fe4c 	bl	20003b8a <cmd_getarg>
-20004ef2:	6238      	str	r0, [r7, #32]
+20004f22:	2100      	movs	r1, #0
+20004f24:	68f8      	ldr	r0, [r7, #12]
+20004f26:	f7fe fe30 	bl	20003b8a <cmd_getarg>
+20004f2a:	6238      	str	r0, [r7, #32]
 
 
     address = atoi(addr_str);
-20004ef4:	6a38      	ldr	r0, [r7, #32]
-20004ef6:	f7fc faad 	bl	20001454 <lib_atoi>
-20004efa:	4603      	mov	r3, r0
-20004efc:	627b      	str	r3, [r7, #36]	@ 0x24
+20004f2c:	6a38      	ldr	r0, [r7, #32]
+20004f2e:	f7fc fa91 	bl	20001454 <lib_atoi>
+20004f32:	4603      	mov	r3, r0
+20004f34:	627b      	str	r3, [r7, #36]	@ 0x24
 
     volatile uint32_t *ADDRESS_END = (uint32_t *)(address + 0x32);
-20004efe:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-20004f00:	3332      	adds	r3, #50	@ 0x32
-20004f02:	61fb      	str	r3, [r7, #28]
+20004f36:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+20004f38:	3332      	adds	r3, #50	@ 0x32
+20004f3a:	61fb      	str	r3, [r7, #28]
 
 	for (address; address <= ADDRESS_END; address= address + 0x4) {
-20004f04:	e00f      	b.n	20004f26 <ui_cmd_display+0x4e>
+20004f3c:	e00f      	b.n	20004f5e <ui_cmd_display+0x4e>
 	    ptr = (volatile uint32_t *)address;
-20004f06:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-20004f08:	61bb      	str	r3, [r7, #24]
+20004f3e:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+20004f40:	61bb      	str	r3, [r7, #24]
 	    value = *ptr;
-20004f0a:	69bb      	ldr	r3, [r7, #24]
-20004f0c:	681b      	ldr	r3, [r3, #0]
-20004f0e:	617b      	str	r3, [r7, #20]
+20004f42:	69bb      	ldr	r3, [r7, #24]
+20004f44:	681b      	ldr	r3, [r3, #0]
+20004f46:	617b      	str	r3, [r7, #20]
 
 		printf("0x%08X", address);
-20004f10:	6a79      	ldr	r1, [r7, #36]	@ 0x24
-20004f12:	480a      	ldr	r0, [pc, #40]	@ (20004f3c <ui_cmd_display+0x64>)
-20004f14:	f7fb fe88 	bl	20000c28 <printf>
+20004f48:	6a79      	ldr	r1, [r7, #36]	@ 0x24
+20004f4a:	480a      	ldr	r0, [pc, #40]	@ (20004f74 <ui_cmd_display+0x64>)
+20004f4c:	f7fb fe6c 	bl	20000c28 <printf>
 		printf("0x%08X\n", value);
-20004f18:	6979      	ldr	r1, [r7, #20]
-20004f1a:	4809      	ldr	r0, [pc, #36]	@ (20004f40 <ui_cmd_display+0x68>)
-20004f1c:	f7fb fe84 	bl	20000c28 <printf>
+20004f50:	6979      	ldr	r1, [r7, #20]
+20004f52:	4809      	ldr	r0, [pc, #36]	@ (20004f78 <ui_cmd_display+0x68>)
+20004f54:	f7fb fe68 	bl	20000c28 <printf>
 	for (address; address <= ADDRESS_END; address= address + 0x4) {
-20004f20:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-20004f22:	3304      	adds	r3, #4
-20004f24:	627b      	str	r3, [r7, #36]	@ 0x24
-20004f26:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-20004f28:	69fa      	ldr	r2, [r7, #28]
-20004f2a:	429a      	cmp	r2, r3
-20004f2c:	d2eb      	bcs.n	20004f06 <ui_cmd_display+0x2e>
+20004f58:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+20004f5a:	3304      	adds	r3, #4
+20004f5c:	627b      	str	r3, [r7, #36]	@ 0x24
+20004f5e:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+20004f60:	69fa      	ldr	r2, [r7, #28]
+20004f62:	429a      	cmp	r2, r3
+20004f64:	d2eb      	bcs.n	20004f3e <ui_cmd_display+0x2e>
 	        printf("0x%08X", address);
 	        printf("0x%08X\n", value);
 	    }
 
 */
     return 0;
-20004f2e:	2300      	movs	r3, #0
+20004f66:	2300      	movs	r3, #0
 }
-20004f30:	4618      	mov	r0, r3
-20004f32:	3728      	adds	r7, #40	@ 0x28
-20004f34:	46bd      	mov	sp, r7
-20004f36:	bd80      	pop	{r7, pc}
-20004f38:	2000589c 	.word	0x2000589c
-20004f3c:	200058bc 	.word	0x200058bc
-20004f40:	200058c4 	.word	0x200058c4
+20004f68:	4618      	mov	r0, r3
+20004f6a:	3728      	adds	r7, #40	@ 0x28
+20004f6c:	46bd      	mov	sp, r7
+20004f6e:	bd80      	pop	{r7, pc}
+20004f70:	200059cc 	.word	0x200059cc
+20004f74:	200059ec 	.word	0x200059ec
+20004f78:	200059f4 	.word	0x200059f4
 
-20004f44 <ui_cmd_edit>:
+20004f7c <ui_cmd_edit>:
 
 
 static int ui_cmd_edit(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004f44:	b580      	push	{r7, lr}
-20004f46:	b08a      	sub	sp, #40	@ 0x28
-20004f48:	af00      	add	r7, sp, #0
-20004f4a:	60f8      	str	r0, [r7, #12]
-20004f4c:	60b9      	str	r1, [r7, #8]
-20004f4e:	607a      	str	r2, [r7, #4]
+20004f7c:	b580      	push	{r7, lr}
+20004f7e:	b08a      	sub	sp, #40	@ 0x28
+20004f80:	af00      	add	r7, sp, #0
+20004f82:	60f8      	str	r0, [r7, #12]
+20004f84:	60b9      	str	r1, [r7, #8]
+20004f86:	607a      	str	r2, [r7, #4]
 	uint32_t address;
 	volatile uint32_t *ptr;
 	uint32_t value;
 
 
 	addr_str = cmd_getarg(cmd, 0);
-20004f50:	2100      	movs	r1, #0
-20004f52:	68f8      	ldr	r0, [r7, #12]
-20004f54:	f7fe fe19 	bl	20003b8a <cmd_getarg>
-20004f58:	6278      	str	r0, [r7, #36]	@ 0x24
+20004f88:	2100      	movs	r1, #0
+20004f8a:	68f8      	ldr	r0, [r7, #12]
+20004f8c:	f7fe fdfd 	bl	20003b8a <cmd_getarg>
+20004f90:	6278      	str	r0, [r7, #36]	@ 0x24
 	address = atoi(addr_str);
-20004f5a:	6a78      	ldr	r0, [r7, #36]	@ 0x24
-20004f5c:	f7fc fa7a 	bl	20001454 <lib_atoi>
-20004f60:	4603      	mov	r3, r0
-20004f62:	623b      	str	r3, [r7, #32]
+20004f92:	6a78      	ldr	r0, [r7, #36]	@ 0x24
+20004f94:	f7fc fa5e 	bl	20001454 <lib_atoi>
+20004f98:	4603      	mov	r3, r0
+20004f9a:	623b      	str	r3, [r7, #32]
 
 	value_str = cmd_getarg(cmd, 1);
-20004f64:	2101      	movs	r1, #1
-20004f66:	68f8      	ldr	r0, [r7, #12]
-20004f68:	f7fe fe0f 	bl	20003b8a <cmd_getarg>
-20004f6c:	61f8      	str	r0, [r7, #28]
+20004f9c:	2101      	movs	r1, #1
+20004f9e:	68f8      	ldr	r0, [r7, #12]
+20004fa0:	f7fe fdf3 	bl	20003b8a <cmd_getarg>
+20004fa4:	61f8      	str	r0, [r7, #28]
 	value = atoi(value_str);
-20004f6e:	69f8      	ldr	r0, [r7, #28]
-20004f70:	f7fc fa70 	bl	20001454 <lib_atoi>
-20004f74:	4603      	mov	r3, r0
-20004f76:	61bb      	str	r3, [r7, #24]
+20004fa6:	69f8      	ldr	r0, [r7, #28]
+20004fa8:	f7fc fa54 	bl	20001454 <lib_atoi>
+20004fac:	4603      	mov	r3, r0
+20004fae:	61bb      	str	r3, [r7, #24]
 
     ptr = (volatile uint32_t *)address;
-20004f78:	6a3b      	ldr	r3, [r7, #32]
-20004f7a:	617b      	str	r3, [r7, #20]
+20004fb0:	6a3b      	ldr	r3, [r7, #32]
+20004fb2:	617b      	str	r3, [r7, #20]
     *ptr = value;
-20004f7c:	697b      	ldr	r3, [r7, #20]
-20004f7e:	69ba      	ldr	r2, [r7, #24]
-20004f80:	601a      	str	r2, [r3, #0]
+20004fb4:	697b      	ldr	r3, [r7, #20]
+20004fb6:	69ba      	ldr	r2, [r7, #24]
+20004fb8:	601a      	str	r2, [r3, #0]
 
     printf("new value:");
-20004f82:	4808      	ldr	r0, [pc, #32]	@ (20004fa4 <ui_cmd_edit+0x60>)
-20004f84:	f7fb fe50 	bl	20000c28 <printf>
+20004fba:	4808      	ldr	r0, [pc, #32]	@ (20004fdc <ui_cmd_edit+0x60>)
+20004fbc:	f7fb fe34 	bl	20000c28 <printf>
 
     printf("0x%08X", address);
-20004f88:	6a39      	ldr	r1, [r7, #32]
-20004f8a:	4807      	ldr	r0, [pc, #28]	@ (20004fa8 <ui_cmd_edit+0x64>)
-20004f8c:	f7fb fe4c 	bl	20000c28 <printf>
+20004fc0:	6a39      	ldr	r1, [r7, #32]
+20004fc2:	4807      	ldr	r0, [pc, #28]	@ (20004fe0 <ui_cmd_edit+0x64>)
+20004fc4:	f7fb fe30 	bl	20000c28 <printf>
 
     printf("0x%08X\n", value);
-20004f90:	69b9      	ldr	r1, [r7, #24]
-20004f92:	4806      	ldr	r0, [pc, #24]	@ (20004fac <ui_cmd_edit+0x68>)
-20004f94:	f7fb fe48 	bl	20000c28 <printf>
+20004fc8:	69b9      	ldr	r1, [r7, #24]
+20004fca:	4806      	ldr	r0, [pc, #24]	@ (20004fe4 <ui_cmd_edit+0x68>)
+20004fcc:	f7fb fe2c 	bl	20000c28 <printf>
 
 
 	return 0;
-20004f98:	2300      	movs	r3, #0
+20004fd0:	2300      	movs	r3, #0
 }
-20004f9a:	4618      	mov	r0, r3
-20004f9c:	3728      	adds	r7, #40	@ 0x28
-20004f9e:	46bd      	mov	sp, r7
-20004fa0:	bd80      	pop	{r7, pc}
-20004fa2:	bf00      	nop
-20004fa4:	200058cc 	.word	0x200058cc
-20004fa8:	200058bc 	.word	0x200058bc
-20004fac:	200058c4 	.word	0x200058c4
+20004fd2:	4618      	mov	r0, r3
+20004fd4:	3728      	adds	r7, #40	@ 0x28
+20004fd6:	46bd      	mov	sp, r7
+20004fd8:	bd80      	pop	{r7, pc}
+20004fda:	bf00      	nop
+20004fdc:	200059fc 	.word	0x200059fc
+20004fe0:	200059ec 	.word	0x200059ec
+20004fe4:	200059f4 	.word	0x200059f4
 
-20004fb0 <ui_cmd_printten>:
+20004fe8 <ui_cmd_printten>:
 
 static int ui_cmd_printten(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004fb0:	b580      	push	{r7, lr}
-20004fb2:	b086      	sub	sp, #24
-20004fb4:	af00      	add	r7, sp, #0
-20004fb6:	60f8      	str	r0, [r7, #12]
-20004fb8:	60b9      	str	r1, [r7, #8]
-20004fba:	607a      	str	r2, [r7, #4]
+20004fe8:	b580      	push	{r7, lr}
+20004fea:	b086      	sub	sp, #24
+20004fec:	af00      	add	r7, sp, #0
+20004fee:	60f8      	str	r0, [r7, #12]
+20004ff0:	60b9      	str	r1, [r7, #8]
+20004ff2:	607a      	str	r2, [r7, #4]
 	for(int i = 1; i< 10; i++){
-20004fbc:	2301      	movs	r3, #1
-20004fbe:	617b      	str	r3, [r7, #20]
-20004fc0:	e005      	b.n	20004fce <ui_cmd_printten+0x1e>
+20004ff4:	2301      	movs	r3, #1
+20004ff6:	617b      	str	r3, [r7, #20]
+20004ff8:	e005      	b.n	20005006 <ui_cmd_printten+0x1e>
 		printf("hello world");
-20004fc2:	4807      	ldr	r0, [pc, #28]	@ (20004fe0 <ui_cmd_printten+0x30>)
-20004fc4:	f7fb fe30 	bl	20000c28 <printf>
+20004ffa:	4807      	ldr	r0, [pc, #28]	@ (20005018 <ui_cmd_printten+0x30>)
+20004ffc:	f7fb fe14 	bl	20000c28 <printf>
 	for(int i = 1; i< 10; i++){
-20004fc8:	697b      	ldr	r3, [r7, #20]
-20004fca:	3301      	adds	r3, #1
-20004fcc:	617b      	str	r3, [r7, #20]
-20004fce:	697b      	ldr	r3, [r7, #20]
-20004fd0:	2b09      	cmp	r3, #9
-20004fd2:	ddf6      	ble.n	20004fc2 <ui_cmd_printten+0x12>
+20005000:	697b      	ldr	r3, [r7, #20]
+20005002:	3301      	adds	r3, #1
+20005004:	617b      	str	r3, [r7, #20]
+20005006:	697b      	ldr	r3, [r7, #20]
+20005008:	2b09      	cmp	r3, #9
+2000500a:	ddf6      	ble.n	20004ffa <ui_cmd_printten+0x12>
 	}
 	return 0;
-20004fd4:	2300      	movs	r3, #0
+2000500c:	2300      	movs	r3, #0
 }
-20004fd6:	4618      	mov	r0, r3
-20004fd8:	3718      	adds	r7, #24
-20004fda:	46bd      	mov	sp, r7
-20004fdc:	bd80      	pop	{r7, pc}
-20004fde:	bf00      	nop
-20004fe0:	200058d8 	.word	0x200058d8
+2000500e:	4618      	mov	r0, r3
+20005010:	3718      	adds	r7, #24
+20005012:	46bd      	mov	sp, r7
+20005014:	bd80      	pop	{r7, pc}
+20005016:	bf00      	nop
+20005018:	20005a08 	.word	0x20005a08
 
-20004fe4 <LED_Init>:
+2000501c <LED_Init>:
 
 #define PWR_BASE 0x40007000
 
 
 
 void LED_Init(void) {
-20004fe4:	b480      	push	{r7}
-20004fe6:	b083      	sub	sp, #12
-20004fe8:	af00      	add	r7, sp, #0
+2000501c:	b480      	push	{r7}
+2000501e:	b083      	sub	sp, #12
+20005020:	af00      	add	r7, sp, #0
 
     *(volatile uint32_t *)(0x40007004) = 0x200;
-20004fea:	4b0e      	ldr	r3, [pc, #56]	@ (20005024 <LED_Init+0x40>)
-20004fec:	f44f 7200 	mov.w	r2, #512	@ 0x200
-20004ff0:	601a      	str	r2, [r3, #0]
+20005022:	4b0e      	ldr	r3, [pc, #56]	@ (2000505c <LED_Init+0x40>)
+20005024:	f44f 7200 	mov.w	r2, #512	@ 0x200
+20005028:	601a      	str	r2, [r3, #0]
 
     volatile uint32_t *RCC_AHB2ENR = (uint32_t *)(0x40021000 + 0x4C);
-20004ff2:	4b0d      	ldr	r3, [pc, #52]	@ (20005028 <LED_Init+0x44>)
-20004ff4:	607b      	str	r3, [r7, #4]
+2000502a:	4b0d      	ldr	r3, [pc, #52]	@ (20005060 <LED_Init+0x44>)
+2000502c:	607b      	str	r3, [r7, #4]
     *RCC_AHB2ENR = 0xf;
-20004ff6:	687b      	ldr	r3, [r7, #4]
-20004ff8:	220f      	movs	r2, #15
-20004ffa:	601a      	str	r2, [r3, #0]
+2000502e:	687b      	ldr	r3, [r7, #4]
+20005030:	220f      	movs	r2, #15
+20005032:	601a      	str	r2, [r3, #0]
 
 
     volatile uint32_t *RCC_APB1ENR1 = (uint32_t *)(0x40021000 + 0x58);
-20004ffc:	4b0b      	ldr	r3, [pc, #44]	@ (2000502c <LED_Init+0x48>)
-20004ffe:	603b      	str	r3, [r7, #0]
+20005034:	4b0b      	ldr	r3, [pc, #44]	@ (20005064 <LED_Init+0x48>)
+20005036:	603b      	str	r3, [r7, #0]
     *RCC_APB1ENR1 |= (1 << 28);
-20005000:	683b      	ldr	r3, [r7, #0]
-20005002:	681b      	ldr	r3, [r3, #0]
-20005004:	f043 5280 	orr.w	r2, r3, #268435456	@ 0x10000000
-20005008:	683b      	ldr	r3, [r7, #0]
-2000500a:	601a      	str	r2, [r3, #0]
+20005038:	683b      	ldr	r3, [r7, #0]
+2000503a:	681b      	ldr	r3, [r3, #0]
+2000503c:	f043 5280 	orr.w	r2, r3, #268435456	@ 0x10000000
+20005040:	683b      	ldr	r3, [r7, #0]
+20005042:	601a      	str	r2, [r3, #0]
 
 
     *(volatile uint32_t *)(GPIOC_BASE) = 0x4; // turn on
-2000500c:	4b08      	ldr	r3, [pc, #32]	@ (20005030 <LED_Init+0x4c>)
-2000500e:	2204      	movs	r2, #4
-20005010:	601a      	str	r2, [r3, #0]
+20005044:	4b08      	ldr	r3, [pc, #32]	@ (20005068 <LED_Init+0x4c>)
+20005046:	2204      	movs	r2, #4
+20005048:	601a      	str	r2, [r3, #0]
 
 
     *(volatile uint32_t *)(GPIOC_BASE + 0x14) = 0x0; // turn off
-20005012:	4b08      	ldr	r3, [pc, #32]	@ (20005034 <LED_Init+0x50>)
-20005014:	2200      	movs	r2, #0
-20005016:	601a      	str	r2, [r3, #0]
+2000504a:	4b08      	ldr	r3, [pc, #32]	@ (2000506c <LED_Init+0x50>)
+2000504c:	2200      	movs	r2, #0
+2000504e:	601a      	str	r2, [r3, #0]
 }
-20005018:	bf00      	nop
-2000501a:	370c      	adds	r7, #12
-2000501c:	46bd      	mov	sp, r7
-2000501e:	f85d 7b04 	ldr.w	r7, [sp], #4
-20005022:	4770      	bx	lr
-20005024:	40007004 	.word	0x40007004
-20005028:	4002104c 	.word	0x4002104c
-2000502c:	40021058 	.word	0x40021058
-20005030:	48000800 	.word	0x48000800
-20005034:	48000814 	.word	0x48000814
+20005050:	bf00      	nop
+20005052:	370c      	adds	r7, #12
+20005054:	46bd      	mov	sp, r7
+20005056:	f85d 7b04 	ldr.w	r7, [sp], #4
+2000505a:	4770      	bx	lr
+2000505c:	40007004 	.word	0x40007004
+20005060:	4002104c 	.word	0x4002104c
+20005064:	40021058 	.word	0x40021058
+20005068:	48000800 	.word	0x48000800
+2000506c:	48000814 	.word	0x48000814
 
-20005038 <ui_cmd_LED>:
+20005070 <ui_cmd_LED>:
 
 static int ui_cmd_LED(ui_cmdline_t *cmd, int argc, char *argv[])
 {
-20005038:	b580      	push	{r7, lr}
-2000503a:	b088      	sub	sp, #32
-2000503c:	af00      	add	r7, sp, #0
-2000503e:	60f8      	str	r0, [r7, #12]
-20005040:	60b9      	str	r1, [r7, #8]
-20005042:	607a      	str	r2, [r7, #4]
+20005070:	b580      	push	{r7, lr}
+20005072:	b088      	sub	sp, #32
+20005074:	af00      	add	r7, sp, #0
+20005076:	60f8      	str	r0, [r7, #12]
+20005078:	60b9      	str	r1, [r7, #8]
+2000507a:	607a      	str	r2, [r7, #4]
     char *state_str;
     int state;
 
     state_str = cmd_getarg(cmd, 0);
-20005044:	2100      	movs	r1, #0
-20005046:	68f8      	ldr	r0, [r7, #12]
-20005048:	f7fe fd9f 	bl	20003b8a <cmd_getarg>
-2000504c:	61f8      	str	r0, [r7, #28]
+2000507c:	2100      	movs	r1, #0
+2000507e:	68f8      	ldr	r0, [r7, #12]
+20005080:	f7fe fd83 	bl	20003b8a <cmd_getarg>
+20005084:	61f8      	str	r0, [r7, #28]
     state = atoi(state_str);
-2000504e:	69f8      	ldr	r0, [r7, #28]
-20005050:	f7fc fa00 	bl	20001454 <lib_atoi>
-20005054:	61b8      	str	r0, [r7, #24]
+20005086:	69f8      	ldr	r0, [r7, #28]
+20005088:	f7fc f9e4 	bl	20001454 <lib_atoi>
+2000508c:	61b8      	str	r0, [r7, #24]
 
     LED_Init();
-20005056:	f7ff ffc5 	bl	20004fe4 <LED_Init>
+2000508e:	f7ff ffc5 	bl	2000501c <LED_Init>
     volatile uint32_t *GPIOC_ODR = (uint32_t *)(GPIOC_BASE + 0x14);
-2000505a:	4b0f      	ldr	r3, [pc, #60]	@ (20005098 <ui_cmd_LED+0x60>)
-2000505c:	617b      	str	r3, [r7, #20]
+20005092:	4b0f      	ldr	r3, [pc, #60]	@ (200050d0 <ui_cmd_LED+0x60>)
+20005094:	617b      	str	r3, [r7, #20]
 
     if (state == 0) {
-2000505e:	69bb      	ldr	r3, [r7, #24]
-20005060:	2b00      	cmp	r3, #0
-20005062:	d108      	bne.n	20005076 <ui_cmd_LED+0x3e>
+20005096:	69bb      	ldr	r3, [r7, #24]
+20005098:	2b00      	cmp	r3, #0
+2000509a:	d108      	bne.n	200050ae <ui_cmd_LED+0x3e>
 
         *GPIOC_ODR |= (1 << 1);
-20005064:	697b      	ldr	r3, [r7, #20]
-20005066:	681b      	ldr	r3, [r3, #0]
-20005068:	f043 0202 	orr.w	r2, r3, #2
-2000506c:	697b      	ldr	r3, [r7, #20]
-2000506e:	601a      	str	r2, [r3, #0]
+2000509c:	697b      	ldr	r3, [r7, #20]
+2000509e:	681b      	ldr	r3, [r3, #0]
+200050a0:	f043 0202 	orr.w	r2, r3, #2
+200050a4:	697b      	ldr	r3, [r7, #20]
+200050a6:	601a      	str	r2, [r3, #0]
         printf("LED is OFF\n");
-20005070:	480a      	ldr	r0, [pc, #40]	@ (2000509c <ui_cmd_LED+0x64>)
-20005072:	f7fb fe35 	bl	20000ce0 <puts>
+200050a8:	480a      	ldr	r0, [pc, #40]	@ (200050d4 <ui_cmd_LED+0x64>)
+200050aa:	f7fb fe19 	bl	20000ce0 <puts>
     }
     if (state == 1) {
-20005076:	69bb      	ldr	r3, [r7, #24]
-20005078:	2b01      	cmp	r3, #1
-2000507a:	d108      	bne.n	2000508e <ui_cmd_LED+0x56>
+200050ae:	69bb      	ldr	r3, [r7, #24]
+200050b0:	2b01      	cmp	r3, #1
+200050b2:	d108      	bne.n	200050c6 <ui_cmd_LED+0x56>
 
         *GPIOC_ODR &= ~(1 << 1);
-2000507c:	697b      	ldr	r3, [r7, #20]
-2000507e:	681b      	ldr	r3, [r3, #0]
-20005080:	f023 0202 	bic.w	r2, r3, #2
-20005084:	697b      	ldr	r3, [r7, #20]
-20005086:	601a      	str	r2, [r3, #0]
+200050b4:	697b      	ldr	r3, [r7, #20]
+200050b6:	681b      	ldr	r3, [r3, #0]
+200050b8:	f023 0202 	bic.w	r2, r3, #2
+200050bc:	697b      	ldr	r3, [r7, #20]
+200050be:	601a      	str	r2, [r3, #0]
         printf("LED is ON\n");
-20005088:	4805      	ldr	r0, [pc, #20]	@ (200050a0 <ui_cmd_LED+0x68>)
-2000508a:	f7fb fe29 	bl	20000ce0 <puts>
+200050c0:	4805      	ldr	r0, [pc, #20]	@ (200050d8 <ui_cmd_LED+0x68>)
+200050c2:	f7fb fe0d 	bl	20000ce0 <puts>
     }
 
     return 0;
-2000508e:	2300      	movs	r3, #0
+200050c6:	2300      	movs	r3, #0
 }
-20005090:	4618      	mov	r0, r3
-20005092:	3720      	adds	r7, #32
-20005094:	46bd      	mov	sp, r7
-20005096:	bd80      	pop	{r7, pc}
-20005098:	48000814 	.word	0x48000814
-2000509c:	200058e4 	.word	0x200058e4
-200050a0:	200058f0 	.word	0x200058f0
+200050c8:	4618      	mov	r0, r3
+200050ca:	3720      	adds	r7, #32
+200050cc:	46bd      	mov	sp, r7
+200050ce:	bd80      	pop	{r7, pc}
+200050d0:	48000814 	.word	0x48000814
+200050d4:	20005a14 	.word	0x20005a14
+200050d8:	20005a20 	.word	0x20005a20
+
+200050dc <LEDB_Init>:
+
+void LEDB_Init(void) {
+200050dc:	b480      	push	{r7}
+200050de:	b083      	sub	sp, #12
+200050e0:	af00      	add	r7, sp, #0
+
+    *(volatile uint32_t *)(0x40007004) = 0x200;
+200050e2:	4b10      	ldr	r3, [pc, #64]	@ (20005124 <LEDB_Init+0x48>)
+200050e4:	f44f 7200 	mov.w	r2, #512	@ 0x200
+200050e8:	601a      	str	r2, [r3, #0]
+
+    volatile uint32_t *RCC_AHB2ENR = (uint32_t *)(0x40021000 + 0x4C);
+200050ea:	4b0f      	ldr	r3, [pc, #60]	@ (20005128 <LEDB_Init+0x4c>)
+200050ec:	607b      	str	r3, [r7, #4]
+    *RCC_AHB2ENR = 0xf;
+200050ee:	687b      	ldr	r3, [r7, #4]
+200050f0:	220f      	movs	r2, #15
+200050f2:	601a      	str	r2, [r3, #0]
+
+    volatile uint32_t *RCC_APB1ENR1 = (uint32_t *)(0x40021000 + 0x58);
+200050f4:	4b0d      	ldr	r3, [pc, #52]	@ (2000512c <LEDB_Init+0x50>)
+200050f6:	603b      	str	r3, [r7, #0]
+    *RCC_APB1ENR1 |= (1 << 28);
+200050f8:	683b      	ldr	r3, [r7, #0]
+200050fa:	681b      	ldr	r3, [r3, #0]
+200050fc:	f043 5280 	orr.w	r2, r3, #268435456	@ 0x10000000
+20005100:	683b      	ldr	r3, [r7, #0]
+20005102:	601a      	str	r2, [r3, #0]
+
+
+    *(volatile uint32_t *)(GPIOB_BASE + 0)  |= 0x10; //
+20005104:	4b0a      	ldr	r3, [pc, #40]	@ (20005130 <LEDB_Init+0x54>)
+20005106:	681b      	ldr	r3, [r3, #0]
+20005108:	4a09      	ldr	r2, [pc, #36]	@ (20005130 <LEDB_Init+0x54>)
+2000510a:	f043 0310 	orr.w	r3, r3, #16
+2000510e:	6013      	str	r3, [r2, #0]
+
+    *(volatile uint32_t *)(GPIOB_BASE + 0x14) = 0x0;
+20005110:	4b08      	ldr	r3, [pc, #32]	@ (20005134 <LEDB_Init+0x58>)
+20005112:	2200      	movs	r2, #0
+20005114:	601a      	str	r2, [r3, #0]
+}
+20005116:	bf00      	nop
+20005118:	370c      	adds	r7, #12
+2000511a:	46bd      	mov	sp, r7
+2000511c:	f85d 7b04 	ldr.w	r7, [sp], #4
+20005120:	4770      	bx	lr
+20005122:	bf00      	nop
+20005124:	40007004 	.word	0x40007004
+20005128:	4002104c 	.word	0x4002104c
+2000512c:	40021058 	.word	0x40021058
+20005130:	48000400 	.word	0x48000400
+20005134:	48000414 	.word	0x48000414
+
+20005138 <ui_cmd_LEDB>:
+
+
+static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
+20005138:	b580      	push	{r7, lr}
+2000513a:	b088      	sub	sp, #32
+2000513c:	af00      	add	r7, sp, #0
+2000513e:	60f8      	str	r0, [r7, #12]
+20005140:	60b9      	str	r1, [r7, #8]
+20005142:	607a      	str	r2, [r7, #4]
+    char *state_str;
+    int state;
+
+    state_str = cmd_getarg(cmd, 0);
+20005144:	2100      	movs	r1, #0
+20005146:	68f8      	ldr	r0, [r7, #12]
+20005148:	f7fe fd1f 	bl	20003b8a <cmd_getarg>
+2000514c:	61f8      	str	r0, [r7, #28]
+    state = atoi(state_str);
+2000514e:	69f8      	ldr	r0, [r7, #28]
+20005150:	f7fc f980 	bl	20001454 <lib_atoi>
+20005154:	61b8      	str	r0, [r7, #24]
+
+    LEDB_Init();
+20005156:	f7ff ffc1 	bl	200050dc <LEDB_Init>
+    volatile uint32_t *GPIOB_ODR = (uint32_t *)(GPIOB_BASE + 0x14);
+2000515a:	4b0f      	ldr	r3, [pc, #60]	@ (20005198 <ui_cmd_LEDB+0x60>)
+2000515c:	617b      	str	r3, [r7, #20]
+
+    if (state == 0) {
+2000515e:	69bb      	ldr	r3, [r7, #24]
+20005160:	2b00      	cmp	r3, #0
+20005162:	d108      	bne.n	20005176 <ui_cmd_LEDB+0x3e>
+        *GPIOB_ODR |= (1 << 2);
+20005164:	697b      	ldr	r3, [r7, #20]
+20005166:	681b      	ldr	r3, [r3, #0]
+20005168:	f043 0204 	orr.w	r2, r3, #4
+2000516c:	697b      	ldr	r3, [r7, #20]
+2000516e:	601a      	str	r2, [r3, #0]
+        printf("LED1 is OFF\n");
+20005170:	480a      	ldr	r0, [pc, #40]	@ (2000519c <ui_cmd_LEDB+0x64>)
+20005172:	f7fb fdb5 	bl	20000ce0 <puts>
+    }
+    if (state == 1) {
+20005176:	69bb      	ldr	r3, [r7, #24]
+20005178:	2b01      	cmp	r3, #1
+2000517a:	d108      	bne.n	2000518e <ui_cmd_LEDB+0x56>
+        *GPIOB_ODR &= ~(1 << 2);
+2000517c:	697b      	ldr	r3, [r7, #20]
+2000517e:	681b      	ldr	r3, [r3, #0]
+20005180:	f023 0204 	bic.w	r2, r3, #4
+20005184:	697b      	ldr	r3, [r7, #20]
+20005186:	601a      	str	r2, [r3, #0]
+        printf("LED1 is ON\n");
+20005188:	4805      	ldr	r0, [pc, #20]	@ (200051a0 <ui_cmd_LEDB+0x68>)
+2000518a:	f7fb fda9 	bl	20000ce0 <puts>
+    }
+
+    return 0;
+2000518e:	2300      	movs	r3, #0
+}
+20005190:	4618      	mov	r0, r3
+20005192:	3720      	adds	r7, #32
+20005194:	46bd      	mov	sp, r7
+20005196:	bd80      	pop	{r7, pc}
+20005198:	48000414 	.word	0x48000414
+2000519c:	20005a2c 	.word	0x20005a2c
+200051a0:	20005a38 	.word	0x20005a38
+
+200051a4 <ui_cmd_joystick>:
+#define JOYSTICK_DOWN
+#define JOYSTICK_LEFT
+#define JOYSTICK_RIGHT
+#define IOEXPANDER2
+static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
+{
+200051a4:	b480      	push	{r7}
+200051a6:	b085      	sub	sp, #20
+200051a8:	af00      	add	r7, sp, #0
+200051aa:	60f8      	str	r0, [r7, #12]
+200051ac:	60b9      	str	r1, [r7, #8]
+200051ae:	607a      	str	r2, [r7, #4]
+
+    // Output the joystick state
+    printf("Joystick state: 0x%02X\n", joystick_state);
+    */
+
+    return 0;
+200051b0:	2300      	movs	r3, #0
+}
+200051b2:	4618      	mov	r0, r3
+200051b4:	3714      	adds	r7, #20
+200051b6:	46bd      	mov	sp, r7
+200051b8:	f85d 7b04 	ldr.w	r7, [sp], #4
+200051bc:	4770      	bx	lr
+	...
 
 Disassembly of section .init:
 
-200050a4 <_init>:
-200050a4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-200050a6:	bf00      	nop
+200051c0 <_init>:
+200051c0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+200051c2:	bf00      	nop
 
 Disassembly of section .fini:
 
-200050a8 <_fini>:
-200050a8:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-200050aa:	bf00      	nop
+200051c4 <_fini>:
+200051c4:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+200051c6:	bf00      	nop

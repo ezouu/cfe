@@ -2273,7 +2273,7 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
  .isr_vector    0x20000000       0x10 ./cfe/arch/arm/init_arm.o
                 0x20000010                        . = ALIGN (0x4)
 
-.text           0x20000010     0x5094
+.text           0x20000010     0x51b0
                 0x20000010                        . = ALIGN (0x4)
  *(.text)
  .text          0x20000010       0x30 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/libgcc.a(_aeabi_uldivmod.o)
@@ -2666,207 +2666,215 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
                 0x20004c18       0x30 ./cfe/ui/ui_command.o
                 0x20004c18                cmd_free_tokens
  .text.ui_init_misccmds
-                0x20004c48      0x104 ./cfe/ui/ui_misccmds.o
+                0x20004c48      0x13c ./cfe/ui/ui_misccmds.o
                 0x20004c48                ui_init_misccmds
  .text.ui_cmd_sleep
-                0x20004d4c       0x7c ./cfe/ui/ui_misccmds.o
+                0x20004d84       0x7c ./cfe/ui/ui_misccmds.o
  .text.ui_cmd_loop
-                0x20004dc8       0xa0 ./cfe/ui/ui_misccmds.o
+                0x20004e00       0xa0 ./cfe/ui/ui_misccmds.o
  .text.ui_cmd_console
-                0x20004e68       0x70 ./cfe/ui/ui_misccmds.o
+                0x20004ea0       0x70 ./cfe/ui/ui_misccmds.o
  .text.ui_cmd_display
-                0x20004ed8       0x6c ./cfe/ui/ui_misccmds.o
+                0x20004f10       0x6c ./cfe/ui/ui_misccmds.o
  .text.ui_cmd_edit
-                0x20004f44       0x6c ./cfe/ui/ui_misccmds.o
+                0x20004f7c       0x6c ./cfe/ui/ui_misccmds.o
  .text.ui_cmd_printten
-                0x20004fb0       0x34 ./cfe/ui/ui_misccmds.o
+                0x20004fe8       0x34 ./cfe/ui/ui_misccmds.o
  .text.LED_Init
-                0x20004fe4       0x54 ./cfe/ui/ui_misccmds.o
-                0x20004fe4                LED_Init
+                0x2000501c       0x54 ./cfe/ui/ui_misccmds.o
+                0x2000501c                LED_Init
  .text.ui_cmd_LED
-                0x20005038       0x6c ./cfe/ui/ui_misccmds.o
+                0x20005070       0x6c ./cfe/ui/ui_misccmds.o
+ .text.LEDB_Init
+                0x200050dc       0x5c ./cfe/ui/ui_misccmds.o
+                0x200050dc                LEDB_Init
+ .text.ui_cmd_LEDB
+                0x20005138       0x6c ./cfe/ui/ui_misccmds.o
+ .text.ui_cmd_joystick
+                0x200051a4       0x1a ./cfe/ui/ui_misccmds.o
  *(.glue_7)
- .glue_7        0x200050a4        0x0 linker stubs
+ .glue_7        0x200051be        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x200050a4        0x0 linker stubs
+ .glue_7t       0x200051be        0x0 linker stubs
  *(.eh_frame)
  *(.RamFunc)
  *(.RamFunc*)
-                0x200050a4                        . = ALIGN (0x4)
-                0x200050a4                        _etext = .
+                0x200051c0                        . = ALIGN (0x4)
+ *fill*         0x200051be        0x2 
+                0x200051c0                        _etext = .
 
-.vfp11_veneer   0x200050a4        0x0
- .vfp11_veneer  0x200050a4        0x0 linker stubs
+.vfp11_veneer   0x200051c0        0x0
+ .vfp11_veneer  0x200051c0        0x0 linker stubs
 
-.v4_bx          0x200050a4        0x0
- .v4_bx         0x200050a4        0x0 linker stubs
+.v4_bx          0x200051c0        0x0
+ .v4_bx         0x200051c0        0x0 linker stubs
 
-.init           0x200050a4        0x4
- .init          0x200050a4        0x4 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x200050a4                _init
+.init           0x200051c0        0x4
+ .init          0x200051c0        0x4 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x200051c0                _init
 
-.fini           0x200050a8        0x4
- .fini          0x200050a8        0x4 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/crti.o
-                0x200050a8                _fini
+.fini           0x200051c4        0x4
+ .fini          0x200051c4        0x4 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/crti.o
+                0x200051c4                _fini
 
-.iplt           0x200050ac        0x0
- .iplt          0x200050ac        0x0 ./cfe/arch/arm/init_arm.o
+.iplt           0x200051c8        0x0
+ .iplt          0x200051c8        0x0 ./cfe/arch/arm/init_arm.o
 
-.rodata         0x200050ac      0xa18
-                0x200050ac                        . = ALIGN (0x4)
+.rodata         0x200051c8      0xa44
+                0x200051c8                        . = ALIGN (0x4)
  *(.rodata)
- .rodata        0x200050ac        0x7 ./cfe/arch/arm/lib_printf.o
- *fill*         0x200050b3        0x1 
- .rodata        0x200050b4       0x1a ./cfe/board/stm32_board.o
- *fill*         0x200050ce        0x2 
- .rodata        0x200050d0        0xa ./cfe/main/cfe_attach.o
- *fill*         0x200050da        0x2 
- .rodata        0x200050dc       0x48 ./cfe/main/cfe_console.o
- .rodata        0x20005124      0x14d ./cfe/main/cfe_main.o
- *fill*         0x20005271        0x3 
- .rodata        0x20005274       0x1c ./cfe/ui/ui_cmddisp.o
- .rodata        0x20005290      0x252 ./cfe/ui/ui_command.o
- *fill*         0x200054e2        0x2 
- .rodata        0x200054e4      0x416 ./cfe/ui/ui_misccmds.o
+ .rodata        0x200051c8        0x7 ./cfe/arch/arm/lib_printf.o
+ *fill*         0x200051cf        0x1 
+ .rodata        0x200051d0       0x1a ./cfe/board/stm32_board.o
+ *fill*         0x200051ea        0x2 
+ .rodata        0x200051ec        0xa ./cfe/main/cfe_attach.o
+ *fill*         0x200051f6        0x2 
+ .rodata        0x200051f8       0x48 ./cfe/main/cfe_console.o
+ .rodata        0x20005240      0x14d ./cfe/main/cfe_main.o
+ *fill*         0x2000538d        0x3 
+ .rodata        0x20005390       0x1c ./cfe/ui/ui_cmddisp.o
+ .rodata        0x200053ac      0x252 ./cfe/ui/ui_command.o
+ *fill*         0x200055fe        0x2 
+ .rodata        0x20005600      0x443 ./cfe/ui/ui_misccmds.o
  *(.rodata*)
- *fill*         0x200058fa        0x2 
+ *fill*         0x20005a43        0x1 
  .rodata.digits
-                0x200058fc       0x11 ./cfe/arch/arm/lib_printf.o
- *fill*         0x2000590d        0x3 
+                0x20005a44       0x11 ./cfe/arch/arm/lib_printf.o
+ *fill*         0x20005a55        0x3 
  .rodata.ldigits
-                0x20005910       0x11 ./cfe/arch/arm/lib_printf.o
- *fill*         0x20005921        0x3 
+                0x20005a58       0x11 ./cfe/arch/arm/lib_printf.o
+ *fill*         0x20005a69        0x3 
  .rodata.stm32_uart_dispatch
-                0x20005924       0x20 ./cfe/board/stm32_board.o
+                0x20005a6c       0x20 ./cfe/board/stm32_board.o
  .rodata.cfe_cmd_dispatch_table
-                0x20005944      0x180 ./cfe/main/cfe_iocb_dispatch.o
-                0x20005ac4                        . = ALIGN (0x4)
-                0x20005acc                        _sidata = LOADADDR (.data)
+                0x20005a8c      0x180 ./cfe/main/cfe_iocb_dispatch.o
+                0x20005c0c                        . = ALIGN (0x4)
+                0x20005c14                        _sidata = LOADADDR (.data)
 
-.ARM.exidx      0x20005ac4        0x8
- .ARM.exidx     0x20005ac4        0x8 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
+.ARM.exidx      0x20005c0c        0x8
+ .ARM.exidx     0x20005c0c        0x8 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
 
-.rel.dyn        0x20005acc        0x0
- .rel.iplt      0x20005acc        0x0 ./cfe/arch/arm/init_arm.o
+.rel.dyn        0x20005c14        0x0
+ .rel.iplt      0x20005c14        0x0 ./cfe/arch/arm/init_arm.o
 
-.data           0x20005acc       0x40
-                0x20005acc                        . = ALIGN (0x4)
-                0x20005acc                        _sdata = .
+.data           0x20005c14       0x40
+                0x20005c14                        . = ALIGN (0x4)
+                0x20005c14                        _sdata = .
  *(.data)
  *(.data*)
  .data.stm32_uart
-                0x20005acc       0x14 ./cfe/board/stm32_board.o
-                0x20005acc                stm32_uart
+                0x20005c14       0x14 ./cfe/board/stm32_board.o
+                0x20005c14                stm32_uart
  .data.cfe_devices
-                0x20005ae0        0x8 ./cfe/main/cfe_attach.o
-                0x20005ae0                cfe_devices
+                0x20005c28        0x8 ./cfe/main/cfe_attach.o
+                0x20005c28                cfe_devices
  .data.console_msgq
-                0x20005ae8        0x8 ./cfe/main/cfe_console.o
-                0x20005ae8                console_msgq
+                0x20005c30        0x8 ./cfe/main/cfe_console.o
+                0x20005c30                console_msgq
  .data.console_handle
-                0x20005af0        0x4 ./cfe/main/cfe_console.o
-                0x20005af0                console_handle
+                0x20005c38        0x4 ./cfe/main/cfe_console.o
+                0x20005c38                console_handle
  .data.cfe_boardname
-                0x20005af4        0x4 ./cfe/main/cfe_main.o
-                0x20005af4                cfe_boardname
+                0x20005c3c        0x4 ./cfe/main/cfe_main.o
+                0x20005c3c                cfe_boardname
  .data.mem_totalsize
-                0x20005af8        0x4 ./cfe/main/cfe_main.o
-                0x20005af8                mem_totalsize
+                0x20005c40        0x4 ./cfe/main/cfe_main.o
+                0x20005c40                mem_totalsize
  .data.env_envvars
-                0x20005afc        0x8 ./cfe/main/env_subr.o
-                0x20005afc                env_envvars
+                0x20005c44        0x8 ./cfe/main/env_subr.o
+                0x20005c44                env_envvars
  .data.tokenbreaks
-                0x20005b04        0x4 ./cfe/ui/ui_command.o
+                0x20005c4c        0x4 ./cfe/ui/ui_command.o
  .data.spacechars
-                0x20005b08        0x4 ./cfe/ui/ui_command.o
-                0x20005b0c                        . = ALIGN (0x4)
-                0x20005b0c                        _edata = .
+                0x20005c50        0x4 ./cfe/ui/ui_command.o
+                0x20005c54                        . = ALIGN (0x4)
+                0x20005c54                        _edata = .
 
-.igot.plt       0x20005b0c        0x0
- .igot.plt      0x20005b0c        0x0 ./cfe/arch/arm/init_arm.o
-                0x20005b0c                        . = ALIGN (0x4)
+.igot.plt       0x20005c54        0x0
+ .igot.plt      0x20005c54        0x0 ./cfe/arch/arm/init_arm.o
+                0x20005c54                        . = ALIGN (0x4)
 
-.bss            0x20005b10      0x270
-                0x20005b10                        _sbss = .
-                0x20005b10                        __bss_start__ = _sbss
+.bss            0x20005c58      0x270
+                0x20005c58                        _sbss = .
+                0x20005c58                        __bss_start__ = _sbss
  *(.bss)
  *(.bss*)
  .bss.xprinthook
-                0x20005b10        0x4 ./cfe/arch/arm/lib_printf.o
-                0x20005b10                xprinthook
- .bss.kmempool  0x20005b14        0xc ./cfe/lib/lib_malloc.o
-                0x20005b14                kmempool
+                0x20005c58        0x4 ./cfe/arch/arm/lib_printf.o
+                0x20005c58                xprinthook
+ .bss.kmempool  0x20005c5c        0xc ./cfe/lib/lib_malloc.o
+                0x20005c5c                kmempool
  .bss.cfe_bg_tasklist
-                0x20005b20       0x40 ./cfe/main/cfe_background.o
+                0x20005c68       0x40 ./cfe/main/cfe_background.o
  .bss.cfe_bg_args
-                0x20005b60       0x40 ./cfe/main/cfe_background.o
+                0x20005ca8       0x40 ./cfe/main/cfe_background.o
  .bss.console_nextsave
-                0x20005ba0        0x4 ./cfe/main/cfe_console.o
-                0x20005ba0                console_nextsave
+                0x20005ce8        0x4 ./cfe/main/cfe_console.o
+                0x20005ce8                console_nextsave
  .bss.console_savedlines
-                0x20005ba4       0x78 ./cfe/main/cfe_console.o
-                0x20005ba4                console_savedlines
+                0x20005cec       0x78 ./cfe/main/cfe_console.o
+                0x20005cec                console_savedlines
  .bss.console_killbuffer
-                0x20005c1c        0x4 ./cfe/main/cfe_console.o
+                0x20005d64        0x4 ./cfe/main/cfe_console.o
  .bss.console_buffer_flg
-                0x20005c20        0x4 ./cfe/main/cfe_console.o
+                0x20005d68        0x4 ./cfe/main/cfe_console.o
  .bss.console_mode
-                0x20005c24        0x4 ./cfe/main/cfe_console.o
+                0x20005d6c        0x4 ./cfe/main/cfe_console.o
  .bss.console_name
-                0x20005c28        0x4 ./cfe/main/cfe_console.o
-                0x20005c28                console_name
+                0x20005d70        0x4 ./cfe/main/cfe_console.o
+                0x20005d70                console_name
  .bss.console_inreadline
-                0x20005c2c        0x4 ./cfe/main/cfe_console.o
+                0x20005d74        0x4 ./cfe/main/cfe_console.o
  .bss.console_redisplay
-                0x20005c30        0x4 ./cfe/main/cfe_console.o
+                0x20005d78        0x4 ./cfe/main/cfe_console.o
  .bss.cfe_handle_table
-                0x20005c34      0x100 ./cfe/main/cfe_iocb_dispatch.o
-                0x20005c34                cfe_handle_table
- *fill*         0x20005d34        0x4 
+                0x20005d7c      0x100 ./cfe/main/cfe_iocb_dispatch.o
+                0x20005d7c                cfe_handle_table
+ *fill*         0x20005e7c        0x4 
  .bss.cfe_arena
-                0x20005d38       0x18 ./cfe/main/cfe_mem.o
-                0x20005d38                cfe_arena
+                0x20005e80       0x18 ./cfe/main/cfe_mem.o
+                0x20005e80                cfe_arena
  .bss.mem_bootarea_start
-                0x20005d50        0x4 ./cfe/main/cfe_mem.o
-                0x20005d50                mem_bootarea_start
+                0x20005e98        0x4 ./cfe/main/cfe_mem.o
+                0x20005e98                mem_bootarea_start
  .bss.mem_bootarea_size
-                0x20005d54        0x4 ./cfe/main/cfe_mem.o
-                0x20005d54                mem_bootarea_size
+                0x20005e9c        0x4 ./cfe/main/cfe_mem.o
+                0x20005e9c                mem_bootarea_size
  .bss.cfe_ticks
-                0x20005d58        0x8 ./cfe/main/cfe_timer.o
-                0x20005d58                cfe_ticks
+                0x20005ea0        0x8 ./cfe/main/cfe_timer.o
+                0x20005ea0                cfe_ticks
  .bss.cfe_cpu_speed
-                0x20005d60        0x4 ./cfe/main/cfe_timer.o
-                0x20005d60                cfe_cpu_speed
+                0x20005ea8        0x4 ./cfe/main/cfe_timer.o
+                0x20005ea8                cfe_cpu_speed
  .bss.cfe_clocks_per_Kns
-                0x20005d64        0x4 ./cfe/main/cfe_timer.o
+                0x20005eac        0x4 ./cfe/main/cfe_timer.o
  .bss.cfe_clocks_per_usec
-                0x20005d68        0x4 ./cfe/main/cfe_timer.o
+                0x20005eb0        0x4 ./cfe/main/cfe_timer.o
  .bss.cfe_clocks_per_tick
-                0x20005d6c        0x4 ./cfe/main/cfe_timer.o
+                0x20005eb4        0x4 ./cfe/main/cfe_timer.o
  .bss.cfe_oldcount
-                0x20005d70        0x4 ./cfe/main/cfe_timer.o
+                0x20005eb8        0x4 ./cfe/main/cfe_timer.o
  .bss.cfe_remticks
-                0x20005d74        0x4 ./cfe/main/cfe_timer.o
+                0x20005ebc        0x4 ./cfe/main/cfe_timer.o
  .bss.cfe_timer_initflg
-                0x20005d78        0x4 ./cfe/main/cfe_timer.o
- .bss.cmd_root  0x20005d7c        0x4 ./cfe/ui/ui_command.o
-                0x20005d7c                cmd_root
+                0x20005ec0        0x4 ./cfe/main/cfe_timer.o
+ .bss.cmd_root  0x20005ec4        0x4 ./cfe/ui/ui_command.o
+                0x20005ec4                cmd_root
  *(COMMON)
-                0x20005d80                        . = ALIGN (0x4)
-                0x20005d80                        _ebss = .
-                0x20005d80                        __bss_end__ = _ebss
+                0x20005ec8                        . = ALIGN (0x4)
+                0x20005ec8                        _ebss = .
+                0x20005ec8                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20005d80      0x600
-                0x20005d80                        . = ALIGN (0x8)
+                0x20005ec8      0x600
+                0x20005ec8                        . = ALIGN (0x8)
                 [!provide]                        PROVIDE (end = .)
                 [!provide]                        PROVIDE (_end = .)
-                0x20005f80                        . = (. + _Min_Heap_Size)
- *fill*         0x20005d80      0x200 
-                0x20006380                        . = (. + _Min_Stack_Size)
- *fill*         0x20005f80      0x400 
-                0x20006380                        . = ALIGN (0x8)
+                0x200060c8                        . = (. + _Min_Heap_Size)
+ *fill*         0x20005ec8      0x200 
+                0x200064c8                        . = (. + _Min_Stack_Size)
+ *fill*         0x200060c8      0x400 
+                0x200064c8                        . = ALIGN (0x8)
 OUTPUT(test2.elf elf32-littlearm)
 LOAD linker stubs
 
@@ -2940,7 +2948,7 @@ LOAD linker stubs
  .comment       0x00000043       0x44 ./cfe/ui/ui_command.o
  .comment       0x00000043       0x44 ./cfe/ui/ui_misccmds.o
 
-.debug_line     0x00000000     0x607b
+.debug_line     0x00000000     0x6108
  .debug_line    0x00000000       0x96 ./cfe/arch/arm/init_arm.o
  .debug_line    0x00000096      0x9a3 ./cfe/arch/arm/lib_printf.o
  .debug_line    0x00000a39      0x350 ./cfe/board/stm32_board.o
@@ -2959,14 +2967,14 @@ LOAD linker stubs
  .debug_line    0x0000459a      0x501 ./cfe/main/env_subr.o
  .debug_line    0x00004a9b      0x3ea ./cfe/ui/ui_cmddisp.o
  .debug_line    0x00004e85      0xd6d ./cfe/ui/ui_command.o
- .debug_line    0x00005bf2      0x489 ./cfe/ui/ui_misccmds.o
+ .debug_line    0x00005bf2      0x516 ./cfe/ui/ui_misccmds.o
 
 .debug_line_str
                 0x00000000       0x55
  .debug_line_str
                 0x00000000       0x55 ./cfe/arch/arm/init_arm.o
 
-.debug_info     0x00000000     0x6f27
+.debug_info     0x00000000     0x7016
  .debug_info    0x00000000       0x25 ./cfe/arch/arm/init_arm.o
  .debug_info    0x00000025      0x5ca ./cfe/arch/arm/lib_printf.o
  .debug_info    0x000005ef      0x5da ./cfe/board/stm32_board.o
@@ -2985,9 +2993,9 @@ LOAD linker stubs
  .debug_info    0x00004dbf      0x659 ./cfe/main/env_subr.o
  .debug_info    0x00005418      0x5f4 ./cfe/ui/ui_cmddisp.o
  .debug_info    0x00005a0c      0xe89 ./cfe/ui/ui_command.o
- .debug_info    0x00006895      0x692 ./cfe/ui/ui_misccmds.o
+ .debug_info    0x00006895      0x781 ./cfe/ui/ui_misccmds.o
 
-.debug_abbrev   0x00000000     0x2261
+.debug_abbrev   0x00000000     0x227e
  .debug_abbrev  0x00000000       0x14 ./cfe/arch/arm/init_arm.o
  .debug_abbrev  0x00000014      0x239 ./cfe/arch/arm/lib_printf.o
  .debug_abbrev  0x0000024d      0x1a3 ./cfe/board/stm32_board.o
@@ -3006,9 +3014,9 @@ LOAD linker stubs
  .debug_abbrev  0x0000187f      0x23d ./cfe/main/env_subr.o
  .debug_abbrev  0x00001abc      0x281 ./cfe/ui/ui_cmddisp.o
  .debug_abbrev  0x00001d3d      0x2ee ./cfe/ui/ui_command.o
- .debug_abbrev  0x0000202b      0x236 ./cfe/ui/ui_misccmds.o
+ .debug_abbrev  0x0000202b      0x253 ./cfe/ui/ui_misccmds.o
 
-.debug_aranges  0x00000000      0x7f0
+.debug_aranges  0x00000000      0x808
  .debug_aranges
                 0x00000000       0x20 ./cfe/arch/arm/init_arm.o
  .debug_aranges
@@ -3046,9 +3054,9 @@ LOAD linker stubs
  .debug_aranges
                 0x00000690      0x100 ./cfe/ui/ui_command.o
  .debug_aranges
-                0x00000790       0x60 ./cfe/ui/ui_misccmds.o
+                0x00000790       0x78 ./cfe/ui/ui_misccmds.o
 
-.debug_str      0x00000000     0x86c4
+.debug_str      0x00000000     0x8742
  .debug_str     0x00000000       0x63 ./cfe/arch/arm/init_arm.o
  .debug_str     0x00000063     0x3d8b ./cfe/arch/arm/lib_printf.o
                                0x3fac (size before relaxing)
@@ -3084,11 +3092,11 @@ LOAD linker stubs
                                0x4fd5 (size before relaxing)
  .debug_str     0x000082d9      0x2a8 ./cfe/ui/ui_command.o
                                0x5095 (size before relaxing)
- .debug_str     0x00008581      0x143 ./cfe/ui/ui_misccmds.o
-                               0x4cd3 (size before relaxing)
+ .debug_str     0x00008581      0x1c1 ./cfe/ui/ui_misccmds.o
+                               0x4d51 (size before relaxing)
 
 .debug_rnglists
-                0x00000000      0x5cc
+                0x00000000      0x5de
  .debug_rnglists
                 0x00000000       0x4c ./cfe/arch/arm/lib_printf.o
  .debug_rnglists
@@ -3124,9 +3132,9 @@ LOAD linker stubs
  .debug_rnglists
                 0x000004be       0xc9 ./cfe/ui/ui_command.o
  .debug_rnglists
-                0x00000587       0x45 ./cfe/ui/ui_misccmds.o
+                0x00000587       0x57 ./cfe/ui/ui_misccmds.o
 
-.debug_macro    0x00000000     0x1a2e
+.debug_macro    0x00000000     0x1a51
  .debug_macro   0x00000000       0x79 ./cfe/arch/arm/lib_printf.o
  .debug_macro   0x00000079       0x58 ./cfe/arch/arm/lib_printf.o
  .debug_macro   0x000000d1       0x22 ./cfe/arch/arm/lib_printf.o
@@ -3170,9 +3178,9 @@ LOAD linker stubs
  .debug_macro   0x0000170a       0xb3 ./cfe/main/env_subr.o
  .debug_macro   0x000017bd       0xce ./cfe/ui/ui_cmddisp.o
  .debug_macro   0x0000188b       0xd4 ./cfe/ui/ui_command.o
- .debug_macro   0x0000195f       0xcf ./cfe/ui/ui_misccmds.o
+ .debug_macro   0x0000195f       0xf2 ./cfe/ui/ui_misccmds.o
 
-.debug_frame    0x00000000     0x1e44
+.debug_frame    0x00000000     0x1eb8
  .debug_frame   0x00000000      0x1d0 ./cfe/arch/arm/lib_printf.o
  .debug_frame   0x000001d0       0xf0 ./cfe/board/stm32_board.o
  .debug_frame   0x000002c0      0x140 ./cfe/lib/lib_malloc.o
@@ -3190,6 +3198,6 @@ LOAD linker stubs
  .debug_frame   0x000015bc      0x154 ./cfe/main/env_subr.o
  .debug_frame   0x00001710      0x140 ./cfe/ui/ui_cmddisp.o
  .debug_frame   0x00001850      0x434 ./cfe/ui/ui_command.o
- .debug_frame   0x00001c84      0x160 ./cfe/ui/ui_misccmds.o
- .debug_frame   0x00001de4       0x2c /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x00001e10       0x34 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00001c84      0x1d4 ./cfe/ui/ui_misccmds.o
+ .debug_frame   0x00001e58       0x2c /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00001e84       0x34 /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.macos64_1.0.100.202403111906/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/libgcc.a(_udivmoddi4.o)
