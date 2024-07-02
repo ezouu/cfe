@@ -25,23 +25,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  10 .comment      00000043  00000000  00000000  00006c84  2**0
                   CONTENTS, READONLY
- 11 .debug_line   00006108  00000000  00000000  00006cc7  2**0
+ 11 .debug_line   00006107  00000000  00000000  00006cc7  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_line_str 00000055  00000000  00000000  0000cdcf  2**0
+ 12 .debug_line_str 00000055  00000000  00000000  0000cdce  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_info   00007016  00000000  00000000  0000ce24  2**0
+ 13 .debug_info   0000701b  00000000  00000000  0000ce23  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 0000227e  00000000  00000000  00013e3a  2**0
+ 14 .debug_abbrev 0000227e  00000000  00000000  00013e3e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000808  00000000  00000000  000160b8  2**3
+ 15 .debug_aranges 00000808  00000000  00000000  000160c0  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_str    00008742  00000000  00000000  000168c0  2**0
+ 16 .debug_str    00008709  00000000  00000000  000168c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_rnglists 000005de  00000000  00000000  0001f002  2**0
+ 17 .debug_rnglists 000005de  00000000  00000000  0001efd1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_macro  00001a51  00000000  00000000  0001f5e0  2**0
+ 18 .debug_macro  00001a35  00000000  00000000  0001f5af  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_frame  00001eb8  00000000  00000000  00021034  2**2
+ 19 .debug_frame  00001eb8  00000000  00000000  00020fe4  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -12519,7 +12519,7 @@ void cmd_free_tokens(queue_t *list)
 20004c44:	20005c5c 	.word	0x20005c5c
 
 20004c48 <ui_init_misccmds>:
-static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[]);
+
 
 int ui_init_misccmds(void);
 
@@ -12659,14 +12659,13 @@ int ui_init_misccmds(void)
 20004cfa:	4920      	ldr	r1, [pc, #128]	@ (20004d7c <ui_init_misccmds+0x134>)
 20004cfc:	4820      	ldr	r0, [pc, #128]	@ (20004d80 <ui_init_misccmds+0x138>)
 20004cfe:	f7ff f917 	bl	20003f30 <cmd_addcmd>
-	       ui_cmd_joystick,
-	       NULL,
-	       "1 to turn on light",
 	       "0 to turn off light",
 	       "");
     return 0;
-20004d02:	2300      	movs	r3, #0
+
+     */
 }
+20004d02:	bf00      	nop
 20004d04:	4618      	mov	r0, r3
 20004d06:	46bd      	mov	sp, r7
 20004d08:	bd80      	pop	{r7, pc}
@@ -13385,10 +13384,10 @@ static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
 200051a0:	20005a38 	.word	0x20005a38
 
 200051a4 <ui_cmd_joystick>:
-#define JOYSTICK_DOWN
 #define JOYSTICK_LEFT
 #define JOYSTICK_RIGHT
 #define IOEXPANDER2
+*/
 static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
 {
 200051a4:	b480      	push	{r7}

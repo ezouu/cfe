@@ -2948,7 +2948,7 @@ LOAD linker stubs
  .comment       0x00000043       0x44 ./cfe/ui/ui_command.o
  .comment       0x00000043       0x44 ./cfe/ui/ui_misccmds.o
 
-.debug_line     0x00000000     0x6108
+.debug_line     0x00000000     0x6107
  .debug_line    0x00000000       0x96 ./cfe/arch/arm/init_arm.o
  .debug_line    0x00000096      0x9a3 ./cfe/arch/arm/lib_printf.o
  .debug_line    0x00000a39      0x350 ./cfe/board/stm32_board.o
@@ -2967,14 +2967,14 @@ LOAD linker stubs
  .debug_line    0x0000459a      0x501 ./cfe/main/env_subr.o
  .debug_line    0x00004a9b      0x3ea ./cfe/ui/ui_cmddisp.o
  .debug_line    0x00004e85      0xd6d ./cfe/ui/ui_command.o
- .debug_line    0x00005bf2      0x516 ./cfe/ui/ui_misccmds.o
+ .debug_line    0x00005bf2      0x515 ./cfe/ui/ui_misccmds.o
 
 .debug_line_str
                 0x00000000       0x55
  .debug_line_str
                 0x00000000       0x55 ./cfe/arch/arm/init_arm.o
 
-.debug_info     0x00000000     0x7016
+.debug_info     0x00000000     0x701b
  .debug_info    0x00000000       0x25 ./cfe/arch/arm/init_arm.o
  .debug_info    0x00000025      0x5ca ./cfe/arch/arm/lib_printf.o
  .debug_info    0x000005ef      0x5da ./cfe/board/stm32_board.o
@@ -2993,7 +2993,7 @@ LOAD linker stubs
  .debug_info    0x00004dbf      0x659 ./cfe/main/env_subr.o
  .debug_info    0x00005418      0x5f4 ./cfe/ui/ui_cmddisp.o
  .debug_info    0x00005a0c      0xe89 ./cfe/ui/ui_command.o
- .debug_info    0x00006895      0x781 ./cfe/ui/ui_misccmds.o
+ .debug_info    0x00006895      0x786 ./cfe/ui/ui_misccmds.o
 
 .debug_abbrev   0x00000000     0x227e
  .debug_abbrev  0x00000000       0x14 ./cfe/arch/arm/init_arm.o
@@ -3056,7 +3056,7 @@ LOAD linker stubs
  .debug_aranges
                 0x00000790       0x78 ./cfe/ui/ui_misccmds.o
 
-.debug_str      0x00000000     0x8742
+.debug_str      0x00000000     0x8709
  .debug_str     0x00000000       0x63 ./cfe/arch/arm/init_arm.o
  .debug_str     0x00000063     0x3d8b ./cfe/arch/arm/lib_printf.o
                                0x3fac (size before relaxing)
@@ -3092,8 +3092,8 @@ LOAD linker stubs
                                0x4fd5 (size before relaxing)
  .debug_str     0x000082d9      0x2a8 ./cfe/ui/ui_command.o
                                0x5095 (size before relaxing)
- .debug_str     0x00008581      0x1c1 ./cfe/ui/ui_misccmds.o
-                               0x4d51 (size before relaxing)
+ .debug_str     0x00008581      0x188 ./cfe/ui/ui_misccmds.o
+                               0x4d18 (size before relaxing)
 
 .debug_rnglists
                 0x00000000      0x5de
@@ -3134,7 +3134,7 @@ LOAD linker stubs
  .debug_rnglists
                 0x00000587       0x57 ./cfe/ui/ui_misccmds.o
 
-.debug_macro    0x00000000     0x1a51
+.debug_macro    0x00000000     0x1a35
  .debug_macro   0x00000000       0x79 ./cfe/arch/arm/lib_printf.o
  .debug_macro   0x00000079       0x58 ./cfe/arch/arm/lib_printf.o
  .debug_macro   0x000000d1       0x22 ./cfe/arch/arm/lib_printf.o
@@ -3178,7 +3178,7 @@ LOAD linker stubs
  .debug_macro   0x0000170a       0xb3 ./cfe/main/env_subr.o
  .debug_macro   0x000017bd       0xce ./cfe/ui/ui_cmddisp.o
  .debug_macro   0x0000188b       0xd4 ./cfe/ui/ui_command.o
- .debug_macro   0x0000195f       0xf2 ./cfe/ui/ui_misccmds.o
+ .debug_macro   0x0000195f       0xd6 ./cfe/ui/ui_misccmds.o
 
 .debug_frame    0x00000000     0x1eb8
  .debug_frame   0x00000000      0x1d0 ./cfe/arch/arm/lib_printf.o

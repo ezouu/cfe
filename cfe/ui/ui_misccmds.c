@@ -58,10 +58,17 @@ static int ui_cmd_display(ui_cmdline_t *cmd,int argc,char *argv[]);
 
 static int ui_cmd_edit(ui_cmdline_t *cmd,int argc,char *argv[]);
 static int ui_cmd_printten(ui_cmdline_t *cmd,int argc,char *argv[]);
-static int ui_cmd_LED(ui_cmdline_t *cmd,int argc,char *argv[]);
 
+
+static int ui_cmd_LED(ui_cmdline_t *cmd,int argc,char *argv[]);
 static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]);
-static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[]);
+static int ui_cmd_LEDO(ui_cmdline_t *cmd, int argc, char *argv[]) ;
+
+static int ui_cmd_I2C(ui_cmdline_t *cmd, int argc, char *argv[]);
+
+
+//static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[]);
+
 
 int ui_init_misccmds(void);
 
@@ -144,13 +151,29 @@ int ui_init_misccmds(void)
 	       "1 to turn on light",
 	       "0 to turn off light",
 	       "");
-    cmd_addcmd("joystick",
+    /*cmd_addcmd("joystick",
 	       ui_cmd_joystick,
 	       NULL,
 	       "1 to turn on light",
 	       "0 to turn off light",
 	       "");
+     */
+cmd_addcmd("ledo",
+	       ui_cmd_LEDO,
+	       NULL,
+	       "1 to turn on light",
+	       "0 to turn off light",
+	       "");
+
+
+cmd_addcmd("i2c",
+	       ui_cmd_I2C,
+	       NULL,
+	       "1 to turn on light",
+	       "0 to turn off light",
+	       "");
     return 0;
+
 }
 
 static int ui_cmd_sleep(ui_cmdline_t *cmd,int argc,char *argv[])
@@ -413,11 +436,69 @@ static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
     return 0;
 }
 
+
+
+
+static int ui_cmd_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
+{
+    //uint8_t device_address = 0x82;
+    //uint8_t data[2];
+
+	*(volatile uint32_t *)(0x40005400) = 0; //590
+	*(volatile uint32_t *)(0x40005410) = 540032605; //590
+	*(volatile uint32_t *)(0x40005408) = 0; //595
+	//*(volatile uint32_t *)(0x40005408) = 32768;
+	*(volatile uint32_t *)(0x40005404) = 0; //616
+	*(volatile uint32_t *)(0x40004404) = 0x20008000; //618
+	*(volatile uint32_t *)(0x4000540C) = 0;//623
+	*(volatile uint32_t *)(0x4000540C) = 0;//626
+	*(volatile uint32_t *)(0x40005400) = 0;//631
+	*(volatile uint32_t *)(0x40005400) = 1;//634
+	*(volatile uint32_t *)(0x40005428) = 2;//1162
+	*(volatile uint32_t *)(0x40005404) = 33628290; //7217
+	*(volatile uint32_t *)(0x4000541C) = 32; //1230
+
+	*(volatile uint32_t *)(0x40005404) = 33629314; //7217
+
+	*(volatile uint32_t *)(0x40005428) = 2; //1162
+
+	*(volatile uint32_t *)(0x40005404) = 33628290; //7217
+
+
+	*(volatile uint32_t *)(0x4000541C) = 32; //1230
+
+
+
+
+
+
+
+}
+
+
+
+void I2C_Write(){
+
+
+}
+void LEDO_Init(void) {
+
+
+}
+
+
+static int ui_cmd_LEDO(ui_cmdline_t *cmd, int argc, char *argv[]) {
+
+}
+
+
+
 #define JOYSTICK_SEL GPIO0
 #define JOYSTICK_DOWN
 #define JOYSTICK_LEFT
 #define JOYSTICK_RIGHT
 #define IOEXPANDER2
+
 static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
 {
     /*
