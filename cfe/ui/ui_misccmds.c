@@ -441,31 +441,46 @@ static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
 
 static int ui_cmd_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 {
-    //uint8_t device_address = 0x82;
-    //uint8_t data[2];
 
-	*(volatile uint32_t *)(0x40005400) = 0; //590
-	*(volatile uint32_t *)(0x40005410) = 540032605; //590
-	*(volatile uint32_t *)(0x40005408) = 0; //595
-	//*(volatile uint32_t *)(0x40005408) = 32768;
-	*(volatile uint32_t *)(0x40005404) = 0; //616
-	*(volatile uint32_t *)(0x40004404) = 0x20008000; //618
-	*(volatile uint32_t *)(0x4000540C) = 0;//623
-	*(volatile uint32_t *)(0x4000540C) = 0;//626
-	*(volatile uint32_t *)(0x40005400) = 0;//631
-	*(volatile uint32_t *)(0x40005400) = 1;//634
-	*(volatile uint32_t *)(0x40005428) = 2;//1162
-	*(volatile uint32_t *)(0x40005404) = 33628290; //7217
-	*(volatile uint32_t *)(0x4000541C) = 32; //1230
+	 	//transmit
 
-	*(volatile uint32_t *)(0x40005404) = 33629314; //7217
+		*(volatile uint32_t *)(0x40005400) = 0; //I2C_CR1, clear
+		*(volatile uint32_t *)(0x40005410) = 540032605; //595, timing
+		*(volatile uint32_t *)(0x40005408) = 0; //595, OAR1
+		//*(volatile uint32_t *)(0x40005408) = 32768;
+		*(volatile uint32_t *)(0x40005404) = 0; //616, CR2
+		*(volatile uint32_t *)(0x40004404) = 0x2008000; //618, auto end, bit 15, NACK
+		*(volatile uint32_t *)(0x4000540C) = 0;//623,  OAR2
 
-	*(volatile uint32_t *)(0x40005428) = 2; //1162
-
-	*(volatile uint32_t *)(0x40005404) = 33628290; //7217
+		*(volatile uint32_t *)(0x40005400) = 1;//634, peripheral enable bit 0
+		*(volatile uint32_t *)(0x40005428) = 2;//1162, TX reg,
+		*(volatile uint32_t *)(0x40005404) = 0x2012082; //7217,      82 device address
 
 
-	*(volatile uint32_t *)(0x4000541C) = 32; //1230
+		//receive
+
+		uint32_t temp = 0; //I2C_ISR STOPF: STOP detection flag
+		while(((temp = *(volatile uint32_t *)(0x40005400)) & 0x20) == 0){
+		}
+
+		uint32_t busy = 0; //I2C_ISR BUSY: BUSY detection flag
+		while(((busy = *(volatile uint32_t *)(0x40005400)) & 0x8000) == 0){
+		}
+
+		*(volatile uint32_t *)(0x40005404) = 33629314; //7217 update CR2 register */
+
+
+
+		*(volatile uint32_t *)(0x40005428) = 2; //1162
+
+		*(volatile uint32_t *)(0x40005404) = 33628290; //7217
+
+
+		*(volatile uint32_t *)(0x4000541C) = 32; //1230
+
+		*(volatile uint32_t *)(0x40005404) = 33629314; //7217
+
+
 
 
 

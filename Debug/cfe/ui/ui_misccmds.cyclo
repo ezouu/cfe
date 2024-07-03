@@ -1,0 +1,16 @@
+../cfe/ui/ui_misccmds.c:75:5:ui_init_misccmds	1
+../cfe/ui/ui_misccmds.c:179:12:ui_cmd_sleep	4
+../cfe/ui/ui_misccmds.c:195:12:ui_cmd_loop	7
+../cfe/ui/ui_misccmds.c:237:12:ui_cmd_console	4
+../cfe/ui/ui_misccmds.c:262:12:ui_cmd_display	2
+../cfe/ui/ui_misccmds.c:313:12:ui_cmd_edit	1
+../cfe/ui/ui_misccmds.c:341:12:ui_cmd_printten	2
+../cfe/ui/ui_misccmds.c:357:6:LED_Init	1
+../cfe/ui/ui_misccmds.c:375:12:ui_cmd_LED	3
+../cfe/ui/ui_misccmds.c:400:6:LEDB_Init	1
+../cfe/ui/ui_misccmds.c:417:12:ui_cmd_LEDB	3
+../cfe/ui/ui_misccmds.c:442:12:ui_cmd_I2C	2
+../cfe/ui/ui_misccmds.c:492:6:I2C_Write	1
+../cfe/ui/ui_misccmds.c:496:6:LEDO_Init	1
+../cfe/ui/ui_misccmds.c:502:12:ui_cmd_LEDO	1
+../cfe/ui/ui_misccmds.c:514:12:ui_cmd_joystick	1
