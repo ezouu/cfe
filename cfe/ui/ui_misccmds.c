@@ -441,13 +441,60 @@ static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
 
 static int ui_cmd_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 {
+	*(volatile uint32_t *)(0x40021088) = 0; //RCC i2c clock selection
+	    *(volatile uint32_t *)(0x4002104C) = 0x20ff;    // GPIOG_CLK_ENABLE
+	    *(volatile uint32_t *)(0x40007004) = 0x200;    // PWR_CR2 enable
 
-	 	//transmit
+	    *(volatile uint32_t *)(0x48001808) = 0xc3c0fff; //GPIOx_OSPEEDR
+	    *(volatile uint32_t *)(0x48001804) = 0x2000; //GPIO port output type register (GPIOx_OTYPER)
+	    *(volatile uint32_t *)(0x4800180C) = 0x4000000; //GPIOG_PUPDR
 
+	    *(volatile uint32_t *)(0x48001824) = 0x400cc0;/* Configure Alternate function mapped with the current IO */
+	    *(volatile uint32_t *)(0x48001800) = 0x3bebcaaa; /* Configure IO Direction mode (Input, Output, Alternate or Analog) */
+	    *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff;  /* Configure the IO Speed */
+	    *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
+	    *(volatile uint32_t *)(0x4800082C) = 0x4000000; /* activate pull up or pull down GPIO_PUPDR */
+
+
+	    *(volatile uint32_t *)(0x48001824) = 0x4400cc0;/* Configure Alternate function mapped with the current IO */
+	    *(volatile uint32_t *)(0x48001800) = 0x2bebcaaa; /* Configure IO Direction mode (Input, Output, Alternate or Analog) */
+
+
+	    //*(volatile uint32_t *)(0x48001808) = 0x3c3c0fff;  /* Configure the IO Speed */
+	    //*(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
+	    //*(volatile uint32_t *)(0x4800082C) = 0x0; /* activate pull up or pull down GPIO_PUPDR */
+
+
+	    //*(volatile uint32_t *)(0x4800082C) = 1; /* Configure the IO Output Type */
+	    //*(volatile uint32_t *)(0x48000800) = 0xFFFE93EF; /* Configure IO Direction mode*/
+
+
+	    //*(volatile uint32_t *)(0x4800002C) = 32;
+	    //*(volatile uint32_t *)(0x48000000) = 0xACFF00FF;
+
+
+
+		*(volatile uint32_t *)(0x40005400) = 0; //Disable the selected I2C peripheral
+		*(volatile uint32_t *)(0x40005410) = 0x20303E5D; //Configure I2Cx: Frequency range
+		*(volatile uint32_t *)(0x40005408) = 0; //I2Cx OAR1 Configuration
+		*(volatile uint32_t *)(0x40005408) = 0x8000; //ack own address1 mode
+		*(volatile uint32_t *)(0x40005404) = 0; //Clear the I2C ADD10 bit
+		*(volatile uint32_t *)(0x4000540C) = 0; //I2Cx OAR2 Configuration
+		*(volatile uint32_t *)(0x40005400) = 0; //Configure I2Cx: Generalcall and NoStretch mode
+		*(volatile uint32_t *)(0x40005400) = 1; //Enable the selected I2C peripheral
+		*(volatile uint32_t *)(0x40005418) = 0x21; //Enable the selected I2C peripheral
+		*(volatile uint32_t *)(0x40005428) = 0x2; //Enable the selected I2C peripheral
+
+
+
+
+
+
+	// transmit
 		*(volatile uint32_t *)(0x40005400) = 0; //I2C_CR1, clear
-		*(volatile uint32_t *)(0x40005410) = 540032605; //595, timing
+		*(volatile uint32_t *)(0x40005410) = 0x20303e5d; //595, timing
 		*(volatile uint32_t *)(0x40005408) = 0; //595, OAR1
-		//*(volatile uint32_t *)(0x40005408) = 32768;
+		*(volatile uint32_t *)(0x40005408) = 0x8000;
 		*(volatile uint32_t *)(0x40005404) = 0; //616, CR2
 		*(volatile uint32_t *)(0x40004404) = 0x2008000; //618, auto end, bit 15, NACK
 		*(volatile uint32_t *)(0x4000540C) = 0;//623,  OAR2
@@ -460,33 +507,48 @@ static int ui_cmd_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 		//receive
 
 		uint32_t temp = 0; //I2C_ISR STOPF: STOP detection flag
-		while(((temp = *(volatile uint32_t *)(0x40005400)) & 0x20) == 0){
+		while(((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0){
 		}
+
+		*(volatile uint32_t *)(0x40005404) = 0x2012482; //7217 update CR2 register */
 
 		uint32_t busy = 0; //I2C_ISR BUSY: BUSY detection flag
-		while(((busy = *(volatile uint32_t *)(0x40005400)) & 0x8000) == 0){
+		while(((busy = *(volatile uint32_t *)(0x40005400)) & 0x8000) == 1){
 		}
 
-		*(volatile uint32_t *)(0x40005404) = 33629314; //7217 update CR2 register */
+		uint32_t RXNE_BUSY = 0; //RXNE: Receive data register
+		while(((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0){
+		}
+
+		uint32_t I2C_DATA = *(volatile uint32_t *)(0x40005424);
+	/*
+	  uint8_t rev_reg = 2;
+	  uint8_t data[2];
 
 
 
-		*(volatile uint32_t *)(0x40005428) = 2; //1162
-
-		*(volatile uint32_t *)(0x40005404) = 33628290; //7217
-
-
-		*(volatile uint32_t *)(0x4000541C) = 32; //1230
-
-		*(volatile uint32_t *)(0x40005404) = 33629314; //7217
-
-
+	  HAL_StatusTypeDef status = HAL_I2C_Master_Transmit(&hi2c1, 0x82, &rev_reg,1, 0xfff);
+	  if (status != HAL_OK) {
+		  while(1);
+	  }
+	  status = HAL_I2C_Master_Receive(&hi2c1, 0x82, data,1, 0xfff);
+	  if (status != HAL_OK) {
+		  while(1);
+	  }
 
 
 
+	  rev_reg = 0;
+	  status = HAL_I2C_Master_Transmit(&hi2c1, 0x82, &rev_reg,1, 0xfff);
+	  if (status != HAL_OK) {
+		  while(1);
+	  }
+	  status = HAL_I2C_Master_Receive(&hi2c1, 0x82, data,2, 0xfff);
+	  if (status != HAL_OK) {
+		  while(1);
+	  }
 
-
-
+	 */
 
 }
 
