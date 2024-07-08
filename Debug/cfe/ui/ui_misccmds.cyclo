@@ -9,8 +9,8 @@
 ../cfe/ui/ui_misccmds.c:375:12:ui_cmd_LED	3
 ../cfe/ui/ui_misccmds.c:400:6:LEDB_Init	1
 ../cfe/ui/ui_misccmds.c:417:12:ui_cmd_LEDB	3
-../cfe/ui/ui_misccmds.c:442:12:ui_cmd_I2C	2
-../cfe/ui/ui_misccmds.c:492:6:I2C_Write	1
-../cfe/ui/ui_misccmds.c:496:6:LEDO_Init	1
-../cfe/ui/ui_misccmds.c:502:12:ui_cmd_LEDO	1
-../cfe/ui/ui_misccmds.c:514:12:ui_cmd_joystick	1
+../cfe/ui/ui_misccmds.c:442:12:ui_cmd_I2C	4
+../cfe/ui/ui_misccmds.c:551:6:I2C_Write	1
+../cfe/ui/ui_misccmds.c:555:6:LEDO_Init	1
+../cfe/ui/ui_misccmds.c:561:12:ui_cmd_LEDO	1
+../cfe/ui/ui_misccmds.c:573:12:ui_cmd_joystick	1
