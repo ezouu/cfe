@@ -5,43 +5,43 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000010  20000000  20000000  00001000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00005644  20000010  20000010  00001010  2**2
+  1 .text         00005954  20000010  20000010  00001010  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .init         00000004  20005654  20005654  00006654  2**2
+  2 .init         00000004  20005964  20005964  00006964  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  3 .fini         00000004  20005658  20005658  00006658  2**2
+  3 .fini         00000004  20005968  20005968  00006968  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  4 .rodata       00000b84  2000565c  2000565c  0000665c  2**2
+  4 .rodata       00000b78  2000596c  2000596c  0000696c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .ARM.exidx    00000008  200061e0  200061e0  000071e0  2**2
+  5 .ARM.exidx    00000008  200064e4  200064e4  000074e4  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  6 .data         00000040  200061e8  200061e8  000071e8  2**2
+  6 .data         00000040  200064ec  200064ec  000074ec  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .bss          00000270  20006228  20006228  00007228  2**3
+  7 .bss          00000270  20006530  20006530  0000752c  2**3
                   ALLOC
-  8 ._user_heap_stack 00000600  20006498  20006498  00007228  2**0
+  8 ._user_heap_stack 00000600  200067a0  200067a0  0000752c  2**0
                   ALLOC
-  9 .ARM.attributes 00000030  00000000  00000000  00007228  2**0
+  9 .ARM.attributes 00000030  00000000  00000000  0000752c  2**0
                   CONTENTS, READONLY
- 10 .comment      00000043  00000000  00000000  00007258  2**0
+ 10 .comment      00000043  00000000  00000000  0000755c  2**0
                   CONTENTS, READONLY
- 11 .debug_line   0000659c  00000000  00000000  0000729b  2**0
+ 11 .debug_line   000067c2  00000000  00000000  0000759f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 12 .debug_line_str 00000055  00000000  00000000  0000d837  2**0
+ 12 .debug_line_str 00000055  00000000  00000000  0000dd61  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_info   000071ce  00000000  00000000  0000d88c  2**0
+ 13 .debug_info   000073b0  00000000  00000000  0000ddb6  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00002297  00000000  00000000  00014a5a  2**0
+ 14 .debug_abbrev 000022ae  00000000  00000000  00015166  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000830  00000000  00000000  00016cf8  2**3
+ 15 .debug_aranges 00000850  00000000  00000000  00017418  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_str    000087e9  00000000  00000000  00017528  2**0
+ 16 .debug_str    0000881b  00000000  00000000  00017c68  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_rnglists 00000600  00000000  00000000  0001fd11  2**0
+ 17 .debug_rnglists 0000061a  00000000  00000000  00020483  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_macro  00001a5f  00000000  00000000  00020311  2**0
+ 18 .debug_macro  00001a5f  00000000  00000000  00020a9d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_frame  00001f6c  00000000  00000000  00021d70  2**2
+ 19 .debug_frame  00001ff4  00000000  00000000  000224fc  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -554,9 +554,9 @@ stop:
  ldr   sp, =_estack    /* Set stack pointer */
 200003ec:	20018000 	.word	0x20018000
   ldr r2, =_sbss
-200003f0:	20006228 	.word	0x20006228
+200003f0:	20006530 	.word	0x20006530
   ldr r4, =_ebss
-200003f4:	20006498 	.word	0x20006498
+200003f4:	200067a0 	.word	0x200067a0
 
 200003f8 <__atox>:
     *  Return Value:
@@ -1448,8 +1448,8 @@ int xvsprintf(char *outbuf,const char *templat,va_list marker)
 20000a04:	657b      	str	r3, [r7, #84]	@ 0x54
 			break;
 20000a06:	e01f      	b.n	20000a48 <xvsprintf+0x4e0>
-20000a08:	20006018 	.word	0x20006018
-20000a0c:	2000565c 	.word	0x2000565c
+20000a08:	2000631c 	.word	0x2000631c
+20000a0c:	2000596c 	.word	0x2000596c
 			ulx = va_arg(marker,unsigned long long);
 20000a10:	687b      	ldr	r3, [r7, #4]
 20000a12:	3307      	adds	r3, #7
@@ -1742,8 +1742,8 @@ int xvsprintf(char *outbuf,const char *templat,va_list marker)
 20000bee:	46bd      	mov	sp, r7
 20000bf0:	bdb0      	pop	{r4, r5, r7, pc}
 20000bf2:	bf00      	nop
-20000bf4:	20006018 	.word	0x20006018
-20000bf8:	2000602c 	.word	0x2000602c
+20000bf4:	2000631c 	.word	0x2000631c
+20000bf8:	20006330 	.word	0x20006330
 
 20000bfc <xsprintf>:
     *
@@ -2185,8 +2185,8 @@ void board_init() {
 }
 20000e70:	bf00      	nop
 20000e72:	bd98      	pop	{r3, r4, r7, pc}
-20000e74:	200061e8 	.word	0x200061e8
-20000e78:	20005678 	.word	0x20005678
+20000e74:	200064ec 	.word	0x200064ec
+20000e78:	20005988 	.word	0x20005988
 
 20000e7c <kmeminit>:
     *  	   nothing
@@ -3563,7 +3563,7 @@ char *lib_strdup(char *str)
 20001592:	46bd      	mov	sp, r7
 20001594:	bd80      	pop	{r7, pc}
 20001596:	bf00      	nop
-20001598:	2000622c 	.word	0x2000622c
+20001598:	20006534 	.word	0x20006534
 
 2000159c <cfe_finddev>:
     *  Return value:
@@ -3618,7 +3618,7 @@ cfe_device_t *cfe_finddev(char *name)
 200015da:	46bd      	mov	sp, r7
 200015dc:	bd80      	pop	{r7, pc}
 200015de:	bf00      	nop
-200015e0:	200061fc 	.word	0x200061fc
+200015e0:	20006500 	.word	0x20006500
 
 200015e4 <cfe_dev_enum>:
     *  	   0 if ok
@@ -3693,7 +3693,7 @@ int cfe_dev_enum(int idx,char *name,int *namelen)
 20001642:	3718      	adds	r7, #24
 20001644:	46bd      	mov	sp, r7
 20001646:	bd80      	pop	{r7, pc}
-20001648:	200061fc 	.word	0x200061fc
+20001648:	20006500 	.word	0x20006500
 
 2000164c <cfe_attach_idx>:
     *  	   1 if we were successful.
@@ -3811,10 +3811,10 @@ int cfe_attach_idx(cfe_driver_t *drv,int idx,void *softc,
 20001702:	3758      	adds	r7, #88	@ 0x58
 20001704:	46bd      	mov	sp, r7
 20001706:	bd80      	pop	{r7, pc}
-20001708:	20005680 	.word	0x20005680
-2000170c:	20005688 	.word	0x20005688
-20001710:	2000622c 	.word	0x2000622c
-20001714:	200061fc 	.word	0x200061fc
+20001708:	20005990 	.word	0x20005990
+2000170c:	20005998 	.word	0x20005998
+20001710:	20006534 	.word	0x20006534
+20001714:	20006500 	.word	0x20006500
 
 20001718 <cfe_attach>:
     ********************************************************************* */
@@ -3904,7 +3904,7 @@ void cfe_attach_init(void)
 2000177c:	f85d 7b04 	ldr.w	r7, [sp], #4
 20001780:	4770      	bx	lr
 20001782:	bf00      	nop
-20001784:	200061fc 	.word	0x200061fc
+20001784:	20006500 	.word	0x20006500
 
 20001788 <cfe_bg_init>:
     *  Return value:
@@ -3924,7 +3924,7 @@ void cfe_bg_init(void)
 20001796:	bf00      	nop
 20001798:	bd80      	pop	{r7, pc}
 2000179a:	bf00      	nop
-2000179c:	20006238 	.word	0x20006238
+2000179c:	20006540 	.word	0x20006540
 
 200017a0 <cfe_bg_add>:
     *  Return value:
@@ -3976,8 +3976,8 @@ void cfe_bg_add(void (*func)(void *x),void *arg)
 200017e0:	46bd      	mov	sp, r7
 200017e2:	f85d 7b04 	ldr.w	r7, [sp], #4
 200017e6:	4770      	bx	lr
-200017e8:	20006238 	.word	0x20006238
-200017ec:	20006278 	.word	0x20006278
+200017e8:	20006540 	.word	0x20006540
+200017ec:	20006580 	.word	0x20006580
 
 200017f0 <background>:
     *  Return value:
@@ -4030,8 +4030,8 @@ void background(void)
 2000182e:	46bd      	mov	sp, r7
 20001830:	bd80      	pop	{r7, pc}
 20001832:	bf00      	nop
-20001834:	20006238 	.word	0x20006238
-20001838:	20006278 	.word	0x20006278
+20001834:	20006540 	.word	0x20006540
+20001838:	20006580 	.word	0x20006580
 
 2000183c <console_open>:
     *  	   0 if ok, else return code.  
@@ -4104,9 +4104,9 @@ int console_open(char *name)
 20001892:	3710      	adds	r7, #16
 20001894:	46bd      	mov	sp, r7
 20001896:	bd80      	pop	{r7, pc}
-20001898:	20006340 	.word	0x20006340
-2000189c:	2000620c 	.word	0x2000620c
-200018a0:	20006338 	.word	0x20006338
+20001898:	20006648 	.word	0x20006648
+2000189c:	20006510 	.word	0x20006510
+200018a0:	20006640 	.word	0x20006640
 
 200018a4 <console_close>:
     *  Return value:
@@ -4140,7 +4140,7 @@ int console_close(void)
 200018c6:	4618      	mov	r0, r3
 200018c8:	bd80      	pop	{r7, pc}
 200018ca:	bf00      	nop
-200018cc:	2000620c 	.word	0x2000620c
+200018cc:	20006510 	.word	0x20006510
 
 200018d0 <console_read>:
     *  Return value:
@@ -4176,7 +4176,7 @@ int console_read(unsigned char *buffer,int length)
 200018fe:	46bd      	mov	sp, r7
 20001900:	bd80      	pop	{r7, pc}
 20001902:	bf00      	nop
-20001904:	2000620c 	.word	0x2000620c
+20001904:	20006510 	.word	0x20006510
 
 20001908 <console_write>:
     *  Return value:
@@ -4272,8 +4272,8 @@ int console_write(unsigned char *buffer,int length)
 2000197a:	3710      	adds	r7, #16
 2000197c:	46bd      	mov	sp, r7
 2000197e:	bd80      	pop	{r7, pc}
-20001980:	20006338 	.word	0x20006338
-20001984:	2000620c 	.word	0x2000620c
+20001980:	20006640 	.word	0x20006640
+20001984:	20006510 	.word	0x20006510
 
 20001988 <console_status>:
     *  	   0 if no characters are available
@@ -4302,7 +4302,7 @@ int console_status(void)
 200019a6:	4618      	mov	r0, r3
 200019a8:	bd80      	pop	{r7, pc}
 200019aa:	bf00      	nop
-200019ac:	2000620c 	.word	0x2000620c
+200019ac:	20006510 	.word	0x20006510
 
 200019b0 <console_xprint>:
     *  Return value:
@@ -4378,7 +4378,7 @@ static int console_xprint(const char *str)
 20001a12:	3718      	adds	r7, #24
 20001a14:	46bd      	mov	sp, r7
 20001a16:	bd80      	pop	{r7, pc}
-20001a18:	20005698 	.word	0x20005698
+20001a18:	200059a8 	.word	0x200059a8
 
 20001a1c <cfe_set_console>:
     *  	   0 if ok
@@ -4439,11 +4439,11 @@ int cfe_set_console(char *name)
 20001a66:	3710      	adds	r7, #16
 20001a68:	46bd      	mov	sp, r7
 20001a6a:	bd80      	pop	{r7, pc}
-20001a6c:	20006228 	.word	0x20006228
+20001a6c:	20006530 	.word	0x20006530
 20001a70:	200019b1 	.word	0x200019b1
-20001a74:	200056a8 	.word	0x200056a8
-20001a78:	20006338 	.word	0x20006338
-20001a7c:	200056b0 	.word	0x200056b0
+20001a74:	200059b8 	.word	0x200059b8
+20001a78:	20006640 	.word	0x20006640
+20001a7c:	200059c0 	.word	0x200059c0
 
 20001a80 <console_flushbuffer>:
     *  Return value:
@@ -4535,9 +4535,9 @@ static void console_flushbuffer(void)
 20001ae6:	3710      	adds	r7, #16
 20001ae8:	46bd      	mov	sp, r7
 20001aea:	bd80      	pop	{r7, pc}
-20001aec:	2000620c 	.word	0x2000620c
-20001af0:	2000622c 	.word	0x2000622c
-20001af4:	20006204 	.word	0x20006204
+20001aec:	20006510 	.word	0x20006510
+20001af0:	20006534 	.word	0x20006534
+20001af4:	20006508 	.word	0x20006508
 
 20001af8 <console_save>:
     *  Return value:
@@ -4674,8 +4674,8 @@ static void console_save(unsigned char *buffer,int length)
 20001ba6:	3710      	adds	r7, #16
 20001ba8:	46bd      	mov	sp, r7
 20001baa:	bd80      	pop	{r7, pc}
-20001bac:	20006204 	.word	0x20006204
-20001bb0:	2000622c 	.word	0x2000622c
+20001bac:	20006508 	.word	0x20006508
+20001bb0:	20006534 	.word	0x20006534
 
 20001bb4 <console_readnum>:
     *  Return value:
@@ -5030,7 +5030,7 @@ int console_readkey(void)
 20001e22:	46bd      	mov	sp, r7
 20001e24:	bd80      	pop	{r7, pc}
 20001e26:	bf00      	nop
-20001e28:	2000633c 	.word	0x2000633c
+20001e28:	20006644 	.word	0x20006644
 
 20001e2c <console_backspace>:
     *  Return value:
@@ -5066,7 +5066,7 @@ static void console_backspace(int n)
 20001e56:	46bd      	mov	sp, r7
 20001e58:	bd80      	pop	{r7, pc}
 20001e5a:	bf00      	nop
-20001e5c:	200056c0 	.word	0x200056c0
+20001e5c:	200059d0 	.word	0x200059d0
 
 20001e60 <console_whiteout>:
 
@@ -5113,8 +5113,8 @@ static void console_whiteout(int n)
 20001ea6:	46bd      	mov	sp, r7
 20001ea8:	bd80      	pop	{r7, pc}
 20001eaa:	bf00      	nop
-20001eac:	200056c4 	.word	0x200056c4
-20001eb0:	200056c0 	.word	0x200056c0
+20001eac:	200059d4 	.word	0x200059d4
+20001eb0:	200059d0 	.word	0x200059d0
 
 20001eb4 <console_eraseeol>:
 
@@ -5130,7 +5130,7 @@ static void console_eraseeol(void)
 }
 20001ec0:	bf00      	nop
 20001ec2:	bd80      	pop	{r7, pc}
-20001ec4:	200056c8 	.word	0x200056c8
+20001ec4:	200059d8 	.word	0x200059d8
 
 20001ec8 <console_crlf>:
 
@@ -5145,7 +5145,7 @@ static void console_crlf(void)
 }
 20001ed4:	bf00      	nop
 20001ed6:	bd80      	pop	{r7, pc}
-20001ed8:	20005698 	.word	0x20005698
+20001ed8:	200059a8 	.word	0x200059a8
 
 20001edc <console_readline_default>:
     *  	   number of characters read (terminating newline is not
@@ -5362,12 +5362,12 @@ int console_readline_default(char *prompt,char *str,int maxlen)
 20002064:	20002675 	.word	0x20002675
 20002068:	20002675 	.word	0x20002675
 2000206c:	20002675 	.word	0x20002675
-20002070:	20006344 	.word	0x20006344
-20002074:	200062b8 	.word	0x200062b8
-20002078:	200062bc 	.word	0x200062bc
-2000207c:	2000622c 	.word	0x2000622c
-20002080:	200056cc 	.word	0x200056cc
-20002084:	20006348 	.word	0x20006348
+20002070:	2000664c 	.word	0x2000664c
+20002074:	200065c0 	.word	0x200065c0
+20002078:	200065c4 	.word	0x200065c4
+2000207c:	20006534 	.word	0x20006534
+20002080:	200059dc 	.word	0x200059dc
+20002084:	20006650 	.word	0x20006650
 20002088:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
 2000208a:	3b01      	subs	r3, #1
 2000208c:	2b7e      	cmp	r3, #126	@ 0x7e
@@ -5884,11 +5884,11 @@ int console_readline_default(char *prompt,char *str,int maxlen)
 20002512:	f7ff fc8b 	bl	20001e2c <console_backspace>
 		break;
 20002516:	e16c      	b.n	200027f2 <console_readline_default+0x916>
-20002518:	2000569c 	.word	0x2000569c
-2000251c:	20006348 	.word	0x20006348
-20002520:	200056c0 	.word	0x200056c0
-20002524:	20006334 	.word	0x20006334
-20002528:	2000622c 	.word	0x2000622c
+20002518:	200059ac 	.word	0x200059ac
+2000251c:	20006650 	.word	0x20006650
+20002520:	200059d0 	.word	0x200059d0
+20002524:	2000663c 	.word	0x2000663c
+20002528:	20006534 	.word	0x20006534
 
 	    case CTRL('R'):			/* Redisplay line */
 		str[len] = 0;
@@ -6320,10 +6320,10 @@ int console_readline_default(char *prompt,char *str,int maxlen)
 200027f4:	2b00      	cmp	r3, #0
 200027f6:	f47f abc3 	bne.w	20001f80 <console_readline_default+0xa4>
 200027fa:	e008      	b.n	2000280e <console_readline_default+0x932>
-200027fc:	200062bc 	.word	0x200062bc
-20002800:	200062b8 	.word	0x200062b8
+200027fc:	200065c4 	.word	0x200065c4
+20002800:	200065c0 	.word	0x200065c0
 20002804:	88888889 	.word	0x88888889
-20002808:	200056d0 	.word	0x200056d0
+20002808:	200059e0 	.word	0x200059e0
 	if (ch < 0) break;
 2000280c:	bf00      	nop
 	    }
@@ -6400,10 +6400,10 @@ int console_readline_default(char *prompt,char *str,int maxlen)
 20002882:	46bd      	mov	sp, r7
 20002884:	bd90      	pop	{r4, r7, pc}
 20002886:	bf00      	nop
-20002888:	20006344 	.word	0x20006344
-2000288c:	200062b8 	.word	0x200062b8
-20002890:	200062bc 	.word	0x200062bc
-20002894:	2000622c 	.word	0x2000622c
+20002888:	2000664c 	.word	0x2000664c
+2000288c:	200065c0 	.word	0x200065c0
+20002890:	200065c4 	.word	0x200065c4
+20002894:	20006534 	.word	0x20006534
 
 20002898 <console_readline>:
 
@@ -7049,8 +7049,8 @@ int cfe_iocb_dispatch(cfe_iocb_t *iocb)
 20002c0a:	46bd      	mov	sp, r7
 20002c0c:	bd80      	pop	{r7, pc}
 20002c0e:	bf00      	nop
-20002c10:	20006060 	.word	0x20006060
-20002c14:	2000634c 	.word	0x2000634c
+20002c10:	20006364 	.word	0x20006364
+20002c14:	20006654 	.word	0x20006654
 
 20002c18 <cfe_newhandle>:
 
@@ -7099,7 +7099,7 @@ static int cfe_newhandle(void)
 20002c54:	f85d 7b04 	ldr.w	r7, [sp], #4
 20002c58:	4770      	bx	lr
 20002c5a:	bf00      	nop
-20002c5c:	2000634c 	.word	0x2000634c
+20002c5c:	20006654 	.word	0x20006654
 
 20002c60 <cfe_cmd_fw_getinfo>:
 /*  *********************************************************************
@@ -7187,8 +7187,8 @@ static int cfe_cmd_fw_getinfo(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20002cfc:	e8bd 03b0 	ldmia.w	sp!, {r4, r5, r7, r8, r9}
 20002d00:	4770      	bx	lr
 20002d02:	bf00      	nop
-20002d04:	20006468 	.word	0x20006468
-20002d08:	2000646c 	.word	0x2000646c
+20002d04:	20006770 	.word	0x20006770
+20002d08:	20006774 	.word	0x20006774
 
 20002d0c <cfe_cmd_fw_restart>:
 
@@ -7276,7 +7276,7 @@ static int cfe_cmd_fw_gettime(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20002d76:	3708      	adds	r7, #8
 20002d78:	46bd      	mov	sp, r7
 20002d7a:	bd80      	pop	{r7, pc}
-20002d7c:	20006470 	.word	0x20006470
+20002d7c:	20006778 	.word	0x20006778
 
 20002d80 <cfe_cmd_fw_memenum>:
 
@@ -7464,7 +7464,7 @@ static int cfe_cmd_dev_gethandle(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20002e7c:	f85d 7b04 	ldr.w	r7, [sp], #4
 20002e80:	4770      	bx	lr
 20002e82:	bf00      	nop
-20002e84:	2000620c 	.word	0x2000620c
+20002e84:	20006510 	.word	0x20006510
 
 20002e88 <cfe_cmd_dev_open>:
 
@@ -7626,8 +7626,8 @@ static int cfe_cmd_dev_open(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20002f4e:	46bd      	mov	sp, r7
 20002f50:	bd80      	pop	{r7, pc}
 20002f52:	bf00      	nop
-20002f54:	2000622c 	.word	0x2000622c
-20002f58:	2000634c 	.word	0x2000634c
+20002f54:	20006534 	.word	0x20006534
+20002f58:	20006654 	.word	0x20006654
 
 20002f5c <cfe_cmd_dev_inpstat>:
 
@@ -7813,8 +7813,8 @@ static int cfe_cmd_dev_close(cfe_devctx_t *ctx,cfe_iocb_t *iocb)
 20003036:	46bd      	mov	sp, r7
 20003038:	bd80      	pop	{r7, pc}
 2000303a:	bf00      	nop
-2000303c:	2000634c 	.word	0x2000634c
-20003040:	2000622c 	.word	0x2000622c
+2000303c:	20006654 	.word	0x20006654
+20003040:	20006534 	.word	0x20006534
 
 20003044 <cfe_cmd_dev_getinfo>:
 
@@ -8165,14 +8165,14 @@ static void cfe_setup_default_env(void)
 20003222:	46bd      	mov	sp, r7
 20003224:	bd80      	pop	{r7, pc}
 20003226:	bf00      	nop
-20003228:	200056e8 	.word	0x200056e8
-2000322c:	200056ec 	.word	0x200056ec
-20003230:	200056f8 	.word	0x200056f8
-20003234:	20006210 	.word	0x20006210
-20003238:	20005704 	.word	0x20005704
-2000323c:	20006214 	.word	0x20006214
-20003240:	20005714 	.word	0x20005714
-20003244:	20005718 	.word	0x20005718
+20003228:	200059f8 	.word	0x200059f8
+2000322c:	200059fc 	.word	0x200059fc
+20003230:	20005a08 	.word	0x20005a08
+20003234:	20006514 	.word	0x20006514
+20003238:	20005a14 	.word	0x20005a14
+2000323c:	20006518 	.word	0x20006518
+20003240:	20005a24 	.word	0x20005a24
+20003244:	20005a28 	.word	0x20005a28
 
 20003248 <cfe_init_ui>:
 #else
@@ -8279,7 +8279,7 @@ static void cfe_say_hello(void)
 }
 200032b8:	bf00      	nop
 200032ba:	bd80      	pop	{r7, pc}
-200032bc:	20005728 	.word	0x20005728
+200032bc:	20005a38 	.word	0x20005a38
 
 200032c0 <cfe_startup_info>:
 #define RELOCTEXT(x) ((x)-mem_textreloc)
@@ -8417,17 +8417,17 @@ void cfe_main(int a,int b)
 2000335a:	3708      	adds	r7, #8
 2000335c:	46bd      	mov	sp, r7
 2000335e:	bd80      	pop	{r7, pc}
-20003360:	20006478 	.word	0x20006478
-20003364:	20005774 	.word	0x20005774
-20003368:	20005788 	.word	0x20005788
-2000336c:	20006498 	.word	0x20006498
-20003370:	2000622c 	.word	0x2000622c
-20003374:	20005790 	.word	0x20005790
-20003378:	20005798 	.word	0x20005798
-2000337c:	200057a0 	.word	0x200057a0
-20003380:	200057a8 	.word	0x200057a8
-20003384:	200057b0 	.word	0x200057b0
-20003388:	200057c8 	.word	0x200057c8
+20003360:	20006780 	.word	0x20006780
+20003364:	20005a84 	.word	0x20005a84
+20003368:	20005a98 	.word	0x20005a98
+2000336c:	200067a0 	.word	0x200067a0
+20003370:	20006534 	.word	0x20006534
+20003374:	20005aa0 	.word	0x20005aa0
+20003378:	20005aa8 	.word	0x20005aa8
+2000337c:	20005ab0 	.word	0x20005ab0
+20003380:	20005ab8 	.word	0x20005ab8
+20003384:	20005ac0 	.word	0x20005ac0
+20003388:	20005ad8 	.word	0x20005ad8
 
 2000338c <cfe_command_loop>:
     *  Return value:
@@ -8485,10 +8485,10 @@ void cfe_command_loop()
 	prompt = env_getenv("PROMPT");
 200033e0:	e7da      	b.n	20003398 <cfe_command_loop+0xc>
 200033e2:	bf00      	nop
-200033e4:	200057f0 	.word	0x200057f0
-200033e8:	200057f8 	.word	0x200057f8
-200033ec:	20005800 	.word	0x20005800
-200033f0:	20005808 	.word	0x20005808
+200033e4:	20005b00 	.word	0x20005b00
+200033e8:	20005b08 	.word	0x20005b08
+200033ec:	20005b10 	.word	0x20005b10
+200033f0:	20005b18 	.word	0x20005b18
 
 200033f4 <cfe_arena_init>:
     *  Return value:
@@ -8601,7 +8601,7 @@ int cfe_arena_enum(int idx,int *type,uint64_t *start,uint64_t *size,int allrecs)
 2000347c:	46bd      	mov	sp, r7
 2000347e:	f85d 7b04 	ldr.w	r7, [sp], #4
 20003482:	4770      	bx	lr
-20003484:	20006450 	.word	0x20006450
+20003484:	20006758 	.word	0x20006758
 
 20003488 <_getticks>:
     *  Return value:
@@ -8726,10 +8726,10 @@ static void cfe_timer_task(void *arg)
 20003544:	46bd      	mov	sp, r7
 20003546:	e8bd 8fb0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, sl, fp, pc}
 2000354a:	bf00      	nop
-2000354c:	20006484 	.word	0x20006484
-20003550:	20006488 	.word	0x20006488
-20003554:	2000648c 	.word	0x2000648c
-20003558:	20006470 	.word	0x20006470
+2000354c:	2000678c 	.word	0x2000678c
+20003550:	20006790 	.word	0x20006790
+20003554:	20006794 	.word	0x20006794
+20003558:	20006778 	.word	0x20006778
 
 2000355c <cfe_timer_init>:
     *  Return value:
@@ -8813,14 +8813,14 @@ void cfe_timer_init(unsigned int cpu_speed)
 200035dc:	46bd      	mov	sp, r7
 200035de:	bd80      	pop	{r7, pc}
 200035e0:	cccccccd 	.word	0xcccccccd
-200035e4:	20006484 	.word	0x20006484
+200035e4:	2000678c 	.word	0x2000678c
 200035e8:	89705aa5 	.word	0x89705aa5
-200035ec:	2000647c 	.word	0x2000647c
+200035ec:	20006784 	.word	0x20006784
 200035f0:	431bde83 	.word	0x431bde83
-200035f4:	20006480 	.word	0x20006480
-200035f8:	20006488 	.word	0x20006488
-200035fc:	20006470 	.word	0x20006470
-20003600:	20006490 	.word	0x20006490
+200035f4:	20006788 	.word	0x20006788
+200035f8:	20006790 	.word	0x20006790
+200035fc:	20006778 	.word	0x20006778
+20003600:	20006798 	.word	0x20006798
 20003604:	2000349d 	.word	0x2000349d
 
 20003608 <env_findenv>:
@@ -8884,7 +8884,7 @@ static cfe_envvar_t *env_findenv(const char *name)
 20003652:	46bd      	mov	sp, r7
 20003654:	bd80      	pop	{r7, pc}
 20003656:	bf00      	nop
-20003658:	20006218 	.word	0x20006218
+20003658:	2000651c 	.word	0x2000651c
 
 2000365c <env_enum>:
     *  	   0 if ok
@@ -8971,7 +8971,7 @@ int env_enum(int idx,char *name,int *namelen,char *val,int *vallen)
 200036d2:	3718      	adds	r7, #24
 200036d4:	46bd      	mov	sp, r7
 200036d6:	bd80      	pop	{r7, pc}
-200036d8:	20006218 	.word	0x20006218
+200036d8:	2000651c 	.word	0x2000651c
 
 200036dc <env_envtype>:
     *  	   
@@ -9059,7 +9059,7 @@ int env_delenv(const char *name)
 20003742:	3710      	adds	r7, #16
 20003744:	46bd      	mov	sp, r7
 20003746:	bd80      	pop	{r7, pc}
-20003748:	2000622c 	.word	0x2000622c
+20003748:	20006534 	.word	0x20006534
 
 2000374c <env_getenv>:
     *  Return value:
@@ -9215,8 +9215,8 @@ int env_setenv(const char *name,char *value,int flags)
 2000382e:	46bd      	mov	sp, r7
 20003830:	bd80      	pop	{r7, pc}
 20003832:	bf00      	nop
-20003834:	2000622c 	.word	0x2000622c
-20003838:	20006218 	.word	0x20006218
+20003834:	20006534 	.word	0x20006534
+20003838:	2000651c 	.word	0x2000651c
 
 2000383c <env_save>:
     *  Return value:
@@ -9332,7 +9332,7 @@ static int ui_do_one_command(queue_t *head)
 2000391a:	46bd      	mov	sp, r7
 2000391c:	bd90      	pop	{r4, r7, pc}
 2000391e:	bf00      	nop
-20003920:	2000582c 	.word	0x2000582c
+20003920:	20005b3c 	.word	0x20005b3c
 
 20003924 <ui_init_cmddisp>:
     *  Return value:
@@ -9525,7 +9525,7 @@ static int ui_docommands_internal(queue_t *head)
 20003a12:	3720      	adds	r7, #32
 20003a14:	46bd      	mov	sp, r7
 20003a16:	bd80      	pop	{r7, pc}
-20003a18:	2000622c 	.word	0x2000622c
+20003a18:	20006534 	.word	0x20006534
 
 20003a1c <ui_docommands>:
     *  	   return value of failing command, or 0 if all commands
@@ -9606,7 +9606,7 @@ static inline int is_white_space(ui_token_t *t)
 20003a82:	3708      	adds	r7, #8
 20003a84:	46bd      	mov	sp, r7
 20003a86:	bd80      	pop	{r7, pc}
-20003a88:	20006224 	.word	0x20006224
+20003a88:	20006528 	.word	0x20006528
 
 20003a8c <cmd_sw_value>:
 
@@ -9887,7 +9887,7 @@ void cmd_free(ui_cmdline_t *cmd)
 20003c42:	46bd      	mov	sp, r7
 20003c44:	bd80      	pop	{r7, pc}
 20003c46:	bf00      	nop
-20003c48:	2000622c 	.word	0x2000622c
+20003c48:	20006534 	.word	0x20006534
 
 20003c4c <cmd_sw_validate>:
 
@@ -10123,7 +10123,7 @@ int cmd_sw_validate(ui_cmdline_t *cmd,char *validstr)
 20003d92:	3728      	adds	r7, #40	@ 0x28
 20003d94:	46bd      	mov	sp, r7
 20003d96:	bd80      	pop	{r7, pc}
-20003d98:	2000622c 	.word	0x2000622c
+20003d98:	20006534 	.word	0x20006534
 
 20003d9c <cmd_findword>:
 
@@ -10368,7 +10368,7 @@ void cmd_build_cmdline(queue_t *head, ui_cmdline_t *cmd)
 20003f26:	3714      	adds	r7, #20
 20003f28:	46bd      	mov	sp, r7
 20003f2a:	bd90      	pop	{r4, r7, pc}
-20003f2c:	2000622c 	.word	0x2000622c
+20003f2c:	20006534 	.word	0x20006534
 
 20003f30 <cmd_addcmd>:
 	       int (*func)(ui_cmdline_t *,int argc,char *argv[]),
@@ -10523,8 +10523,8 @@ void cmd_build_cmdline(queue_t *head, ui_cmdline_t *cmd)
 2000401a:	3728      	adds	r7, #40	@ 0x28
 2000401c:	46bd      	mov	sp, r7
 2000401e:	bd80      	pop	{r7, pc}
-20004020:	20006494 	.word	0x20006494
-20004024:	2000622c 	.word	0x2000622c
+20004020:	2000679c 	.word	0x2000679c
+20004024:	20006534 	.word	0x20006534
 
 20004028 <_dumpindented>:
 
@@ -10614,7 +10614,7 @@ static void _dumpindented(char *str,int amt)
 200040a2:	3718      	adds	r7, #24
 200040a4:	46bd      	mov	sp, r7
 200040a6:	bd80      	pop	{r7, pc}
-200040a8:	2000622c 	.word	0x2000622c
+200040a8:	20006534 	.word	0x20006534
 
 200040ac <_dumpswitches>:
 
@@ -10735,10 +10735,10 @@ static void _dumpswitches(char *str)
 20004162:	46bd      	mov	sp, r7
 20004164:	bd80      	pop	{r7, pc}
 20004166:	bf00      	nop
-20004168:	20005850 	.word	0x20005850
-2000416c:	20005858 	.word	0x20005858
-20004170:	20005864 	.word	0x20005864
-20004174:	2000622c 	.word	0x2000622c
+20004168:	20005b60 	.word	0x20005b60
+2000416c:	20005b68 	.word	0x20005b68
+20004170:	20005b74 	.word	0x20005b74
+20004174:	20006534 	.word	0x20006534
 
 20004178 <_dumpcmds>:
 
@@ -10889,8 +10889,8 @@ static void _dumpcmds(cmdtab_t *cmd,int level,char **words,int verbose)
 20004272:	46bd      	mov	sp, r7
 20004274:	bd80      	pop	{r7, pc}
 20004276:	bf00      	nop
-20004278:	2000587c 	.word	0x2000587c
-2000427c:	20005880 	.word	0x20005880
+20004278:	20005b8c 	.word	0x20005b8c
+2000427c:	20005b90 	.word	0x20005b90
 
 20004280 <dumpcmds>:
 
@@ -10914,7 +10914,7 @@ static void dumpcmds(int verbose)
 2000429a:	3758      	adds	r7, #88	@ 0x58
 2000429c:	46bd      	mov	sp, r7
 2000429e:	bd80      	pop	{r7, pc}
-200042a0:	20006494 	.word	0x20006494
+200042a0:	2000679c 	.word	0x2000679c
 
 200042a4 <_showpossible>:
 
@@ -11009,14 +11009,14 @@ static void _showpossible(ui_cmdline_t *cline,cmdtab_t *cmd)
 20004332:	3710      	adds	r7, #16
 20004334:	46bd      	mov	sp, r7
 20004336:	bd80      	pop	{r7, pc}
-20004338:	20005884 	.word	0x20005884
-2000433c:	2000589c 	.word	0x2000589c
-20004340:	200058a8 	.word	0x200058a8
-20004344:	200058ac 	.word	0x200058ac
-20004348:	200058b0 	.word	0x200058b0
-2000434c:	200058b8 	.word	0x200058b8
-20004350:	20005880 	.word	0x20005880
-20004354:	200058c8 	.word	0x200058c8
+20004338:	20005b94 	.word	0x20005b94
+2000433c:	20005bac 	.word	0x20005bac
+20004340:	20005bb8 	.word	0x20005bb8
+20004344:	20005bbc 	.word	0x20005bbc
+20004348:	20005bc0 	.word	0x20005bc0
+2000434c:	20005bc8 	.word	0x20005bc8
+20004350:	20005b90 	.word	0x20005b90
+20004354:	20005bd8 	.word	0x20005bd8
 
 20004358 <cmd_help>:
 
@@ -11201,14 +11201,14 @@ static int cmd_help(ui_cmdline_t *cmd,int argc,char *argv[])
 20004472:	46bd      	mov	sp, r7
 20004474:	bd80      	pop	{r7, pc}
 20004476:	bf00      	nop
-20004478:	200058cc 	.word	0x200058cc
-2000447c:	200058e4 	.word	0x200058e4
-20004480:	20006494 	.word	0x20006494
-20004484:	20005924 	.word	0x20005924
-20004488:	20005944 	.word	0x20005944
-2000448c:	20005968 	.word	0x20005968
-20004490:	20005974 	.word	0x20005974
-20004494:	20005980 	.word	0x20005980
+20004478:	20005bdc 	.word	0x20005bdc
+2000447c:	20005bf4 	.word	0x20005bf4
+20004480:	2000679c 	.word	0x2000679c
+20004484:	20005c34 	.word	0x20005c34
+20004488:	20005c54 	.word	0x20005c54
+2000448c:	20005c78 	.word	0x20005c78
+20004490:	20005c84 	.word	0x20005c84
+20004494:	20005c90 	.word	0x20005c90
 
 20004498 <cmd_init>:
 
@@ -11242,12 +11242,12 @@ void cmd_init(void)
 200044ba:	46bd      	mov	sp, r7
 200044bc:	bd80      	pop	{r7, pc}
 200044be:	bf00      	nop
-200044c0:	20006494 	.word	0x20006494
-200044c4:	200058a8 	.word	0x200058a8
-200044c8:	200059b4 	.word	0x200059b4
-200044cc:	2000598c 	.word	0x2000598c
+200044c0:	2000679c 	.word	0x2000679c
+200044c4:	20005bb8 	.word	0x20005bb8
+200044c8:	20005cc4 	.word	0x20005cc4
+200044cc:	20005c9c 	.word	0x20005c9c
 200044d0:	20004359 	.word	0x20004359
-200044d4:	200059ac 	.word	0x200059ac
+200044d4:	20005cbc 	.word	0x20005cbc
 
 200044d8 <cmd_lookup>:
 
@@ -11450,9 +11450,9 @@ int cmd_lookup(queue_t *head,ui_cmdline_t *cmd)
 20004606:	3718      	adds	r7, #24
 20004608:	46bd      	mov	sp, r7
 2000460a:	bd80      	pop	{r7, pc}
-2000460c:	20006494 	.word	0x20006494
-20004610:	20005a60 	.word	0x20005a60
-20004614:	20005a78 	.word	0x20005a78
+2000460c:	2000679c 	.word	0x2000679c
+20004610:	20005d70 	.word	0x20005d70
+20004614:	20005d88 	.word	0x20005d88
 
 20004618 <cmd_showusage>:
 
@@ -11546,7 +11546,7 @@ static void cmd_eat_leading_white(queue_t *head)
 2000469e:	46bd      	mov	sp, r7
 200046a0:	bd80      	pop	{r7, pc}
 200046a2:	bf00      	nop
-200046a4:	2000622c 	.word	0x2000622c
+200046a4:	20006534 	.word	0x20006534
 
 200046a8 <cmd_readcommand>:
 
@@ -11738,7 +11738,7 @@ ui_command_t *cmd_readcommand(queue_t *head)
 200047b2:	46bd      	mov	sp, r7
 200047b4:	bd80      	pop	{r7, pc}
 200047b6:	bf00      	nop
-200047b8:	2000622c 	.word	0x2000622c
+200047b8:	20006534 	.word	0x20006534
 
 200047bc <make_token>:
 
@@ -11782,7 +11782,7 @@ static ui_token_t *make_token(char *str,int len)
 200047f6:	3710      	adds	r7, #16
 200047f8:	46bd      	mov	sp, r7
 200047fa:	bd80      	pop	{r7, pc}
-200047fc:	2000622c 	.word	0x2000622c
+200047fc:	20006534 	.word	0x20006534
 
 20004800 <cmd_build_list>:
 
@@ -11992,7 +11992,7 @@ void cmd_build_list(queue_t *qb,char *buf)
 20004932:	3718      	adds	r7, #24
 20004934:	46bd      	mov	sp, r7
 20004936:	bd80      	pop	{r7, pc}
-20004938:	20006220 	.word	0x20006220
+20004938:	20006524 	.word	0x20006524
 
 2000493c <is_command_separator>:
 
@@ -12267,7 +12267,7 @@ static char *cmd_eat_quoted_arg(queue_t *head,ui_token_t *t)
 20004abe:	3728      	adds	r7, #40	@ 0x28
 20004ac0:	46bd      	mov	sp, r7
 20004ac2:	bd80      	pop	{r7, pc}
-20004ac4:	2000622c 	.word	0x2000622c
+20004ac4:	20006534 	.word	0x20006534
 
 20004ac8 <cmd_append_tokens>:
 
@@ -12482,8 +12482,8 @@ void cmd_walk_and_expand (queue_t *qb)
 20004c0a:	3728      	adds	r7, #40	@ 0x28
 20004c0c:	46bd      	mov	sp, r7
 20004c0e:	bd80      	pop	{r7, pc}
-20004c10:	20006220 	.word	0x20006220
-20004c14:	2000622c 	.word	0x2000622c
+20004c10:	20006524 	.word	0x20006524
+20004c14:	20006534 	.word	0x20006534
 
 20004c18 <cmd_free_tokens>:
 
@@ -12516,7 +12516,7 @@ void cmd_free_tokens(queue_t *list)
 20004c3e:	46bd      	mov	sp, r7
 20004c40:	bd80      	pop	{r7, pc}
 20004c42:	bf00      	nop
-20004c44:	2000622c 	.word	0x2000622c
+20004c44:	20006534 	.word	0x20006534
 
 20004c48 <ui_init_misccmds>:
 
@@ -12530,14 +12530,14 @@ int ui_init_misccmds(void)
 20004c4c:	af02      	add	r7, sp, #8
 
     cmd_addcmd("loop",
-20004c4e:	4b39      	ldr	r3, [pc, #228]	@ (20004d34 <ui_init_misccmds+0xec>)
+20004c4e:	4b43      	ldr	r3, [pc, #268]	@ (20004d5c <ui_init_misccmds+0x114>)
 20004c50:	9301      	str	r3, [sp, #4]
-20004c52:	4b39      	ldr	r3, [pc, #228]	@ (20004d38 <ui_init_misccmds+0xf0>)
+20004c52:	4b43      	ldr	r3, [pc, #268]	@ (20004d60 <ui_init_misccmds+0x118>)
 20004c54:	9300      	str	r3, [sp, #0]
-20004c56:	4b39      	ldr	r3, [pc, #228]	@ (20004d3c <ui_init_misccmds+0xf4>)
+20004c56:	4b43      	ldr	r3, [pc, #268]	@ (20004d64 <ui_init_misccmds+0x11c>)
 20004c58:	2200      	movs	r2, #0
-20004c5a:	4939      	ldr	r1, [pc, #228]	@ (20004d40 <ui_init_misccmds+0xf8>)
-20004c5c:	4839      	ldr	r0, [pc, #228]	@ (20004d44 <ui_init_misccmds+0xfc>)
+20004c5a:	4943      	ldr	r1, [pc, #268]	@ (20004d68 <ui_init_misccmds+0x120>)
+20004c5c:	4843      	ldr	r0, [pc, #268]	@ (20004d6c <ui_init_misccmds+0x124>)
 20004c5e:	f7ff f967 	bl	20003f30 <cmd_addcmd>
 	       "The 'loop' command causes the specified command or list of commands\n"
 	       "to be repeated 'count' times or forever, or until a character is typed",
@@ -12545,14 +12545,14 @@ int ui_init_misccmds(void)
 	       "-forever;Loops forever");
 
     cmd_addcmd("sleep",
-20004c62:	4b39      	ldr	r3, [pc, #228]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004c62:	4b43      	ldr	r3, [pc, #268]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004c64:	9301      	str	r3, [sp, #4]
-20004c66:	4b39      	ldr	r3, [pc, #228]	@ (20004d4c <ui_init_misccmds+0x104>)
+20004c66:	4b43      	ldr	r3, [pc, #268]	@ (20004d74 <ui_init_misccmds+0x12c>)
 20004c68:	9300      	str	r3, [sp, #0]
-20004c6a:	4b39      	ldr	r3, [pc, #228]	@ (20004d50 <ui_init_misccmds+0x108>)
+20004c6a:	4b43      	ldr	r3, [pc, #268]	@ (20004d78 <ui_init_misccmds+0x130>)
 20004c6c:	2200      	movs	r2, #0
-20004c6e:	4939      	ldr	r1, [pc, #228]	@ (20004d54 <ui_init_misccmds+0x10c>)
-20004c70:	4839      	ldr	r0, [pc, #228]	@ (20004d58 <ui_init_misccmds+0x110>)
+20004c6e:	4943      	ldr	r1, [pc, #268]	@ (20004d7c <ui_init_misccmds+0x134>)
+20004c70:	4843      	ldr	r0, [pc, #268]	@ (20004d80 <ui_init_misccmds+0x138>)
 20004c72:	f7ff f95d 	bl	20003f30 <cmd_addcmd>
 	       "operating system.  If specified, 'n' will be placed in $4 as a\n"
 	       "return code.",
@@ -12560,14 +12560,14 @@ int ui_init_misccmds(void)
 #endif
 
     cmd_addcmd("set console",
-20004c76:	4b34      	ldr	r3, [pc, #208]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004c76:	4b3e      	ldr	r3, [pc, #248]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004c78:	9301      	str	r3, [sp, #4]
-20004c7a:	4b38      	ldr	r3, [pc, #224]	@ (20004d5c <ui_init_misccmds+0x114>)
+20004c7a:	4b42      	ldr	r3, [pc, #264]	@ (20004d84 <ui_init_misccmds+0x13c>)
 20004c7c:	9300      	str	r3, [sp, #0]
-20004c7e:	4b38      	ldr	r3, [pc, #224]	@ (20004d60 <ui_init_misccmds+0x118>)
+20004c7e:	4b42      	ldr	r3, [pc, #264]	@ (20004d88 <ui_init_misccmds+0x140>)
 20004c80:	2200      	movs	r2, #0
-20004c82:	4938      	ldr	r1, [pc, #224]	@ (20004d64 <ui_init_misccmds+0x11c>)
-20004c84:	4838      	ldr	r0, [pc, #224]	@ (20004d68 <ui_init_misccmds+0x120>)
+20004c82:	4942      	ldr	r1, [pc, #264]	@ (20004d8c <ui_init_misccmds+0x144>)
+20004c84:	4842      	ldr	r0, [pc, #264]	@ (20004d90 <ui_init_misccmds+0x148>)
 20004c86:	f7ff f953 	bl	20003f30 <cmd_addcmd>
 	       "must be a serial-style device.  Be careful not to change the console\n"
 	       "to a device that is not connected!",
@@ -12575,14 +12575,14 @@ int ui_init_misccmds(void)
 
 
     cmd_addcmd("display",
-20004c8a:	4b2f      	ldr	r3, [pc, #188]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004c8a:	4b39      	ldr	r3, [pc, #228]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004c8c:	9301      	str	r3, [sp, #4]
-20004c8e:	4b2e      	ldr	r3, [pc, #184]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004c8e:	4b38      	ldr	r3, [pc, #224]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004c90:	9300      	str	r3, [sp, #0]
-20004c92:	4b36      	ldr	r3, [pc, #216]	@ (20004d6c <ui_init_misccmds+0x124>)
+20004c92:	4b40      	ldr	r3, [pc, #256]	@ (20004d94 <ui_init_misccmds+0x14c>)
 20004c94:	2200      	movs	r2, #0
-20004c96:	4936      	ldr	r1, [pc, #216]	@ (20004d70 <ui_init_misccmds+0x128>)
-20004c98:	4836      	ldr	r0, [pc, #216]	@ (20004d74 <ui_init_misccmds+0x12c>)
+20004c96:	4940      	ldr	r1, [pc, #256]	@ (20004d98 <ui_init_misccmds+0x150>)
+20004c98:	4840      	ldr	r0, [pc, #256]	@ (20004d9c <ui_init_misccmds+0x154>)
 20004c9a:	f7ff f949 	bl	20003f30 <cmd_addcmd>
 	       NULL,
 	       "enter a address display <addr>",
@@ -12590,14 +12590,14 @@ int ui_init_misccmds(void)
 	       "");
 
     cmd_addcmd("edit",
-20004c9e:	4b2a      	ldr	r3, [pc, #168]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004c9e:	4b34      	ldr	r3, [pc, #208]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004ca0:	9301      	str	r3, [sp, #4]
-20004ca2:	4b29      	ldr	r3, [pc, #164]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004ca2:	4b33      	ldr	r3, [pc, #204]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004ca4:	9300      	str	r3, [sp, #0]
-20004ca6:	4b34      	ldr	r3, [pc, #208]	@ (20004d78 <ui_init_misccmds+0x130>)
+20004ca6:	4b3e      	ldr	r3, [pc, #248]	@ (20004da0 <ui_init_misccmds+0x158>)
 20004ca8:	2200      	movs	r2, #0
-20004caa:	4934      	ldr	r1, [pc, #208]	@ (20004d7c <ui_init_misccmds+0x134>)
-20004cac:	4834      	ldr	r0, [pc, #208]	@ (20004d80 <ui_init_misccmds+0x138>)
+20004caa:	493e      	ldr	r1, [pc, #248]	@ (20004da4 <ui_init_misccmds+0x15c>)
+20004cac:	483e      	ldr	r0, [pc, #248]	@ (20004da8 <ui_init_misccmds+0x160>)
 20004cae:	f7ff f93f 	bl	20003f30 <cmd_addcmd>
 	       ui_cmd_edit,
 	       NULL,
@@ -12605,14 +12605,14 @@ int ui_init_misccmds(void)
 	       "",
 	       "");
     cmd_addcmd("printten",
-20004cb2:	4b25      	ldr	r3, [pc, #148]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004cb2:	4b2f      	ldr	r3, [pc, #188]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004cb4:	9301      	str	r3, [sp, #4]
-20004cb6:	4b24      	ldr	r3, [pc, #144]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004cb6:	4b2e      	ldr	r3, [pc, #184]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004cb8:	9300      	str	r3, [sp, #0]
-20004cba:	4b32      	ldr	r3, [pc, #200]	@ (20004d84 <ui_init_misccmds+0x13c>)
+20004cba:	4b3c      	ldr	r3, [pc, #240]	@ (20004dac <ui_init_misccmds+0x164>)
 20004cbc:	2200      	movs	r2, #0
-20004cbe:	4932      	ldr	r1, [pc, #200]	@ (20004d88 <ui_init_misccmds+0x140>)
-20004cc0:	4830      	ldr	r0, [pc, #192]	@ (20004d84 <ui_init_misccmds+0x13c>)
+20004cbe:	493c      	ldr	r1, [pc, #240]	@ (20004db0 <ui_init_misccmds+0x168>)
+20004cc0:	483a      	ldr	r0, [pc, #232]	@ (20004dac <ui_init_misccmds+0x164>)
 20004cc2:	f7ff f935 	bl	20003f30 <cmd_addcmd>
 	       NULL,
 	       "printten",
@@ -12620,29 +12620,29 @@ int ui_init_misccmds(void)
 	       "");
 
     cmd_addcmd("led",
-20004cc6:	4b20      	ldr	r3, [pc, #128]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004cc6:	4b2a      	ldr	r3, [pc, #168]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004cc8:	9301      	str	r3, [sp, #4]
-20004cca:	4b30      	ldr	r3, [pc, #192]	@ (20004d8c <ui_init_misccmds+0x144>)
+20004cca:	4b3a      	ldr	r3, [pc, #232]	@ (20004db4 <ui_init_misccmds+0x16c>)
 20004ccc:	9300      	str	r3, [sp, #0]
-20004cce:	4b30      	ldr	r3, [pc, #192]	@ (20004d90 <ui_init_misccmds+0x148>)
+20004cce:	4b3a      	ldr	r3, [pc, #232]	@ (20004db8 <ui_init_misccmds+0x170>)
 20004cd0:	2200      	movs	r2, #0
-20004cd2:	4930      	ldr	r1, [pc, #192]	@ (20004d94 <ui_init_misccmds+0x14c>)
-20004cd4:	4830      	ldr	r0, [pc, #192]	@ (20004d98 <ui_init_misccmds+0x150>)
+20004cd2:	493a      	ldr	r1, [pc, #232]	@ (20004dbc <ui_init_misccmds+0x174>)
+20004cd4:	483a      	ldr	r0, [pc, #232]	@ (20004dc0 <ui_init_misccmds+0x178>)
 20004cd6:	f7ff f92b 	bl	20003f30 <cmd_addcmd>
 	       NULL,
 	       "1 to turn on light",
 	       "0 to turn off light",
 	       "");
 
-    cmd_addcmd("ledb",
-20004cda:	4b1b      	ldr	r3, [pc, #108]	@ (20004d48 <ui_init_misccmds+0x100>)
+    cmd_addcmd("ledg",
+20004cda:	4b25      	ldr	r3, [pc, #148]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004cdc:	9301      	str	r3, [sp, #4]
-20004cde:	4b2b      	ldr	r3, [pc, #172]	@ (20004d8c <ui_init_misccmds+0x144>)
+20004cde:	4b35      	ldr	r3, [pc, #212]	@ (20004db4 <ui_init_misccmds+0x16c>)
 20004ce0:	9300      	str	r3, [sp, #0]
-20004ce2:	4b2b      	ldr	r3, [pc, #172]	@ (20004d90 <ui_init_misccmds+0x148>)
+20004ce2:	4b35      	ldr	r3, [pc, #212]	@ (20004db8 <ui_init_misccmds+0x170>)
 20004ce4:	2200      	movs	r2, #0
-20004ce6:	492d      	ldr	r1, [pc, #180]	@ (20004d9c <ui_init_misccmds+0x154>)
-20004ce8:	482d      	ldr	r0, [pc, #180]	@ (20004da0 <ui_init_misccmds+0x158>)
+20004ce6:	4937      	ldr	r1, [pc, #220]	@ (20004dc4 <ui_init_misccmds+0x17c>)
+20004ce8:	4837      	ldr	r0, [pc, #220]	@ (20004dc8 <ui_init_misccmds+0x180>)
 20004cea:	f7ff f921 	bl	20003f30 <cmd_addcmd>
 	       NULL,
 	       "1 to turn on light",
@@ -12650,1475 +12650,1964 @@ int ui_init_misccmds(void)
 	       "");
      */
 	cmd_addcmd("ledo",
-20004cee:	4b16      	ldr	r3, [pc, #88]	@ (20004d48 <ui_init_misccmds+0x100>)
+20004cee:	4b20      	ldr	r3, [pc, #128]	@ (20004d70 <ui_init_misccmds+0x128>)
 20004cf0:	9301      	str	r3, [sp, #4]
-20004cf2:	4b26      	ldr	r3, [pc, #152]	@ (20004d8c <ui_init_misccmds+0x144>)
+20004cf2:	4b30      	ldr	r3, [pc, #192]	@ (20004db4 <ui_init_misccmds+0x16c>)
 20004cf4:	9300      	str	r3, [sp, #0]
-20004cf6:	4b26      	ldr	r3, [pc, #152]	@ (20004d90 <ui_init_misccmds+0x148>)
+20004cf6:	4b30      	ldr	r3, [pc, #192]	@ (20004db8 <ui_init_misccmds+0x170>)
 20004cf8:	2200      	movs	r2, #0
-20004cfa:	492a      	ldr	r1, [pc, #168]	@ (20004da4 <ui_init_misccmds+0x15c>)
-20004cfc:	482a      	ldr	r0, [pc, #168]	@ (20004da8 <ui_init_misccmds+0x160>)
+20004cfa:	4934      	ldr	r1, [pc, #208]	@ (20004dcc <ui_init_misccmds+0x184>)
+20004cfc:	4834      	ldr	r0, [pc, #208]	@ (20004dd0 <ui_init_misccmds+0x188>)
 20004cfe:	f7ff f917 	bl	20003f30 <cmd_addcmd>
+			   ui_cmd_LEDO,
+			   NULL,
+			   "1 to turn on light",
+			   "0 to turn off light",
+			   "");
+	cmd_addcmd("ledb",
+20004d02:	4b1b      	ldr	r3, [pc, #108]	@ (20004d70 <ui_init_misccmds+0x128>)
+20004d04:	9301      	str	r3, [sp, #4]
+20004d06:	4b2b      	ldr	r3, [pc, #172]	@ (20004db4 <ui_init_misccmds+0x16c>)
+20004d08:	9300      	str	r3, [sp, #0]
+20004d0a:	4b2b      	ldr	r3, [pc, #172]	@ (20004db8 <ui_init_misccmds+0x170>)
+20004d0c:	2200      	movs	r2, #0
+20004d0e:	4931      	ldr	r1, [pc, #196]	@ (20004dd4 <ui_init_misccmds+0x18c>)
+20004d10:	4831      	ldr	r0, [pc, #196]	@ (20004dd8 <ui_init_misccmds+0x190>)
+20004d12:	f7ff f90d 	bl	20003f30 <cmd_addcmd>
+			   NULL,
 			   "1 to turn on light",
 			   "0 to turn off light",
 			   "");
 
-
 	cmd_addcmd("i2c",
-20004d02:	4b11      	ldr	r3, [pc, #68]	@ (20004d48 <ui_init_misccmds+0x100>)
-20004d04:	9301      	str	r3, [sp, #4]
-20004d06:	4b10      	ldr	r3, [pc, #64]	@ (20004d48 <ui_init_misccmds+0x100>)
-20004d08:	9300      	str	r3, [sp, #0]
-20004d0a:	4b0f      	ldr	r3, [pc, #60]	@ (20004d48 <ui_init_misccmds+0x100>)
-20004d0c:	2200      	movs	r2, #0
-20004d0e:	4927      	ldr	r1, [pc, #156]	@ (20004dac <ui_init_misccmds+0x164>)
-20004d10:	4827      	ldr	r0, [pc, #156]	@ (20004db0 <ui_init_misccmds+0x168>)
-20004d12:	f7ff f90d 	bl	20003f30 <cmd_addcmd>
+20004d16:	4b16      	ldr	r3, [pc, #88]	@ (20004d70 <ui_init_misccmds+0x128>)
+20004d18:	9301      	str	r3, [sp, #4]
+20004d1a:	4b15      	ldr	r3, [pc, #84]	@ (20004d70 <ui_init_misccmds+0x128>)
+20004d1c:	9300      	str	r3, [sp, #0]
+20004d1e:	4b14      	ldr	r3, [pc, #80]	@ (20004d70 <ui_init_misccmds+0x128>)
+20004d20:	2200      	movs	r2, #0
+20004d22:	492e      	ldr	r1, [pc, #184]	@ (20004ddc <ui_init_misccmds+0x194>)
+20004d24:	482e      	ldr	r0, [pc, #184]	@ (20004de0 <ui_init_misccmds+0x198>)
+20004d26:	f7ff f903 	bl	20003f30 <cmd_addcmd>
 			   NULL,
 			   "",
 			   "",
 			   "");
 
 	cmd_addcmd("writei2c",
-20004d16:	4b0c      	ldr	r3, [pc, #48]	@ (20004d48 <ui_init_misccmds+0x100>)
-20004d18:	9301      	str	r3, [sp, #4]
-20004d1a:	4b26      	ldr	r3, [pc, #152]	@ (20004db4 <ui_init_misccmds+0x16c>)
-20004d1c:	9300      	str	r3, [sp, #0]
-20004d1e:	4b26      	ldr	r3, [pc, #152]	@ (20004db8 <ui_init_misccmds+0x170>)
-20004d20:	2200      	movs	r2, #0
-20004d22:	4926      	ldr	r1, [pc, #152]	@ (20004dbc <ui_init_misccmds+0x174>)
-20004d24:	4826      	ldr	r0, [pc, #152]	@ (20004dc0 <ui_init_misccmds+0x178>)
-20004d26:	f7ff f903 	bl	20003f30 <cmd_addcmd>
+20004d2a:	4b11      	ldr	r3, [pc, #68]	@ (20004d70 <ui_init_misccmds+0x128>)
+20004d2c:	9301      	str	r3, [sp, #4]
+20004d2e:	4b2d      	ldr	r3, [pc, #180]	@ (20004de4 <ui_init_misccmds+0x19c>)
+20004d30:	9300      	str	r3, [sp, #0]
+20004d32:	4b2d      	ldr	r3, [pc, #180]	@ (20004de8 <ui_init_misccmds+0x1a0>)
+20004d34:	2200      	movs	r2, #0
+20004d36:	492d      	ldr	r1, [pc, #180]	@ (20004dec <ui_init_misccmds+0x1a4>)
+20004d38:	482d      	ldr	r0, [pc, #180]	@ (20004df0 <ui_init_misccmds+0x1a8>)
+20004d3a:	f7ff f8f9 	bl	20003f30 <cmd_addcmd>
+	           "write_i2c <reg_address> <value>\n"
+	           "  <reg_address>  Register address to write to (hex)\n"
+	           "  <value>        Value to write (hex)",
+	           "");
+
+	cmd_addcmd("displayi2c",
+20004d3e:	4b0c      	ldr	r3, [pc, #48]	@ (20004d70 <ui_init_misccmds+0x128>)
+20004d40:	9301      	str	r3, [sp, #4]
+20004d42:	4b28      	ldr	r3, [pc, #160]	@ (20004de4 <ui_init_misccmds+0x19c>)
+20004d44:	9300      	str	r3, [sp, #0]
+20004d46:	4b28      	ldr	r3, [pc, #160]	@ (20004de8 <ui_init_misccmds+0x1a0>)
+20004d48:	2200      	movs	r2, #0
+20004d4a:	492a      	ldr	r1, [pc, #168]	@ (20004df4 <ui_init_misccmds+0x1ac>)
+20004d4c:	482a      	ldr	r0, [pc, #168]	@ (20004df8 <ui_init_misccmds+0x1b0>)
+20004d4e:	f7ff f8ef 	bl	20003f30 <cmd_addcmd>
 	           "Write to an I2C device",
 	           "write_i2c <reg_address> <value>\n"
 	           "  <reg_address>  Register address to write to (hex)\n"
 	           "  <value>        Value to write (hex)",
 	           "");
     return 0;
-20004d2a:	2300      	movs	r3, #0
+20004d52:	2300      	movs	r3, #0
 
 }
-20004d2c:	4618      	mov	r0, r3
-20004d2e:	46bd      	mov	sp, r7
-20004d30:	bd80      	pop	{r7, pc}
-20004d32:	bf00      	nop
-20004d34:	20005aac 	.word	0x20005aac
-20004d38:	20005aec 	.word	0x20005aec
-20004d3c:	20005a94 	.word	0x20005a94
-20004d40:	20004e41 	.word	0x20004e41
-20004d44:	20005aa4 	.word	0x20005aa4
-20004d48:	20005bbc 	.word	0x20005bbc
-20004d4c:	20005bc0 	.word	0x20005bc0
-20004d50:	20005b94 	.word	0x20005b94
-20004d54:	20004dc5 	.word	0x20004dc5
-20004d58:	20005bb4 	.word	0x20005bb4
-20004d5c:	20005c80 	.word	0x20005c80
-20004d60:	20005c50 	.word	0x20005c50
-20004d64:	20004ee1 	.word	0x20004ee1
-20004d68:	20005c74 	.word	0x20005c74
-20004d6c:	20005d48 	.word	0x20005d48
-20004d70:	20004f51 	.word	0x20004f51
-20004d74:	20005d68 	.word	0x20005d68
-20004d78:	20005d70 	.word	0x20005d70
-20004d7c:	20004fbd 	.word	0x20004fbd
-20004d80:	20005da0 	.word	0x20005da0
-20004d84:	20005da8 	.word	0x20005da8
-20004d88:	20005029 	.word	0x20005029
-20004d8c:	20005dcc 	.word	0x20005dcc
-20004d90:	20005db4 	.word	0x20005db4
-20004d94:	200050b1 	.word	0x200050b1
-20004d98:	20005dc8 	.word	0x20005dc8
-20004d9c:	20005179 	.word	0x20005179
-20004da0:	20005de0 	.word	0x20005de0
-20004da4:	20005601 	.word	0x20005601
-20004da8:	20005de8 	.word	0x20005de8
-20004dac:	200051e5 	.word	0x200051e5
-20004db0:	20005df0 	.word	0x20005df0
-20004db4:	20005e18 	.word	0x20005e18
-20004db8:	20005df4 	.word	0x20005df4
-20004dbc:	200053e1 	.word	0x200053e1
-20004dc0:	20005e0c 	.word	0x20005e0c
+20004d54:	4618      	mov	r0, r3
+20004d56:	46bd      	mov	sp, r7
+20004d58:	bd80      	pop	{r7, pc}
+20004d5a:	bf00      	nop
+20004d5c:	20005dbc 	.word	0x20005dbc
+20004d60:	20005dfc 	.word	0x20005dfc
+20004d64:	20005da4 	.word	0x20005da4
+20004d68:	20004e79 	.word	0x20004e79
+20004d6c:	20005db4 	.word	0x20005db4
+20004d70:	20005ecc 	.word	0x20005ecc
+20004d74:	20005ed0 	.word	0x20005ed0
+20004d78:	20005ea4 	.word	0x20005ea4
+20004d7c:	20004dfd 	.word	0x20004dfd
+20004d80:	20005ec4 	.word	0x20005ec4
+20004d84:	20005f90 	.word	0x20005f90
+20004d88:	20005f60 	.word	0x20005f60
+20004d8c:	20004f19 	.word	0x20004f19
+20004d90:	20005f84 	.word	0x20005f84
+20004d94:	20006058 	.word	0x20006058
+20004d98:	20004f89 	.word	0x20004f89
+20004d9c:	20006078 	.word	0x20006078
+20004da0:	20006080 	.word	0x20006080
+20004da4:	20004ff5 	.word	0x20004ff5
+20004da8:	200060b0 	.word	0x200060b0
+20004dac:	200060b8 	.word	0x200060b8
+20004db0:	20005061 	.word	0x20005061
+20004db4:	200060dc 	.word	0x200060dc
+20004db8:	200060c4 	.word	0x200060c4
+20004dbc:	200050e9 	.word	0x200050e9
+20004dc0:	200060d8 	.word	0x200060d8
+20004dc4:	200051b1 	.word	0x200051b1
+20004dc8:	200060f0 	.word	0x200060f0
+20004dcc:	20005889 	.word	0x20005889
+20004dd0:	200060f8 	.word	0x200060f8
+20004dd4:	200058f5 	.word	0x200058f5
+20004dd8:	20006100 	.word	0x20006100
+20004ddc:	2000521d 	.word	0x2000521d
+20004de0:	20006108 	.word	0x20006108
+20004de4:	20006130 	.word	0x20006130
+20004de8:	2000610c 	.word	0x2000610c
+20004dec:	20005419 	.word	0x20005419
+20004df0:	20006124 	.word	0x20006124
+20004df4:	200057c9 	.word	0x200057c9
+20004df8:	200061ac 	.word	0x200061ac
 
-20004dc4 <ui_cmd_sleep>:
+20004dfc <ui_cmd_sleep>:
 
 static int ui_cmd_sleep(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004dc4:	e92d 43b0 	stmdb	sp!, {r4, r5, r7, r8, r9, lr}
-20004dc8:	b088      	sub	sp, #32
-20004dca:	af00      	add	r7, sp, #0
-20004dcc:	60f8      	str	r0, [r7, #12]
-20004dce:	60b9      	str	r1, [r7, #8]
-20004dd0:	607a      	str	r2, [r7, #4]
+20004dfc:	e92d 43b0 	stmdb	sp!, {r4, r5, r7, r8, r9, lr}
+20004e00:	b088      	sub	sp, #32
+20004e02:	af00      	add	r7, sp, #0
+20004e04:	60f8      	str	r0, [r7, #12]
+20004e06:	60b9      	str	r1, [r7, #8]
+20004e08:	607a      	str	r2, [r7, #4]
     int seconds = 1;
-20004dd2:	2301      	movs	r3, #1
-20004dd4:	61fb      	str	r3, [r7, #28]
+20004e0a:	2301      	movs	r3, #1
+20004e0c:	61fb      	str	r3, [r7, #28]
     char *x;
     cfe_timer_t timer;
 
     if ((x = cmd_getarg(cmd,0))) seconds = atoi(x);
-20004dd6:	2100      	movs	r1, #0
-20004dd8:	68f8      	ldr	r0, [r7, #12]
-20004dda:	f7fe fed6 	bl	20003b8a <cmd_getarg>
-20004dde:	61b8      	str	r0, [r7, #24]
-20004de0:	69bb      	ldr	r3, [r7, #24]
-20004de2:	2b00      	cmp	r3, #0
-20004de4:	d003      	beq.n	20004dee <ui_cmd_sleep+0x2a>
-20004de6:	69b8      	ldr	r0, [r7, #24]
-20004de8:	f7fc fb34 	bl	20001454 <lib_atoi>
-20004dec:	61f8      	str	r0, [r7, #28]
+20004e0e:	2100      	movs	r1, #0
+20004e10:	68f8      	ldr	r0, [r7, #12]
+20004e12:	f7fe feba 	bl	20003b8a <cmd_getarg>
+20004e16:	61b8      	str	r0, [r7, #24]
+20004e18:	69bb      	ldr	r3, [r7, #24]
+20004e1a:	2b00      	cmp	r3, #0
+20004e1c:	d003      	beq.n	20004e26 <ui_cmd_sleep+0x2a>
+20004e1e:	69b8      	ldr	r0, [r7, #24]
+20004e20:	f7fc fb18 	bl	20001454 <lib_atoi>
+20004e24:	61f8      	str	r0, [r7, #28]
 
     TIMER_SET(timer,seconds*CFE_HZ);
-20004dee:	69fa      	ldr	r2, [r7, #28]
-20004df0:	4613      	mov	r3, r2
-20004df2:	009b      	lsls	r3, r3, #2
-20004df4:	4413      	add	r3, r2
-20004df6:	005b      	lsls	r3, r3, #1
-20004df8:	17da      	asrs	r2, r3, #31
-20004dfa:	461c      	mov	r4, r3
-20004dfc:	4615      	mov	r5, r2
-20004dfe:	4b0f      	ldr	r3, [pc, #60]	@ (20004e3c <ui_cmd_sleep+0x78>)
-20004e00:	e9d3 2300 	ldrd	r2, r3, [r3]
-20004e04:	eb14 0802 	adds.w	r8, r4, r2
-20004e08:	eb45 0903 	adc.w	r9, r5, r3
-20004e0c:	e9c7 8904 	strd	r8, r9, [r7, #16]
+20004e26:	69fa      	ldr	r2, [r7, #28]
+20004e28:	4613      	mov	r3, r2
+20004e2a:	009b      	lsls	r3, r3, #2
+20004e2c:	4413      	add	r3, r2
+20004e2e:	005b      	lsls	r3, r3, #1
+20004e30:	17da      	asrs	r2, r3, #31
+20004e32:	461c      	mov	r4, r3
+20004e34:	4615      	mov	r5, r2
+20004e36:	4b0f      	ldr	r3, [pc, #60]	@ (20004e74 <ui_cmd_sleep+0x78>)
+20004e38:	e9d3 2300 	ldrd	r2, r3, [r3]
+20004e3c:	eb14 0802 	adds.w	r8, r4, r2
+20004e40:	eb45 0903 	adc.w	r9, r5, r3
+20004e44:	e9c7 8904 	strd	r8, r9, [r7, #16]
     while (!TIMER_EXPIRED(timer)) {
-20004e10:	e001      	b.n	20004e16 <ui_cmd_sleep+0x52>
+20004e48:	e001      	b.n	20004e4e <ui_cmd_sleep+0x52>
 	POLL();
-20004e12:	f7fc fced 	bl	200017f0 <background>
+20004e4a:	f7fc fcd1 	bl	200017f0 <background>
     while (!TIMER_EXPIRED(timer)) {
-20004e16:	e9d7 2304 	ldrd	r2, r3, [r7, #16]
-20004e1a:	4313      	orrs	r3, r2
-20004e1c:	d0f9      	beq.n	20004e12 <ui_cmd_sleep+0x4e>
-20004e1e:	4b07      	ldr	r3, [pc, #28]	@ (20004e3c <ui_cmd_sleep+0x78>)
-20004e20:	e9d3 2300 	ldrd	r2, r3, [r3]
-20004e24:	e9d7 0104 	ldrd	r0, r1, [r7, #16]
-20004e28:	4290      	cmp	r0, r2
-20004e2a:	eb71 0303 	sbcs.w	r3, r1, r3
-20004e2e:	daf0      	bge.n	20004e12 <ui_cmd_sleep+0x4e>
+20004e4e:	e9d7 2304 	ldrd	r2, r3, [r7, #16]
+20004e52:	4313      	orrs	r3, r2
+20004e54:	d0f9      	beq.n	20004e4a <ui_cmd_sleep+0x4e>
+20004e56:	4b07      	ldr	r3, [pc, #28]	@ (20004e74 <ui_cmd_sleep+0x78>)
+20004e58:	e9d3 2300 	ldrd	r2, r3, [r3]
+20004e5c:	e9d7 0104 	ldrd	r0, r1, [r7, #16]
+20004e60:	4290      	cmp	r0, r2
+20004e62:	eb71 0303 	sbcs.w	r3, r1, r3
+20004e66:	daf0      	bge.n	20004e4a <ui_cmd_sleep+0x4e>
 	}
 
     return 0;
-20004e30:	2300      	movs	r3, #0
+20004e68:	2300      	movs	r3, #0
 }
-20004e32:	4618      	mov	r0, r3
-20004e34:	3720      	adds	r7, #32
-20004e36:	46bd      	mov	sp, r7
-20004e38:	e8bd 83b0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, pc}
-20004e3c:	20006470 	.word	0x20006470
+20004e6a:	4618      	mov	r0, r3
+20004e6c:	3720      	adds	r7, #32
+20004e6e:	46bd      	mov	sp, r7
+20004e70:	e8bd 83b0 	ldmia.w	sp!, {r4, r5, r7, r8, r9, pc}
+20004e74:	20006778 	.word	0x20006778
 
-20004e40 <ui_cmd_loop>:
+20004e78 <ui_cmd_loop>:
 
 static int ui_cmd_loop(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004e40:	b580      	push	{r7, lr}
-20004e42:	b088      	sub	sp, #32
-20004e44:	af00      	add	r7, sp, #0
-20004e46:	60f8      	str	r0, [r7, #12]
-20004e48:	60b9      	str	r1, [r7, #8]
-20004e4a:	607a      	str	r2, [r7, #4]
+20004e78:	b580      	push	{r7, lr}
+20004e7a:	b088      	sub	sp, #32
+20004e7c:	af00      	add	r7, sp, #0
+20004e7e:	60f8      	str	r0, [r7, #12]
+20004e80:	60b9      	str	r1, [r7, #8]
+20004e82:	607a      	str	r2, [r7, #4]
     int count = 10;
-20004e4c:	230a      	movs	r3, #10
-20004e4e:	61fb      	str	r3, [r7, #28]
+20004e84:	230a      	movs	r3, #10
+20004e86:	61fb      	str	r3, [r7, #28]
     char *x;
     int res;
     int forever;
 
     if (cmd_sw_value(cmd,"-count",&x)) count = atoi(x);
-20004e50:	f107 0310 	add.w	r3, r7, #16
-20004e54:	461a      	mov	r2, r3
-20004e56:	4920      	ldr	r1, [pc, #128]	@ (20004ed8 <ui_cmd_loop+0x98>)
-20004e58:	68f8      	ldr	r0, [r7, #12]
-20004e5a:	f7fe fe17 	bl	20003a8c <cmd_sw_value>
-20004e5e:	4603      	mov	r3, r0
-20004e60:	2b00      	cmp	r3, #0
-20004e62:	d004      	beq.n	20004e6e <ui_cmd_loop+0x2e>
-20004e64:	693b      	ldr	r3, [r7, #16]
-20004e66:	4618      	mov	r0, r3
-20004e68:	f7fc faf4 	bl	20001454 <lib_atoi>
-20004e6c:	61f8      	str	r0, [r7, #28]
+20004e88:	f107 0310 	add.w	r3, r7, #16
+20004e8c:	461a      	mov	r2, r3
+20004e8e:	4920      	ldr	r1, [pc, #128]	@ (20004f10 <ui_cmd_loop+0x98>)
+20004e90:	68f8      	ldr	r0, [r7, #12]
+20004e92:	f7fe fdfb 	bl	20003a8c <cmd_sw_value>
+20004e96:	4603      	mov	r3, r0
+20004e98:	2b00      	cmp	r3, #0
+20004e9a:	d004      	beq.n	20004ea6 <ui_cmd_loop+0x2e>
+20004e9c:	693b      	ldr	r3, [r7, #16]
+20004e9e:	4618      	mov	r0, r3
+20004ea0:	f7fc fad8 	bl	20001454 <lib_atoi>
+20004ea4:	61f8      	str	r0, [r7, #28]
     
     forever = cmd_sw_isset(cmd,"-forever");
-20004e6e:	491b      	ldr	r1, [pc, #108]	@ (20004edc <ui_cmd_loop+0x9c>)
-20004e70:	68f8      	ldr	r0, [r7, #12]
-20004e72:	f7fe fe61 	bl	20003b38 <cmd_sw_isset>
-20004e76:	6178      	str	r0, [r7, #20]
+20004ea6:	491b      	ldr	r1, [pc, #108]	@ (20004f14 <ui_cmd_loop+0x9c>)
+20004ea8:	68f8      	ldr	r0, [r7, #12]
+20004eaa:	f7fe fe45 	bl	20003b38 <cmd_sw_isset>
+20004eae:	6178      	str	r0, [r7, #20]
 
     x = cmd_getarg(cmd,0);
-20004e78:	2100      	movs	r1, #0
-20004e7a:	68f8      	ldr	r0, [r7, #12]
-20004e7c:	f7fe fe85 	bl	20003b8a <cmd_getarg>
-20004e80:	4603      	mov	r3, r0
-20004e82:	613b      	str	r3, [r7, #16]
+20004eb0:	2100      	movs	r1, #0
+20004eb2:	68f8      	ldr	r0, [r7, #12]
+20004eb4:	f7fe fe69 	bl	20003b8a <cmd_getarg>
+20004eb8:	4603      	mov	r3, r0
+20004eba:	613b      	str	r3, [r7, #16]
     if (!x) return ui_showusage(cmd);
-20004e84:	693b      	ldr	r3, [r7, #16]
-20004e86:	2b00      	cmp	r3, #0
-20004e88:	d104      	bne.n	20004e94 <ui_cmd_loop+0x54>
-20004e8a:	68f8      	ldr	r0, [r7, #12]
-20004e8c:	f7fe fd51 	bl	20003932 <ui_showusage>
-20004e90:	4603      	mov	r3, r0
-20004e92:	e01d      	b.n	20004ed0 <ui_cmd_loop+0x90>
+20004ebc:	693b      	ldr	r3, [r7, #16]
+20004ebe:	2b00      	cmp	r3, #0
+20004ec0:	d104      	bne.n	20004ecc <ui_cmd_loop+0x54>
+20004ec2:	68f8      	ldr	r0, [r7, #12]
+20004ec4:	f7fe fd35 	bl	20003932 <ui_showusage>
+20004ec8:	4603      	mov	r3, r0
+20004eca:	e01d      	b.n	20004f08 <ui_cmd_loop+0x90>
 
     res = 0;
-20004e94:	2300      	movs	r3, #0
-20004e96:	61bb      	str	r3, [r7, #24]
+20004ecc:	2300      	movs	r3, #0
+20004ece:	61bb      	str	r3, [r7, #24]
     while (count || forever) {
-20004e98:	e00f      	b.n	20004eba <ui_cmd_loop+0x7a>
+20004ed0:	e00f      	b.n	20004ef2 <ui_cmd_loop+0x7a>
 	if (console_status()) break;
-20004e9a:	f7fc fd75 	bl	20001988 <console_status>
-20004e9e:	4603      	mov	r3, r0
-20004ea0:	2b00      	cmp	r3, #0
-20004ea2:	d111      	bne.n	20004ec8 <ui_cmd_loop+0x88>
+20004ed2:	f7fc fd59 	bl	20001988 <console_status>
+20004ed6:	4603      	mov	r3, r0
+20004ed8:	2b00      	cmp	r3, #0
+20004eda:	d111      	bne.n	20004f00 <ui_cmd_loop+0x88>
 	res = ui_docommands(x);
-20004ea4:	693b      	ldr	r3, [r7, #16]
-20004ea6:	4618      	mov	r0, r3
-20004ea8:	f7fe fdb8 	bl	20003a1c <ui_docommands>
-20004eac:	61b8      	str	r0, [r7, #24]
+20004edc:	693b      	ldr	r3, [r7, #16]
+20004ede:	4618      	mov	r0, r3
+20004ee0:	f7fe fd9c 	bl	20003a1c <ui_docommands>
+20004ee4:	61b8      	str	r0, [r7, #24]
 	if (res != 0) break;
-20004eae:	69bb      	ldr	r3, [r7, #24]
-20004eb0:	2b00      	cmp	r3, #0
-20004eb2:	d10b      	bne.n	20004ecc <ui_cmd_loop+0x8c>
+20004ee6:	69bb      	ldr	r3, [r7, #24]
+20004ee8:	2b00      	cmp	r3, #0
+20004eea:	d10b      	bne.n	20004f04 <ui_cmd_loop+0x8c>
 	count--;
-20004eb4:	69fb      	ldr	r3, [r7, #28]
-20004eb6:	3b01      	subs	r3, #1
-20004eb8:	61fb      	str	r3, [r7, #28]
+20004eec:	69fb      	ldr	r3, [r7, #28]
+20004eee:	3b01      	subs	r3, #1
+20004ef0:	61fb      	str	r3, [r7, #28]
     while (count || forever) {
-20004eba:	69fb      	ldr	r3, [r7, #28]
-20004ebc:	2b00      	cmp	r3, #0
-20004ebe:	d1ec      	bne.n	20004e9a <ui_cmd_loop+0x5a>
-20004ec0:	697b      	ldr	r3, [r7, #20]
-20004ec2:	2b00      	cmp	r3, #0
-20004ec4:	d1e9      	bne.n	20004e9a <ui_cmd_loop+0x5a>
-20004ec6:	e002      	b.n	20004ece <ui_cmd_loop+0x8e>
+20004ef2:	69fb      	ldr	r3, [r7, #28]
+20004ef4:	2b00      	cmp	r3, #0
+20004ef6:	d1ec      	bne.n	20004ed2 <ui_cmd_loop+0x5a>
+20004ef8:	697b      	ldr	r3, [r7, #20]
+20004efa:	2b00      	cmp	r3, #0
+20004efc:	d1e9      	bne.n	20004ed2 <ui_cmd_loop+0x5a>
+20004efe:	e002      	b.n	20004f06 <ui_cmd_loop+0x8e>
 	if (console_status()) break;
-20004ec8:	bf00      	nop
-20004eca:	e000      	b.n	20004ece <ui_cmd_loop+0x8e>
+20004f00:	bf00      	nop
+20004f02:	e000      	b.n	20004f06 <ui_cmd_loop+0x8e>
 	if (res != 0) break;
-20004ecc:	bf00      	nop
+20004f04:	bf00      	nop
 	}
 
     return res;
-20004ece:	69bb      	ldr	r3, [r7, #24]
+20004f06:	69bb      	ldr	r3, [r7, #24]
 }
-20004ed0:	4618      	mov	r0, r3
-20004ed2:	3720      	adds	r7, #32
-20004ed4:	46bd      	mov	sp, r7
-20004ed6:	bd80      	pop	{r7, pc}
-20004ed8:	20005e94 	.word	0x20005e94
-20004edc:	20005e9c 	.word	0x20005e9c
+20004f08:	4618      	mov	r0, r3
+20004f0a:	3720      	adds	r7, #32
+20004f0c:	46bd      	mov	sp, r7
+20004f0e:	bd80      	pop	{r7, pc}
+20004f10:	200061b8 	.word	0x200061b8
+20004f14:	200061c0 	.word	0x200061c0
 
-20004ee0 <ui_cmd_console>:
+20004f18 <ui_cmd_console>:
 }
 #endif
 
 
 static int ui_cmd_console(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004ee0:	b580      	push	{r7, lr}
-20004ee2:	b086      	sub	sp, #24
-20004ee4:	af00      	add	r7, sp, #0
-20004ee6:	60f8      	str	r0, [r7, #12]
-20004ee8:	60b9      	str	r1, [r7, #8]
-20004eea:	607a      	str	r2, [r7, #4]
+20004f18:	b580      	push	{r7, lr}
+20004f1a:	b086      	sub	sp, #24
+20004f1c:	af00      	add	r7, sp, #0
+20004f1e:	60f8      	str	r0, [r7, #12]
+20004f20:	60b9      	str	r1, [r7, #8]
+20004f22:	607a      	str	r2, [r7, #4]
     int res;
     char *dev;
 
     dev = cmd_getarg(cmd,0);
-20004eec:	2100      	movs	r1, #0
-20004eee:	68f8      	ldr	r0, [r7, #12]
-20004ef0:	f7fe fe4b 	bl	20003b8a <cmd_getarg>
-20004ef4:	6178      	str	r0, [r7, #20]
+20004f24:	2100      	movs	r1, #0
+20004f26:	68f8      	ldr	r0, [r7, #12]
+20004f28:	f7fe fe2f 	bl	20003b8a <cmd_getarg>
+20004f2c:	6178      	str	r0, [r7, #20]
     if (!dev) return -1; 	/* XXX usage */
-20004ef6:	697b      	ldr	r3, [r7, #20]
-20004ef8:	2b00      	cmp	r3, #0
-20004efa:	d102      	bne.n	20004f02 <ui_cmd_console+0x22>
-20004efc:	f04f 33ff 	mov.w	r3, #4294967295	@ 0xffffffff
-20004f00:	e01d      	b.n	20004f3e <ui_cmd_console+0x5e>
+20004f2e:	697b      	ldr	r3, [r7, #20]
+20004f30:	2b00      	cmp	r3, #0
+20004f32:	d102      	bne.n	20004f3a <ui_cmd_console+0x22>
+20004f34:	f04f 33ff 	mov.w	r3, #4294967295	@ 0xffffffff
+20004f38:	e01d      	b.n	20004f76 <ui_cmd_console+0x5e>
 
     res = cfe_getdevinfo(dev);
-20004f02:	6978      	ldr	r0, [r7, #20]
-20004f04:	f7fd fdd2 	bl	20002aac <cfe_getdevinfo>
-20004f08:	6138      	str	r0, [r7, #16]
+20004f3a:	6978      	ldr	r0, [r7, #20]
+20004f3c:	f7fd fdb6 	bl	20002aac <cfe_getdevinfo>
+20004f40:	6138      	str	r0, [r7, #16]
     if (res < 0) {
-20004f0a:	693b      	ldr	r3, [r7, #16]
-20004f0c:	2b00      	cmp	r3, #0
-20004f0e:	da06      	bge.n	20004f1e <ui_cmd_console+0x3e>
+20004f42:	693b      	ldr	r3, [r7, #16]
+20004f44:	2b00      	cmp	r3, #0
+20004f46:	da06      	bge.n	20004f56 <ui_cmd_console+0x3e>
 	printf("Device '%s' is not valid\n",dev);
-20004f10:	6979      	ldr	r1, [r7, #20]
-20004f12:	480d      	ldr	r0, [pc, #52]	@ (20004f48 <ui_cmd_console+0x68>)
-20004f14:	f7fb fe88 	bl	20000c28 <printf>
+20004f48:	6979      	ldr	r1, [r7, #20]
+20004f4a:	480d      	ldr	r0, [pc, #52]	@ (20004f80 <ui_cmd_console+0x68>)
+20004f4c:	f7fb fe6c 	bl	20000c28 <printf>
 	return CFE_ERR_DEVNOTFOUND;
-20004f18:	f06f 0305 	mvn.w	r3, #5
-20004f1c:	e00f      	b.n	20004f3e <ui_cmd_console+0x5e>
+20004f50:	f06f 0305 	mvn.w	r3, #5
+20004f54:	e00f      	b.n	20004f76 <ui_cmd_console+0x5e>
 	}
 
     if ((res & CFE_DEV_MASK) != CFE_DEV_SERIAL) {
-20004f1e:	693b      	ldr	r3, [r7, #16]
-20004f20:	f003 030f 	and.w	r3, r3, #15
-20004f24:	2b04      	cmp	r3, #4
-20004f26:	d006      	beq.n	20004f36 <ui_cmd_console+0x56>
+20004f56:	693b      	ldr	r3, [r7, #16]
+20004f58:	f003 030f 	and.w	r3, r3, #15
+20004f5c:	2b04      	cmp	r3, #4
+20004f5e:	d006      	beq.n	20004f6e <ui_cmd_console+0x56>
 	printf("Device '%s' is not the appropriate type to be a console\n",
-20004f28:	6979      	ldr	r1, [r7, #20]
-20004f2a:	4808      	ldr	r0, [pc, #32]	@ (20004f4c <ui_cmd_console+0x6c>)
-20004f2c:	f7fb fe7c 	bl	20000c28 <printf>
+20004f60:	6979      	ldr	r1, [r7, #20]
+20004f62:	4808      	ldr	r0, [pc, #32]	@ (20004f84 <ui_cmd_console+0x6c>)
+20004f64:	f7fb fe60 	bl	20000c28 <printf>
 		dev);
 	return CFE_ERR_WRONGDEVTYPE;
-20004f30:	f06f 031f 	mvn.w	r3, #31
-20004f34:	e003      	b.n	20004f3e <ui_cmd_console+0x5e>
+20004f68:	f06f 031f 	mvn.w	r3, #31
+20004f6c:	e003      	b.n	20004f76 <ui_cmd_console+0x5e>
 	}
 
     cfe_set_console(dev);
-20004f36:	6978      	ldr	r0, [r7, #20]
-20004f38:	f7fc fd70 	bl	20001a1c <cfe_set_console>
+20004f6e:	6978      	ldr	r0, [r7, #20]
+20004f70:	f7fc fd54 	bl	20001a1c <cfe_set_console>
 
     return 0;
-20004f3c:	2300      	movs	r3, #0
+20004f74:	2300      	movs	r3, #0
 }
-20004f3e:	4618      	mov	r0, r3
-20004f40:	3718      	adds	r7, #24
-20004f42:	46bd      	mov	sp, r7
-20004f44:	bd80      	pop	{r7, pc}
-20004f46:	bf00      	nop
-20004f48:	20005ea8 	.word	0x20005ea8
-20004f4c:	20005ec4 	.word	0x20005ec4
+20004f76:	4618      	mov	r0, r3
+20004f78:	3718      	adds	r7, #24
+20004f7a:	46bd      	mov	sp, r7
+20004f7c:	bd80      	pop	{r7, pc}
+20004f7e:	bf00      	nop
+20004f80:	200061cc 	.word	0x200061cc
+20004f84:	200061e8 	.word	0x200061e8
 
-20004f50 <ui_cmd_display>:
+20004f88 <ui_cmd_display>:
 
 static int ui_cmd_display(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004f50:	b580      	push	{r7, lr}
-20004f52:	b08a      	sub	sp, #40	@ 0x28
-20004f54:	af00      	add	r7, sp, #0
-20004f56:	60f8      	str	r0, [r7, #12]
-20004f58:	60b9      	str	r1, [r7, #8]
-20004f5a:	607a      	str	r2, [r7, #4]
+20004f88:	b580      	push	{r7, lr}
+20004f8a:	b08a      	sub	sp, #40	@ 0x28
+20004f8c:	af00      	add	r7, sp, #0
+20004f8e:	60f8      	str	r0, [r7, #12]
+20004f90:	60b9      	str	r1, [r7, #8]
+20004f92:	607a      	str	r2, [r7, #4]
 
     printf("Printing out Memory Contents:\n");
-20004f5c:	4814      	ldr	r0, [pc, #80]	@ (20004fb0 <ui_cmd_display+0x60>)
-20004f5e:	f7fb febf 	bl	20000ce0 <puts>
+20004f94:	4814      	ldr	r0, [pc, #80]	@ (20004fe8 <ui_cmd_display+0x60>)
+20004f96:	f7fb fea3 	bl	20000ce0 <puts>
     uint32_t address;
     volatile uint32_t *ptr;
     uint32_t value;
 
 
     addr_str = cmd_getarg(cmd, 0);
-20004f62:	2100      	movs	r1, #0
-20004f64:	68f8      	ldr	r0, [r7, #12]
-20004f66:	f7fe fe10 	bl	20003b8a <cmd_getarg>
-20004f6a:	6238      	str	r0, [r7, #32]
+20004f9a:	2100      	movs	r1, #0
+20004f9c:	68f8      	ldr	r0, [r7, #12]
+20004f9e:	f7fe fdf4 	bl	20003b8a <cmd_getarg>
+20004fa2:	6238      	str	r0, [r7, #32]
 
 
     address = atoi(addr_str);
-20004f6c:	6a38      	ldr	r0, [r7, #32]
-20004f6e:	f7fc fa71 	bl	20001454 <lib_atoi>
-20004f72:	4603      	mov	r3, r0
-20004f74:	627b      	str	r3, [r7, #36]	@ 0x24
+20004fa4:	6a38      	ldr	r0, [r7, #32]
+20004fa6:	f7fc fa55 	bl	20001454 <lib_atoi>
+20004faa:	4603      	mov	r3, r0
+20004fac:	627b      	str	r3, [r7, #36]	@ 0x24
 
     volatile uint32_t *ADDRESS_END = (uint32_t *)(address + 0x32);
-20004f76:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-20004f78:	3332      	adds	r3, #50	@ 0x32
-20004f7a:	61fb      	str	r3, [r7, #28]
+20004fae:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+20004fb0:	3332      	adds	r3, #50	@ 0x32
+20004fb2:	61fb      	str	r3, [r7, #28]
 
 	for (address; address <= ADDRESS_END; address= address + 0x4) {
-20004f7c:	e00f      	b.n	20004f9e <ui_cmd_display+0x4e>
+20004fb4:	e00f      	b.n	20004fd6 <ui_cmd_display+0x4e>
 	    ptr = (volatile uint32_t *)address;
-20004f7e:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-20004f80:	61bb      	str	r3, [r7, #24]
+20004fb6:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+20004fb8:	61bb      	str	r3, [r7, #24]
 	    value = *ptr;
-20004f82:	69bb      	ldr	r3, [r7, #24]
-20004f84:	681b      	ldr	r3, [r3, #0]
-20004f86:	617b      	str	r3, [r7, #20]
+20004fba:	69bb      	ldr	r3, [r7, #24]
+20004fbc:	681b      	ldr	r3, [r3, #0]
+20004fbe:	617b      	str	r3, [r7, #20]
 
 		printf("0x%08X", address);
-20004f88:	6a79      	ldr	r1, [r7, #36]	@ 0x24
-20004f8a:	480a      	ldr	r0, [pc, #40]	@ (20004fb4 <ui_cmd_display+0x64>)
-20004f8c:	f7fb fe4c 	bl	20000c28 <printf>
+20004fc0:	6a79      	ldr	r1, [r7, #36]	@ 0x24
+20004fc2:	480a      	ldr	r0, [pc, #40]	@ (20004fec <ui_cmd_display+0x64>)
+20004fc4:	f7fb fe30 	bl	20000c28 <printf>
 		printf("0x%08X\n", value);
-20004f90:	6979      	ldr	r1, [r7, #20]
-20004f92:	4809      	ldr	r0, [pc, #36]	@ (20004fb8 <ui_cmd_display+0x68>)
-20004f94:	f7fb fe48 	bl	20000c28 <printf>
+20004fc8:	6979      	ldr	r1, [r7, #20]
+20004fca:	4809      	ldr	r0, [pc, #36]	@ (20004ff0 <ui_cmd_display+0x68>)
+20004fcc:	f7fb fe2c 	bl	20000c28 <printf>
 	for (address; address <= ADDRESS_END; address= address + 0x4) {
-20004f98:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-20004f9a:	3304      	adds	r3, #4
-20004f9c:	627b      	str	r3, [r7, #36]	@ 0x24
-20004f9e:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-20004fa0:	69fa      	ldr	r2, [r7, #28]
-20004fa2:	429a      	cmp	r2, r3
-20004fa4:	d2eb      	bcs.n	20004f7e <ui_cmd_display+0x2e>
+20004fd0:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+20004fd2:	3304      	adds	r3, #4
+20004fd4:	627b      	str	r3, [r7, #36]	@ 0x24
+20004fd6:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+20004fd8:	69fa      	ldr	r2, [r7, #28]
+20004fda:	429a      	cmp	r2, r3
+20004fdc:	d2eb      	bcs.n	20004fb6 <ui_cmd_display+0x2e>
 	        printf("0x%08X", address);
 	        printf("0x%08X\n", value);
 	    }
 
 */
     return 0;
-20004fa6:	2300      	movs	r3, #0
+20004fde:	2300      	movs	r3, #0
 }
-20004fa8:	4618      	mov	r0, r3
-20004faa:	3728      	adds	r7, #40	@ 0x28
-20004fac:	46bd      	mov	sp, r7
-20004fae:	bd80      	pop	{r7, pc}
-20004fb0:	20005f00 	.word	0x20005f00
-20004fb4:	20005f20 	.word	0x20005f20
-20004fb8:	20005f28 	.word	0x20005f28
+20004fe0:	4618      	mov	r0, r3
+20004fe2:	3728      	adds	r7, #40	@ 0x28
+20004fe4:	46bd      	mov	sp, r7
+20004fe6:	bd80      	pop	{r7, pc}
+20004fe8:	20006224 	.word	0x20006224
+20004fec:	20006244 	.word	0x20006244
+20004ff0:	2000624c 	.word	0x2000624c
 
-20004fbc <ui_cmd_edit>:
+20004ff4 <ui_cmd_edit>:
 
 
 static int ui_cmd_edit(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20004fbc:	b580      	push	{r7, lr}
-20004fbe:	b08a      	sub	sp, #40	@ 0x28
-20004fc0:	af00      	add	r7, sp, #0
-20004fc2:	60f8      	str	r0, [r7, #12]
-20004fc4:	60b9      	str	r1, [r7, #8]
-20004fc6:	607a      	str	r2, [r7, #4]
+20004ff4:	b580      	push	{r7, lr}
+20004ff6:	b08a      	sub	sp, #40	@ 0x28
+20004ff8:	af00      	add	r7, sp, #0
+20004ffa:	60f8      	str	r0, [r7, #12]
+20004ffc:	60b9      	str	r1, [r7, #8]
+20004ffe:	607a      	str	r2, [r7, #4]
 	uint32_t address;
 	volatile uint32_t *ptr;
 	uint32_t value;
 
 
 	addr_str = cmd_getarg(cmd, 0);
-20004fc8:	2100      	movs	r1, #0
-20004fca:	68f8      	ldr	r0, [r7, #12]
-20004fcc:	f7fe fddd 	bl	20003b8a <cmd_getarg>
-20004fd0:	6278      	str	r0, [r7, #36]	@ 0x24
+20005000:	2100      	movs	r1, #0
+20005002:	68f8      	ldr	r0, [r7, #12]
+20005004:	f7fe fdc1 	bl	20003b8a <cmd_getarg>
+20005008:	6278      	str	r0, [r7, #36]	@ 0x24
 	address = atoi(addr_str);
-20004fd2:	6a78      	ldr	r0, [r7, #36]	@ 0x24
-20004fd4:	f7fc fa3e 	bl	20001454 <lib_atoi>
-20004fd8:	4603      	mov	r3, r0
-20004fda:	623b      	str	r3, [r7, #32]
+2000500a:	6a78      	ldr	r0, [r7, #36]	@ 0x24
+2000500c:	f7fc fa22 	bl	20001454 <lib_atoi>
+20005010:	4603      	mov	r3, r0
+20005012:	623b      	str	r3, [r7, #32]
 
 	value_str = cmd_getarg(cmd, 1);
-20004fdc:	2101      	movs	r1, #1
-20004fde:	68f8      	ldr	r0, [r7, #12]
-20004fe0:	f7fe fdd3 	bl	20003b8a <cmd_getarg>
-20004fe4:	61f8      	str	r0, [r7, #28]
+20005014:	2101      	movs	r1, #1
+20005016:	68f8      	ldr	r0, [r7, #12]
+20005018:	f7fe fdb7 	bl	20003b8a <cmd_getarg>
+2000501c:	61f8      	str	r0, [r7, #28]
 	value = atoi(value_str);
-20004fe6:	69f8      	ldr	r0, [r7, #28]
-20004fe8:	f7fc fa34 	bl	20001454 <lib_atoi>
-20004fec:	4603      	mov	r3, r0
-20004fee:	61bb      	str	r3, [r7, #24]
+2000501e:	69f8      	ldr	r0, [r7, #28]
+20005020:	f7fc fa18 	bl	20001454 <lib_atoi>
+20005024:	4603      	mov	r3, r0
+20005026:	61bb      	str	r3, [r7, #24]
 
     ptr = (volatile uint32_t *)address;
-20004ff0:	6a3b      	ldr	r3, [r7, #32]
-20004ff2:	617b      	str	r3, [r7, #20]
+20005028:	6a3b      	ldr	r3, [r7, #32]
+2000502a:	617b      	str	r3, [r7, #20]
     *ptr = value;
-20004ff4:	697b      	ldr	r3, [r7, #20]
-20004ff6:	69ba      	ldr	r2, [r7, #24]
-20004ff8:	601a      	str	r2, [r3, #0]
+2000502c:	697b      	ldr	r3, [r7, #20]
+2000502e:	69ba      	ldr	r2, [r7, #24]
+20005030:	601a      	str	r2, [r3, #0]
 
     printf("new value:");
-20004ffa:	4808      	ldr	r0, [pc, #32]	@ (2000501c <ui_cmd_edit+0x60>)
-20004ffc:	f7fb fe14 	bl	20000c28 <printf>
+20005032:	4808      	ldr	r0, [pc, #32]	@ (20005054 <ui_cmd_edit+0x60>)
+20005034:	f7fb fdf8 	bl	20000c28 <printf>
 
     printf("0x%08X", address);
-20005000:	6a39      	ldr	r1, [r7, #32]
-20005002:	4807      	ldr	r0, [pc, #28]	@ (20005020 <ui_cmd_edit+0x64>)
-20005004:	f7fb fe10 	bl	20000c28 <printf>
+20005038:	6a39      	ldr	r1, [r7, #32]
+2000503a:	4807      	ldr	r0, [pc, #28]	@ (20005058 <ui_cmd_edit+0x64>)
+2000503c:	f7fb fdf4 	bl	20000c28 <printf>
 
     printf("0x%08X\n", value);
-20005008:	69b9      	ldr	r1, [r7, #24]
-2000500a:	4806      	ldr	r0, [pc, #24]	@ (20005024 <ui_cmd_edit+0x68>)
-2000500c:	f7fb fe0c 	bl	20000c28 <printf>
+20005040:	69b9      	ldr	r1, [r7, #24]
+20005042:	4806      	ldr	r0, [pc, #24]	@ (2000505c <ui_cmd_edit+0x68>)
+20005044:	f7fb fdf0 	bl	20000c28 <printf>
 
 
 	return 0;
-20005010:	2300      	movs	r3, #0
+20005048:	2300      	movs	r3, #0
 }
-20005012:	4618      	mov	r0, r3
-20005014:	3728      	adds	r7, #40	@ 0x28
-20005016:	46bd      	mov	sp, r7
-20005018:	bd80      	pop	{r7, pc}
-2000501a:	bf00      	nop
-2000501c:	20005f30 	.word	0x20005f30
-20005020:	20005f20 	.word	0x20005f20
-20005024:	20005f28 	.word	0x20005f28
+2000504a:	4618      	mov	r0, r3
+2000504c:	3728      	adds	r7, #40	@ 0x28
+2000504e:	46bd      	mov	sp, r7
+20005050:	bd80      	pop	{r7, pc}
+20005052:	bf00      	nop
+20005054:	20006254 	.word	0x20006254
+20005058:	20006244 	.word	0x20006244
+2000505c:	2000624c 	.word	0x2000624c
 
-20005028 <ui_cmd_printten>:
+20005060 <ui_cmd_printten>:
 
 static int ui_cmd_printten(ui_cmdline_t *cmd,int argc,char *argv[])
 {
-20005028:	b580      	push	{r7, lr}
-2000502a:	b086      	sub	sp, #24
-2000502c:	af00      	add	r7, sp, #0
-2000502e:	60f8      	str	r0, [r7, #12]
-20005030:	60b9      	str	r1, [r7, #8]
-20005032:	607a      	str	r2, [r7, #4]
+20005060:	b580      	push	{r7, lr}
+20005062:	b086      	sub	sp, #24
+20005064:	af00      	add	r7, sp, #0
+20005066:	60f8      	str	r0, [r7, #12]
+20005068:	60b9      	str	r1, [r7, #8]
+2000506a:	607a      	str	r2, [r7, #4]
 	for(int i = 1; i< 10; i++){
-20005034:	2301      	movs	r3, #1
-20005036:	617b      	str	r3, [r7, #20]
-20005038:	e005      	b.n	20005046 <ui_cmd_printten+0x1e>
+2000506c:	2301      	movs	r3, #1
+2000506e:	617b      	str	r3, [r7, #20]
+20005070:	e005      	b.n	2000507e <ui_cmd_printten+0x1e>
 		printf("hello world");
-2000503a:	4807      	ldr	r0, [pc, #28]	@ (20005058 <ui_cmd_printten+0x30>)
-2000503c:	f7fb fdf4 	bl	20000c28 <printf>
+20005072:	4807      	ldr	r0, [pc, #28]	@ (20005090 <ui_cmd_printten+0x30>)
+20005074:	f7fb fdd8 	bl	20000c28 <printf>
 	for(int i = 1; i< 10; i++){
-20005040:	697b      	ldr	r3, [r7, #20]
-20005042:	3301      	adds	r3, #1
-20005044:	617b      	str	r3, [r7, #20]
-20005046:	697b      	ldr	r3, [r7, #20]
-20005048:	2b09      	cmp	r3, #9
-2000504a:	ddf6      	ble.n	2000503a <ui_cmd_printten+0x12>
+20005078:	697b      	ldr	r3, [r7, #20]
+2000507a:	3301      	adds	r3, #1
+2000507c:	617b      	str	r3, [r7, #20]
+2000507e:	697b      	ldr	r3, [r7, #20]
+20005080:	2b09      	cmp	r3, #9
+20005082:	ddf6      	ble.n	20005072 <ui_cmd_printten+0x12>
 	}
 	return 0;
-2000504c:	2300      	movs	r3, #0
+20005084:	2300      	movs	r3, #0
 }
-2000504e:	4618      	mov	r0, r3
-20005050:	3718      	adds	r7, #24
-20005052:	46bd      	mov	sp, r7
-20005054:	bd80      	pop	{r7, pc}
-20005056:	bf00      	nop
-20005058:	20005f3c 	.word	0x20005f3c
+20005086:	4618      	mov	r0, r3
+20005088:	3718      	adds	r7, #24
+2000508a:	46bd      	mov	sp, r7
+2000508c:	bd80      	pop	{r7, pc}
+2000508e:	bf00      	nop
+20005090:	20006260 	.word	0x20006260
 
-2000505c <LED_Init>:
+20005094 <LED_Init>:
 
 #define PWR_BASE 0x40007000
 
 
 
 void LED_Init(void) {
-2000505c:	b480      	push	{r7}
-2000505e:	b083      	sub	sp, #12
-20005060:	af00      	add	r7, sp, #0
+20005094:	b480      	push	{r7}
+20005096:	b083      	sub	sp, #12
+20005098:	af00      	add	r7, sp, #0
 
     *(volatile uint32_t *)(0x40007004) = 0x200;
-20005062:	4b0e      	ldr	r3, [pc, #56]	@ (2000509c <LED_Init+0x40>)
-20005064:	f44f 7200 	mov.w	r2, #512	@ 0x200
-20005068:	601a      	str	r2, [r3, #0]
+2000509a:	4b0e      	ldr	r3, [pc, #56]	@ (200050d4 <LED_Init+0x40>)
+2000509c:	f44f 7200 	mov.w	r2, #512	@ 0x200
+200050a0:	601a      	str	r2, [r3, #0]
 
     volatile uint32_t *RCC_AHB2ENR = (uint32_t *)(0x40021000 + 0x4C);
-2000506a:	4b0d      	ldr	r3, [pc, #52]	@ (200050a0 <LED_Init+0x44>)
-2000506c:	607b      	str	r3, [r7, #4]
+200050a2:	4b0d      	ldr	r3, [pc, #52]	@ (200050d8 <LED_Init+0x44>)
+200050a4:	607b      	str	r3, [r7, #4]
     *RCC_AHB2ENR = 0xf;
-2000506e:	687b      	ldr	r3, [r7, #4]
-20005070:	220f      	movs	r2, #15
-20005072:	601a      	str	r2, [r3, #0]
+200050a6:	687b      	ldr	r3, [r7, #4]
+200050a8:	220f      	movs	r2, #15
+200050aa:	601a      	str	r2, [r3, #0]
 
 
     volatile uint32_t *RCC_APB1ENR1 = (uint32_t *)(0x40021000 + 0x58);
-20005074:	4b0b      	ldr	r3, [pc, #44]	@ (200050a4 <LED_Init+0x48>)
-20005076:	603b      	str	r3, [r7, #0]
+200050ac:	4b0b      	ldr	r3, [pc, #44]	@ (200050dc <LED_Init+0x48>)
+200050ae:	603b      	str	r3, [r7, #0]
     *RCC_APB1ENR1 |= (1 << 28);
-20005078:	683b      	ldr	r3, [r7, #0]
-2000507a:	681b      	ldr	r3, [r3, #0]
-2000507c:	f043 5280 	orr.w	r2, r3, #268435456	@ 0x10000000
-20005080:	683b      	ldr	r3, [r7, #0]
-20005082:	601a      	str	r2, [r3, #0]
+200050b0:	683b      	ldr	r3, [r7, #0]
+200050b2:	681b      	ldr	r3, [r3, #0]
+200050b4:	f043 5280 	orr.w	r2, r3, #268435456	@ 0x10000000
+200050b8:	683b      	ldr	r3, [r7, #0]
+200050ba:	601a      	str	r2, [r3, #0]
 
 
     *(volatile uint32_t *)(GPIOC_BASE) = 0x4; // turn on
-20005084:	4b08      	ldr	r3, [pc, #32]	@ (200050a8 <LED_Init+0x4c>)
-20005086:	2204      	movs	r2, #4
-20005088:	601a      	str	r2, [r3, #0]
+200050bc:	4b08      	ldr	r3, [pc, #32]	@ (200050e0 <LED_Init+0x4c>)
+200050be:	2204      	movs	r2, #4
+200050c0:	601a      	str	r2, [r3, #0]
 
 
     *(volatile uint32_t *)(GPIOC_BASE + 0x14) = 0x0; // turn off
-2000508a:	4b08      	ldr	r3, [pc, #32]	@ (200050ac <LED_Init+0x50>)
-2000508c:	2200      	movs	r2, #0
-2000508e:	601a      	str	r2, [r3, #0]
+200050c2:	4b08      	ldr	r3, [pc, #32]	@ (200050e4 <LED_Init+0x50>)
+200050c4:	2200      	movs	r2, #0
+200050c6:	601a      	str	r2, [r3, #0]
 }
-20005090:	bf00      	nop
-20005092:	370c      	adds	r7, #12
-20005094:	46bd      	mov	sp, r7
-20005096:	f85d 7b04 	ldr.w	r7, [sp], #4
-2000509a:	4770      	bx	lr
-2000509c:	40007004 	.word	0x40007004
-200050a0:	4002104c 	.word	0x4002104c
-200050a4:	40021058 	.word	0x40021058
-200050a8:	48000800 	.word	0x48000800
-200050ac:	48000814 	.word	0x48000814
+200050c8:	bf00      	nop
+200050ca:	370c      	adds	r7, #12
+200050cc:	46bd      	mov	sp, r7
+200050ce:	f85d 7b04 	ldr.w	r7, [sp], #4
+200050d2:	4770      	bx	lr
+200050d4:	40007004 	.word	0x40007004
+200050d8:	4002104c 	.word	0x4002104c
+200050dc:	40021058 	.word	0x40021058
+200050e0:	48000800 	.word	0x48000800
+200050e4:	48000814 	.word	0x48000814
 
-200050b0 <ui_cmd_LED>:
+200050e8 <ui_cmd_LED>:
 
 static int ui_cmd_LED(ui_cmdline_t *cmd, int argc, char *argv[])
 {
-200050b0:	b580      	push	{r7, lr}
-200050b2:	b088      	sub	sp, #32
-200050b4:	af00      	add	r7, sp, #0
-200050b6:	60f8      	str	r0, [r7, #12]
-200050b8:	60b9      	str	r1, [r7, #8]
-200050ba:	607a      	str	r2, [r7, #4]
+200050e8:	b580      	push	{r7, lr}
+200050ea:	b088      	sub	sp, #32
+200050ec:	af00      	add	r7, sp, #0
+200050ee:	60f8      	str	r0, [r7, #12]
+200050f0:	60b9      	str	r1, [r7, #8]
+200050f2:	607a      	str	r2, [r7, #4]
     char *state_str;
     int state;
 
     state_str = cmd_getarg(cmd, 0);
-200050bc:	2100      	movs	r1, #0
-200050be:	68f8      	ldr	r0, [r7, #12]
-200050c0:	f7fe fd63 	bl	20003b8a <cmd_getarg>
-200050c4:	61f8      	str	r0, [r7, #28]
+200050f4:	2100      	movs	r1, #0
+200050f6:	68f8      	ldr	r0, [r7, #12]
+200050f8:	f7fe fd47 	bl	20003b8a <cmd_getarg>
+200050fc:	61f8      	str	r0, [r7, #28]
     state = atoi(state_str);
-200050c6:	69f8      	ldr	r0, [r7, #28]
-200050c8:	f7fc f9c4 	bl	20001454 <lib_atoi>
-200050cc:	61b8      	str	r0, [r7, #24]
+200050fe:	69f8      	ldr	r0, [r7, #28]
+20005100:	f7fc f9a8 	bl	20001454 <lib_atoi>
+20005104:	61b8      	str	r0, [r7, #24]
 
     LED_Init();
-200050ce:	f7ff ffc5 	bl	2000505c <LED_Init>
+20005106:	f7ff ffc5 	bl	20005094 <LED_Init>
     volatile uint32_t *GPIOC_ODR = (uint32_t *)(GPIOC_BASE + 0x14);
-200050d2:	4b0f      	ldr	r3, [pc, #60]	@ (20005110 <ui_cmd_LED+0x60>)
-200050d4:	617b      	str	r3, [r7, #20]
+2000510a:	4b0f      	ldr	r3, [pc, #60]	@ (20005148 <ui_cmd_LED+0x60>)
+2000510c:	617b      	str	r3, [r7, #20]
 
     if (state == 0) {
-200050d6:	69bb      	ldr	r3, [r7, #24]
-200050d8:	2b00      	cmp	r3, #0
-200050da:	d108      	bne.n	200050ee <ui_cmd_LED+0x3e>
+2000510e:	69bb      	ldr	r3, [r7, #24]
+20005110:	2b00      	cmp	r3, #0
+20005112:	d108      	bne.n	20005126 <ui_cmd_LED+0x3e>
 
         *GPIOC_ODR |= (1 << 1);
-200050dc:	697b      	ldr	r3, [r7, #20]
-200050de:	681b      	ldr	r3, [r3, #0]
-200050e0:	f043 0202 	orr.w	r2, r3, #2
-200050e4:	697b      	ldr	r3, [r7, #20]
-200050e6:	601a      	str	r2, [r3, #0]
+20005114:	697b      	ldr	r3, [r7, #20]
+20005116:	681b      	ldr	r3, [r3, #0]
+20005118:	f043 0202 	orr.w	r2, r3, #2
+2000511c:	697b      	ldr	r3, [r7, #20]
+2000511e:	601a      	str	r2, [r3, #0]
         printf("LED is OFF\n");
-200050e8:	480a      	ldr	r0, [pc, #40]	@ (20005114 <ui_cmd_LED+0x64>)
-200050ea:	f7fb fdf9 	bl	20000ce0 <puts>
+20005120:	480a      	ldr	r0, [pc, #40]	@ (2000514c <ui_cmd_LED+0x64>)
+20005122:	f7fb fddd 	bl	20000ce0 <puts>
     }
     if (state == 1) {
-200050ee:	69bb      	ldr	r3, [r7, #24]
-200050f0:	2b01      	cmp	r3, #1
-200050f2:	d108      	bne.n	20005106 <ui_cmd_LED+0x56>
+20005126:	69bb      	ldr	r3, [r7, #24]
+20005128:	2b01      	cmp	r3, #1
+2000512a:	d108      	bne.n	2000513e <ui_cmd_LED+0x56>
 
         *GPIOC_ODR &= ~(1 << 1);
-200050f4:	697b      	ldr	r3, [r7, #20]
-200050f6:	681b      	ldr	r3, [r3, #0]
-200050f8:	f023 0202 	bic.w	r2, r3, #2
-200050fc:	697b      	ldr	r3, [r7, #20]
-200050fe:	601a      	str	r2, [r3, #0]
+2000512c:	697b      	ldr	r3, [r7, #20]
+2000512e:	681b      	ldr	r3, [r3, #0]
+20005130:	f023 0202 	bic.w	r2, r3, #2
+20005134:	697b      	ldr	r3, [r7, #20]
+20005136:	601a      	str	r2, [r3, #0]
         printf("LED is ON\n");
-20005100:	4805      	ldr	r0, [pc, #20]	@ (20005118 <ui_cmd_LED+0x68>)
-20005102:	f7fb fded 	bl	20000ce0 <puts>
+20005138:	4805      	ldr	r0, [pc, #20]	@ (20005150 <ui_cmd_LED+0x68>)
+2000513a:	f7fb fdd1 	bl	20000ce0 <puts>
     }
 
     return 0;
-20005106:	2300      	movs	r3, #0
+2000513e:	2300      	movs	r3, #0
 }
-20005108:	4618      	mov	r0, r3
-2000510a:	3720      	adds	r7, #32
-2000510c:	46bd      	mov	sp, r7
-2000510e:	bd80      	pop	{r7, pc}
-20005110:	48000814 	.word	0x48000814
-20005114:	20005f48 	.word	0x20005f48
-20005118:	20005f54 	.word	0x20005f54
+20005140:	4618      	mov	r0, r3
+20005142:	3720      	adds	r7, #32
+20005144:	46bd      	mov	sp, r7
+20005146:	bd80      	pop	{r7, pc}
+20005148:	48000814 	.word	0x48000814
+2000514c:	2000626c 	.word	0x2000626c
+20005150:	20006278 	.word	0x20006278
 
-2000511c <LEDB_Init>:
+20005154 <LEDG_Init>:
 
-void LEDB_Init(void) {
-2000511c:	b480      	push	{r7}
-2000511e:	b083      	sub	sp, #12
-20005120:	af00      	add	r7, sp, #0
+void LEDG_Init(void) {
+20005154:	b480      	push	{r7}
+20005156:	b083      	sub	sp, #12
+20005158:	af00      	add	r7, sp, #0
 
     *(volatile uint32_t *)(0x40007004) = 0x200;
-20005122:	4b10      	ldr	r3, [pc, #64]	@ (20005164 <LEDB_Init+0x48>)
-20005124:	f44f 7200 	mov.w	r2, #512	@ 0x200
-20005128:	601a      	str	r2, [r3, #0]
+2000515a:	4b10      	ldr	r3, [pc, #64]	@ (2000519c <LEDG_Init+0x48>)
+2000515c:	f44f 7200 	mov.w	r2, #512	@ 0x200
+20005160:	601a      	str	r2, [r3, #0]
 
     volatile uint32_t *RCC_AHB2ENR = (uint32_t *)(0x40021000 + 0x4C);
-2000512a:	4b0f      	ldr	r3, [pc, #60]	@ (20005168 <LEDB_Init+0x4c>)
-2000512c:	607b      	str	r3, [r7, #4]
+20005162:	4b0f      	ldr	r3, [pc, #60]	@ (200051a0 <LEDG_Init+0x4c>)
+20005164:	607b      	str	r3, [r7, #4]
     *RCC_AHB2ENR = 0xf;
-2000512e:	687b      	ldr	r3, [r7, #4]
-20005130:	220f      	movs	r2, #15
-20005132:	601a      	str	r2, [r3, #0]
+20005166:	687b      	ldr	r3, [r7, #4]
+20005168:	220f      	movs	r2, #15
+2000516a:	601a      	str	r2, [r3, #0]
 
     volatile uint32_t *RCC_APB1ENR1 = (uint32_t *)(0x40021000 + 0x58);
-20005134:	4b0d      	ldr	r3, [pc, #52]	@ (2000516c <LEDB_Init+0x50>)
-20005136:	603b      	str	r3, [r7, #0]
+2000516c:	4b0d      	ldr	r3, [pc, #52]	@ (200051a4 <LEDG_Init+0x50>)
+2000516e:	603b      	str	r3, [r7, #0]
     *RCC_APB1ENR1 |= (1 << 28);
-20005138:	683b      	ldr	r3, [r7, #0]
-2000513a:	681b      	ldr	r3, [r3, #0]
-2000513c:	f043 5280 	orr.w	r2, r3, #268435456	@ 0x10000000
-20005140:	683b      	ldr	r3, [r7, #0]
-20005142:	601a      	str	r2, [r3, #0]
+20005170:	683b      	ldr	r3, [r7, #0]
+20005172:	681b      	ldr	r3, [r3, #0]
+20005174:	f043 5280 	orr.w	r2, r3, #268435456	@ 0x10000000
+20005178:	683b      	ldr	r3, [r7, #0]
+2000517a:	601a      	str	r2, [r3, #0]
 
 
     *(volatile uint32_t *)(GPIOB_BASE + 0)  |= 0x10; //
-20005144:	4b0a      	ldr	r3, [pc, #40]	@ (20005170 <LEDB_Init+0x54>)
-20005146:	681b      	ldr	r3, [r3, #0]
-20005148:	4a09      	ldr	r2, [pc, #36]	@ (20005170 <LEDB_Init+0x54>)
-2000514a:	f043 0310 	orr.w	r3, r3, #16
-2000514e:	6013      	str	r3, [r2, #0]
+2000517c:	4b0a      	ldr	r3, [pc, #40]	@ (200051a8 <LEDG_Init+0x54>)
+2000517e:	681b      	ldr	r3, [r3, #0]
+20005180:	4a09      	ldr	r2, [pc, #36]	@ (200051a8 <LEDG_Init+0x54>)
+20005182:	f043 0310 	orr.w	r3, r3, #16
+20005186:	6013      	str	r3, [r2, #0]
 
     *(volatile uint32_t *)(GPIOB_BASE + 0x14) = 0x0;
-20005150:	4b08      	ldr	r3, [pc, #32]	@ (20005174 <LEDB_Init+0x58>)
-20005152:	2200      	movs	r2, #0
-20005154:	601a      	str	r2, [r3, #0]
+20005188:	4b08      	ldr	r3, [pc, #32]	@ (200051ac <LEDG_Init+0x58>)
+2000518a:	2200      	movs	r2, #0
+2000518c:	601a      	str	r2, [r3, #0]
 }
-20005156:	bf00      	nop
-20005158:	370c      	adds	r7, #12
-2000515a:	46bd      	mov	sp, r7
-2000515c:	f85d 7b04 	ldr.w	r7, [sp], #4
-20005160:	4770      	bx	lr
-20005162:	bf00      	nop
-20005164:	40007004 	.word	0x40007004
-20005168:	4002104c 	.word	0x4002104c
-2000516c:	40021058 	.word	0x40021058
-20005170:	48000400 	.word	0x48000400
-20005174:	48000414 	.word	0x48000414
+2000518e:	bf00      	nop
+20005190:	370c      	adds	r7, #12
+20005192:	46bd      	mov	sp, r7
+20005194:	f85d 7b04 	ldr.w	r7, [sp], #4
+20005198:	4770      	bx	lr
+2000519a:	bf00      	nop
+2000519c:	40007004 	.word	0x40007004
+200051a0:	4002104c 	.word	0x4002104c
+200051a4:	40021058 	.word	0x40021058
+200051a8:	48000400 	.word	0x48000400
+200051ac:	48000414 	.word	0x48000414
 
-20005178 <ui_cmd_LEDB>:
+200051b0 <ui_cmd_LEDG>:
 
 
-static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
-20005178:	b580      	push	{r7, lr}
-2000517a:	b088      	sub	sp, #32
-2000517c:	af00      	add	r7, sp, #0
-2000517e:	60f8      	str	r0, [r7, #12]
-20005180:	60b9      	str	r1, [r7, #8]
-20005182:	607a      	str	r2, [r7, #4]
+static int ui_cmd_LEDG(ui_cmdline_t *cmd, int argc, char *argv[]) {
+200051b0:	b580      	push	{r7, lr}
+200051b2:	b088      	sub	sp, #32
+200051b4:	af00      	add	r7, sp, #0
+200051b6:	60f8      	str	r0, [r7, #12]
+200051b8:	60b9      	str	r1, [r7, #8]
+200051ba:	607a      	str	r2, [r7, #4]
     char *state_str;
     int state;
 
     state_str = cmd_getarg(cmd, 0);
-20005184:	2100      	movs	r1, #0
-20005186:	68f8      	ldr	r0, [r7, #12]
-20005188:	f7fe fcff 	bl	20003b8a <cmd_getarg>
-2000518c:	61f8      	str	r0, [r7, #28]
+200051bc:	2100      	movs	r1, #0
+200051be:	68f8      	ldr	r0, [r7, #12]
+200051c0:	f7fe fce3 	bl	20003b8a <cmd_getarg>
+200051c4:	61f8      	str	r0, [r7, #28]
     state = atoi(state_str);
-2000518e:	69f8      	ldr	r0, [r7, #28]
-20005190:	f7fc f960 	bl	20001454 <lib_atoi>
-20005194:	61b8      	str	r0, [r7, #24]
+200051c6:	69f8      	ldr	r0, [r7, #28]
+200051c8:	f7fc f944 	bl	20001454 <lib_atoi>
+200051cc:	61b8      	str	r0, [r7, #24]
 
-    LEDB_Init();
-20005196:	f7ff ffc1 	bl	2000511c <LEDB_Init>
+    LEDG_Init();
+200051ce:	f7ff ffc1 	bl	20005154 <LEDG_Init>
     volatile uint32_t *GPIOB_ODR = (uint32_t *)(GPIOB_BASE + 0x14);
-2000519a:	4b0f      	ldr	r3, [pc, #60]	@ (200051d8 <ui_cmd_LEDB+0x60>)
-2000519c:	617b      	str	r3, [r7, #20]
+200051d2:	4b0f      	ldr	r3, [pc, #60]	@ (20005210 <ui_cmd_LEDG+0x60>)
+200051d4:	617b      	str	r3, [r7, #20]
 
     if (state == 0) {
-2000519e:	69bb      	ldr	r3, [r7, #24]
-200051a0:	2b00      	cmp	r3, #0
-200051a2:	d108      	bne.n	200051b6 <ui_cmd_LEDB+0x3e>
+200051d6:	69bb      	ldr	r3, [r7, #24]
+200051d8:	2b00      	cmp	r3, #0
+200051da:	d108      	bne.n	200051ee <ui_cmd_LEDG+0x3e>
         *GPIOB_ODR |= (1 << 2);
-200051a4:	697b      	ldr	r3, [r7, #20]
-200051a6:	681b      	ldr	r3, [r3, #0]
-200051a8:	f043 0204 	orr.w	r2, r3, #4
-200051ac:	697b      	ldr	r3, [r7, #20]
-200051ae:	601a      	str	r2, [r3, #0]
+200051dc:	697b      	ldr	r3, [r7, #20]
+200051de:	681b      	ldr	r3, [r3, #0]
+200051e0:	f043 0204 	orr.w	r2, r3, #4
+200051e4:	697b      	ldr	r3, [r7, #20]
+200051e6:	601a      	str	r2, [r3, #0]
         printf("LED1 is OFF\n");
-200051b0:	480a      	ldr	r0, [pc, #40]	@ (200051dc <ui_cmd_LEDB+0x64>)
-200051b2:	f7fb fd95 	bl	20000ce0 <puts>
+200051e8:	480a      	ldr	r0, [pc, #40]	@ (20005214 <ui_cmd_LEDG+0x64>)
+200051ea:	f7fb fd79 	bl	20000ce0 <puts>
     }
     if (state == 1) {
-200051b6:	69bb      	ldr	r3, [r7, #24]
-200051b8:	2b01      	cmp	r3, #1
-200051ba:	d108      	bne.n	200051ce <ui_cmd_LEDB+0x56>
+200051ee:	69bb      	ldr	r3, [r7, #24]
+200051f0:	2b01      	cmp	r3, #1
+200051f2:	d108      	bne.n	20005206 <ui_cmd_LEDG+0x56>
         *GPIOB_ODR &= ~(1 << 2);
-200051bc:	697b      	ldr	r3, [r7, #20]
-200051be:	681b      	ldr	r3, [r3, #0]
-200051c0:	f023 0204 	bic.w	r2, r3, #4
-200051c4:	697b      	ldr	r3, [r7, #20]
-200051c6:	601a      	str	r2, [r3, #0]
+200051f4:	697b      	ldr	r3, [r7, #20]
+200051f6:	681b      	ldr	r3, [r3, #0]
+200051f8:	f023 0204 	bic.w	r2, r3, #4
+200051fc:	697b      	ldr	r3, [r7, #20]
+200051fe:	601a      	str	r2, [r3, #0]
         printf("LED1 is ON\n");
-200051c8:	4805      	ldr	r0, [pc, #20]	@ (200051e0 <ui_cmd_LEDB+0x68>)
-200051ca:	f7fb fd89 	bl	20000ce0 <puts>
+20005200:	4805      	ldr	r0, [pc, #20]	@ (20005218 <ui_cmd_LEDG+0x68>)
+20005202:	f7fb fd6d 	bl	20000ce0 <puts>
     }
 
     return 0;
-200051ce:	2300      	movs	r3, #0
+20005206:	2300      	movs	r3, #0
 }
-200051d0:	4618      	mov	r0, r3
-200051d2:	3720      	adds	r7, #32
-200051d4:	46bd      	mov	sp, r7
-200051d6:	bd80      	pop	{r7, pc}
-200051d8:	48000414 	.word	0x48000414
-200051dc:	20005f60 	.word	0x20005f60
-200051e0:	20005f6c 	.word	0x20005f6c
+20005208:	4618      	mov	r0, r3
+2000520a:	3720      	adds	r7, #32
+2000520c:	46bd      	mov	sp, r7
+2000520e:	bd80      	pop	{r7, pc}
+20005210:	48000414 	.word	0x48000414
+20005214:	20006284 	.word	0x20006284
+20005218:	20006290 	.word	0x20006290
 
-200051e4 <ui_cmd_I2C>:
+2000521c <ui_cmd_I2C>:
 
 
 static int ui_cmd_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 {
-200051e4:	b580      	push	{r7, lr}
-200051e6:	b088      	sub	sp, #32
-200051e8:	af00      	add	r7, sp, #0
-200051ea:	60f8      	str	r0, [r7, #12]
-200051ec:	60b9      	str	r1, [r7, #8]
-200051ee:	607a      	str	r2, [r7, #4]
+2000521c:	b580      	push	{r7, lr}
+2000521e:	b088      	sub	sp, #32
+20005220:	af00      	add	r7, sp, #0
+20005222:	60f8      	str	r0, [r7, #12]
+20005224:	60b9      	str	r1, [r7, #8]
+20005226:	607a      	str	r2, [r7, #4]
 
     *(volatile uint32_t *)(0x40021060) = 0x4001; // __HAL_RCC_SYSCFG_CLK_ENABLE();
-200051f0:	4b59      	ldr	r3, [pc, #356]	@ (20005358 <ui_cmd_I2C+0x174>)
-200051f2:	f244 0201 	movw	r2, #16385	@ 0x4001
-200051f6:	601a      	str	r2, [r3, #0]
+20005228:	4b59      	ldr	r3, [pc, #356]	@ (20005390 <ui_cmd_I2C+0x174>)
+2000522a:	f244 0201 	movw	r2, #16385	@ 0x4001
+2000522e:	601a      	str	r2, [r3, #0]
 
     *(volatile uint32_t *)(0x40021058) = 0x10000000;//__HAL_RCC_PWR_CLK_ENABLE();
-200051f8:	4b58      	ldr	r3, [pc, #352]	@ (2000535c <ui_cmd_I2C+0x178>)
-200051fa:	f04f 5280 	mov.w	r2, #268435456	@ 0x10000000
-200051fe:	601a      	str	r2, [r3, #0]
+20005230:	4b58      	ldr	r3, [pc, #352]	@ (20005394 <ui_cmd_I2C+0x178>)
+20005232:	f04f 5280 	mov.w	r2, #268435456	@ 0x10000000
+20005236:	601a      	str	r2, [r3, #0]
 
 
 	*(volatile uint32_t *)(0x40021088) = 0; //RCC i2c clock selection
-20005200:	4b57      	ldr	r3, [pc, #348]	@ (20005360 <ui_cmd_I2C+0x17c>)
-20005202:	2200      	movs	r2, #0
-20005204:	601a      	str	r2, [r3, #0]
+20005238:	4b57      	ldr	r3, [pc, #348]	@ (20005398 <ui_cmd_I2C+0x17c>)
+2000523a:	2200      	movs	r2, #0
+2000523c:	601a      	str	r2, [r3, #0]
 
     *(volatile uint32_t *)(0x40007004) = 0x200;   // PWR_CR2 enable
-20005206:	4b57      	ldr	r3, [pc, #348]	@ (20005364 <ui_cmd_I2C+0x180>)
-20005208:	f44f 7200 	mov.w	r2, #512	@ 0x200
-2000520c:	601a      	str	r2, [r3, #0]
+2000523e:	4b57      	ldr	r3, [pc, #348]	@ (2000539c <ui_cmd_I2C+0x180>)
+20005240:	f44f 7200 	mov.w	r2, #512	@ 0x200
+20005244:	601a      	str	r2, [r3, #0]
 
     *(volatile uint32_t *)(0x4002104C) = 0x20ff;    // GPIOG_CLK_ENABLE
-2000520e:	4b56      	ldr	r3, [pc, #344]	@ (20005368 <ui_cmd_I2C+0x184>)
-20005210:	f242 02ff 	movw	r2, #8447	@ 0x20ff
-20005214:	601a      	str	r2, [r3, #0]
+20005246:	4b56      	ldr	r3, [pc, #344]	@ (200053a0 <ui_cmd_I2C+0x184>)
+20005248:	f242 02ff 	movw	r2, #8447	@ 0x20ff
+2000524c:	601a      	str	r2, [r3, #0]
 
     *(volatile uint32_t *)(0x40021058) = 0x32200000;
-20005216:	4b51      	ldr	r3, [pc, #324]	@ (2000535c <ui_cmd_I2C+0x178>)
-20005218:	4a54      	ldr	r2, [pc, #336]	@ (2000536c <ui_cmd_I2C+0x188>)
-2000521a:	601a      	str	r2, [r3, #0]
+2000524e:	4b51      	ldr	r3, [pc, #324]	@ (20005394 <ui_cmd_I2C+0x178>)
+20005250:	4a54      	ldr	r2, [pc, #336]	@ (200053a4 <ui_cmd_I2C+0x188>)
+20005252:	601a      	str	r2, [r3, #0]
 
 
     *(volatile uint32_t *)(0x48001808) = 0xc3c0fff; //GPIOx_OSPEEDR
-2000521c:	4b54      	ldr	r3, [pc, #336]	@ (20005370 <ui_cmd_I2C+0x18c>)
-2000521e:	4a55      	ldr	r2, [pc, #340]	@ (20005374 <ui_cmd_I2C+0x190>)
-20005220:	601a      	str	r2, [r3, #0]
+20005254:	4b54      	ldr	r3, [pc, #336]	@ (200053a8 <ui_cmd_I2C+0x18c>)
+20005256:	4a55      	ldr	r2, [pc, #340]	@ (200053ac <ui_cmd_I2C+0x190>)
+20005258:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x48001804) = 0x2000; //GPIO port output type register (GPIOx_OTYPER)
-20005222:	4b55      	ldr	r3, [pc, #340]	@ (20005378 <ui_cmd_I2C+0x194>)
-20005224:	f44f 5200 	mov.w	r2, #8192	@ 0x2000
-20005228:	601a      	str	r2, [r3, #0]
+2000525a:	4b55      	ldr	r3, [pc, #340]	@ (200053b0 <ui_cmd_I2C+0x194>)
+2000525c:	f44f 5200 	mov.w	r2, #8192	@ 0x2000
+20005260:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x4800180C) = 0x4000000; //GPIOG_PUPDR
-2000522a:	4b54      	ldr	r3, [pc, #336]	@ (2000537c <ui_cmd_I2C+0x198>)
-2000522c:	f04f 6280 	mov.w	r2, #67108864	@ 0x4000000
-20005230:	601a      	str	r2, [r3, #0]
+20005262:	4b54      	ldr	r3, [pc, #336]	@ (200053b4 <ui_cmd_I2C+0x198>)
+20005264:	f04f 6280 	mov.w	r2, #67108864	@ 0x4000000
+20005268:	601a      	str	r2, [r3, #0]
 
     *(volatile uint32_t *)(0x48001824) = 0x400cc0;// Configure Alternate function mapped with the current IO
-20005232:	4b53      	ldr	r3, [pc, #332]	@ (20005380 <ui_cmd_I2C+0x19c>)
-20005234:	4a53      	ldr	r2, [pc, #332]	@ (20005384 <ui_cmd_I2C+0x1a0>)
-20005236:	601a      	str	r2, [r3, #0]
+2000526a:	4b53      	ldr	r3, [pc, #332]	@ (200053b8 <ui_cmd_I2C+0x19c>)
+2000526c:	4a53      	ldr	r2, [pc, #332]	@ (200053bc <ui_cmd_I2C+0x1a0>)
+2000526e:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x48001800) = 0x3bebcaaa; // Configure IO Direction mode (Input, Output, Alternate or Analog)
-20005238:	4b53      	ldr	r3, [pc, #332]	@ (20005388 <ui_cmd_I2C+0x1a4>)
-2000523a:	4a54      	ldr	r2, [pc, #336]	@ (2000538c <ui_cmd_I2C+0x1a8>)
-2000523c:	601a      	str	r2, [r3, #0]
+20005270:	4b53      	ldr	r3, [pc, #332]	@ (200053c0 <ui_cmd_I2C+0x1a4>)
+20005272:	4a54      	ldr	r2, [pc, #336]	@ (200053c4 <ui_cmd_I2C+0x1a8>)
+20005274:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff;  // Configure the IO Speed */
-2000523e:	4b4c      	ldr	r3, [pc, #304]	@ (20005370 <ui_cmd_I2C+0x18c>)
-20005240:	4a53      	ldr	r2, [pc, #332]	@ (20005390 <ui_cmd_I2C+0x1ac>)
-20005242:	601a      	str	r2, [r3, #0]
+20005276:	4b4c      	ldr	r3, [pc, #304]	@ (200053a8 <ui_cmd_I2C+0x18c>)
+20005278:	4a53      	ldr	r2, [pc, #332]	@ (200053c8 <ui_cmd_I2C+0x1ac>)
+2000527a:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
-20005244:	4b4c      	ldr	r3, [pc, #304]	@ (20005378 <ui_cmd_I2C+0x194>)
-20005246:	f44f 42c0 	mov.w	r2, #24576	@ 0x6000
-2000524a:	601a      	str	r2, [r3, #0]
+2000527c:	4b4c      	ldr	r3, [pc, #304]	@ (200053b0 <ui_cmd_I2C+0x194>)
+2000527e:	f44f 42c0 	mov.w	r2, #24576	@ 0x6000
+20005282:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x4800082C) = 0x4000000; // activate pull up or pull down GPIO_PUPDR
-2000524c:	4b51      	ldr	r3, [pc, #324]	@ (20005394 <ui_cmd_I2C+0x1b0>)
-2000524e:	f04f 6280 	mov.w	r2, #67108864	@ 0x4000000
-20005252:	601a      	str	r2, [r3, #0]
-
+20005284:	4b51      	ldr	r3, [pc, #324]	@ (200053cc <ui_cmd_I2C+0x1b0>)
+20005286:	f04f 6280 	mov.w	r2, #67108864	@ 0x4000000
+2000528a:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x48001824) = 0x4400cc0;// Configure Alternate function mapped with the current IO
-20005254:	4b4a      	ldr	r3, [pc, #296]	@ (20005380 <ui_cmd_I2C+0x19c>)
-20005256:	4a50      	ldr	r2, [pc, #320]	@ (20005398 <ui_cmd_I2C+0x1b4>)
-20005258:	601a      	str	r2, [r3, #0]
+2000528c:	4b4a      	ldr	r3, [pc, #296]	@ (200053b8 <ui_cmd_I2C+0x19c>)
+2000528e:	4a50      	ldr	r2, [pc, #320]	@ (200053d0 <ui_cmd_I2C+0x1b4>)
+20005290:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x48001800) = 0x2bebcaaa; // Configure IO Direction mode (Input, Output, Alternate or Analog)
-2000525a:	4b4b      	ldr	r3, [pc, #300]	@ (20005388 <ui_cmd_I2C+0x1a4>)
-2000525c:	4a4f      	ldr	r2, [pc, #316]	@ (2000539c <ui_cmd_I2C+0x1b8>)
-2000525e:	601a      	str	r2, [r3, #0]
-
+20005292:	4b4b      	ldr	r3, [pc, #300]	@ (200053c0 <ui_cmd_I2C+0x1a4>)
+20005294:	4a4f      	ldr	r2, [pc, #316]	@ (200053d4 <ui_cmd_I2C+0x1b8>)
+20005296:	601a      	str	r2, [r3, #0]
 
     *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff;  /* Configure the IO Speed */
-20005260:	4b43      	ldr	r3, [pc, #268]	@ (20005370 <ui_cmd_I2C+0x18c>)
-20005262:	4a4b      	ldr	r2, [pc, #300]	@ (20005390 <ui_cmd_I2C+0x1ac>)
-20005264:	601a      	str	r2, [r3, #0]
+20005298:	4b43      	ldr	r3, [pc, #268]	@ (200053a8 <ui_cmd_I2C+0x18c>)
+2000529a:	4a4b      	ldr	r2, [pc, #300]	@ (200053c8 <ui_cmd_I2C+0x1ac>)
+2000529c:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
-20005266:	4b44      	ldr	r3, [pc, #272]	@ (20005378 <ui_cmd_I2C+0x194>)
-20005268:	f44f 42c0 	mov.w	r2, #24576	@ 0x6000
-2000526c:	601a      	str	r2, [r3, #0]
+2000529e:	4b44      	ldr	r3, [pc, #272]	@ (200053b0 <ui_cmd_I2C+0x194>)
+200052a0:	f44f 42c0 	mov.w	r2, #24576	@ 0x6000
+200052a4:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x4800082C) = 0x0; /* activate pull up or pull down GPIO_PUPDR */
-2000526e:	4b49      	ldr	r3, [pc, #292]	@ (20005394 <ui_cmd_I2C+0x1b0>)
-20005270:	2200      	movs	r2, #0
-20005272:	601a      	str	r2, [r3, #0]
-
-    //*(volatile uint32_t *)(0x4800002C) = 32;
-    //*(volatile uint32_t *)(0x48000000) = 0xACFF00FF;
-
+200052a6:	4b49      	ldr	r3, [pc, #292]	@ (200053cc <ui_cmd_I2C+0x1b0>)
+200052a8:	2200      	movs	r2, #0
+200052aa:	601a      	str	r2, [r3, #0]
 
     *(volatile uint8_t *)(0x48001841) = 0x24; //hi2c->State = HAL_I2C_STATE_BUSY;
-20005274:	4b4a      	ldr	r3, [pc, #296]	@ (200053a0 <ui_cmd_I2C+0x1bc>)
-20005276:	2224      	movs	r2, #36	@ 0x24
-20005278:	701a      	strb	r2, [r3, #0]
+200052ac:	4b4a      	ldr	r3, [pc, #296]	@ (200053d8 <ui_cmd_I2C+0x1bc>)
+200052ae:	2224      	movs	r2, #36	@ 0x24
+200052b0:	701a      	strb	r2, [r3, #0]
 
 
 
 	*(volatile uint32_t *)(0x40005400) = 0; //Disable the selected I2C peripheral
-2000527a:	4b4a      	ldr	r3, [pc, #296]	@ (200053a4 <ui_cmd_I2C+0x1c0>)
-2000527c:	2200      	movs	r2, #0
-2000527e:	601a      	str	r2, [r3, #0]
+200052b2:	4b4a      	ldr	r3, [pc, #296]	@ (200053dc <ui_cmd_I2C+0x1c0>)
+200052b4:	2200      	movs	r2, #0
+200052b6:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005410) = 0x20303E5D; //Configure I2Cx: Frequency range
-20005280:	4b49      	ldr	r3, [pc, #292]	@ (200053a8 <ui_cmd_I2C+0x1c4>)
-20005282:	4a4a      	ldr	r2, [pc, #296]	@ (200053ac <ui_cmd_I2C+0x1c8>)
-20005284:	601a      	str	r2, [r3, #0]
+200052b8:	4b49      	ldr	r3, [pc, #292]	@ (200053e0 <ui_cmd_I2C+0x1c4>)
+200052ba:	4a4a      	ldr	r2, [pc, #296]	@ (200053e4 <ui_cmd_I2C+0x1c8>)
+200052bc:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005408) = 0; //I2Cx OAR1 Configuration
-20005286:	4b4a      	ldr	r3, [pc, #296]	@ (200053b0 <ui_cmd_I2C+0x1cc>)
-20005288:	2200      	movs	r2, #0
-2000528a:	601a      	str	r2, [r3, #0]
+200052be:	4b4a      	ldr	r3, [pc, #296]	@ (200053e8 <ui_cmd_I2C+0x1cc>)
+200052c0:	2200      	movs	r2, #0
+200052c2:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005408) = 0x8000; //ack own address1 mode
-2000528c:	4b48      	ldr	r3, [pc, #288]	@ (200053b0 <ui_cmd_I2C+0x1cc>)
-2000528e:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
-20005292:	601a      	str	r2, [r3, #0]
+200052c4:	4b48      	ldr	r3, [pc, #288]	@ (200053e8 <ui_cmd_I2C+0x1cc>)
+200052c6:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
+200052ca:	601a      	str	r2, [r3, #0]
 
 	*(volatile uint32_t *)(0x40005404) = 0; //Clear the I2C ADD10 bit
-20005294:	4b47      	ldr	r3, [pc, #284]	@ (200053b4 <ui_cmd_I2C+0x1d0>)
-20005296:	2200      	movs	r2, #0
-20005298:	601a      	str	r2, [r3, #0]
+200052cc:	4b47      	ldr	r3, [pc, #284]	@ (200053ec <ui_cmd_I2C+0x1d0>)
+200052ce:	2200      	movs	r2, #0
+200052d0:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x4000540C) = 0; //I2Cx OAR2 Configuration
-2000529a:	4b47      	ldr	r3, [pc, #284]	@ (200053b8 <ui_cmd_I2C+0x1d4>)
-2000529c:	2200      	movs	r2, #0
-2000529e:	601a      	str	r2, [r3, #0]
+200052d2:	4b47      	ldr	r3, [pc, #284]	@ (200053f0 <ui_cmd_I2C+0x1d4>)
+200052d4:	2200      	movs	r2, #0
+200052d6:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005400) = 0; //Configure I2Cx: Generalcall and NoStretch mode
-200052a0:	4b40      	ldr	r3, [pc, #256]	@ (200053a4 <ui_cmd_I2C+0x1c0>)
-200052a2:	2200      	movs	r2, #0
-200052a4:	601a      	str	r2, [r3, #0]
+200052d8:	4b40      	ldr	r3, [pc, #256]	@ (200053dc <ui_cmd_I2C+0x1c0>)
+200052da:	2200      	movs	r2, #0
+200052dc:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005400) = 1; //Enable the selected I2C peripheral
-200052a6:	4b3f      	ldr	r3, [pc, #252]	@ (200053a4 <ui_cmd_I2C+0x1c0>)
-200052a8:	2201      	movs	r2, #1
-200052aa:	601a      	str	r2, [r3, #0]
-
+200052de:	4b3f      	ldr	r3, [pc, #252]	@ (200053dc <ui_cmd_I2C+0x1c0>)
+200052e0:	2201      	movs	r2, #1
+200052e2:	601a      	str	r2, [r3, #0]
 
 
 
 // transmit
 	*(volatile uint32_t *)(0x40005400) = 0; //I2C_CR1, clear
-200052ac:	4b3d      	ldr	r3, [pc, #244]	@ (200053a4 <ui_cmd_I2C+0x1c0>)
-200052ae:	2200      	movs	r2, #0
-200052b0:	601a      	str	r2, [r3, #0]
+200052e4:	4b3d      	ldr	r3, [pc, #244]	@ (200053dc <ui_cmd_I2C+0x1c0>)
+200052e6:	2200      	movs	r2, #0
+200052e8:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005410) = 0x20303e5d; //595, timing
-200052b2:	4b3d      	ldr	r3, [pc, #244]	@ (200053a8 <ui_cmd_I2C+0x1c4>)
-200052b4:	4a3d      	ldr	r2, [pc, #244]	@ (200053ac <ui_cmd_I2C+0x1c8>)
-200052b6:	601a      	str	r2, [r3, #0]
+200052ea:	4b3d      	ldr	r3, [pc, #244]	@ (200053e0 <ui_cmd_I2C+0x1c4>)
+200052ec:	4a3d      	ldr	r2, [pc, #244]	@ (200053e4 <ui_cmd_I2C+0x1c8>)
+200052ee:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005408) = 0; //595, OAR1
-200052b8:	4b3d      	ldr	r3, [pc, #244]	@ (200053b0 <ui_cmd_I2C+0x1cc>)
-200052ba:	2200      	movs	r2, #0
-200052bc:	601a      	str	r2, [r3, #0]
+200052f0:	4b3d      	ldr	r3, [pc, #244]	@ (200053e8 <ui_cmd_I2C+0x1cc>)
+200052f2:	2200      	movs	r2, #0
+200052f4:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005408) = 0x8000;
-200052be:	4b3c      	ldr	r3, [pc, #240]	@ (200053b0 <ui_cmd_I2C+0x1cc>)
-200052c0:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
-200052c4:	601a      	str	r2, [r3, #0]
+200052f6:	4b3c      	ldr	r3, [pc, #240]	@ (200053e8 <ui_cmd_I2C+0x1cc>)
+200052f8:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
+200052fc:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005404) = 0; //616, CR2
-200052c6:	4b3b      	ldr	r3, [pc, #236]	@ (200053b4 <ui_cmd_I2C+0x1d0>)
-200052c8:	2200      	movs	r2, #0
-200052ca:	601a      	str	r2, [r3, #0]
+200052fe:	4b3b      	ldr	r3, [pc, #236]	@ (200053ec <ui_cmd_I2C+0x1d0>)
+20005300:	2200      	movs	r2, #0
+20005302:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40004404) = 0x2008000; //618, auto end, bit 15, NACK
-200052cc:	4b3b      	ldr	r3, [pc, #236]	@ (200053bc <ui_cmd_I2C+0x1d8>)
-200052ce:	4a3c      	ldr	r2, [pc, #240]	@ (200053c0 <ui_cmd_I2C+0x1dc>)
-200052d0:	601a      	str	r2, [r3, #0]
+20005304:	4b3b      	ldr	r3, [pc, #236]	@ (200053f4 <ui_cmd_I2C+0x1d8>)
+20005306:	4a3c      	ldr	r2, [pc, #240]	@ (200053f8 <ui_cmd_I2C+0x1dc>)
+20005308:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x4000540C) = 0;//623,  OAR2
-200052d2:	4b39      	ldr	r3, [pc, #228]	@ (200053b8 <ui_cmd_I2C+0x1d4>)
-200052d4:	2200      	movs	r2, #0
-200052d6:	601a      	str	r2, [r3, #0]
+2000530a:	4b39      	ldr	r3, [pc, #228]	@ (200053f0 <ui_cmd_I2C+0x1d4>)
+2000530c:	2200      	movs	r2, #0
+2000530e:	601a      	str	r2, [r3, #0]
 
 	*(volatile uint32_t *)(0x40005400) = 1;//634, peripheral enable bit 0
-200052d8:	4b32      	ldr	r3, [pc, #200]	@ (200053a4 <ui_cmd_I2C+0x1c0>)
-200052da:	2201      	movs	r2, #1
-200052dc:	601a      	str	r2, [r3, #0]
+20005310:	4b32      	ldr	r3, [pc, #200]	@ (200053dc <ui_cmd_I2C+0x1c0>)
+20005312:	2201      	movs	r2, #1
+20005314:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005428) = 2;//1162, TX reg,
-200052de:	4b39      	ldr	r3, [pc, #228]	@ (200053c4 <ui_cmd_I2C+0x1e0>)
-200052e0:	2202      	movs	r2, #2
-200052e2:	601a      	str	r2, [r3, #0]
+20005316:	4b39      	ldr	r3, [pc, #228]	@ (200053fc <ui_cmd_I2C+0x1e0>)
+20005318:	2202      	movs	r2, #2
+2000531a:	601a      	str	r2, [r3, #0]
 	*(volatile uint32_t *)(0x40005404) = 0x2012082; //7217,      82 device address
-200052e4:	4b33      	ldr	r3, [pc, #204]	@ (200053b4 <ui_cmd_I2C+0x1d0>)
-200052e6:	4a38      	ldr	r2, [pc, #224]	@ (200053c8 <ui_cmd_I2C+0x1e4>)
-200052e8:	601a      	str	r2, [r3, #0]
+2000531c:	4b33      	ldr	r3, [pc, #204]	@ (200053ec <ui_cmd_I2C+0x1d0>)
+2000531e:	4a38      	ldr	r2, [pc, #224]	@ (20005400 <ui_cmd_I2C+0x1e4>)
+20005320:	601a      	str	r2, [r3, #0]
 
 	//receive
 
 	uint32_t temp = 0; //I2C_ISR STOPF: STOP detection flag
-200052ea:	2300      	movs	r3, #0
-200052ec:	61fb      	str	r3, [r7, #28]
+20005322:	2300      	movs	r3, #0
+20005324:	61fb      	str	r3, [r7, #28]
 	while(((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0){
-200052ee:	bf00      	nop
-200052f0:	4b36      	ldr	r3, [pc, #216]	@ (200053cc <ui_cmd_I2C+0x1e8>)
-200052f2:	681b      	ldr	r3, [r3, #0]
-200052f4:	61fb      	str	r3, [r7, #28]
-200052f6:	69fb      	ldr	r3, [r7, #28]
-200052f8:	f003 0320 	and.w	r3, r3, #32
-200052fc:	2b00      	cmp	r3, #0
-200052fe:	d0f7      	beq.n	200052f0 <ui_cmd_I2C+0x10c>
+20005326:	bf00      	nop
+20005328:	4b36      	ldr	r3, [pc, #216]	@ (20005404 <ui_cmd_I2C+0x1e8>)
+2000532a:	681b      	ldr	r3, [r3, #0]
+2000532c:	61fb      	str	r3, [r7, #28]
+2000532e:	69fb      	ldr	r3, [r7, #28]
+20005330:	f003 0320 	and.w	r3, r3, #32
+20005334:	2b00      	cmp	r3, #0
+20005336:	d0f7      	beq.n	20005328 <ui_cmd_I2C+0x10c>
 	}
 
 	*(volatile uint32_t *)(0x40005404) = 0x2012482; //7217 update CR2 register */
-20005300:	4b2c      	ldr	r3, [pc, #176]	@ (200053b4 <ui_cmd_I2C+0x1d0>)
-20005302:	4a33      	ldr	r2, [pc, #204]	@ (200053d0 <ui_cmd_I2C+0x1ec>)
-20005304:	601a      	str	r2, [r3, #0]
+20005338:	4b2c      	ldr	r3, [pc, #176]	@ (200053ec <ui_cmd_I2C+0x1d0>)
+2000533a:	4a33      	ldr	r2, [pc, #204]	@ (20005408 <ui_cmd_I2C+0x1ec>)
+2000533c:	601a      	str	r2, [r3, #0]
 
 	uint32_t busy = 0; //I2C_ISR BUSY: BUSY detection flag
-20005306:	2300      	movs	r3, #0
-20005308:	61bb      	str	r3, [r7, #24]
+2000533e:	2300      	movs	r3, #0
+20005340:	61bb      	str	r3, [r7, #24]
 	while(((busy = *(volatile uint32_t *)(0x40005400)) & 0x8000) == 1){
-2000530a:	bf00      	nop
-2000530c:	4b25      	ldr	r3, [pc, #148]	@ (200053a4 <ui_cmd_I2C+0x1c0>)
-2000530e:	681b      	ldr	r3, [r3, #0]
-20005310:	61bb      	str	r3, [r7, #24]
-20005312:	69bb      	ldr	r3, [r7, #24]
-20005314:	f403 4300 	and.w	r3, r3, #32768	@ 0x8000
-20005318:	2b01      	cmp	r3, #1
-2000531a:	d0f7      	beq.n	2000530c <ui_cmd_I2C+0x128>
+20005342:	bf00      	nop
+20005344:	4b25      	ldr	r3, [pc, #148]	@ (200053dc <ui_cmd_I2C+0x1c0>)
+20005346:	681b      	ldr	r3, [r3, #0]
+20005348:	61bb      	str	r3, [r7, #24]
+2000534a:	69bb      	ldr	r3, [r7, #24]
+2000534c:	f403 4300 	and.w	r3, r3, #32768	@ 0x8000
+20005350:	2b01      	cmp	r3, #1
+20005352:	d0f7      	beq.n	20005344 <ui_cmd_I2C+0x128>
 	}
 
 	uint32_t RXNE_BUSY = 0; //RXNE: Receive data register
-2000531c:	2300      	movs	r3, #0
-2000531e:	617b      	str	r3, [r7, #20]
+20005354:	2300      	movs	r3, #0
+20005356:	617b      	str	r3, [r7, #20]
 	while(((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0){
-20005320:	bf00      	nop
-20005322:	4b2a      	ldr	r3, [pc, #168]	@ (200053cc <ui_cmd_I2C+0x1e8>)
-20005324:	681b      	ldr	r3, [r3, #0]
-20005326:	617b      	str	r3, [r7, #20]
-20005328:	697b      	ldr	r3, [r7, #20]
-2000532a:	f003 0304 	and.w	r3, r3, #4
-2000532e:	2b00      	cmp	r3, #0
-20005330:	d0f7      	beq.n	20005322 <ui_cmd_I2C+0x13e>
+20005358:	bf00      	nop
+2000535a:	4b2a      	ldr	r3, [pc, #168]	@ (20005404 <ui_cmd_I2C+0x1e8>)
+2000535c:	681b      	ldr	r3, [r3, #0]
+2000535e:	617b      	str	r3, [r7, #20]
+20005360:	697b      	ldr	r3, [r7, #20]
+20005362:	f003 0304 	and.w	r3, r3, #4
+20005366:	2b00      	cmp	r3, #0
+20005368:	d0f7      	beq.n	2000535a <ui_cmd_I2C+0x13e>
 
 
 	/*
 	 * corrections for printing function
 	 */
 	*(volatile uint32_t *)(0x40021088) = 0x2;
-20005332:	4b0b      	ldr	r3, [pc, #44]	@ (20005360 <ui_cmd_I2C+0x17c>)
-20005334:	2202      	movs	r2, #2
-20005336:	601a      	str	r2, [r3, #0]
+2000536a:	4b0b      	ldr	r3, [pc, #44]	@ (20005398 <ui_cmd_I2C+0x17c>)
+2000536c:	2202      	movs	r2, #2
+2000536e:	601a      	str	r2, [r3, #0]
 
 
     uint32_t received_data = *(volatile uint32_t *)(0x40005424);
-20005338:	4b26      	ldr	r3, [pc, #152]	@ (200053d4 <ui_cmd_I2C+0x1f0>)
-2000533a:	681b      	ldr	r3, [r3, #0]
-2000533c:	613b      	str	r3, [r7, #16]
+20005370:	4b26      	ldr	r3, [pc, #152]	@ (2000540c <ui_cmd_I2C+0x1f0>)
+20005372:	681b      	ldr	r3, [r3, #0]
+20005374:	613b      	str	r3, [r7, #16]
     printf("data");
-2000533e:	4826      	ldr	r0, [pc, #152]	@ (200053d8 <ui_cmd_I2C+0x1f4>)
-20005340:	f7fb fc72 	bl	20000c28 <printf>
+20005376:	4826      	ldr	r0, [pc, #152]	@ (20005410 <ui_cmd_I2C+0x1f4>)
+20005378:	f7fb fc56 	bl	20000c28 <printf>
     printf("Received data: 0x%08X\n", received_data);
-20005344:	6939      	ldr	r1, [r7, #16]
-20005346:	4825      	ldr	r0, [pc, #148]	@ (200053dc <ui_cmd_I2C+0x1f8>)
-20005348:	f7fb fc6e 	bl	20000c28 <printf>
+2000537c:	6939      	ldr	r1, [r7, #16]
+2000537e:	4825      	ldr	r0, [pc, #148]	@ (20005414 <ui_cmd_I2C+0x1f8>)
+20005380:	f7fb fc52 	bl	20000c28 <printf>
 
 
     return 0;
-2000534c:	2300      	movs	r3, #0
+20005384:	2300      	movs	r3, #0
 }
-2000534e:	4618      	mov	r0, r3
-20005350:	3720      	adds	r7, #32
-20005352:	46bd      	mov	sp, r7
-20005354:	bd80      	pop	{r7, pc}
-20005356:	bf00      	nop
-20005358:	40021060 	.word	0x40021060
-2000535c:	40021058 	.word	0x40021058
-20005360:	40021088 	.word	0x40021088
-20005364:	40007004 	.word	0x40007004
-20005368:	4002104c 	.word	0x4002104c
-2000536c:	32200000 	.word	0x32200000
-20005370:	48001808 	.word	0x48001808
-20005374:	0c3c0fff 	.word	0x0c3c0fff
-20005378:	48001804 	.word	0x48001804
-2000537c:	4800180c 	.word	0x4800180c
-20005380:	48001824 	.word	0x48001824
-20005384:	00400cc0 	.word	0x00400cc0
-20005388:	48001800 	.word	0x48001800
-2000538c:	3bebcaaa 	.word	0x3bebcaaa
-20005390:	3c3c0fff 	.word	0x3c3c0fff
-20005394:	4800082c 	.word	0x4800082c
-20005398:	04400cc0 	.word	0x04400cc0
-2000539c:	2bebcaaa 	.word	0x2bebcaaa
-200053a0:	48001841 	.word	0x48001841
-200053a4:	40005400 	.word	0x40005400
-200053a8:	40005410 	.word	0x40005410
-200053ac:	20303e5d 	.word	0x20303e5d
-200053b0:	40005408 	.word	0x40005408
-200053b4:	40005404 	.word	0x40005404
-200053b8:	4000540c 	.word	0x4000540c
-200053bc:	40004404 	.word	0x40004404
-200053c0:	02008000 	.word	0x02008000
-200053c4:	40005428 	.word	0x40005428
-200053c8:	02012082 	.word	0x02012082
-200053cc:	40005418 	.word	0x40005418
-200053d0:	02012482 	.word	0x02012482
-200053d4:	40005424 	.word	0x40005424
-200053d8:	20005f78 	.word	0x20005f78
-200053dc:	20005f80 	.word	0x20005f80
+20005386:	4618      	mov	r0, r3
+20005388:	3720      	adds	r7, #32
+2000538a:	46bd      	mov	sp, r7
+2000538c:	bd80      	pop	{r7, pc}
+2000538e:	bf00      	nop
+20005390:	40021060 	.word	0x40021060
+20005394:	40021058 	.word	0x40021058
+20005398:	40021088 	.word	0x40021088
+2000539c:	40007004 	.word	0x40007004
+200053a0:	4002104c 	.word	0x4002104c
+200053a4:	32200000 	.word	0x32200000
+200053a8:	48001808 	.word	0x48001808
+200053ac:	0c3c0fff 	.word	0x0c3c0fff
+200053b0:	48001804 	.word	0x48001804
+200053b4:	4800180c 	.word	0x4800180c
+200053b8:	48001824 	.word	0x48001824
+200053bc:	00400cc0 	.word	0x00400cc0
+200053c0:	48001800 	.word	0x48001800
+200053c4:	3bebcaaa 	.word	0x3bebcaaa
+200053c8:	3c3c0fff 	.word	0x3c3c0fff
+200053cc:	4800082c 	.word	0x4800082c
+200053d0:	04400cc0 	.word	0x04400cc0
+200053d4:	2bebcaaa 	.word	0x2bebcaaa
+200053d8:	48001841 	.word	0x48001841
+200053dc:	40005400 	.word	0x40005400
+200053e0:	40005410 	.word	0x40005410
+200053e4:	20303e5d 	.word	0x20303e5d
+200053e8:	40005408 	.word	0x40005408
+200053ec:	40005404 	.word	0x40005404
+200053f0:	4000540c 	.word	0x4000540c
+200053f4:	40004404 	.word	0x40004404
+200053f8:	02008000 	.word	0x02008000
+200053fc:	40005428 	.word	0x40005428
+20005400:	02012082 	.word	0x02012082
+20005404:	40005418 	.word	0x40005418
+20005408:	02012482 	.word	0x02012482
+2000540c:	40005424 	.word	0x40005424
+20005410:	2000629c 	.word	0x2000629c
+20005414:	200062a4 	.word	0x200062a4
 
-200053e0 <ui_cmd_write_I2C>:
+20005418 <ui_cmd_write_I2C>:
+#define IOEXPANDER_ADDRESS 0x82  // I2C address of the IO expander
+#define IOEXPANDER_LED2_PIN 0    // GPIO0 is used for LED2
 
-    *(volatile uint32_t *)(0x40005400) |= 0x200;
-}
 
 static int ui_cmd_write_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 {
-200053e0:	b580      	push	{r7, lr}
-200053e2:	b08a      	sub	sp, #40	@ 0x28
-200053e4:	af00      	add	r7, sp, #0
-200053e6:	60f8      	str	r0, [r7, #12]
-200053e8:	60b9      	str	r1, [r7, #8]
-200053ea:	607a      	str	r2, [r7, #4]
+20005418:	b580      	push	{r7, lr}
+2000541a:	b08c      	sub	sp, #48	@ 0x30
+2000541c:	af00      	add	r7, sp, #0
+2000541e:	60f8      	str	r0, [r7, #12]
+20005420:	60b9      	str	r1, [r7, #8]
+20005422:	607a      	str	r2, [r7, #4]
+    char *val_input;
 
-    uint32_t reg_address = (uint32_t)strtoul(argv[1], NULL, 16);
-    uint32_t value_to_send = (uint32_t)strtoul(argv[2], NULL, 16);
+    int reg_address;
+    int value_to_send;
 
-    */
-    uint32_t reg_address = 0x13;
-200053ec:	2313      	movs	r3, #19
-200053ee:	627b      	str	r3, [r7, #36]	@ 0x24
-    uint32_t value_to_send = 0x01;
-200053f0:	2301      	movs	r3, #1
-200053f2:	623b      	str	r3, [r7, #32]
+    reg_input = cmd_getarg(cmd, 0);
+20005424:	2100      	movs	r1, #0
+20005426:	68f8      	ldr	r0, [r7, #12]
+20005428:	f7fe fbaf 	bl	20003b8a <cmd_getarg>
+2000542c:	62f8      	str	r0, [r7, #44]	@ 0x2c
+    reg_address = atoi(reg_input);
+2000542e:	6af8      	ldr	r0, [r7, #44]	@ 0x2c
+20005430:	f7fc f810 	bl	20001454 <lib_atoi>
+20005434:	62b8      	str	r0, [r7, #40]	@ 0x28
+
+    val_input  = cmd_getarg(cmd, 1);
+20005436:	2101      	movs	r1, #1
+20005438:	68f8      	ldr	r0, [r7, #12]
+2000543a:	f7fe fba6 	bl	20003b8a <cmd_getarg>
+2000543e:	6278      	str	r0, [r7, #36]	@ 0x24
+    value_to_send = atoi(val_input);
+20005440:	6a78      	ldr	r0, [r7, #36]	@ 0x24
+20005442:	f7fc f807 	bl	20001454 <lib_atoi>
+20005446:	6238      	str	r0, [r7, #32]
+
+
     // Initialization and clock configuration
-    *(volatile uint32_t *)(0x40021060) = 0x4001; // __HAL_RCC_SYSCFG_CLK_ENABLE();
-200053f4:	4b5f      	ldr	r3, [pc, #380]	@ (20005574 <ui_cmd_write_I2C+0x194>)
-200053f6:	f244 0201 	movw	r2, #16385	@ 0x4001
-200053fa:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40021058) = 0x10000000; // __HAL_RCC_PWR_CLK_ENABLE();
-200053fc:	4b5e      	ldr	r3, [pc, #376]	@ (20005578 <ui_cmd_write_I2C+0x198>)
-200053fe:	f04f 5280 	mov.w	r2, #268435456	@ 0x10000000
-20005402:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
-20005404:	4b5d      	ldr	r3, [pc, #372]	@ (2000557c <ui_cmd_write_I2C+0x19c>)
-20005406:	2200      	movs	r2, #0
-20005408:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40007004) = 0x200; // PWR_CR2 enable
-2000540a:	4b5d      	ldr	r3, [pc, #372]	@ (20005580 <ui_cmd_write_I2C+0x1a0>)
-2000540c:	f44f 7200 	mov.w	r2, #512	@ 0x200
-20005410:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x4002104C) = 0x20ff; // GPIOG_CLK_ENABLE
-20005412:	4b5c      	ldr	r3, [pc, #368]	@ (20005584 <ui_cmd_write_I2C+0x1a4>)
-20005414:	f242 02ff 	movw	r2, #8447	@ 0x20ff
-20005418:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40021058) = 0x32200000;
-2000541a:	4b57      	ldr	r3, [pc, #348]	@ (20005578 <ui_cmd_write_I2C+0x198>)
-2000541c:	4a5a      	ldr	r2, [pc, #360]	@ (20005588 <ui_cmd_write_I2C+0x1a8>)
-2000541e:	601a      	str	r2, [r3, #0]
+    I2C_Init();
+20005448:	f000 f882 	bl	20005550 <I2C_Init>
 
-    // GPIO configuration
-    *(volatile uint32_t *)(0x48001808) = 0xc3c0fff; // GPIOx_OSPEEDR
-20005420:	4b5a      	ldr	r3, [pc, #360]	@ (2000558c <ui_cmd_write_I2C+0x1ac>)
-20005422:	4a5b      	ldr	r2, [pc, #364]	@ (20005590 <ui_cmd_write_I2C+0x1b0>)
-20005424:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001804) = 0x2000; // GPIO port output type register (GPIOx_OTYPER)
-20005426:	4b5b      	ldr	r3, [pc, #364]	@ (20005594 <ui_cmd_write_I2C+0x1b4>)
-20005428:	f44f 5200 	mov.w	r2, #8192	@ 0x2000
-2000542c:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x4800180C) = 0x4000000; // GPIOG_PUPDR
-2000542e:	4b5a      	ldr	r3, [pc, #360]	@ (20005598 <ui_cmd_write_I2C+0x1b8>)
-20005430:	f04f 6280 	mov.w	r2, #67108864	@ 0x4000000
-20005434:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001824) = 0x400cc0; // Configure Alternate function mapped with the current IO
-20005436:	4b59      	ldr	r3, [pc, #356]	@ (2000559c <ui_cmd_write_I2C+0x1bc>)
-20005438:	4a59      	ldr	r2, [pc, #356]	@ (200055a0 <ui_cmd_write_I2C+0x1c0>)
-2000543a:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001800) = 0x3bebcaaa; // Configure IO Direction mode (Input, Output, Alternate or Analog)
-2000543c:	4b59      	ldr	r3, [pc, #356]	@ (200055a4 <ui_cmd_write_I2C+0x1c4>)
-2000543e:	4a5a      	ldr	r2, [pc, #360]	@ (200055a8 <ui_cmd_write_I2C+0x1c8>)
-20005440:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff; // Configure the IO Speed
-20005442:	4b52      	ldr	r3, [pc, #328]	@ (2000558c <ui_cmd_write_I2C+0x1ac>)
-20005444:	4a59      	ldr	r2, [pc, #356]	@ (200055ac <ui_cmd_write_I2C+0x1cc>)
-20005446:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
-20005448:	4b52      	ldr	r3, [pc, #328]	@ (20005594 <ui_cmd_write_I2C+0x1b4>)
-2000544a:	f44f 42c0 	mov.w	r2, #24576	@ 0x6000
-2000544e:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x4800082C) = 0x4000000; // Activate pull up or pull down GPIO_PUPDR
-20005450:	4b57      	ldr	r3, [pc, #348]	@ (200055b0 <ui_cmd_write_I2C+0x1d0>)
-20005452:	f04f 6280 	mov.w	r2, #67108864	@ 0x4000000
-20005456:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001824) = 0x4400cc0; // Configure Alternate function mapped with the current IO
-20005458:	4b50      	ldr	r3, [pc, #320]	@ (2000559c <ui_cmd_write_I2C+0x1bc>)
-2000545a:	4a56      	ldr	r2, [pc, #344]	@ (200055b4 <ui_cmd_write_I2C+0x1d4>)
-2000545c:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001800) = 0x2bebcaaa; // Configure IO Direction mode (Input, Output, Alternate or Analog)
-2000545e:	4b51      	ldr	r3, [pc, #324]	@ (200055a4 <ui_cmd_write_I2C+0x1c4>)
-20005460:	4a55      	ldr	r2, [pc, #340]	@ (200055b8 <ui_cmd_write_I2C+0x1d8>)
-20005462:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff; // Configure the IO Speed
-20005464:	4b49      	ldr	r3, [pc, #292]	@ (2000558c <ui_cmd_write_I2C+0x1ac>)
-20005466:	4a51      	ldr	r2, [pc, #324]	@ (200055ac <ui_cmd_write_I2C+0x1cc>)
-20005468:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
-2000546a:	4b4a      	ldr	r3, [pc, #296]	@ (20005594 <ui_cmd_write_I2C+0x1b4>)
-2000546c:	f44f 42c0 	mov.w	r2, #24576	@ 0x6000
-20005470:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x4800082C) = 0x0; // Activate pull up or pull down GPIO_PUPDR
-20005472:	4b4f      	ldr	r3, [pc, #316]	@ (200055b0 <ui_cmd_write_I2C+0x1d0>)
-20005474:	2200      	movs	r2, #0
-20005476:	601a      	str	r2, [r3, #0]
-    *(volatile uint8_t *)(0x48001841) = 0x24; // hi2c->State = HAL_I2C_STATE_BUSY
-20005478:	4b50      	ldr	r3, [pc, #320]	@ (200055bc <ui_cmd_write_I2C+0x1dc>)
-2000547a:	2224      	movs	r2, #36	@ 0x24
-2000547c:	701a      	strb	r2, [r3, #0]
-
-    *(volatile uint32_t *)(0x40005400) = 0; // Disable the selected I2C peripheral
-2000547e:	4b50      	ldr	r3, [pc, #320]	@ (200055c0 <ui_cmd_write_I2C+0x1e0>)
-20005480:	2200      	movs	r2, #0
-20005482:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005410) = 0x20303E5D; // Configure I2Cx: Frequency range
-20005484:	4b4f      	ldr	r3, [pc, #316]	@ (200055c4 <ui_cmd_write_I2C+0x1e4>)
-20005486:	4a50      	ldr	r2, [pc, #320]	@ (200055c8 <ui_cmd_write_I2C+0x1e8>)
-20005488:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005408) = 0; // I2Cx OAR1 Configuration
-2000548a:	4b50      	ldr	r3, [pc, #320]	@ (200055cc <ui_cmd_write_I2C+0x1ec>)
-2000548c:	2200      	movs	r2, #0
-2000548e:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005408) = 0x8000; // Ack own address1 mode
-20005490:	4b4e      	ldr	r3, [pc, #312]	@ (200055cc <ui_cmd_write_I2C+0x1ec>)
-20005492:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
-20005496:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005404) = 0; // Clear the I2C ADD10 bit
-20005498:	4b4d      	ldr	r3, [pc, #308]	@ (200055d0 <ui_cmd_write_I2C+0x1f0>)
-2000549a:	2200      	movs	r2, #0
-2000549c:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x4000540C) = 0; // I2Cx OAR2 Configuration
-2000549e:	4b4d      	ldr	r3, [pc, #308]	@ (200055d4 <ui_cmd_write_I2C+0x1f4>)
-200054a0:	2200      	movs	r2, #0
-200054a2:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005400) = 0; // Configure I2Cx: Generalcall and NoStretch mode
-200054a4:	4b46      	ldr	r3, [pc, #280]	@ (200055c0 <ui_cmd_write_I2C+0x1e0>)
-200054a6:	2200      	movs	r2, #0
-200054a8:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005400) = 1; // Enable the selected I2C peripheral
-200054aa:	4b45      	ldr	r3, [pc, #276]	@ (200055c0 <ui_cmd_write_I2C+0x1e0>)
-200054ac:	2201      	movs	r2, #1
-200054ae:	601a      	str	r2, [r3, #0]
-
-    // Transmit
-    *(volatile uint32_t *)(0x40005400) = 0; // I2C_CR1, clear
-200054b0:	4b43      	ldr	r3, [pc, #268]	@ (200055c0 <ui_cmd_write_I2C+0x1e0>)
-200054b2:	2200      	movs	r2, #0
-200054b4:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005410) = 0x20303e5d; // I2C timing configuration
-200054b6:	4b43      	ldr	r3, [pc, #268]	@ (200055c4 <ui_cmd_write_I2C+0x1e4>)
-200054b8:	4a43      	ldr	r2, [pc, #268]	@ (200055c8 <ui_cmd_write_I2C+0x1e8>)
-200054ba:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005408) = 0; // I2C OAR1 configuration
-200054bc:	4b43      	ldr	r3, [pc, #268]	@ (200055cc <ui_cmd_write_I2C+0x1ec>)
-200054be:	2200      	movs	r2, #0
-200054c0:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005408) = 0x8000; // Ack own address1 mode
-200054c2:	4b42      	ldr	r3, [pc, #264]	@ (200055cc <ui_cmd_write_I2C+0x1ec>)
-200054c4:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
-200054c8:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40005404) = 0; // I2C CR2 configuration
-200054ca:	4b41      	ldr	r3, [pc, #260]	@ (200055d0 <ui_cmd_write_I2C+0x1f0>)
-200054cc:	2200      	movs	r2, #0
-200054ce:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x40004404) = 0x2008000; // Auto end, bit 15, NACK
-200054d0:	4b41      	ldr	r3, [pc, #260]	@ (200055d8 <ui_cmd_write_I2C+0x1f8>)
-200054d2:	4a42      	ldr	r2, [pc, #264]	@ (200055dc <ui_cmd_write_I2C+0x1fc>)
-200054d4:	601a      	str	r2, [r3, #0]
-    *(volatile uint32_t *)(0x4000540C) = 0; // I2C OAR2 configuration
-200054d6:	4b3f      	ldr	r3, [pc, #252]	@ (200055d4 <ui_cmd_write_I2C+0x1f4>)
-200054d8:	2200      	movs	r2, #0
-200054da:	601a      	str	r2, [r3, #0]
-
-    *(volatile uint32_t *)(0x40005400) = 1; // Enable the selected I2C peripheral
-200054dc:	4b38      	ldr	r3, [pc, #224]	@ (200055c0 <ui_cmd_write_I2C+0x1e0>)
-200054de:	2201      	movs	r2, #1
-200054e0:	601a      	str	r2, [r3, #0]
-
-    // Write to I2C
-
-	// Corrections for printing function
-	*(volatile uint32_t *)(0x40021088) = 0x2;
-200054e2:	4b26      	ldr	r3, [pc, #152]	@ (2000557c <ui_cmd_write_I2C+0x19c>)
-200054e4:	2202      	movs	r2, #2
-200054e6:	601a      	str	r2, [r3, #0]
-
-    printf("Writing 0x%02X to register 0x%02X\n", value_to_send, reg_address);
-200054e8:	6a7a      	ldr	r2, [r7, #36]	@ 0x24
-200054ea:	6a39      	ldr	r1, [r7, #32]
-200054ec:	483c      	ldr	r0, [pc, #240]	@ (200055e0 <ui_cmd_write_I2C+0x200>)
-200054ee:	f7fb fb9b 	bl	20000c28 <printf>
+    //printf("Writing 0x%02X to register 0x%02X\n", value_to_send, reg_address);
 
     // RECorrections for printing function
-    *(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
-200054f2:	4b22      	ldr	r3, [pc, #136]	@ (2000557c <ui_cmd_write_I2C+0x19c>)
-200054f4:	2200      	movs	r2, #0
-200054f6:	601a      	str	r2, [r3, #0]
+    //*(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
+    uint32_t temp = 0;
+2000544c:	2300      	movs	r3, #0
+2000544e:	61fb      	str	r3, [r7, #28]
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+20005450:	bf00      	nop
+20005452:	4b35      	ldr	r3, [pc, #212]	@ (20005528 <ui_cmd_write_I2C+0x110>)
+20005454:	681b      	ldr	r3, [r3, #0]
+20005456:	61fb      	str	r3, [r7, #28]
+20005458:	69fb      	ldr	r3, [r7, #28]
+2000545a:	f003 0301 	and.w	r3, r3, #1
+2000545e:	2b00      	cmp	r3, #0
+20005460:	d0f7      	beq.n	20005452 <ui_cmd_write_I2C+0x3a>
 
     *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
-200054f8:	4a3a      	ldr	r2, [pc, #232]	@ (200055e4 <ui_cmd_write_I2C+0x204>)
-200054fa:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
-200054fc:	6013      	str	r3, [r2, #0]
+20005462:	4a32      	ldr	r2, [pc, #200]	@ (2000552c <ui_cmd_write_I2C+0x114>)
+20005464:	6abb      	ldr	r3, [r7, #40]	@ 0x28
+20005466:	6013      	str	r3, [r2, #0]
    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
 
     *(volatile uint32_t *)(0x40005404) = 0x2022082; //7217,      82 device address
-200054fe:	4b34      	ldr	r3, [pc, #208]	@ (200055d0 <ui_cmd_write_I2C+0x1f0>)
-20005500:	4a39      	ldr	r2, [pc, #228]	@ (200055e8 <ui_cmd_write_I2C+0x208>)
-20005502:	601a      	str	r2, [r3, #0]
+20005468:	4b31      	ldr	r3, [pc, #196]	@ (20005530 <ui_cmd_write_I2C+0x118>)
+2000546a:	4a32      	ldr	r2, [pc, #200]	@ (20005534 <ui_cmd_write_I2C+0x11c>)
+2000546c:	601a      	str	r2, [r3, #0]
+
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+2000546e:	bf00      	nop
+20005470:	4b2d      	ldr	r3, [pc, #180]	@ (20005528 <ui_cmd_write_I2C+0x110>)
+20005472:	681b      	ldr	r3, [r3, #0]
+20005474:	61fb      	str	r3, [r7, #28]
+20005476:	69fb      	ldr	r3, [r7, #28]
+20005478:	f003 0301 	and.w	r3, r3, #1
+2000547c:	2b00      	cmp	r3, #0
+2000547e:	d0f7      	beq.n	20005470 <ui_cmd_write_I2C+0x58>
 
     *(volatile uint32_t *)(0x40005428) = value_to_send;
-20005504:	4a37      	ldr	r2, [pc, #220]	@ (200055e4 <ui_cmd_write_I2C+0x204>)
-20005506:	6a3b      	ldr	r3, [r7, #32]
-20005508:	6013      	str	r3, [r2, #0]
+20005480:	4a2a      	ldr	r2, [pc, #168]	@ (2000552c <ui_cmd_write_I2C+0x114>)
+20005482:	6a3b      	ldr	r3, [r7, #32]
+20005484:	6013      	str	r3, [r2, #0]
     // Wait for STOPF
-    uint32_t temp = 0;
-2000550a:	2300      	movs	r3, #0
-2000550c:	61fb      	str	r3, [r7, #28]
+     temp = 0;
+20005486:	2300      	movs	r3, #0
+20005488:	61fb      	str	r3, [r7, #28]
     while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
-2000550e:	bf00      	nop
-20005510:	4b36      	ldr	r3, [pc, #216]	@ (200055ec <ui_cmd_write_I2C+0x20c>)
-20005512:	681b      	ldr	r3, [r3, #0]
-20005514:	61fb      	str	r3, [r7, #28]
-20005516:	69fb      	ldr	r3, [r7, #28]
-20005518:	f003 0320 	and.w	r3, r3, #32
-2000551c:	2b00      	cmp	r3, #0
-2000551e:	d0f7      	beq.n	20005510 <ui_cmd_write_I2C+0x130>
+2000548a:	bf00      	nop
+2000548c:	4b26      	ldr	r3, [pc, #152]	@ (20005528 <ui_cmd_write_I2C+0x110>)
+2000548e:	681b      	ldr	r3, [r3, #0]
+20005490:	61fb      	str	r3, [r7, #28]
+20005492:	69fb      	ldr	r3, [r7, #28]
+20005494:	f003 0320 	and.w	r3, r3, #32
+20005498:	2b00      	cmp	r3, #0
+2000549a:	d0f7      	beq.n	2000548c <ui_cmd_write_I2C+0x74>
 
-    //*(volatile uint32_t *)(0x40005404) |= 0x80000000; // Set STOP bit in I2C_CR2 to clear STOPF flag
-
-    // Read back the written value to verify
-	// Corrections for printing function
-	*(volatile uint32_t *)(0x40021088) = 0x2;
-20005520:	4b16      	ldr	r3, [pc, #88]	@ (2000557c <ui_cmd_write_I2C+0x19c>)
-20005522:	2202      	movs	r2, #2
-20005524:	601a      	str	r2, [r3, #0]
-
-    printf("Reading back register 0x%02X\n", reg_address);
-20005526:	6a79      	ldr	r1, [r7, #36]	@ 0x24
-20005528:	4831      	ldr	r0, [pc, #196]	@ (200055f0 <ui_cmd_write_I2C+0x210>)
-2000552a:	f7fb fb7d 	bl	20000c28 <printf>
 
     // RECorrections for printing function
-    *(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
-2000552e:	4b13      	ldr	r3, [pc, #76]	@ (2000557c <ui_cmd_write_I2C+0x19c>)
-20005530:	2200      	movs	r2, #0
-20005532:	601a      	str	r2, [r3, #0]
+    //*(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+2000549c:	bf00      	nop
+2000549e:	4b22      	ldr	r3, [pc, #136]	@ (20005528 <ui_cmd_write_I2C+0x110>)
+200054a0:	681b      	ldr	r3, [r3, #0]
+200054a2:	61fb      	str	r3, [r7, #28]
+200054a4:	69fb      	ldr	r3, [r7, #28]
+200054a6:	f003 0301 	and.w	r3, r3, #1
+200054aa:	2b00      	cmp	r3, #0
+200054ac:	d0f7      	beq.n	2000549e <ui_cmd_write_I2C+0x86>
+
+    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
+200054ae:	4a1f      	ldr	r2, [pc, #124]	@ (2000552c <ui_cmd_write_I2C+0x114>)
+200054b0:	6abb      	ldr	r3, [r7, #40]	@ 0x28
+200054b2:	6013      	str	r3, [r2, #0]
+      // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012082; //7217,      82 device address
+200054b4:	4b1e      	ldr	r3, [pc, #120]	@ (20005530 <ui_cmd_write_I2C+0x118>)
+200054b6:	4a20      	ldr	r2, [pc, #128]	@ (20005538 <ui_cmd_write_I2C+0x120>)
+200054b8:	601a      	str	r2, [r3, #0]
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+200054ba:	bf00      	nop
+200054bc:	4b1a      	ldr	r3, [pc, #104]	@ (20005528 <ui_cmd_write_I2C+0x110>)
+200054be:	681b      	ldr	r3, [r3, #0]
+200054c0:	61fb      	str	r3, [r7, #28]
+200054c2:	69fb      	ldr	r3, [r7, #28]
+200054c4:	f003 0301 	and.w	r3, r3, #1
+200054c8:	2b00      	cmp	r3, #0
+200054ca:	d0f7      	beq.n	200054bc <ui_cmd_write_I2C+0xa4>
+
+       // Wait for STOPF
+	temp = 0;
+200054cc:	2300      	movs	r3, #0
+200054ce:	61fb      	str	r3, [r7, #28]
+	while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+200054d0:	bf00      	nop
+200054d2:	4b15      	ldr	r3, [pc, #84]	@ (20005528 <ui_cmd_write_I2C+0x110>)
+200054d4:	681b      	ldr	r3, [r3, #0]
+200054d6:	61fb      	str	r3, [r7, #28]
+200054d8:	69fb      	ldr	r3, [r7, #28]
+200054da:	f003 0320 	and.w	r3, r3, #32
+200054de:	2b00      	cmp	r3, #0
+200054e0:	d0f7      	beq.n	200054d2 <ui_cmd_write_I2C+0xba>
+
+
 
 
 
     *(volatile uint32_t *)(0x40005404) = 0x2012482; //7217 update CR2 register */
-20005534:	4b26      	ldr	r3, [pc, #152]	@ (200055d0 <ui_cmd_write_I2C+0x1f0>)
-20005536:	4a2f      	ldr	r2, [pc, #188]	@ (200055f4 <ui_cmd_write_I2C+0x214>)
-20005538:	601a      	str	r2, [r3, #0]
+200054e2:	4b13      	ldr	r3, [pc, #76]	@ (20005530 <ui_cmd_write_I2C+0x118>)
+200054e4:	4a15      	ldr	r2, [pc, #84]	@ (2000553c <ui_cmd_write_I2C+0x124>)
+200054e6:	601a      	str	r2, [r3, #0]
 
     // Wait for RXNE
     uint32_t RXNE_BUSY = 0;
-2000553a:	2300      	movs	r3, #0
-2000553c:	61bb      	str	r3, [r7, #24]
+200054e8:	2300      	movs	r3, #0
+200054ea:	61bb      	str	r3, [r7, #24]
     while (((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0) {}
-2000553e:	bf00      	nop
-20005540:	4b2a      	ldr	r3, [pc, #168]	@ (200055ec <ui_cmd_write_I2C+0x20c>)
-20005542:	681b      	ldr	r3, [r3, #0]
-20005544:	61bb      	str	r3, [r7, #24]
-20005546:	69bb      	ldr	r3, [r7, #24]
-20005548:	f003 0304 	and.w	r3, r3, #4
-2000554c:	2b00      	cmp	r3, #0
-2000554e:	d0f7      	beq.n	20005540 <ui_cmd_write_I2C+0x160>
+200054ec:	bf00      	nop
+200054ee:	4b0e      	ldr	r3, [pc, #56]	@ (20005528 <ui_cmd_write_I2C+0x110>)
+200054f0:	681b      	ldr	r3, [r3, #0]
+200054f2:	61bb      	str	r3, [r7, #24]
+200054f4:	69bb      	ldr	r3, [r7, #24]
+200054f6:	f003 0304 	and.w	r3, r3, #4
+200054fa:	2b00      	cmp	r3, #0
+200054fc:	d0f7      	beq.n	200054ee <ui_cmd_write_I2C+0xd6>
 
     uint32_t received_data = *(volatile uint32_t *)(0x40005424);
-20005550:	4b29      	ldr	r3, [pc, #164]	@ (200055f8 <ui_cmd_write_I2C+0x218>)
-20005552:	681b      	ldr	r3, [r3, #0]
-20005554:	617b      	str	r3, [r7, #20]
+200054fe:	4b10      	ldr	r3, [pc, #64]	@ (20005540 <ui_cmd_write_I2C+0x128>)
+20005500:	681b      	ldr	r3, [r3, #0]
+20005502:	617b      	str	r3, [r7, #20]
 
 	// Corrections for printing function
 	*(volatile uint32_t *)(0x40021088) = 0x2;
-20005556:	4b09      	ldr	r3, [pc, #36]	@ (2000557c <ui_cmd_write_I2C+0x19c>)
-20005558:	2202      	movs	r2, #2
-2000555a:	601a      	str	r2, [r3, #0]
-
+20005504:	4b0f      	ldr	r3, [pc, #60]	@ (20005544 <ui_cmd_write_I2C+0x12c>)
+20005506:	2202      	movs	r2, #2
+20005508:	601a      	str	r2, [r3, #0]
+	printf("Writing 0x%02X to register 0x%02X\n", value_to_send, reg_address);
+2000550a:	6aba      	ldr	r2, [r7, #40]	@ 0x28
+2000550c:	6a39      	ldr	r1, [r7, #32]
+2000550e:	480e      	ldr	r0, [pc, #56]	@ (20005548 <ui_cmd_write_I2C+0x130>)
+20005510:	f7fb fb8a 	bl	20000c28 <printf>
     printf("Received data: 0x%08X\n", received_data);
-2000555c:	6979      	ldr	r1, [r7, #20]
-2000555e:	4827      	ldr	r0, [pc, #156]	@ (200055fc <ui_cmd_write_I2C+0x21c>)
-20005560:	f7fb fb62 	bl	20000c28 <printf>
-    // RECorrections for printing function
+20005514:	6979      	ldr	r1, [r7, #20]
+20005516:	480d      	ldr	r0, [pc, #52]	@ (2000554c <ui_cmd_write_I2C+0x134>)
+20005518:	f7fb fb86 	bl	20000c28 <printf>
+
+
+
+    return 0;
+2000551c:	2300      	movs	r3, #0
+
+}
+2000551e:	4618      	mov	r0, r3
+20005520:	3730      	adds	r7, #48	@ 0x30
+20005522:	46bd      	mov	sp, r7
+20005524:	bd80      	pop	{r7, pc}
+20005526:	bf00      	nop
+20005528:	40005418 	.word	0x40005418
+2000552c:	40005428 	.word	0x40005428
+20005530:	40005404 	.word	0x40005404
+20005534:	02022082 	.word	0x02022082
+20005538:	02012082 	.word	0x02012082
+2000553c:	02012482 	.word	0x02012482
+20005540:	40005424 	.word	0x40005424
+20005544:	40021088 	.word	0x40021088
+20005548:	200062bc 	.word	0x200062bc
+2000554c:	200062a4 	.word	0x200062a4
+
+20005550 <I2C_Init>:
+
+
+void I2C_Init(void) {
+20005550:	b480      	push	{r7}
+20005552:	af00      	add	r7, sp, #0
+    // Initialization and clock configuration
+    *(volatile uint32_t *)(0x40021060) = 0x4001; // __HAL_RCC_SYSCFG_CLK_ENABLE();
+20005554:	4b3d      	ldr	r3, [pc, #244]	@ (2000564c <I2C_Init+0xfc>)
+20005556:	f244 0201 	movw	r2, #16385	@ 0x4001
+2000555a:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40021058) = 0x10000000; // __HAL_RCC_PWR_CLK_ENABLE();
+2000555c:	4b3c      	ldr	r3, [pc, #240]	@ (20005650 <I2C_Init+0x100>)
+2000555e:	f04f 5280 	mov.w	r2, #268435456	@ 0x10000000
+20005562:	601a      	str	r2, [r3, #0]
     *(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
-20005564:	4b05      	ldr	r3, [pc, #20]	@ (2000557c <ui_cmd_write_I2C+0x19c>)
+20005564:	4b3b      	ldr	r3, [pc, #236]	@ (20005654 <I2C_Init+0x104>)
 20005566:	2200      	movs	r2, #0
 20005568:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40007004) = 0x200; // PWR_CR2 enable
+2000556a:	4b3b      	ldr	r3, [pc, #236]	@ (20005658 <I2C_Init+0x108>)
+2000556c:	f44f 7200 	mov.w	r2, #512	@ 0x200
+20005570:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x4002104C) = 0x20ff; // GPIOG_CLK_ENABLE
+20005572:	4b3a      	ldr	r3, [pc, #232]	@ (2000565c <I2C_Init+0x10c>)
+20005574:	f242 02ff 	movw	r2, #8447	@ 0x20ff
+20005578:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40021058) = 0x32200000;
+2000557a:	4b35      	ldr	r3, [pc, #212]	@ (20005650 <I2C_Init+0x100>)
+2000557c:	4a38      	ldr	r2, [pc, #224]	@ (20005660 <I2C_Init+0x110>)
+2000557e:	601a      	str	r2, [r3, #0]
+
+    // GPIO configuration
+    *(volatile uint32_t *)(0x48001808) = 0xc3c0fff; // GPIOx_OSPEEDR
+20005580:	4b38      	ldr	r3, [pc, #224]	@ (20005664 <I2C_Init+0x114>)
+20005582:	4a39      	ldr	r2, [pc, #228]	@ (20005668 <I2C_Init+0x118>)
+20005584:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001804) = 0x2000; // GPIO port output type register (GPIOx_OTYPER)
+20005586:	4b39      	ldr	r3, [pc, #228]	@ (2000566c <I2C_Init+0x11c>)
+20005588:	f44f 5200 	mov.w	r2, #8192	@ 0x2000
+2000558c:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x4800180C) = 0x4000000; // GPIOG_PUPDR
+2000558e:	4b38      	ldr	r3, [pc, #224]	@ (20005670 <I2C_Init+0x120>)
+20005590:	f04f 6280 	mov.w	r2, #67108864	@ 0x4000000
+20005594:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001824) = 0x400cc0; // Configure Alternate function mapped with the current IO
+20005596:	4b37      	ldr	r3, [pc, #220]	@ (20005674 <I2C_Init+0x124>)
+20005598:	4a37      	ldr	r2, [pc, #220]	@ (20005678 <I2C_Init+0x128>)
+2000559a:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001800) = 0x3bebcaaa; // Configure IO Direction mode (Input, Output, Alternate or Analog)
+2000559c:	4b37      	ldr	r3, [pc, #220]	@ (2000567c <I2C_Init+0x12c>)
+2000559e:	4a38      	ldr	r2, [pc, #224]	@ (20005680 <I2C_Init+0x130>)
+200055a0:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff; // Configure the IO Speed
+200055a2:	4b30      	ldr	r3, [pc, #192]	@ (20005664 <I2C_Init+0x114>)
+200055a4:	4a37      	ldr	r2, [pc, #220]	@ (20005684 <I2C_Init+0x134>)
+200055a6:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
+200055a8:	4b30      	ldr	r3, [pc, #192]	@ (2000566c <I2C_Init+0x11c>)
+200055aa:	f44f 42c0 	mov.w	r2, #24576	@ 0x6000
+200055ae:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x4800082C) = 0x4000000; // Activate pull up or pull down GPIO_PUPDR
+200055b0:	4b35      	ldr	r3, [pc, #212]	@ (20005688 <I2C_Init+0x138>)
+200055b2:	f04f 6280 	mov.w	r2, #67108864	@ 0x4000000
+200055b6:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001824) = 0x4400cc0; // Configure Alternate function mapped with the current IO
+200055b8:	4b2e      	ldr	r3, [pc, #184]	@ (20005674 <I2C_Init+0x124>)
+200055ba:	4a34      	ldr	r2, [pc, #208]	@ (2000568c <I2C_Init+0x13c>)
+200055bc:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001800) = 0x2bebcaaa; // Configure IO Direction mode (Input, Output, Alternate or Analog)
+200055be:	4b2f      	ldr	r3, [pc, #188]	@ (2000567c <I2C_Init+0x12c>)
+200055c0:	4a33      	ldr	r2, [pc, #204]	@ (20005690 <I2C_Init+0x140>)
+200055c2:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff; // Configure the IO Speed
+200055c4:	4b27      	ldr	r3, [pc, #156]	@ (20005664 <I2C_Init+0x114>)
+200055c6:	4a2f      	ldr	r2, [pc, #188]	@ (20005684 <I2C_Init+0x134>)
+200055c8:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
+200055ca:	4b28      	ldr	r3, [pc, #160]	@ (2000566c <I2C_Init+0x11c>)
+200055cc:	f44f 42c0 	mov.w	r2, #24576	@ 0x6000
+200055d0:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x4800082C) = 0x0; // Activate pull up or pull down GPIO_PUPDR
+200055d2:	4b2d      	ldr	r3, [pc, #180]	@ (20005688 <I2C_Init+0x138>)
+200055d4:	2200      	movs	r2, #0
+200055d6:	601a      	str	r2, [r3, #0]
+    *(volatile uint8_t *)(0x48001841) = 0x24; // hi2c->State = HAL_I2C_STATE_BUSY
+200055d8:	4b2e      	ldr	r3, [pc, #184]	@ (20005694 <I2C_Init+0x144>)
+200055da:	2224      	movs	r2, #36	@ 0x24
+200055dc:	701a      	strb	r2, [r3, #0]
+
+    *(volatile uint32_t *)(0x40005400) = 0; // Disable the selected I2C peripheral
+200055de:	4b2e      	ldr	r3, [pc, #184]	@ (20005698 <I2C_Init+0x148>)
+200055e0:	2200      	movs	r2, #0
+200055e2:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005410) = 0x20303E5D; // Configure I2Cx: Frequency range
+200055e4:	4b2d      	ldr	r3, [pc, #180]	@ (2000569c <I2C_Init+0x14c>)
+200055e6:	4a2e      	ldr	r2, [pc, #184]	@ (200056a0 <I2C_Init+0x150>)
+200055e8:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005408) = 0; // I2Cx OAR1 Configuration
+200055ea:	4b2e      	ldr	r3, [pc, #184]	@ (200056a4 <I2C_Init+0x154>)
+200055ec:	2200      	movs	r2, #0
+200055ee:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005408) = 0x8000; // Ack own address1 mode
+200055f0:	4b2c      	ldr	r3, [pc, #176]	@ (200056a4 <I2C_Init+0x154>)
+200055f2:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
+200055f6:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005404) = 0; // Clear the I2C ADD10 bit
+200055f8:	4b2b      	ldr	r3, [pc, #172]	@ (200056a8 <I2C_Init+0x158>)
+200055fa:	2200      	movs	r2, #0
+200055fc:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x4000540C) = 0; // I2Cx OAR2 Configuration
+200055fe:	4b2b      	ldr	r3, [pc, #172]	@ (200056ac <I2C_Init+0x15c>)
+20005600:	2200      	movs	r2, #0
+20005602:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005400) = 0; // Configure I2Cx: Generalcall and NoStretch mode
+20005604:	4b24      	ldr	r3, [pc, #144]	@ (20005698 <I2C_Init+0x148>)
+20005606:	2200      	movs	r2, #0
+20005608:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005400) = 1; // Enable the selected I2C peripheral
+2000560a:	4b23      	ldr	r3, [pc, #140]	@ (20005698 <I2C_Init+0x148>)
+2000560c:	2201      	movs	r2, #1
+2000560e:	601a      	str	r2, [r3, #0]
+
+    // Transmit
+    *(volatile uint32_t *)(0x40005400) = 0; // I2C_CR1, clear
+20005610:	4b21      	ldr	r3, [pc, #132]	@ (20005698 <I2C_Init+0x148>)
+20005612:	2200      	movs	r2, #0
+20005614:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005410) = 0x20303e5d; // I2C timing configuration
+20005616:	4b21      	ldr	r3, [pc, #132]	@ (2000569c <I2C_Init+0x14c>)
+20005618:	4a21      	ldr	r2, [pc, #132]	@ (200056a0 <I2C_Init+0x150>)
+2000561a:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005408) = 0; // I2C OAR1 configuration
+2000561c:	4b21      	ldr	r3, [pc, #132]	@ (200056a4 <I2C_Init+0x154>)
+2000561e:	2200      	movs	r2, #0
+20005620:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005408) = 0x8000; // Ack own address1 mode
+20005622:	4b20      	ldr	r3, [pc, #128]	@ (200056a4 <I2C_Init+0x154>)
+20005624:	f44f 4200 	mov.w	r2, #32768	@ 0x8000
+20005628:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40005404) = 0; // I2C CR2 configuration
+2000562a:	4b1f      	ldr	r3, [pc, #124]	@ (200056a8 <I2C_Init+0x158>)
+2000562c:	2200      	movs	r2, #0
+2000562e:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x40004404) = 0x2008000; // Auto end, bit 15, NACK
+20005630:	4b1f      	ldr	r3, [pc, #124]	@ (200056b0 <I2C_Init+0x160>)
+20005632:	4a20      	ldr	r2, [pc, #128]	@ (200056b4 <I2C_Init+0x164>)
+20005634:	601a      	str	r2, [r3, #0]
+    *(volatile uint32_t *)(0x4000540C) = 0; // I2C OAR2 configuration
+20005636:	4b1d      	ldr	r3, [pc, #116]	@ (200056ac <I2C_Init+0x15c>)
+20005638:	2200      	movs	r2, #0
+2000563a:	601a      	str	r2, [r3, #0]
+
+    *(volatile uint32_t *)(0x40005400) = 1; // Enable the selected I2C peripheral
+2000563c:	4b16      	ldr	r3, [pc, #88]	@ (20005698 <I2C_Init+0x148>)
+2000563e:	2201      	movs	r2, #1
+20005640:	601a      	str	r2, [r3, #0]
+}
+20005642:	bf00      	nop
+20005644:	46bd      	mov	sp, r7
+20005646:	f85d 7b04 	ldr.w	r7, [sp], #4
+2000564a:	4770      	bx	lr
+2000564c:	40021060 	.word	0x40021060
+20005650:	40021058 	.word	0x40021058
+20005654:	40021088 	.word	0x40021088
+20005658:	40007004 	.word	0x40007004
+2000565c:	4002104c 	.word	0x4002104c
+20005660:	32200000 	.word	0x32200000
+20005664:	48001808 	.word	0x48001808
+20005668:	0c3c0fff 	.word	0x0c3c0fff
+2000566c:	48001804 	.word	0x48001804
+20005670:	4800180c 	.word	0x4800180c
+20005674:	48001824 	.word	0x48001824
+20005678:	00400cc0 	.word	0x00400cc0
+2000567c:	48001800 	.word	0x48001800
+20005680:	3bebcaaa 	.word	0x3bebcaaa
+20005684:	3c3c0fff 	.word	0x3c3c0fff
+20005688:	4800082c 	.word	0x4800082c
+2000568c:	04400cc0 	.word	0x04400cc0
+20005690:	2bebcaaa 	.word	0x2bebcaaa
+20005694:	48001841 	.word	0x48001841
+20005698:	40005400 	.word	0x40005400
+2000569c:	40005410 	.word	0x40005410
+200056a0:	20303e5d 	.word	0x20303e5d
+200056a4:	40005408 	.word	0x40005408
+200056a8:	40005404 	.word	0x40005404
+200056ac:	4000540c 	.word	0x4000540c
+200056b0:	40004404 	.word	0x40004404
+200056b4:	02008000 	.word	0x02008000
+
+200056b8 <write_I2C>:
+
+static int write_I2C(int reg_address, int value_to_send)
+{
+200056b8:	b580      	push	{r7, lr}
+200056ba:	b086      	sub	sp, #24
+200056bc:	af00      	add	r7, sp, #0
+200056be:	6078      	str	r0, [r7, #4]
+200056c0:	6039      	str	r1, [r7, #0]
+
+    I2C_Init();
+200056c2:	f7ff ff45 	bl	20005550 <I2C_Init>
+
+    //printf("Writing 0x%02X to register 0x%02X", value_to_send, reg_address);
+
+    // RECorrections for printing function
+    //*(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
+    uint32_t temp = 0;
+200056c6:	2300      	movs	r3, #0
+200056c8:	617b      	str	r3, [r7, #20]
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+200056ca:	bf00      	nop
+200056cc:	4b34      	ldr	r3, [pc, #208]	@ (200057a0 <write_I2C+0xe8>)
+200056ce:	681b      	ldr	r3, [r3, #0]
+200056d0:	617b      	str	r3, [r7, #20]
+200056d2:	697b      	ldr	r3, [r7, #20]
+200056d4:	f003 0301 	and.w	r3, r3, #1
+200056d8:	2b00      	cmp	r3, #0
+200056da:	d0f7      	beq.n	200056cc <write_I2C+0x14>
+
+    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
+200056dc:	4a31      	ldr	r2, [pc, #196]	@ (200057a4 <write_I2C+0xec>)
+200056de:	687b      	ldr	r3, [r7, #4]
+200056e0:	6013      	str	r3, [r2, #0]
+    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+
+    *(volatile uint32_t *)(0x40005404) = 0x2022082; // 7217, 82 device address
+200056e2:	4b31      	ldr	r3, [pc, #196]	@ (200057a8 <write_I2C+0xf0>)
+200056e4:	4a31      	ldr	r2, [pc, #196]	@ (200057ac <write_I2C+0xf4>)
+200056e6:	601a      	str	r2, [r3, #0]
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+200056e8:	bf00      	nop
+200056ea:	4b2d      	ldr	r3, [pc, #180]	@ (200057a0 <write_I2C+0xe8>)
+200056ec:	681b      	ldr	r3, [r3, #0]
+200056ee:	617b      	str	r3, [r7, #20]
+200056f0:	697b      	ldr	r3, [r7, #20]
+200056f2:	f003 0301 	and.w	r3, r3, #1
+200056f6:	2b00      	cmp	r3, #0
+200056f8:	d0f7      	beq.n	200056ea <write_I2C+0x32>
+
+    *(volatile uint32_t *)(0x40005428) = value_to_send;
+200056fa:	4a2a      	ldr	r2, [pc, #168]	@ (200057a4 <write_I2C+0xec>)
+200056fc:	683b      	ldr	r3, [r7, #0]
+200056fe:	6013      	str	r3, [r2, #0]
+    // Wait for STOPF
+    temp = 0;
+20005700:	2300      	movs	r3, #0
+20005702:	617b      	str	r3, [r7, #20]
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+20005704:	bf00      	nop
+20005706:	4b26      	ldr	r3, [pc, #152]	@ (200057a0 <write_I2C+0xe8>)
+20005708:	681b      	ldr	r3, [r3, #0]
+2000570a:	617b      	str	r3, [r7, #20]
+2000570c:	697b      	ldr	r3, [r7, #20]
+2000570e:	f003 0320 	and.w	r3, r3, #32
+20005712:	2b00      	cmp	r3, #0
+20005714:	d0f7      	beq.n	20005706 <write_I2C+0x4e>
+    //printf("Reading back register 0x%02X", reg_address);
+
+    // RECorrections for printing function
+    //*(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+20005716:	bf00      	nop
+20005718:	4b21      	ldr	r3, [pc, #132]	@ (200057a0 <write_I2C+0xe8>)
+2000571a:	681b      	ldr	r3, [r3, #0]
+2000571c:	617b      	str	r3, [r7, #20]
+2000571e:	697b      	ldr	r3, [r7, #20]
+20005720:	f003 0301 	and.w	r3, r3, #1
+20005724:	2b00      	cmp	r3, #0
+20005726:	d0f7      	beq.n	20005718 <write_I2C+0x60>
+
+    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
+20005728:	4a1e      	ldr	r2, [pc, #120]	@ (200057a4 <write_I2C+0xec>)
+2000572a:	687b      	ldr	r3, [r7, #4]
+2000572c:	6013      	str	r3, [r2, #0]
+    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012082; // 7217, 82 device address
+2000572e:	4b1e      	ldr	r3, [pc, #120]	@ (200057a8 <write_I2C+0xf0>)
+20005730:	4a1f      	ldr	r2, [pc, #124]	@ (200057b0 <write_I2C+0xf8>)
+20005732:	601a      	str	r2, [r3, #0]
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+20005734:	bf00      	nop
+20005736:	4b1a      	ldr	r3, [pc, #104]	@ (200057a0 <write_I2C+0xe8>)
+20005738:	681b      	ldr	r3, [r3, #0]
+2000573a:	617b      	str	r3, [r7, #20]
+2000573c:	697b      	ldr	r3, [r7, #20]
+2000573e:	f003 0301 	and.w	r3, r3, #1
+20005742:	2b00      	cmp	r3, #0
+20005744:	d0f7      	beq.n	20005736 <write_I2C+0x7e>
+
+    // Wait for STOPF
+    temp = 0;
+20005746:	2300      	movs	r3, #0
+20005748:	617b      	str	r3, [r7, #20]
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+2000574a:	bf00      	nop
+2000574c:	4b14      	ldr	r3, [pc, #80]	@ (200057a0 <write_I2C+0xe8>)
+2000574e:	681b      	ldr	r3, [r3, #0]
+20005750:	617b      	str	r3, [r7, #20]
+20005752:	697b      	ldr	r3, [r7, #20]
+20005754:	f003 0320 	and.w	r3, r3, #32
+20005758:	2b00      	cmp	r3, #0
+2000575a:	d0f7      	beq.n	2000574c <write_I2C+0x94>
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012482; // 7217 update CR2 register
+2000575c:	4b12      	ldr	r3, [pc, #72]	@ (200057a8 <write_I2C+0xf0>)
+2000575e:	4a15      	ldr	r2, [pc, #84]	@ (200057b4 <write_I2C+0xfc>)
+20005760:	601a      	str	r2, [r3, #0]
+
+    // Wait for RXNE
+    uint32_t RXNE_BUSY = 0;
+20005762:	2300      	movs	r3, #0
+20005764:	613b      	str	r3, [r7, #16]
+    while (((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0) {}
+20005766:	bf00      	nop
+20005768:	4b0d      	ldr	r3, [pc, #52]	@ (200057a0 <write_I2C+0xe8>)
+2000576a:	681b      	ldr	r3, [r3, #0]
+2000576c:	613b      	str	r3, [r7, #16]
+2000576e:	693b      	ldr	r3, [r7, #16]
+20005770:	f003 0304 	and.w	r3, r3, #4
+20005774:	2b00      	cmp	r3, #0
+20005776:	d0f7      	beq.n	20005768 <write_I2C+0xb0>
+
+    uint32_t received_data = *(volatile uint32_t *)(0x40005424);
+20005778:	4b0f      	ldr	r3, [pc, #60]	@ (200057b8 <write_I2C+0x100>)
+2000577a:	681b      	ldr	r3, [r3, #0]
+2000577c:	60fb      	str	r3, [r7, #12]
+
+    // Corrections for printing function
+	*(volatile uint32_t *)(0x40021088) = 0x2;
+2000577e:	4b0f      	ldr	r3, [pc, #60]	@ (200057bc <write_I2C+0x104>)
+20005780:	2202      	movs	r2, #2
+20005782:	601a      	str	r2, [r3, #0]
+	printf("Writing 0x%02X to register 0x%02X\n", value_to_send, reg_address);
+20005784:	687a      	ldr	r2, [r7, #4]
+20005786:	6839      	ldr	r1, [r7, #0]
+20005788:	480d      	ldr	r0, [pc, #52]	@ (200057c0 <write_I2C+0x108>)
+2000578a:	f7fb fa4d 	bl	20000c28 <printf>
+    printf("Received data: 0x%08X\n", received_data);
+2000578e:	68f9      	ldr	r1, [r7, #12]
+20005790:	480c      	ldr	r0, [pc, #48]	@ (200057c4 <write_I2C+0x10c>)
+20005792:	f7fb fa49 	bl	20000c28 <printf>
+
 
 
     return 0;
-2000556a:	2300      	movs	r3, #0
-
+20005796:	2300      	movs	r3, #0
 }
-2000556c:	4618      	mov	r0, r3
-2000556e:	3728      	adds	r7, #40	@ 0x28
-20005570:	46bd      	mov	sp, r7
-20005572:	bd80      	pop	{r7, pc}
-20005574:	40021060 	.word	0x40021060
-20005578:	40021058 	.word	0x40021058
-2000557c:	40021088 	.word	0x40021088
-20005580:	40007004 	.word	0x40007004
-20005584:	4002104c 	.word	0x4002104c
-20005588:	32200000 	.word	0x32200000
-2000558c:	48001808 	.word	0x48001808
-20005590:	0c3c0fff 	.word	0x0c3c0fff
-20005594:	48001804 	.word	0x48001804
-20005598:	4800180c 	.word	0x4800180c
-2000559c:	48001824 	.word	0x48001824
-200055a0:	00400cc0 	.word	0x00400cc0
-200055a4:	48001800 	.word	0x48001800
-200055a8:	3bebcaaa 	.word	0x3bebcaaa
-200055ac:	3c3c0fff 	.word	0x3c3c0fff
-200055b0:	4800082c 	.word	0x4800082c
-200055b4:	04400cc0 	.word	0x04400cc0
-200055b8:	2bebcaaa 	.word	0x2bebcaaa
-200055bc:	48001841 	.word	0x48001841
-200055c0:	40005400 	.word	0x40005400
-200055c4:	40005410 	.word	0x40005410
-200055c8:	20303e5d 	.word	0x20303e5d
-200055cc:	40005408 	.word	0x40005408
-200055d0:	40005404 	.word	0x40005404
-200055d4:	4000540c 	.word	0x4000540c
-200055d8:	40004404 	.word	0x40004404
-200055dc:	02008000 	.word	0x02008000
-200055e0:	20005f98 	.word	0x20005f98
-200055e4:	40005428 	.word	0x40005428
-200055e8:	02022082 	.word	0x02022082
-200055ec:	40005418 	.word	0x40005418
-200055f0:	20005fbc 	.word	0x20005fbc
-200055f4:	02012482 	.word	0x02012482
-200055f8:	40005424 	.word	0x40005424
-200055fc:	20005f80 	.word	0x20005f80
+20005798:	4618      	mov	r0, r3
+2000579a:	3718      	adds	r7, #24
+2000579c:	46bd      	mov	sp, r7
+2000579e:	bd80      	pop	{r7, pc}
+200057a0:	40005418 	.word	0x40005418
+200057a4:	40005428 	.word	0x40005428
+200057a8:	40005404 	.word	0x40005404
+200057ac:	02022082 	.word	0x02022082
+200057b0:	02012082 	.word	0x02012082
+200057b4:	02012482 	.word	0x02012482
+200057b8:	40005424 	.word	0x40005424
+200057bc:	40021088 	.word	0x40021088
+200057c0:	200062bc 	.word	0x200062bc
+200057c4:	200062a4 	.word	0x200062a4
 
-20005600 <ui_cmd_LEDO>:
+200057c8 <display_I2C>:
 
+
+
+    return received_data;
 }
+static int display_I2C(ui_cmdline_t *cmd, int argc, char *argv[]) {
+200057c8:	b580      	push	{r7, lr}
+200057ca:	b08a      	sub	sp, #40	@ 0x28
+200057cc:	af00      	add	r7, sp, #0
+200057ce:	60f8      	str	r0, [r7, #12]
+200057d0:	60b9      	str	r1, [r7, #8]
+200057d2:	607a      	str	r2, [r7, #4]
+    char *address;
+    int reg_address;
+
+    *address = cmd_getarg(cmd, 0);
+200057d4:	2100      	movs	r1, #0
+200057d6:	68f8      	ldr	r0, [r7, #12]
+200057d8:	f7fe f9d7 	bl	20003b8a <cmd_getarg>
+200057dc:	4603      	mov	r3, r0
+200057de:	b2da      	uxtb	r2, r3
+200057e0:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+200057e2:	701a      	strb	r2, [r3, #0]
+    reg_address = atoi(*address);
+200057e4:	6a7b      	ldr	r3, [r7, #36]	@ 0x24
+200057e6:	781b      	ldrb	r3, [r3, #0]
+200057e8:	4618      	mov	r0, r3
+200057ea:	f7fb fe33 	bl	20001454 <lib_atoi>
+200057ee:	6238      	str	r0, [r7, #32]
+
+    I2C_Init();
+200057f0:	f7ff feae 	bl	20005550 <I2C_Init>
+    uint32_t temp = 0;
+200057f4:	2300      	movs	r3, #0
+200057f6:	61fb      	str	r3, [r7, #28]
+
+    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
+200057f8:	4a1b      	ldr	r2, [pc, #108]	@ (20005868 <display_I2C+0xa0>)
+200057fa:	6a3b      	ldr	r3, [r7, #32]
+200057fc:	6013      	str	r3, [r2, #0]
+    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012082; // 7217, 82 device address
+200057fe:	4b1b      	ldr	r3, [pc, #108]	@ (2000586c <display_I2C+0xa4>)
+20005800:	4a1b      	ldr	r2, [pc, #108]	@ (20005870 <display_I2C+0xa8>)
+20005802:	601a      	str	r2, [r3, #0]
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+20005804:	bf00      	nop
+20005806:	4b1b      	ldr	r3, [pc, #108]	@ (20005874 <display_I2C+0xac>)
+20005808:	681b      	ldr	r3, [r3, #0]
+2000580a:	61fb      	str	r3, [r7, #28]
+2000580c:	69fb      	ldr	r3, [r7, #28]
+2000580e:	f003 0301 	and.w	r3, r3, #1
+20005812:	2b00      	cmp	r3, #0
+20005814:	d0f7      	beq.n	20005806 <display_I2C+0x3e>
+
+    // Wait for STOPF
+    temp = 0;
+20005816:	2300      	movs	r3, #0
+20005818:	61fb      	str	r3, [r7, #28]
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+2000581a:	bf00      	nop
+2000581c:	4b15      	ldr	r3, [pc, #84]	@ (20005874 <display_I2C+0xac>)
+2000581e:	681b      	ldr	r3, [r3, #0]
+20005820:	61fb      	str	r3, [r7, #28]
+20005822:	69fb      	ldr	r3, [r7, #28]
+20005824:	f003 0320 	and.w	r3, r3, #32
+20005828:	2b00      	cmp	r3, #0
+2000582a:	d0f7      	beq.n	2000581c <display_I2C+0x54>
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012482; // 7217 update CR2 register
+2000582c:	4b0f      	ldr	r3, [pc, #60]	@ (2000586c <display_I2C+0xa4>)
+2000582e:	4a12      	ldr	r2, [pc, #72]	@ (20005878 <display_I2C+0xb0>)
+20005830:	601a      	str	r2, [r3, #0]
+
+    // Wait for RXNE
+    uint32_t RXNE_BUSY = 0;
+20005832:	2300      	movs	r3, #0
+20005834:	61bb      	str	r3, [r7, #24]
+    while (((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0) {}
+20005836:	bf00      	nop
+20005838:	4b0e      	ldr	r3, [pc, #56]	@ (20005874 <display_I2C+0xac>)
+2000583a:	681b      	ldr	r3, [r3, #0]
+2000583c:	61bb      	str	r3, [r7, #24]
+2000583e:	69bb      	ldr	r3, [r7, #24]
+20005840:	f003 0304 	and.w	r3, r3, #4
+20005844:	2b00      	cmp	r3, #0
+20005846:	d0f7      	beq.n	20005838 <display_I2C+0x70>
+
+    uint32_t received_data = *(volatile uint32_t *)(0x40005424);
+20005848:	4b0c      	ldr	r3, [pc, #48]	@ (2000587c <display_I2C+0xb4>)
+2000584a:	681b      	ldr	r3, [r3, #0]
+2000584c:	617b      	str	r3, [r7, #20]
+
+    // Corrections for printing function
+	*(volatile uint32_t *)(0x40021088) = 0x2;
+2000584e:	4b0c      	ldr	r3, [pc, #48]	@ (20005880 <display_I2C+0xb8>)
+20005850:	2202      	movs	r2, #2
+20005852:	601a      	str	r2, [r3, #0]
+    printf("Received data: 0x%08X\n", received_data);
+20005854:	6979      	ldr	r1, [r7, #20]
+20005856:	480b      	ldr	r0, [pc, #44]	@ (20005884 <display_I2C+0xbc>)
+20005858:	f7fb f9e6 	bl	20000c28 <printf>
 
 
+
+    return 0;
+2000585c:	2300      	movs	r3, #0
+}
+2000585e:	4618      	mov	r0, r3
+20005860:	3728      	adds	r7, #40	@ 0x28
+20005862:	46bd      	mov	sp, r7
+20005864:	bd80      	pop	{r7, pc}
+20005866:	bf00      	nop
+20005868:	40005428 	.word	0x40005428
+2000586c:	40005404 	.word	0x40005404
+20005870:	02012082 	.word	0x02012082
+20005874:	40005418 	.word	0x40005418
+20005878:	02012482 	.word	0x02012482
+2000587c:	40005424 	.word	0x40005424
+20005880:	40021088 	.word	0x40021088
+20005884:	200062a4 	.word	0x200062a4
+
+20005888 <ui_cmd_LEDO>:
 
 static int ui_cmd_LEDO(ui_cmdline_t *cmd, int argc, char *argv[]) {
-20005600:	b580      	push	{r7, lr}
-20005602:	b08a      	sub	sp, #40	@ 0x28
-20005604:	af00      	add	r7, sp, #0
-20005606:	60f8      	str	r0, [r7, #12]
-20005608:	60b9      	str	r1, [r7, #8]
-2000560a:	607a      	str	r2, [r7, #4]
-    // Initialize I2C and set GPIO0 as output
-    ui_cmd_write_I2C(NULL, 2, (char*[]){"write_i2c", "0x13", "0x01"});
-2000560c:	4a0f      	ldr	r2, [pc, #60]	@ (2000564c <ui_cmd_LEDO+0x4c>)
-2000560e:	f107 031c 	add.w	r3, r7, #28
-20005612:	ca07      	ldmia	r2, {r0, r1, r2}
-20005614:	e883 0007 	stmia.w	r3, {r0, r1, r2}
-20005618:	f107 031c 	add.w	r3, r7, #28
-2000561c:	461a      	mov	r2, r3
-2000561e:	2102      	movs	r1, #2
-20005620:	2000      	movs	r0, #0
-20005622:	f7ff fedd 	bl	200053e0 <ui_cmd_write_I2C>
+20005888:	b580      	push	{r7, lr}
+2000588a:	b086      	sub	sp, #24
+2000588c:	af00      	add	r7, sp, #0
+2000588e:	60f8      	str	r0, [r7, #12]
+20005890:	60b9      	str	r1, [r7, #8]
+20005892:	607a      	str	r2, [r7, #4]
+    char *state_str;
+    int state;
 
-    // Turn on LED2 (Orange)
-    ui_cmd_write_I2C(NULL, 2, (char*[]){"write_i2c", "0x10", "0x01"});
-20005626:	4a0a      	ldr	r2, [pc, #40]	@ (20005650 <ui_cmd_LEDO+0x50>)
-20005628:	f107 0310 	add.w	r3, r7, #16
-2000562c:	ca07      	ldmia	r2, {r0, r1, r2}
-2000562e:	e883 0007 	stmia.w	r3, {r0, r1, r2}
-20005632:	f107 0310 	add.w	r3, r7, #16
-20005636:	461a      	mov	r2, r3
-20005638:	2102      	movs	r1, #2
-2000563a:	2000      	movs	r0, #0
-2000563c:	f7ff fed0 	bl	200053e0 <ui_cmd_write_I2C>
-    //for (volatile int i = 0; i < 1000000; i++);
+    state_str = cmd_getarg(cmd, 0);
+20005894:	2100      	movs	r1, #0
+20005896:	68f8      	ldr	r0, [r7, #12]
+20005898:	f7fe f977 	bl	20003b8a <cmd_getarg>
+2000589c:	6178      	str	r0, [r7, #20]
+    state = atoi(state_str);
+2000589e:	6978      	ldr	r0, [r7, #20]
+200058a0:	f7fb fdd8 	bl	20001454 <lib_atoi>
+200058a4:	6138      	str	r0, [r7, #16]
 
-    // Turn off LED2 (Orange)
-    //ui_cmd_write_I2C(NULL, 2, (char*[]){"write_i2c", "0x11", "0x01"});
+    if (state == 1) { // turn on
+200058a6:	693b      	ldr	r3, [r7, #16]
+200058a8:	2b01      	cmp	r3, #1
+200058aa:	d10f      	bne.n	200058cc <ui_cmd_LEDO+0x44>
+        write_I2C(0x11, 0x1);
+200058ac:	2101      	movs	r1, #1
+200058ae:	2011      	movs	r0, #17
+200058b0:	f7ff ff02 	bl	200056b8 <write_I2C>
+        write_I2C(0x17, 0x1);
+200058b4:	2101      	movs	r1, #1
+200058b6:	2017      	movs	r0, #23
+200058b8:	f7ff fefe 	bl	200056b8 <write_I2C>
+        write_I2C(0x13, 0x1);
+200058bc:	2101      	movs	r1, #1
+200058be:	2013      	movs	r0, #19
+200058c0:	f7ff fefa 	bl	200056b8 <write_I2C>
+        printf("LEDs are ON\n");
+200058c4:	4809      	ldr	r0, [pc, #36]	@ (200058ec <ui_cmd_LEDO+0x64>)
+200058c6:	f7fb fa0b 	bl	20000ce0 <puts>
+200058ca:	e009      	b.n	200058e0 <ui_cmd_LEDO+0x58>
+    } else if (state == 0) { // turn off
+200058cc:	693b      	ldr	r3, [r7, #16]
+200058ce:	2b00      	cmp	r3, #0
+200058d0:	d106      	bne.n	200058e0 <ui_cmd_LEDO+0x58>
+        write_I2C(0x10, 0x1);
+200058d2:	2101      	movs	r1, #1
+200058d4:	2010      	movs	r0, #16
+200058d6:	f7ff feef 	bl	200056b8 <write_I2C>
+        printf("LEDs are OFF\n");
+200058da:	4805      	ldr	r0, [pc, #20]	@ (200058f0 <ui_cmd_LEDO+0x68>)
+200058dc:	f7fb fa00 	bl	20000ce0 <puts>
+    }
 
     return 0;
-20005640:	2300      	movs	r3, #0
+200058e0:	2300      	movs	r3, #0
 }
-20005642:	4618      	mov	r0, r3
-20005644:	3728      	adds	r7, #40	@ 0x28
-20005646:	46bd      	mov	sp, r7
-20005648:	bd80      	pop	{r7, pc}
-2000564a:	bf00      	nop
-2000564c:	20005ff8 	.word	0x20005ff8
-20005650:	2000600c 	.word	0x2000600c
+200058e2:	4618      	mov	r0, r3
+200058e4:	3718      	adds	r7, #24
+200058e6:	46bd      	mov	sp, r7
+200058e8:	bd80      	pop	{r7, pc}
+200058ea:	bf00      	nop
+200058ec:	200062e0 	.word	0x200062e0
+200058f0:	200062ec 	.word	0x200062ec
+
+200058f4 <ui_cmd_LEDB>:
+
+static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
+200058f4:	b580      	push	{r7, lr}
+200058f6:	b086      	sub	sp, #24
+200058f8:	af00      	add	r7, sp, #0
+200058fa:	60f8      	str	r0, [r7, #12]
+200058fc:	60b9      	str	r1, [r7, #8]
+200058fe:	607a      	str	r2, [r7, #4]
+    char *state_str;
+    int state;
+
+    state_str = cmd_getarg(cmd, 0);
+20005900:	2100      	movs	r1, #0
+20005902:	68f8      	ldr	r0, [r7, #12]
+20005904:	f7fe f941 	bl	20003b8a <cmd_getarg>
+20005908:	6178      	str	r0, [r7, #20]
+    state = atoi(state_str);
+2000590a:	6978      	ldr	r0, [r7, #20]
+2000590c:	f7fb fda2 	bl	20001454 <lib_atoi>
+20005910:	6138      	str	r0, [r7, #16]
+
+    if (state == 1) { // turn on
+20005912:	693b      	ldr	r3, [r7, #16]
+20005914:	2b01      	cmp	r3, #1
+20005916:	d10f      	bne.n	20005938 <ui_cmd_LEDB+0x44>
+
+
+    	write_I2C(0x11, 0x4);
+20005918:	2104      	movs	r1, #4
+2000591a:	2011      	movs	r0, #17
+2000591c:	f7ff fecc 	bl	200056b8 <write_I2C>
+        write_I2C(0x17, 0x4);
+20005920:	2104      	movs	r1, #4
+20005922:	2017      	movs	r0, #23
+20005924:	f7ff fec8 	bl	200056b8 <write_I2C>
+        write_I2C(0x13, 0x4);
+20005928:	2104      	movs	r1, #4
+2000592a:	2013      	movs	r0, #19
+2000592c:	f7ff fec4 	bl	200056b8 <write_I2C>
+        printf("Blue LED is ON\n");
+20005930:	480a      	ldr	r0, [pc, #40]	@ (2000595c <ui_cmd_LEDB+0x68>)
+20005932:	f7fb f9d5 	bl	20000ce0 <puts>
+20005936:	e00b      	b.n	20005950 <ui_cmd_LEDB+0x5c>
+    } else if (state == 0) { // turn off
+20005938:	693b      	ldr	r3, [r7, #16]
+2000593a:	2b00      	cmp	r3, #0
+2000593c:	d108      	bne.n	20005950 <ui_cmd_LEDB+0x5c>
+        I2C_Init();
+2000593e:	f7ff fe07 	bl	20005550 <I2C_Init>
+
+        // Disable Blue LED
+        write_I2C(0x10, 0x4);
+20005942:	2104      	movs	r1, #4
+20005944:	2010      	movs	r0, #16
+20005946:	f7ff feb7 	bl	200056b8 <write_I2C>
+        printf("Blue LED is OFF\n");
+2000594a:	4805      	ldr	r0, [pc, #20]	@ (20005960 <ui_cmd_LEDB+0x6c>)
+2000594c:	f7fb f9c8 	bl	20000ce0 <puts>
+    }
+
+    return 0;
+20005950:	2300      	movs	r3, #0
+}
+20005952:	4618      	mov	r0, r3
+20005954:	3718      	adds	r7, #24
+20005956:	46bd      	mov	sp, r7
+20005958:	bd80      	pop	{r7, pc}
+2000595a:	bf00      	nop
+2000595c:	200062fc 	.word	0x200062fc
+20005960:	2000630c 	.word	0x2000630c
 
 Disassembly of section .init:
 
-20005654 <_init>:
-20005654:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-20005656:	bf00      	nop
+20005964 <_init>:
+20005964:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+20005966:	bf00      	nop
 
 Disassembly of section .fini:
 
-20005658 <_fini>:
-20005658:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
-2000565a:	bf00      	nop
+20005968 <_fini>:
+20005968:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+2000596a:	bf00      	nop
