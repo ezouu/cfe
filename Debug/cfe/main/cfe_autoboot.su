@@ -1,6 +1,0 @@
-../cfe/main/cfe_autoboot.c:92:13:macroexpand	72	static
-../cfe/main/cfe_autoboot.c:132:12:cfe_tryauto_common	48	static
-../cfe/main/cfe_autoboot.c:285:12:cfe_tryauto_disk	544	static
-../cfe/main/cfe_autoboot.c:321:12:cfe_tryauto	16	static
-../cfe/main/cfe_autoboot.c:352:5:cfe_autoboot	56	static
-../cfe/main/cfe_autoboot.c:425:5:cfe_add_autoboot	32	static

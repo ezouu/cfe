@@ -48,7 +48,7 @@
 #include "lib_types.h"
 #include "lib_queue.h"
 #include "lib_malloc.h"
-//#include "lib_setjmp.h"
+#include "lib_setjmp.h"
 #include "lib_try.h"
 
 exc_handler_t exc_handler;

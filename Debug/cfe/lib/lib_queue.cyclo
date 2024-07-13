@@ -1,6 +1,0 @@
-../cfe/lib/lib_queue.c:65:6:q_enqueue	1
-../cfe/lib/lib_queue.c:86:6:q_dequeue	1
-../cfe/lib/lib_queue.c:105:10:q_deqnext	2
-../cfe/lib/lib_queue.c:138:5:q_map	3
-../cfe/lib/lib_queue.c:173:5:q_count	2
-../cfe/lib/lib_queue.c:204:5:q_find	3

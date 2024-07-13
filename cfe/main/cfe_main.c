@@ -196,6 +196,7 @@ static void cfe_init_ui(void)
   //  OPTIONAL(ui_init_examcmds());
 
     OPTIONAL(ui_init_misccmds());
+    OPTIONAL(ui_init_examcmds());
 }
 
 

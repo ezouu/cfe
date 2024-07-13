@@ -1,9 +1,0 @@
-../cfe/main/cfe_filesys.c:109:26:cfe_findfilesys	3
-../cfe/main/cfe_filesys.c:137:5:fs_init	4
-../cfe/main/cfe_filesys.c:177:5:fs_hook	3
-../cfe/main/cfe_filesys.c:225:5:fs_uninit	1
-../cfe/main/cfe_filesys.c:250:5:fs_open	1
-../cfe/main/cfe_filesys.c:268:5:fs_close	1
-../cfe/main/cfe_filesys.c:293:5:fs_read	1
-../cfe/main/cfe_filesys.c:315:5:fs_write	1
-../cfe/main/cfe_filesys.c:336:5:fs_seek	1

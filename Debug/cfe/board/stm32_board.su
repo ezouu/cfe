@@ -1,6 +1,0 @@
-../cfe/board/stm32_board.c:40:1:stm32_uart_probe	24	static
-../cfe/board/stm32_board.c:48:1:stm32_uart_open	16	static
-../cfe/board/stm32_board.c:55:1:stm32_uart_read	40	static
-../cfe/board/stm32_board.c:82:1:stm32_uart_inpstat	24	static
-../cfe/board/stm32_board.c:101:1:stm32_uart_write	32	static
-../cfe/board/stm32_board.c:112:6:board_init	16	static

@@ -56,7 +56,7 @@
 #define EXC_NORMAL_RETURN 0
 #define EXC_CHAIN_EXC     1
 
-//typedef jmpbuf uint_32_t;
+
 typedef struct jmpbuf_s {
   queue_t stack;
   jmp_buf jmpbuf;

@@ -1,8 +1,0 @@
-../cfe/ui/ui_loadcmds.c:79:17:getaddr	24	static
-../cfe/ui/ui_loadcmds.c:102:5:ui_init_loadcmds	16	static
-../cfe/ui/ui_loadcmds.c:209:12:ui_cmd_autoboot	40	static
-../cfe/ui/ui_loadcmds.c:224:12:ui_cmd_go	32	static
-../cfe/ui/ui_loadcmds.c:244:12:ui_cmd_bootcommon	256	static
-../cfe/ui/ui_loadcmds.c:290:12:ui_cmd_load	32	static
-../cfe/ui/ui_loadcmds.c:300:12:ui_cmd_boot	32	static
-../cfe/ui/ui_loadcmds.c:307:12:ui_cmd_batch	32	static

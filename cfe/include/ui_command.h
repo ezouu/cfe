@@ -55,6 +55,8 @@ typedef struct ui_cmdsw_s {
     char *swvalue;
 } ui_cmdsw_t;
 
+
+
 #define MAX_TOKENS	64
 #define MAX_SWITCHES	16
 #define MAX_TOKEN_SIZE  1000

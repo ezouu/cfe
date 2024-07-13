@@ -156,13 +156,13 @@ int ui_init_misccmds(void)
 	       "1 to turn on light",
 	       "0 to turn off light",
 	       "");
-    /*cmd_addcmd("joystick",
+    cmd_addcmd("joystick",
 	       ui_cmd_joystick,
 	       NULL,
 	       "1 to turn on light",
 	       "0 to turn off light",
 	       "");
-     */
+
 	cmd_addcmd("ledo",
 			   ui_cmd_LEDO,
 			   NULL,
@@ -919,7 +919,26 @@ void Joystick_Init(void) {
 
 static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
 {
+    char *state_str;
+    int state;
 
+    state_str = cmd_getarg(cmd, 0);
+    state = atoi(state_str);
+
+    if (state == 1) { // turn on
+
+
+    	write_I2C(0x11, 0x4);
+        write_I2C(0x17, 0x4);
+        write_I2C(0x13, 0x4);
+        printf("Blue LED is ON\n");
+    } else if (state == 0) { // turn off
+        I2C_Init();
+
+        // Disable Blue LED
+        write_I2C(0x10, 0x4);
+        printf("Blue LED is OFF\n");
+    }
 
     return 0;
 }

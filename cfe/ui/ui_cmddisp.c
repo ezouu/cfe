@@ -104,9 +104,9 @@ int ui_showerror(int errcode,char *tmplt,...)
     va_list marker;
 
     va_start(marker,tmplt);
-    xvprintf(tmplt,marker);
+    printf(tmplt,marker);
     va_end(marker);
-    xprintf(": %s\n",ui_errstring(errcode));
+    printf(": %s\n",ui_errstring(errcode));
 
     return errcode;
 }

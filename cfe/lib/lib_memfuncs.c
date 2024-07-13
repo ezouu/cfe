@@ -79,7 +79,7 @@ int mem_peek(void *d, hsaddr_t addr, int type)
 	return CFE_ERR_NOMEM;
 	}
 
-    if (exc_try(jb) == 0) {
+    if (1) {
   
 	switch (type) {
 	    case MEM_BYTE:
@@ -98,12 +98,12 @@ int mem_peek(void *d, hsaddr_t addr, int type)
 		return CFE_ERR_INV_PARAM;
 	    }
 
-	exc_cleanup_block(jb);
+	//exc_cleanup_block(jb);
 	}
     else {
 	/*Exception handler*/
 
-	exc_cleanup_handler(jb, EXC_NORMAL_RETURN);
+	//exc_cleanup_handler(jb, EXC_NORMAL_RETURN);
 	return CFE_ERR_GETMEM;
 	}
 
@@ -124,12 +124,12 @@ int mem_poke(hsaddr_t addr, uint64_t val, int type)
 
     jmpbuf_t *jb;
 
-    jb = exc_initialize_block();
+    jb = 1;
     if( jb == NULL ) {
 	return CFE_ERR_NOMEM;
 	}
 
-    if (exc_try(jb) == 0) {
+    if (1) {
   
 	switch (type) {
 	    case MEM_BYTE:
@@ -148,12 +148,12 @@ int mem_poke(hsaddr_t addr, uint64_t val, int type)
 		return CFE_ERR_INV_PARAM;
 	    }
 
-	exc_cleanup_block(jb);
+	//exc_cleanup_block(jb);
 	}
     else {
 	/*Exception handler*/
 
-	exc_cleanup_handler(jb, EXC_NORMAL_RETURN);
+	//exc_cleanup_handler(jb, EXC_NORMAL_RETURN);
 	return CFE_ERR_SETMEM;
 	}
 

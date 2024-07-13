@@ -53,10 +53,21 @@
 #include "lib_memfuncs.h"
 
 
+
+#define MEM_BYTE     1
+#define MEM_HALFWORD 2
+#define MEM_WORD     3
+#define MEM_QUADWORD 4
+
+int mem_peek(void*, hsaddr_t, int);
+int mem_poke(hsaddr_t, uint64_t, int);
+
 static int ui_cmd_memdump(ui_cmdline_t *cmd,int argc,char *argv[]);
 static int ui_cmd_memedit(ui_cmdline_t *cmd,int argc,char *argv[]);
 static int ui_cmd_memfill(ui_cmdline_t *cmd,int argc,char *argv[]);
 static int ui_cmd_disasm(ui_cmdline_t *cmd,int argc,char *argv[]);
+
+#define UNCADDR(x) (x)
 
 #if CPUCFG_REGS64
 #define XTOI(x) xtoq(x)
@@ -161,7 +172,7 @@ static int getaddrargs(ui_cmdline_t *cmd,int *curtype,hsaddr_t *addr,int *length
 
 }
 
-static int stuffmem(hsaddr_t addr,int wlen,char *tail)
+static int stuffmem(hsaddr_t addr, int wlen, char *tail)
 {
     char *tok;
     int count = 0;
@@ -171,45 +182,40 @@ static int stuffmem(hsaddr_t addr,int wlen,char *tail)
     uint64_t q;
     int res = 0;
 
-    addr &= ~(wlen-1);
+    addr &= ~(wlen - 1);
 
     while ((tok = gettoken(&tail))) {
-	switch (wlen) {
-	    default:
-	    case 1:
-	      b = (uint8_t) xtoq(tok);
-	      if ((res = mem_poke(addr, b, MEM_BYTE))) {
-		  /*Did not edit*/
-		  return res;
-		}
-	      break;
-	    case 2:
-	      h = (uint16_t) xtoq(tok);
-	      if ((res = mem_poke(addr, h, MEM_HALFWORD))) {
-		  /*Did not edit*/
-		  return res;
-		}		      
-		break;
-	    case 4:
-	      w = (uint32_t) xtoq(tok);
-	      if ((res = mem_poke(addr, w, MEM_WORD))) {
-		  /*Did not edit*/
-		  return res;
-		}
-		break;
-	    case 8:
-	      q = (uint64_t) xtoq(tok);
-	      if ((res = mem_poke(addr, q, MEM_QUADWORD))) {
-		  /*Did not edit*/
-		  return res;
-		}	            
-		break;
-	    }
+        switch (wlen) {
+            default:
+            case 1:
+                b = (uint8_t) xtoq(tok);
+                if ((res = mem_poke(addr, b, MEM_BYTE))) {
+                    return res;
+                }
+                break;
+            case 2:
+                h = (uint16_t) xtoq(tok);
+                if ((res = mem_poke(addr, h, MEM_HALFWORD))) {
+                    return res;
+                }
+                break;
+            case 4:
+                w = (uint32_t) xtoq(tok);
+                if ((res = mem_poke(addr, w, MEM_WORD))) {
+                    return res;
+                }
+                break;
+            case 8:
+                q = (uint64_t) xtoq(tok);
+                if ((res = mem_poke(addr, q, MEM_QUADWORD))) {
+                    return res;
+                }
+                break;
+        }
 
-	addr += wlen;
-	count++;
-	}
-
+        addr += wlen;
+        count++;
+    }
     return count;
 }
 
@@ -239,7 +245,7 @@ int dumpmem(hsaddr_t addr,hsaddr_t dispaddr,int length,int wlen)
     addr &= ~(wlen-1);
 
     for (idx = 0; idx < length; idx += 16) {
-	xprintf(PTRFMT "%c ",dispaddr+idx,(dispaddr != addr) ? '%' : ':');
+	printf(PTRFMT "%c ",dispaddr+idx,(dispaddr != addr) ? '%' : ':');
 	switch (wlen) {
 	    default:
 	    case 1:
@@ -249,10 +255,10 @@ int dumpmem(hsaddr_t addr,hsaddr_t dispaddr,int length,int wlen)
 			    return res;
 			    }
 			line.bytes[x] = b;
-			xprintf("%02X ",b);
+			printf("%02X ",b);
 			}
 		    else {
-			xprintf("   ");
+			printf("   ");
 			}
 		    }
 		break;
@@ -263,10 +269,10 @@ int dumpmem(hsaddr_t addr,hsaddr_t dispaddr,int length,int wlen)
 			    return res;
 			    }
 			line.halves[x/2] = h;
-			xprintf("%04X ",h);
+			printf("%04X ",h);
 			}
 		    else {
-			xprintf("     ");
+			printf("     ");
 			}
 		    }
 		break;
@@ -278,10 +284,10 @@ int dumpmem(hsaddr_t addr,hsaddr_t dispaddr,int length,int wlen)
 			    return res;
 			    }
 			line.words[x/4] = w;
-			xprintf("%08X ",w);
+			printf("%08X ",w);
 			}
 		    else {
-			xprintf("         ");
+			printf("         ");
 			}
 		    }
 		break;
@@ -292,27 +298,27 @@ int dumpmem(hsaddr_t addr,hsaddr_t dispaddr,int length,int wlen)
 			    return res;
 			    }
 			line.quads[x/8] = q;
-			xprintf("%016llX ",q);
+			printf("%016llX ",q);
 			}
 		    else { 
-			xprintf("                 ");
+			printf("                 ");
 			}
 		    }
 		break;
 	    }
 
-	xprintf(" ");
+	printf(" ");
 	for (x = 0; x < 16; x++) {
 	    if (idx+x < length) {
 		b = line.bytes[x];
-		if ((b < 32) || (b > 127)) xprintf(".");
-		else xprintf("%c",b);
+		if ((b < 32) || (b > 127)) printf(".");
+		else printf("%c",b);
 		}
 	    else {
-		xprintf(" ");
+		printf(" ");
 		}
 	    }
-	xprintf("\n");
+	printf("\r\n");
 	}
 
     return 0;
@@ -357,7 +363,7 @@ static int ui_cmd_memedit(ui_cmdline_t *cmd,int argc,char *argv[])
 	char line[256];
 	char prompt[32];
 
-	xprintf("Type '.' to exit, '-' to back up, '=' to dump memory.\n");
+	printf("Type '.' to exit, '-' to back up, '=' to dump memory.\n");
 	for (;;) {
 
 	    addr = prev_addr;
@@ -365,7 +371,7 @@ static int ui_cmd_memedit(ui_cmdline_t *cmd,int argc,char *argv[])
 		addr = UNCADDR(addr);
 		}
 
-	    xprintf(PTRFMT "%c ",prev_addr,(addr != prev_addr) ? '%' : ':');
+	    printf(PTRFMT "%c ",prev_addr,(addr != prev_addr) ? '%' : ':');
 
 	    switch (wlen) {
 		default:
@@ -597,8 +603,8 @@ static int ui_cmd_disasm(ui_cmdline_t *cmd,int argc,char *argv[])
 	    ui_showerror(res,"Could not disassemble memory");
 	    return res;
 	    }	  
-	disasm_inst(buf,sizeof(buf),inst,(uint64_t) prev_addr);
-	xprintf("%P%c %08x    %s\n",prev_addr,(addr != prev_addr) ? '%' : ':',inst,buf);
+	//disasm_inst(buf,sizeof(buf),inst,(uint64_t) prev_addr);
+	printf("%P%c %08x    %s\n",prev_addr,(addr != prev_addr) ? '%' : ':',inst,buf);
 	addr += 4;
 	prev_addr += 4;
 	}
@@ -685,7 +691,7 @@ int ui_init_examcmds(void)
 #endif
 
 
-    prev_addr = PTR2HSADDR(KERNADDR(0));
+    //prev_addr = PTR2HSADDR(KERNADDR(0));
 
     return 0;
 }

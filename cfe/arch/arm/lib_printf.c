@@ -425,8 +425,8 @@ int printf(const char *templat,...)
     	putc(buffer[i]);
     }
 
-    putc('\r');
-    putc('\n');
+    //putc('\r');
+    //putc('\n');
 
     return count;
 }
@@ -455,7 +455,14 @@ void putc(char c) {
     volatile uint32_t *usart_isr = (volatile uint32_t *)(0x40013800 + 0x1C);
     volatile uint32_t *usart_tdr = (volatile uint32_t *)(0x40013800 + 0x28);
 
+    if (c == '\n'){
+
+		 while((*usart_isr & (1 << 7)) == 0);
+		 *usart_tdr = '\r';
+    }
+
     while((*usart_isr & (1 << 7)) == 0);
+
 
 
     *usart_tdr = c;
@@ -466,13 +473,7 @@ void puts(const char *templat,...) {
 }
 
 void putchar(char c) {
-    volatile uint32_t *usart_isr = (volatile uint32_t *)(0x40013800 + 0x1C);
-    volatile uint32_t *usart_tdr = (volatile uint32_t *)(0x40013800 + 0x28);
-
-    while((*usart_isr & (1 << 7)) == 0);
-
-
-    *usart_tdr = c;
+	putc(c);
 }
 
 
