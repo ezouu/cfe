@@ -73,7 +73,7 @@ static int ui_cmd_I2C(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[]);
 
 static int display_I2C(ui_cmdline_t *cmd, int argc, char *argv[]);
-
+static int ui_cmd_write_I2C_IO2(ui_cmdline_t *cmd, int argc, char *argv[]);
 
 int ui_init_misccmds(void);
 
@@ -194,6 +194,15 @@ int ui_init_misccmds(void)
 
 	cmd_addcmd("displayi2c",
 	           display_I2C,
+	           NULL,
+	           "Write to an I2C device",
+	           "write_i2c <reg_address> <value>\n"
+	           "  <reg_address>  Register address to write to (hex)\n"
+	           "  <value>        Value to write (hex)",
+	           "");
+
+	cmd_addcmd("writei2cio2",
+	           ui_cmd_write_I2C_IO2,
 	           NULL,
 	           "Write to an I2C device",
 	           "write_i2c <reg_address> <value>\n"
@@ -637,10 +646,6 @@ static int ui_cmd_write_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 	while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
 
 
-
-
-
-
     *(volatile uint32_t *)(0x40005404) = 0x2012482; //7217 update CR2 register */
 
     // Wait for RXNE
@@ -820,10 +825,11 @@ static int display_I2C(ui_cmdline_t *cmd, int argc, char *argv[]) {
     reg_address = atoi(*address);
 
     I2C_Init();
+
     uint32_t temp = 0;
 
     *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
-    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+    //*(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
 
     *(volatile uint32_t *)(0x40005404) = 0x2012082; // 7217, 82 device address
 
@@ -896,9 +902,117 @@ static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
 }
 
 
+#define STMPE1600_I2C_ADDRESS
+static int ui_cmd_write_I2C_IO2(ui_cmdline_t *cmd, int argc, char *argv[])
+{
+    char *address;
+    int reg_address;
+
+    address = cmd_getarg(cmd, 0);
+    reg_address = atoi(address);
+
+    I2C_Init();
+    uint32_t temp = 0;
+
+    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
+    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012084; // 7217, 82 device address
+
+    //while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+
+    // Wait for STOPF
+    temp = 0;
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012484; // 7217 update CR2 register
+
+    // Wait for RXNE
+    uint32_t RXNE_BUSY = 0;
+    while (((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0) {}
+
+    uint32_t received_data = *(volatile uint32_t *)(0x40005424);
+
+    // Corrections for printing function
+	*(volatile uint32_t *)(0x40021088) = 0x2;
+    printf("Received data: 0x%08X\n", received_data);
 
 
 
+    return 0;
+}
+
+static int write_I2C_IO2(int reg_address, int value_to_send)
+{
+
+    I2C_Init();
+
+    // Write to I2C
+
+    // Corrections for printing function
+    //*(volatile uint32_t *)(0x40021088) = 0x2;
+
+    //printf("Writing 0x%02X to register 0x%02X", value_to_send, reg_address);
+
+    // RECorrections for printing function
+    //*(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
+    uint32_t temp = 0;
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+
+    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
+    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+
+    *(volatile uint32_t *)(0x40005404) = 0x2022084; // 7217, 82 device address
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+
+    *(volatile uint32_t *)(0x40005428) = value_to_send;
+    // Wait for STOPF
+    temp = 0;
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+
+    //*(volatile uint32_t *)(0x40005404) |= 0x80000000; // Set STOP bit in I2C_CR2 to clear STOPF flag
+
+    // Read back the written value to verify
+    // Corrections for printing function
+    //*(volatile uint32_t *)(0x40021088) = 0x2;
+
+    //printf("Reading back register 0x%02X", reg_address);
+
+    // RECorrections for printing function
+    //*(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+
+    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
+    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012084; // 7217, 82 device address
+
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+
+    // Wait for STOPF
+    temp = 0;
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012484; // 7217 update CR2 register
+
+    // Wait for RXNE
+    uint32_t RXNE_BUSY = 0;
+    while (((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0) {}
+
+    uint32_t received_data = *(volatile uint32_t *)(0x40005424);
+
+    // Corrections for printing function
+	*(volatile uint32_t *)(0x40021088) = 0x2;
+	printf("Writing 0x%02X to register 0x%02X\n", value_to_send, reg_address);
+    printf("Received data: 0x%08X\n", received_data);
+
+
+
+    return 0;
+}
 
 
 
@@ -910,6 +1024,8 @@ static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
 
 
 void Joystick_Init(void) {
+    I2C_Init();
+
     // Enable clock for GPIOs
     *(volatile uint32_t *)(0x4002104C) = 0x20FF;  // Enable all GPIO clocks
 
@@ -919,6 +1035,7 @@ void Joystick_Init(void) {
 
 static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
 {
+
     char *state_str;
     int state;
 
@@ -926,19 +1043,15 @@ static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
     state = atoi(state_str);
 
     if (state == 1) { // turn on
-
-
-    	write_I2C(0x11, 0x4);
-        write_I2C(0x17, 0x4);
-        write_I2C(0x13, 0x4);
-        printf("Blue LED is ON\n");
+        write_I2C_IO2(0x3, 0x20);
+        //write_I2C_IO2(0x17, 0x1);
+        //write_I2C_IO2(0x13, 0x1);
+        //printf("LEDs are ON\n");
     } else if (state == 0) { // turn off
-        I2C_Init();
-
-        // Disable Blue LED
-        write_I2C(0x10, 0x4);
-        printf("Blue LED is OFF\n");
+        write_I2C_IO2(0x0, 0x1);
+        //printf("LEDs are OFF\n");
     }
+
 
     return 0;
 }
