@@ -74,6 +74,7 @@ static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[]);
 
 static int display_I2C(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int ui_cmd_write_I2C_IO2(ui_cmdline_t *cmd, int argc, char *argv[]);
+static int SysTick_Init(ui_cmdline_t *cmd, int argc, char *argv[]);
 
 int ui_init_misccmds(void);
 
@@ -209,7 +210,16 @@ int ui_init_misccmds(void)
 	           "  <reg_address>  Register address to write to (hex)\n"
 	           "  <value>        Value to write (hex)",
 	           "");
-    return 0;
+	cmd_addcmd("systick",
+			   SysTick_Init,
+	           NULL,
+	           "init systick",
+	           ""
+	           ""
+	           "",
+	           "");
+
+	return 0;
 
 }
 
@@ -590,6 +600,7 @@ static int ui_cmd_write_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 
 
     // Initialization and clock configuration
+    I2C_Init_INIT();
     I2C_Init();
 
     // Write to I2C
@@ -666,14 +677,27 @@ static int ui_cmd_write_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 }
 
 
-void I2C_Init(void) {
+void I2C_Init_INIT(void) {
     // Initialization and clock configuration
+
+
+
     *(volatile uint32_t *)(0x40021060) = 0x4001; // __HAL_RCC_SYSCFG_CLK_ENABLE();
+
+
+
     *(volatile uint32_t *)(0x40021058) = 0x10000000; // __HAL_RCC_PWR_CLK_ENABLE();
-    *(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
+
+  //  *(volatile uint32_t *)(0x40021088) = 0; // RCC I2C clock selection
+
     *(volatile uint32_t *)(0x40007004) = 0x200; // PWR_CR2 enable
+
+
     *(volatile uint32_t *)(0x4002104C) = 0x20ff; // GPIOG_CLK_ENABLE
+
+
     *(volatile uint32_t *)(0x40021058) = 0x32200000;
+
 
     // GPIO configuration
     *(volatile uint32_t *)(0x48001808) = 0xc3c0fff; // GPIOx_OSPEEDR
@@ -691,6 +715,7 @@ void I2C_Init(void) {
     *(volatile uint32_t *)(0x4800082C) = 0x0; // Activate pull up or pull down GPIO_PUPDR
     *(volatile uint8_t *)(0x48001841) = 0x24; // hi2c->State = HAL_I2C_STATE_BUSY
 
+
     *(volatile uint32_t *)(0x40005400) = 0; // Disable the selected I2C peripheral
     *(volatile uint32_t *)(0x40005410) = 0x20303E5D; // Configure I2Cx: Frequency range
     *(volatile uint32_t *)(0x40005408) = 0; // I2Cx OAR1 Configuration
@@ -699,6 +724,13 @@ void I2C_Init(void) {
     *(volatile uint32_t *)(0x4000540C) = 0; // I2Cx OAR2 Configuration
     *(volatile uint32_t *)(0x40005400) = 0; // Configure I2Cx: Generalcall and NoStretch mode
     *(volatile uint32_t *)(0x40005400) = 1; // Enable the selected I2C peripheral
+
+}
+
+
+void I2C_Init(void) {
+
+
 
     // Transmit
     *(volatile uint32_t *)(0x40005400) = 0; // I2C_CR1, clear
@@ -823,7 +855,7 @@ static int display_I2C(ui_cmdline_t *cmd, int argc, char *argv[]) {
 
     *address = cmd_getarg(cmd, 0);
     reg_address = atoi(*address);
-
+    I2C_Init_INIT();
     I2C_Init();
 
     uint32_t temp = 0;
@@ -862,7 +894,7 @@ static int ui_cmd_LEDO(ui_cmdline_t *cmd, int argc, char *argv[]) {
 
     state_str = cmd_getarg(cmd, 0);
     state = atoi(state_str);
-
+    I2C_Init_INIT();
     if (state == 1) { // turn on
         write_I2C(0x11, 0x1);
         write_I2C(0x17, 0x1);
@@ -882,7 +914,7 @@ static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
 
     state_str = cmd_getarg(cmd, 0);
     state = atoi(state_str);
-
+    I2C_Init_INIT();
     if (state == 1) { // turn on
 
 
@@ -910,7 +942,7 @@ static int ui_cmd_write_I2C_IO2(ui_cmdline_t *cmd, int argc, char *argv[])
 
     address = cmd_getarg(cmd, 0);
     reg_address = atoi(address);
-
+    I2C_Init_INIT();
     I2C_Init();
     uint32_t temp = 0;
 
@@ -1014,36 +1046,88 @@ static int write_I2C_IO2(int reg_address, int value_to_send)
     return 0;
 }
 
-
-
-#define JOYSTICK_SEL GPIO0
-#define JOYSTICK_DOWN
-#define JOYSTICK_LEFT
-#define JOYSTICK_RIGHT
-#define IOEXPANDER2
-
-
-void Joystick_Init(void) {
+static int READ_I2C_IO2(int reg_address)
+{
     I2C_Init();
+    uint32_t temp = 0;
 
-    // Enable clock for GPIOs
-    *(volatile uint32_t *)(0x4002104C) = 0x20FF;  // Enable all GPIO clocks
+    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
+    // *(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
 
-    // Configure GPIOs as inputs
-    *(volatile uint32_t *)(0x48001800) &= ~(0xF << 0);  // Clear mode bits for GPIO0-GPIO3
+    *(volatile uint32_t *)(0x40005404) = 0x2012084; // 7217, 82 device address
+
+    //while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
+
+    // Wait for STOPF
+    temp = 0;
+    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+
+    *(volatile uint32_t *)(0x40005404) = 0x2012484; // 7217 update CR2 register
+
+    // Wait for RXNE
+    uint32_t RXNE_BUSY = 0;
+    while (((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0) {}
+
+    uint32_t received_data = *(volatile uint32_t *)(0x40005424);
+
+    // Corrections for printing function
+//	*(volatile uint32_t *)(0x40021088) = 0x2;
+    //printf("Received data: 0x%08X\n", received_data);
+
+    return received_data;
 }
+
 
 static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
 {
-
+/*
     char *state_str;
     int state;
 
     state_str = cmd_getarg(cmd, 0);
     state = atoi(state_str);
 
+*/
+
+
+
+    // *(volatile uint32_t *)(0x40005404) = 0x12084;
+	I2C_Init_INIT();
+	//*(volatile uint32_t *)(0x40021088) = 0x2;
+
+
+    while(1){
+
+    	if((READ_I2C_IO2(0x10) & 1) == 0){
+    		printf("SEL\r");
+    		break;
+    	}
+    	if((READ_I2C_IO2(0x10) & 2) == 0){
+    		printf("DOWN\r");
+    	}
+    	if((READ_I2C_IO2(0x10) & 4) == 0){
+    		printf("LEFT\r");
+    	}
+    	if((READ_I2C_IO2(0x10) & 8) == 0){
+    		printf("RIGHT\r");
+    	}
+    	if((READ_I2C_IO2(0x10) & 16) == 0){
+    		printf("UP\r");
+    	}
+
+    }
+    printf("joystick end");
+/*
     if (state == 1) { // turn on
-        write_I2C_IO2(0x3, 0x20);
+    	printf("down:");
+    	READ_I2C_IO2(0x10);
+    	printf("down:");
+    	READ_I2C_IO2(0x10);
+    	printf("down:");
+    	READ_I2C_IO2(0x10);
+    	printf("down:");
+    	READ_I2C_IO2(0x10);
+        //write_I2C_IO2(0x3, 0x20);
         //write_I2C_IO2(0x17, 0x1);
         //write_I2C_IO2(0x13, 0x1);
         //printf("LEDs are ON\n");
@@ -1052,7 +1136,43 @@ static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
         //printf("LEDs are OFF\n");
     }
 
+*/
+    return 0;
+}
+
+
+static int SysTick_Init(ui_cmdline_t *cmd, int argc, char *argv[]){
+
+	 *(volatile uint32_t *)0xE000ED08 = 0x20000000; // vtor
+
+    *(volatile uint32_t *)0xE000E010 = 0x7; // 00000111
+
+    *(volatile uint32_t *)0xE000E014 = 1000000;
+
+    *(volatile uint32_t *)0xE000E018 = 0;
+
+    *(volatile uint32_t *)0xE000ED20 = 0;
+
+    volatile uint32_t *ptr;
+    uint32_t value;
+
+
+
+
+    uint32_t address = 0xE000E018;
+
+
+	while (1) {
+	    ptr = (volatile uint32_t *)address;
+	    value = *ptr;
+		printf("0x%08X\n", value);
+	    }
+
 
     return 0;
 }
 
+
+void SysTick_Handler() {
+	//while(1);
+}

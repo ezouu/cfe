@@ -10,10 +10,22 @@
 
 
 g_pfnVectors:
-  .long 0x20002000
-  .long Reset_Handler
-  .long 0x11
-  .long 0x22
+ 	 .long 0x20002000
+  	.long Reset_Handler
+ 	 .long 0x11
+ 	 .long 0x22
+	.word	0
+	.word	0
+	.word	0
+	.word	0
+	.word	0
+	.word	0
+	.word	0
+	.word	0
+	.word	0
+	.word	0
+	.word	0
+	.word	SysTick_Handler
 
    .section	.text.Reset_Handler
 	.weak	Reset_Handler
