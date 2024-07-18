@@ -9,17 +9,12 @@ The Common Firmware Environment (CFE) is a versatile firmware platform designed 
 
 ### Overview
 
-The ARM /printf implementation in CFE is designed to provide robust and efficient formatted output capabilities for embedded systems. It is optimized for ARM architectures, ensuring compatibility and performance in various hardware configurations.
+The ARM source file is responsible for initializing the ARM processor. The file initializes the processor state, including setting up stack pointers and other necessary registers. Here, we configure various hardware peripherals, such as the USART for serial communication. The lib_printf.c file implements a simple printf function, designed for use in boot ROMs. We Typically used the prtinf function for debugging and logging within the firmware.
 
 ### Features
 
 - **Formatted Output:** Supports standard printf formatting options for integers, strings, floats, and more.
 - **Hardware Integration:** Leverages ARM-specific instructions and optimizations.
-- **Lightweight Implementation:** Designed to minimize resource usage, crucial for embedded systems with limited memory and processing power.
-
-### Usage
-
-The ARM /printf functions are typically used for debugging and logging purposes within the CFE. They can be called from various parts of the firmware to provide real-time feedback and status updates.
 
 ## misccmds
 
@@ -29,10 +24,14 @@ The `misccmds` module in CFE provides a collection of miscellaneous commands tha
 
 ### Key Commands
 
-- **`version`:** Displays the current version of the firmware.
-- **`help`:** Lists all available commands and their descriptions.
-- **`reboot`:** Initiates a system reboot.
-- **`shutdown`:** Powers down the system safely.
+- **`display`:** Displays the current memory contents of a specific address
+- **`edit`:** Edits a specific address's value
+- **`writei2c`:** writes to the I2C device, used for LEDS and joystick that make use of IOexpander 1 or 2.
+- **`displayi2c`:** Displays the value of an addreess on an I2C device
+- **`writei2cio2`:** Writes to an address and displays the result, mainly used for debugging purposes
+- **`ledx`:** x refers to a specific LED on the STM32 board, can be used to turn on and off any light i.e ledb 0 (LED blue off)
+- **`joystick`:** Initilizes the joystick for user input and prints out the input from the joystick
+- **`systick`:** Initializes Systick and starts counting down from the SysTick Reload Value.  
 
 ### Implementation
 
@@ -46,9 +45,15 @@ The `examcmds` module contains a set of examination commands used primarily for 
 
 ### Key Commands
 
-- **`memdump`:** Dumps the contents of a specified memory region.
-- **`regdump`:** Displays the values of system registers.
-- **`iostat`:** Provides statistics on I/O operations.
+- **`ui_cmd_disasm`:** Disassembles instructions at the specified address. This command can continue disassembly from the last address if no parameters are provided.
+
+- **`ui_cmd_memdump`:** Dumps memory data in various formats (bytes, halfwords, words, quadwords). ASCII text, if present, is shown alongside the hex data. Remembers the previous word size, dump length, and last displayed address for continuous dumping.
+
+- **`ui_cmd_memedit`:** Modifies the contents of memory at the specified address. If data is not provided on the command line, it prompts for it interactively. Allows backing up, dumping memory, or exiting edit mode during the prompt.
+
+- **`ui_cmd_memfill`:** Fills the contents of memory with a specified pattern starting from the given address for a certain length. Supports various data sizes (bytes, halfwords, words, quadwords).
+
+- **`ui_cmd_memtest`:** Tests memory starting at a specified address for a given length. This is a basic test and should not be relied upon for critical purposes. Includes options to not stop on error and to loop the test until a keypress.
 
 ### Implementation
 
