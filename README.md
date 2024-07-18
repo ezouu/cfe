@@ -1,11 +1,11 @@
 
 # Common Firmware Environment (CFE)
 
-## Summary
+##Summary
 
 The Common Firmware Environment (CFE) is a versatile firmware platform designed to initialize and manage the hardware of embedded systems. It provides essential services such as bootloading, diagnostics, and hardware abstraction, allowing for smooth interaction between software and hardware components.
 
-## ARM /printf
+##ARM/printf
 
 ### Overview
 
@@ -16,7 +16,7 @@ The ARM source file is responsible for initializing the ARM processor. The file 
 - **Formatted Output:** Supports standard printf formatting options for integers, strings, floats, and more.
 - **Hardware Integration:** Leverages ARM-specific instructions and optimizations.
 
-## misccmds
+##Misccmds
 
 ### Overview
 
@@ -37,7 +37,7 @@ The `misccmds` module in CFE provides a collection of miscellaneous commands tha
 
 The `misccmds` commands are implemented in the `ui_misccmds.c` file, where each command is defined and its behavior is specified.
 
-## examcmds
+##Examcmds
 
 ### Overview
 
@@ -59,7 +59,7 @@ The `examcmds` module contains a set of examination commands used primarily for 
 
 The `examcmds` commands are implemented in the `ui_examcmds.c` file. Each command is tailored to provide detailed information that assists in system diagnostics and troubleshooting.
 
-## systicktimer
+##Systicktimer
 
 ### Overview
 
@@ -75,7 +75,7 @@ The `systicktimer` module in CFE is responsible for managing the system tick tim
 
 The `systicktimer` is typically initialized during system startup and used throughout the firmware to manage timed operations and schedule tasks.
 
-## resethandler
+##Resethandler
 
 ### Overview
 
@@ -90,3 +90,7 @@ The `resethandler` module manages the system reset functionality, ensuring a con
 ### Implementation
 
 The `resethandler` is implemented in the `cfe_resethandler.c` file. It includes functions for initiating and managing the reset process, as well as logging and handling errors.
+
+##Updates
+
+- v0.0 updated readme 
