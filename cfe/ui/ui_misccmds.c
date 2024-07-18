@@ -75,7 +75,8 @@ static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int display_I2C(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int ui_cmd_write_I2C_IO2(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int SysTick_Init(ui_cmdline_t *cmd, int argc, char *argv[]);
-
+static int Add_Assembly(ui_cmdline_t *cmd, int argc, char *argv[]);
+static int List_Handler(ui_cmdline_t *cmd, int argc, char *argv[]);
 int ui_init_misccmds(void);
 
 int ui_init_misccmds(void)
@@ -219,6 +220,22 @@ int ui_init_misccmds(void)
 	           "",
 	           "");
 
+	cmd_addcmd("addasm",
+			   Add_Assembly,
+	           NULL,
+	           "",
+	           ""
+	           ""
+	           "",
+	           "");
+	cmd_addcmd("listhandler",
+			   List_Handler,
+	           NULL,
+	           "",
+	           ""
+	           ""
+	           "",
+	           "");
 	return 0;
 
 }
@@ -1174,5 +1191,60 @@ static int SysTick_Init(ui_cmdline_t *cmd, int argc, char *argv[]){
 
 
 void SysTick_Handler() {
-	//while(1);
+	while(1);
 }
+
+
+
+
+
+int mytest(int a, int b, int c, int d, int e);
+
+
+static int Add_Assembly(ui_cmdline_t *cmd, int argc, char *argv[]){
+
+	printf(add_num(1, 2, 3, 4, 5));
+    /*
+	int a = 5;
+    int b = 7;
+    int c = 7;
+    int d = 7;
+    int e = 7;
+    int result = mytest(a, b, c, d, e);
+
+    printf("The result of mytest(%d, %d, %d, %d, %d) is %d\n", a, b, c,d, e, result);
+    */
+
+	return 0;
+
+}
+
+
+int add_num(int a, int b, int c, int d, int e){
+	return(a + b + c + d + e);
+}
+
+void mytest_1(){
+	printf("hello");
+}
+
+void* create_node(int value);
+
+
+
+static int List_Handler(ui_cmdline_t *cmd, int argc, char *argv[]){
+
+	//void* node1 = create_node(1);
+
+	return 0;
+
+}
+
+
+
+
+
+
+
+
+

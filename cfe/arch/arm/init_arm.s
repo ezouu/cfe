@@ -25,7 +25,7 @@ g_pfnVectors:
 	.word	0
 	.word	0
 	.word	0
-	.word	SysTick_Handler
+	.word	mytest
 
    .section	.text.Reset_Handler
 	.weak	Reset_Handler
@@ -141,6 +141,8 @@ compute:
 
 
 bl cfe_main
+
+
 
 start:
     ldr   r1, [r0]
@@ -294,5 +296,79 @@ exit:
 
  L__usart_tdr:
        .long  0x40013828
+
+.section .text
+.global mytest
+.type mytest, %function
+mytest:
+
+    push {r0}
+    push {r1}
+    push {r2}
+    push {r3}
+    push {r4}
+    push {r5}
+    push {r6}
+    push {r7}
+    push {r8}
+    push {r9}
+    push {r10}
+    push {r11}
+    push {r12}
+    push {lr}
+
+
+	bl mytest_1
+//
+    pop {lr}
+    pop {r12}
+    pop {r11}
+    pop {r10}
+    pop {r9}
+    pop {r8}
+    pop {r7}
+    pop {r6}
+    pop {r5}
+    pop {r4}
+    pop {r3}
+    pop {r2}
+    pop {r1}
+    pop {r0}
+
+    bx lr
+
+
+/*
+.type create_node, %function
+create_node:
+
+
+    str r0, [r1]     @ Store
+    mov r0, #0
+
+
+    mov r0, r1
+    pop {lr}
+    bx lr
+
+.type add_node, %function
+add_node:
+    cmp r0, #0
+    beq
+
+add_node_empty:
+
+
+*/
+
+
+
+
+
+
+
+
+
+
 
 
