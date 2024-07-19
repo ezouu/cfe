@@ -1,0 +1,3 @@
+../cfe/main/cfe_mem.c:101:6:cfe_arena_init	1
+../cfe/main/cfe_mem.c:144:5:cfe_arena_enum	6
+../cfe/main/cfe_mem.c:186:5:cfe_arena_loadcheck	7

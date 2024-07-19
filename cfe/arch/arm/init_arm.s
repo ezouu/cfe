@@ -10,26 +10,67 @@
 
 
 g_pfnVectors:
- 	 .long 0x20002000
-  	.long Reset_Handler
- 	 .long 0x11
- 	 .long 0x22
-	.word	0
-	.word	0
-	.word	0
-	.word	0
-	.word	0
-	.word	0
-	.word	0
-	.word	0
-	.word	0
-	.word	0
-	.word	0
-	.word	mytest
+	.long 0x20002000       //0
+	.long Reset_Handler    //1
+	.long 0x11             //2
+	.long 0x22             //3
+	.word 0                //4
+	.word 0                //5
+	.word 0                //6
+	.word 0                //7
+	.word 0                //8
+	.word 0                //9
+	.word 0                //10
+	.word 0                //11
+	.word 0                //12
+	.word 0                //13
+	.word 0                //14
+	.word SysTick_Handler  //15
+	.word 0                //16
+	.word 0                //17
+	.word 0                //18
+	.word 0                //19
+	.word 0                //20
+	.word 0                //21
+	.word 0                //22
+	.word 0                //23
+	.word 0                //24
+	.word 0                //25
+	.word 0                //26
+	.word 0                //27
+	.word 0                //28
+	.word 0                //29
+	.word 0                //30
+	.word 0                //31
+	.word 0                //32
+	.word 0                //33
+	.word 0                //34
+	.word 0                //35
+	.word 0                //36
+	.word 0                //37
+	.word 0                //38
+	.word 0                //39
+	.word 0                //40
+	.word 0                //41
+	.word 0                //42
+	.word 0                //43
+	.word 0                //44
+	.word 0                //45
+	.word 0                //46
+	.word 0                //47
+	.word 0                //48
+	.word 0                //49
+	.word 0                //50
+	.word 0                //51
+	.word 0                //52
+	.word USART1_IRQHandler //53
 
-   .section	.text.Reset_Handler
+.section	.text.Reset_Handler
 	.weak	Reset_Handler
 	.type	Reset_Handler, %function
+
+
+
 Reset_Handler:
 
  ldr   sp, =_estack    /* Set stack pointer */
@@ -298,9 +339,9 @@ exit:
        .long  0x40013828
 
 .section .text
-.global mytest
-.type mytest, %function
-mytest:
+.global SysTick_Handler
+.type SysTick_Handler, %function
+SysTick_Handler:
 
     push {r0}
     push {r1}
@@ -337,29 +378,46 @@ mytest:
 
     bx lr
 
+.section .text
+.global add_function
 
-/*
-.type create_node, %function
-create_node:
+.type add_function, %function
+add_function:
+
+    add r0, r0, r1
+    add r0, r0, r2
+    add r0, r0, r3
+    add r0, r0, r4
+
+	//push r1
+    ldr r1, [sp, #0]
+    add r0, r0, r1
 
 
-    str r0, [r1]     @ Store
-    mov r0, #0
-
-
-    mov r0, r1
-    pop {lr}
+    ldr r1, [sp, #4]
+    add r0, r0, r1
     bx lr
 
-.type add_node, %function
-add_node:
-    cmp r0, #0
-    beq
 
-add_node_empty:
+.section .text
+.global USART1_IRQHandler
+.type USART1_IRQHandler, %function
+USART1_IRQHandler:
+
+ 	push {r0-r12, lr}
 
 
-*/
+	bl mytest_1
+
+    //ldr r0, =0x40013800      // USART1 base address
+    //ldr r1, [r0, #0x1C]      // Read USART1 status register (SR)
+    //ldr r2, [r0, #0x24]      // Read USART1 data register (DR)
+
+
+	pop {r0-r12, lr}
+
+    bx lr
+
 
 
 

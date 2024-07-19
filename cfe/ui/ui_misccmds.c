@@ -76,7 +76,7 @@ static int display_I2C(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int ui_cmd_write_I2C_IO2(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int SysTick_Init(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int Add_Assembly(ui_cmdline_t *cmd, int argc, char *argv[]);
-static int List_Handler(ui_cmdline_t *cmd, int argc, char *argv[]);
+static int uart_handler(ui_cmdline_t *cmd, int argc, char *argv[]);
 int ui_init_misccmds(void);
 
 int ui_init_misccmds(void)
@@ -228,8 +228,10 @@ int ui_init_misccmds(void)
 	           ""
 	           "",
 	           "");
-	cmd_addcmd("listhandler",
-			   List_Handler,
+
+
+	cmd_addcmd("uart",
+			   uart_handler,
 	           NULL,
 	           "",
 	           ""
@@ -1134,29 +1136,35 @@ static int ui_cmd_joystick(ui_cmdline_t *cmd, int argc, char *argv[])
 
     }
     printf("joystick end");
-/*
-    if (state == 1) { // turn on
-    	printf("down:");
-    	READ_I2C_IO2(0x10);
-    	printf("down:");
-    	READ_I2C_IO2(0x10);
-    	printf("down:");
-    	READ_I2C_IO2(0x10);
-    	printf("down:");
-    	READ_I2C_IO2(0x10);
-        //write_I2C_IO2(0x3, 0x20);
-        //write_I2C_IO2(0x17, 0x1);
-        //write_I2C_IO2(0x13, 0x1);
-        //printf("LEDs are ON\n");
-    } else if (state == 0) { // turn off
-        write_I2C_IO2(0x0, 0x1);
-        //printf("LEDs are OFF\n");
-    }
 
-*/
     return 0;
 }
 
+void mytest_1(){
+	printf("hello");
+
+    // Clear the USART interrupt flag
+    //volatile uint32_t *USART1_ICR = (volatile uint32_t *)(0x40013800 + 0x1C);
+
+    // Clear the RXNE interrupt flag
+    //volatile uint32_t *USART1_ISR = (volatile uint32_t *)(0x40013800 + 0x1C); // USART_ISR register
+    volatile uint32_t USART1_ICR = *(volatile uint32_t *)(0x40013800 + 0x24); // USART_ICR register
+
+    //printf("%c", USART1_ISR );
+    printf("%c", USART1_ICR );
+
+
+    //*(volatile uint32_t *)0x40013824 = 0xFFFFFFFF;
+    //*USART1_ICR = 0xFFFFFFFF;
+    //printf("%c", USART1_ICR);
+
+    /*
+	volatile uint32_t *LPUART_ISR = (uint32_t *)(0x40013800 + 0x1C);
+	printf("%c", LPUART_ISR);
+	*LPUART_ISR = 0xFFFFFFFF;
+
+	*/
+}
 
 static int SysTick_Init(ui_cmdline_t *cmd, int argc, char *argv[]){
 
@@ -1189,59 +1197,79 @@ static int SysTick_Init(ui_cmdline_t *cmd, int argc, char *argv[]){
     return 0;
 }
 
-
+/*
 void SysTick_Handler() {
 	while(1);
 }
+*/
 
 
 
 
 
-int mytest(int a, int b, int c, int d, int e);
+int add_function(int a, int b, int c, int d, int e, int f);
 
 
 static int Add_Assembly(ui_cmdline_t *cmd, int argc, char *argv[]){
 
-	printf(add_num(1, 2, 3, 4, 5));
-    /*
-	int a = 5;
-    int b = 7;
-    int c = 7;
-    int d = 7;
-    int e = 7;
-    int result = mytest(a, b, c, d, e);
+	printf(add_num2(1, 2));
 
-    printf("The result of mytest(%d, %d, %d, %d, %d) is %d\n", a, b, c,d, e, result);
-    */
+	printf(add_num(1, 2, 3, 4, 5, 6));
+
+	int a = 1;
+    int b = 2;
+    int c = 3;
+    int d = 4;
+    int e = 5;
+    int f = 6;
+    int result = add_function(a, b, c, d, e, f);
+
+    printf("The result of mytest(%d, %d, %d, %d, %d, %d) is %d\n", a, b, c,d,e, f, result);
+
 
 	return 0;
 
 }
 
-
-int add_num(int a, int b, int c, int d, int e){
-	return(a + b + c + d + e);
+int add_num2(int a, int b){
+	return(a + b);
 }
 
-void mytest_1(){
-	printf("hello");
+int add_num(int a, int b, int c, int d, int e, int f){
+	int ii = 0x1234;
+	return(a + b + c + d + e + f + ii);
 }
 
-void* create_node(int value);
 
 
 
-static int List_Handler(ui_cmdline_t *cmd, int argc, char *argv[]){
 
-	//void* node1 = create_node(1);
+static int uart_handler(ui_cmdline_t *cmd, int argc, char *argv[]){
+
+	*(volatile uint32_t *)0xE000ED08 = 0x20000000;
+
+	*(volatile uint32_t *)0xE000E104 = 0x20;
+//	(*(volatile uint32_t *)0x40021058)|= (1 << 17); //RCC->APB1ENR1
+
+	//(*(volatile uint32_t *)0x4000440C) = 0xD0;
+	(*(volatile uint32_t *)0x40013800) |= 0x2D; //10 1101
+
+	//(*(volatile uint32_t *)0x40013800) |= 0x2000;
+
+	//(*(volatile uint32_t *)(0x40013800 + 0x0C)) |= 0x20;
+
+//	(*(volatile uint32_t *)0x40004400) |= 0x2D;
+
+
+	//(*(volatile uint32_t *)0xE000E104) = 0x7;
+	while(1){
+		printf("hello\n");
+	}
+
 
 	return 0;
 
 }
-
-
-
 
 
 

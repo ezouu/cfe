@@ -75,7 +75,7 @@ The `systicktimer` module in CFE is responsible for managing the system tick tim
 
 The `systicktimer` is typically initialized during system startup and used throughout the firmware to manage timed operations and schedule tasks.
 
-##Resethandler
+## Resethandler
 
 ### Overview
 
@@ -94,3 +94,4 @@ The `resethandler` is implemented in the `cfe_resethandler.c` file. It includes 
 ## Updates
 
 - v0.0 updated readme 
+- v0.1 added functionality to USART IRQHandler and fixed bugs where handler was endlessly repeating

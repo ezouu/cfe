@@ -1,0 +1,7 @@
+../cfe/main/cfe_attach.c:82:15:cfe_finddev	3
+../cfe/main/cfe_attach.c:116:5:cfe_dev_enum	4
+../cfe/main/cfe_attach.c:149:6:cfe_device_reset	3
+../cfe/main/cfe_attach.c:185:5:cfe_attach_idx	5
+../cfe/main/cfe_attach.c:240:6:cfe_attach	4
+../cfe/main/cfe_attach.c:275:6:cfe_attach_init	1
+../cfe/main/cfe_attach.c:293:7:cfe_device_name	1

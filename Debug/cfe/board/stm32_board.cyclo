@@ -1,0 +1,6 @@
+../cfe/board/stm32_board.c:40:1:stm32_uart_probe	1
+../cfe/board/stm32_board.c:48:1:stm32_uart_open	1
+../cfe/board/stm32_board.c:55:1:stm32_uart_read	3
+../cfe/board/stm32_board.c:82:1:stm32_uart_inpstat	2
+../cfe/board/stm32_board.c:101:1:stm32_uart_write	2
+../cfe/board/stm32_board.c:112:6:board_init	1

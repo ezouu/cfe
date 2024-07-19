@@ -1,0 +1,9 @@
+../cfe/main/env_subr.c:88:22:env_findenv	4
+../cfe/main/env_subr.c:124:5:env_enum	4
+../cfe/main/env_subr.c:155:5:env_envtype	2
+../cfe/main/env_subr.c:182:5:env_setflags	2
+../cfe/main/env_subr.c:211:5:env_delenv	3
+../cfe/main/env_subr.c:240:7:env_getenv	2
+../cfe/main/env_subr.c:269:5:env_setenv	5
+../cfe/main/env_subr.c:314:5:env_load	15
+../cfe/main/env_subr.c:441:5:env_save	1
