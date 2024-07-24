@@ -562,7 +562,7 @@ static int ui_cmd_I2C(ui_cmdline_t *cmd, int argc, char *argv[])
 	*(volatile uint32_t *)(0x4000540C) = 0;//623,  OAR2
 
 	*(volatile uint32_t *)(0x40005400) = 1;//634, peripheral enable bit 0
-	*(volatile uint32_t *)(0x40005428) = 2;//1162, TX reg,
+	*(volatile uint32_t *)(0x40005428) = 0x0;//1162, TX reg,
 	*(volatile uint32_t *)(0x40005404) = 0x2012082; //7217,      82 device address
 
 	//receive
@@ -838,7 +838,8 @@ static int write_I2C(int reg_address, int value_to_send)
 static int read_I2C(int reg_address)
 {
 
-    I2C_Init();
+	I2C_Init_INIT();
+	I2C_Init();
     uint32_t temp = 0;
 
     *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
@@ -872,40 +873,102 @@ static int display_I2C(ui_cmdline_t *cmd, int argc, char *argv[]) {
     char *address;
     int reg_address;
 
-    *address = cmd_getarg(cmd, 0);
-    reg_address = atoi(*address);
-    I2C_Init_INIT();
-    I2C_Init();
+    address = cmd_getarg(cmd, 0);
+    reg_address = atoi(address);
+    //I2C_Init_INIT();
+    //I2C_Init();
 
-    uint32_t temp = 0;
 
-    *(volatile uint32_t *)(0x40005428) = reg_address; // Register address
-    //*(volatile uint32_t *)(0x40005428) = value_to_send; // Data to send
+    *(volatile uint32_t *)(0x40021060) = 0x4001; // __HAL_RCC_SYSCFG_CLK_ENABLE();
 
-    *(volatile uint32_t *)(0x40005404) = 0x2012082; // 7217, 82 device address
+    *(volatile uint32_t *)(0x40021058) = 0x10000000;//__HAL_RCC_PWR_CLK_ENABLE();
 
-    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x1) == 0) {}
 
-    // Wait for STOPF
-    temp = 0;
-    while (((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0) {}
+	*(volatile uint32_t *)(0x40021088) = 0; //RCC i2c clock selection
 
-    *(volatile uint32_t *)(0x40005404) = 0x2012482; // 7217 update CR2 register
+    *(volatile uint32_t *)(0x40007004) = 0x200;   // PWR_CR2 enable
 
-    // Wait for RXNE
-    uint32_t RXNE_BUSY = 0;
-    while (((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0) {}
+    *(volatile uint32_t *)(0x4002104C) = 0x20ff;    // GPIOG_CLK_ENABLE
+
+    *(volatile uint32_t *)(0x40021058) = 0x32200000;
+
+
+    *(volatile uint32_t *)(0x48001808) = 0xc3c0fff; //GPIOx_OSPEEDR
+    *(volatile uint32_t *)(0x48001804) = 0x2000; //GPIO port output type register (GPIOx_OTYPER)
+    *(volatile uint32_t *)(0x4800180C) = 0x4000000; //GPIOG_PUPDR
+
+    *(volatile uint32_t *)(0x48001824) = 0x400cc0;// Configure Alternate function mapped with the current IO
+    *(volatile uint32_t *)(0x48001800) = 0x3bebcaaa; // Configure IO Direction mode (Input, Output, Alternate or Analog)
+    *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff;  // Configure the IO Speed */
+    *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
+    *(volatile uint32_t *)(0x4800082C) = 0x4000000; // activate pull up or pull down GPIO_PUPDR
+    *(volatile uint32_t *)(0x48001824) = 0x4400cc0;// Configure Alternate function mapped with the current IO
+    *(volatile uint32_t *)(0x48001800) = 0x2bebcaaa; // Configure IO Direction mode (Input, Output, Alternate or Analog)
+
+    *(volatile uint32_t *)(0x48001808) = 0x3c3c0fff;  /* Configure the IO Speed */
+    *(volatile uint32_t *)(0x48001804) = 0x6000; // GPIO_OTYPER
+    *(volatile uint32_t *)(0x4800082C) = 0x0; /* activate pull up or pull down GPIO_PUPDR */
+
+    *(volatile uint8_t *)(0x48001841) = 0x24; //hi2c->State = HAL_I2C_STATE_BUSY;
+
+
+
+	*(volatile uint32_t *)(0x40005400) = 0; //Disable the selected I2C peripheral
+	*(volatile uint32_t *)(0x40005410) = 0x20303E5D; //Configure I2Cx: Frequency range
+	*(volatile uint32_t *)(0x40005408) = 0; //I2Cx OAR1 Configuration
+	*(volatile uint32_t *)(0x40005408) = 0x8000; //ack own address1 mode
+
+	*(volatile uint32_t *)(0x40005404) = 0; //Clear the I2C ADD10 bit
+	*(volatile uint32_t *)(0x4000540C) = 0; //I2Cx OAR2 Configuration
+	*(volatile uint32_t *)(0x40005400) = 0; //Configure I2Cx: Generalcall and NoStretch mode
+	*(volatile uint32_t *)(0x40005400) = 1; //Enable the selected I2C peripheral
+
+
+
+// transmit
+	*(volatile uint32_t *)(0x40005400) = 0; //I2C_CR1, clear
+	*(volatile uint32_t *)(0x40005410) = 0x20303e5d; //595, timing
+	*(volatile uint32_t *)(0x40005408) = 0; //595, OAR1
+	*(volatile uint32_t *)(0x40005408) = 0x8000;
+	*(volatile uint32_t *)(0x40005404) = 0; //616, CR2
+	*(volatile uint32_t *)(0x40004404) = 0x2008000; //618, auto end, bit 15, NACK
+	*(volatile uint32_t *)(0x4000540C) = 0;//623,  OAR2
+
+	*(volatile uint32_t *)(0x40005400) = 1;//634, peripheral enable bit 0
+	*(volatile uint32_t *)(0x40005428) = reg_address;//1162, TX reg,
+	*(volatile uint32_t *)(0x40005404) = 0x2012082; //7217,      82 device address
+
+	//receive
+
+	uint32_t temp = 0; //I2C_ISR STOPF: STOP detection flag
+	while(((temp = *(volatile uint32_t *)(0x40005418)) & 0x20) == 0){
+	}
+
+	*(volatile uint32_t *)(0x40005404) = 0x2012482; //7217 update CR2 register */
+
+	uint32_t busy = 0; //I2C_ISR BUSY: BUSY detection flag
+	while(((busy = *(volatile uint32_t *)(0x40005400)) & 0x8000) == 1){
+	}
+
+	uint32_t RXNE_BUSY = 0; //RXNE: Receive data register
+	while(((RXNE_BUSY = *(volatile uint32_t *)(0x40005418)) & 0x4) == 0){
+	}
+
+
+	/*
+	 * corrections for printing function
+	 */
+	*(volatile uint32_t *)(0x40021088) = 0x2;
+
 
     uint32_t received_data = *(volatile uint32_t *)(0x40005424);
-
-    // Corrections for printing function
-	*(volatile uint32_t *)(0x40021088) = 0x2;
+    printf("data");
     printf("Received data: 0x%08X\n", received_data);
-
 
 
     return 0;
 }
+
 
 static int ui_cmd_LEDO(ui_cmdline_t *cmd, int argc, char *argv[]) {
     char *state_str;
@@ -913,7 +976,8 @@ static int ui_cmd_LEDO(ui_cmdline_t *cmd, int argc, char *argv[]) {
 
     state_str = cmd_getarg(cmd, 0);
     state = atoi(state_str);
-    I2C_Init_INIT();
+	I2C_Init_INIT();
+	//I2C_Init();
     if (state == 1) { // turn on
         write_I2C(0x11, 0x1);
         write_I2C(0x17, 0x1);
@@ -933,7 +997,8 @@ static int ui_cmd_LEDB(ui_cmdline_t *cmd, int argc, char *argv[]) {
 
     state_str = cmd_getarg(cmd, 0);
     state = atoi(state_str);
-    I2C_Init_INIT();
+	I2C_Init_INIT();
+
     if (state == 1) { // turn on
 
 
@@ -996,7 +1061,7 @@ static int ui_cmd_write_I2C_IO2(ui_cmdline_t *cmd, int argc, char *argv[])
 static int write_I2C_IO2(int reg_address, int value_to_send)
 {
 
-    I2C_Init();
+	I2C_Init();
 
     // Write to I2C
 
