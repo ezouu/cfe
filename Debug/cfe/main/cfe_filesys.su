@@ -1,9 +1,0 @@
-../cfe/main/cfe_filesys.c:109:26:cfe_findfilesys	24	static
-../cfe/main/cfe_filesys.c:137:5:fs_init	40	static
-../cfe/main/cfe_filesys.c:177:5:fs_hook	32	static
-../cfe/main/cfe_filesys.c:225:5:fs_uninit	16	static
-../cfe/main/cfe_filesys.c:250:5:fs_open	32	static
-../cfe/main/cfe_filesys.c:268:5:fs_close	16	static
-../cfe/main/cfe_filesys.c:293:5:fs_read	24	static
-../cfe/main/cfe_filesys.c:315:5:fs_write	24	static
-../cfe/main/cfe_filesys.c:336:5:fs_seek	24	static

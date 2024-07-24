@@ -1,4 +1,0 @@
-../cfe/lib/lib_try.c:71:11:exc_initialize_block	2
-../cfe/lib/lib_try.c:102:6:exc_cleanup_block	3
-../cfe/lib/lib_try.c:131:6:exc_cleanup_handler	2
-../cfe/lib/lib_try.c:155:6:exc_longjmp_handler	2

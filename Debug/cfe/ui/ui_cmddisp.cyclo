@@ -1,8 +1,0 @@
-../cfe/ui/ui_cmddisp.c:80:13:ui_errstring	1
-../cfe/ui/ui_cmddisp.c:102:5:ui_showerror	1
-../cfe/ui/ui_cmddisp.c:128:12:ui_do_one_command	3
-../cfe/ui/ui_cmddisp.c:166:6:ui_restart	2
-../cfe/ui/ui_cmddisp.c:185:5:ui_init_cmddisp	1
-../cfe/ui/ui_cmddisp.c:206:5:ui_showusage	1
-../cfe/ui/ui_cmddisp.c:225:12:ui_docommands_internal	10
-../cfe/ui/ui_cmddisp.c:299:5:ui_docommands	1

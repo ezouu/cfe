@@ -1,3 +1,0 @@
-../cfe/lib/lib_string2.c:57:7:lib_strdup	24	static
-../cfe/lib/lib_string2.c:69:6:lib_trimleading	16	static
-../cfe/lib/lib_string2.c:78:6:lib_chop_filename	32	static

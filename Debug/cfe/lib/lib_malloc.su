@@ -1,8 +1,0 @@
-../cfe/lib/lib_malloc.c:113:6:kmeminit	24	static
-../cfe/lib/lib_malloc.c:138:7:kmempoolbase	16	static
-../cfe/lib/lib_malloc.c:155:5:kmempoolsize	16	static
-../cfe/lib/lib_malloc.c:173:13:kmemcompact	24	static
-../cfe/lib/lib_malloc.c:224:6:kfree	24	static
-../cfe/lib/lib_malloc.c:266:6:lib_outofmemory	4	static
-../cfe/lib/lib_malloc.c:285:7:kmalloc	56	static
-../cfe/lib/lib_malloc.c:415:5:kmemstats	32	static

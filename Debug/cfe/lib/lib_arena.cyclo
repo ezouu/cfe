@@ -1,5 +1,0 @@
-../cfe/lib/lib_arena.c:104:6:arena_init	1
-../cfe/lib/lib_arena.c:140:22:arena_find	4
-../cfe/lib/lib_arena.c:174:12:arena_split	4
-../cfe/lib/lib_arena.c:232:13:arena_coalesce	5
-../cfe/lib/lib_arena.c:281:5:arena_markrange	8

@@ -1,6 +1,0 @@
-../cfe/main/cfe_timer.c:121:10:_getticks	4	static
-../cfe/main/cfe_timer.c:125:13:cfe_timer_task	56	static
-../cfe/main/cfe_timer.c:172:6:cfe_timer_init	16	static
-../cfe/main/cfe_timer.c:205:6:cfe_sleep	40	static
-../cfe/main/cfe_timer.c:229:6:cfe_usleep	24	static
-../cfe/main/cfe_timer.c:261:6:cfe_nsleep	24	static
