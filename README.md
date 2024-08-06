@@ -96,3 +96,5 @@ The `resethandler` is implemented in the `cfe_resethandler.c` file. It includes 
 - v0.0 updated readme 
 - v0.1 added functionality to USART IRQHandler and fixed bugs where handler was endlessly repeating
 - v0.2 fixed bugs and added documentation
+
+I have started working on my own CFE without the broadcom blueprint. You can follow along at https://github.com/ezouu/my_cfe
