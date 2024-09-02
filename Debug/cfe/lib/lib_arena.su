@@ -1,0 +1,5 @@
+../cfe/lib/lib_arena.c:104:6:arena_init	32	static
+../cfe/lib/lib_arena.c:140:22:arena_find	40	static
+../cfe/lib/lib_arena.c:174:12:arena_split	64	static
+../cfe/lib/lib_arena.c:232:13:arena_coalesce	40	static
+../cfe/lib/lib_arena.c:281:5:arena_markrange	80	static

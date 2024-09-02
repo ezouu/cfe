@@ -1,3 +1,6 @@
+
+
+
 /*  *********************************************************************
     *  Broadcom Common Firmware Environment (CFE)
     *  
@@ -77,6 +80,7 @@ static int ui_cmd_write_I2C_IO2(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int SysTick_Init(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int Add_Assembly(ui_cmdline_t *cmd, int argc, char *argv[]);
 static int uart_handler(ui_cmdline_t *cmd, int argc, char *argv[]);
+static int ui_cmd_LED2(ui_cmdline_t *cmd, int argc, char *argv[]);
 int ui_init_misccmds(void);
 
 int ui_init_misccmds(void)
@@ -147,6 +151,13 @@ int ui_init_misccmds(void)
 
     cmd_addcmd("led",
 	       ui_cmd_LED,
+	       NULL,
+	       "1 to turn on light",
+	       "0 to turn off light",
+	       "");
+
+    cmd_addcmd("led2",
+	       ui_cmd_LED2,
 	       NULL,
 	       "1 to turn on light",
 	       "0 to turn off light",
@@ -349,29 +360,7 @@ static int ui_cmd_display(ui_cmdline_t *cmd,int argc,char *argv[])
 		printf("0x%08X", address);
 		printf("0x%08X\n", value);
 	    }
-/*
-    printf("input address");
-    printf("0x%08X", address);
-    printf("input value");
-    printf("0x%08X\n", value);
 
-
-
-
-
-    volatile uint32_t *LPUART_ISR_START = (uint32_t *)(0x40013800);
-	volatile uint32_t *LPUART_ISR_END = (uint32_t *)(0x40013800 + 0x32);
-
-
-	for (volatile uint32_t *address = LPUART_ISR_START; address <= LPUART_ISR_END; address++) {
-	        uint32_t value = *address;
-
-
-	        printf("0x%08X", address);
-	        printf("0x%08X\n", value);
-	    }
-
-*/
     return 0;
 }
 
@@ -1338,6 +1327,57 @@ static int uart_handler(ui_cmdline_t *cmd, int argc, char *argv[]){
 
 
 
+void LED_Init2(void) {
 
+	*(volatile uint32_t *)0x48000400 = 0xf0;
+	*(volatile uint32_t *)0x48000404 = 0x0;
+
+    volatile uint32_t *RCC_AHB2ENR = (uint32_t *)(0x40021000 + 0x4C);
+    *RCC_AHB2ENR = 0xf;//|= (1 << 2);
+
+    volatile uint32_t *GPIOC_MODER = (uint32_t *)(GPIOC_BASE);
+
+
+    //uint32_t initial_value = *GPIOC_MODER;
+    //printf("address: 0x%08X, Initial value: 0x%08X\n", (uint32_t)GPIOA_MODER, initial_value);
+
+
+    //*GPIOC_MODER &= ~(0x2 << 1);
+    *GPIOC_MODER |= (1 << 2);
+
+
+    //uint32_t modified_value = *GPIOC_MODER;
+    //printf("address: 0x%08X, Modified value: 0x%08X\n", (uint32_t)GPIOA_MODER, modified_value);
+}
+
+static int ui_cmd_LED2(ui_cmdline_t *cmd, int argc, char *argv[])
+{
+    char *state_str;
+    int state;
+
+    state_str = cmd_getarg(cmd, 0);
+    state = atoi(state_str);
+
+    LED_Init2();
+    volatile uint32_t *GPIOC_ODR = (uint32_t *)(GPIOC_BASE + 0x14);
+
+    /*volatile uint32_t *GPIOA_MODER = (uint32_t *)(GPIOA_BASE + GPIOA_MODER_OFFSET);
+    uint32_t initial_value = *GPIOA_MODER;
+    printf("Initial GPIOA_MODER: 0x%08X\n", initial_value);
+    volatile uint32_t *GPIOA_ODR = (uint32_t *)(GPIOA_BASE + GPIOA_ODR_OFFSET);
+    *GPIOA_MODER &= ~(0x3 << PA5_MODER_BIT_POS);
+    *GPIOA_MODER |= (0x1 << PA5_MODER_BIT_POS);
+    uint32_t modified_value = *GPIOA_MODER;
+    printf("Modified GPIOA_MODER: 0x%08X\n", modified_value);
+    */
+
+    if (state == 1) {
+        *GPIOC_ODR |= (1 << 1);
+    } else {
+        *GPIOC_ODR &= ~(1 << 0);
+    }
+
+    return 0;
+}
 
 

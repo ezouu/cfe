@@ -1,0 +1,15 @@
+../cfe/main/cfe_devfuncs.c:54:12:cfe_strlen	24	static
+../cfe/main/cfe_devfuncs.c:66:5:cfe_open	120	static
+../cfe/main/cfe_devfuncs.c:84:5:cfe_close	120	static
+../cfe/main/cfe_devfuncs.c:100:5:cfe_readblk	128	static
+../cfe/main/cfe_devfuncs.c:118:5:cfe_read	32	static
+../cfe/main/cfe_devfuncs.c:124:5:cfe_writeblk	128	static
+../cfe/main/cfe_devfuncs.c:142:5:cfe_write	32	static
+../cfe/main/cfe_devfuncs.c:148:5:cfe_ioctl	128	static
+../cfe/main/cfe_devfuncs.c:170:5:cfe_inpstat	120	static
+../cfe/main/cfe_devfuncs.c:189:11:cfe_getticks	112	static
+../cfe/main/cfe_devfuncs.c:206:5:cfe_getenv	128	static
+../cfe/main/cfe_devfuncs.c:228:5:cfe_exit	120	static
+../cfe/main/cfe_devfuncs.c:245:5:cfe_flushcache	120	static
+../cfe/main/cfe_devfuncs.c:260:5:cfe_getdevinfo	120	static
+../cfe/main/cfe_devfuncs.c:278:5:cfe_enumdev	128	static

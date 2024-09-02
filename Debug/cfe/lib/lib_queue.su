@@ -1,0 +1,6 @@
+../cfe/lib/lib_queue.c:65:6:q_enqueue	16	static
+../cfe/lib/lib_queue.c:86:6:q_dequeue	16	static
+../cfe/lib/lib_queue.c:105:10:q_deqnext	16	static
+../cfe/lib/lib_queue.c:138:5:q_map	40	static
+../cfe/lib/lib_queue.c:173:5:q_count	24	static
+../cfe/lib/lib_queue.c:204:5:q_find	24	static

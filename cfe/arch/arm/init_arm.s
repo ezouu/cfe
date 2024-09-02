@@ -141,7 +141,7 @@ Reset_Handler:
   bne   1b
 
 
-     /*uart, tx data */
+     /*uart, tx data
   ldr   r0, L__usart_tdr
   mov   r1, 0x59
   str   r1, [r0]
@@ -157,6 +157,26 @@ Reset_Handler:
 
   ldr   r0, L__usart_tdr
   mov   r1, 0x58
+  str   r1, [r0]
+  mov r0, #1
+  mov r1, #2
+
+*/
+
+     /*uart, tx data */
+  ldr   r0, L__usart_tdr
+  mov   r1, 0x0A  // Changed from 0x59 (Y) to 0x0A (newline)
+  str   r1, [r0]
+
+  ldr   r0, L__usart_isr
+1:
+  ldr   r1, [r0]
+  and   r1, 1<<7
+  cmp   r1, 1<<7
+  bne   1b
+
+  ldr   r0, L__usart_tdr
+  mov   r1, 0x58  // This line can be kept as it is or changed based on what character you want to print next
   str   r1, [r0]
   mov r0, #1
   mov r1, #2

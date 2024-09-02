@@ -1,0 +1,10 @@
+../cfe/arch/arm/lib_printf.c:81:12:__atox	48	static
+../cfe/arch/arm/lib_printf.c:129:12:__llatox	64	static
+../cfe/arch/arm/lib_printf.c:188:5:xvsprintf	120	static
+../cfe/arch/arm/lib_printf.c:385:5:xsprintf	28	static
+../cfe/arch/arm/lib_printf.c:413:5:printf	536	static
+../cfe/arch/arm/lib_printf.c:435:5:xvprintf	536	static
+../cfe/arch/arm/lib_printf.c:447:6:putstring	24	static
+../cfe/arch/arm/lib_printf.c:454:6:putc	24	static
+../cfe/arch/arm/lib_printf.c:471:6:puts	8	static
+../cfe/arch/arm/lib_printf.c:475:6:putchar	16	static
